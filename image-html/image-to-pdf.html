@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert images to PDF online. Combine multiple images, reorder pages, select page sizes and download a PDF with DigiiFox.">
+  <title>Image to PDF | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-to-pdf.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+  <script src="../image-js/image-to-pdf.js" defer></script>
+</head>
+<body>
+
+<header class="itp-header">
+  <div class="itp-header-inner">
+    <a href="../index.html" class="itp-logo">Digii<span>Fox</span></a>
+    <nav class="itp-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </div>
+</header>
+
+<main class="itp-main">
+  <section class="itp-hero">
+    <span class="itp-eyebrow">FREE ONLINE IMAGE TOOL</span>
+    <h1>Image to <span>PDF</span></h1>
+    <p>Combine your images into a PDF. Arrange pages, customize the layout, and download your document in a few clicks.</p>
+  </section>
+
+  <section class="itp-workspace">
+    <div class="itp-card">
+      <div class="itp-card-heading">
+        <div>
+          <h2>Your Images</h2>
+          <p>Add and arrange images in your PDF.</p>
+        </div>
+        <span class="itp-count" id="itpCount">0 images</span>
+      </div>
+
+      <input type="file" id="itpFileInput" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp" multiple hidden>
+
+      <div class="itp-dropzone" id="itpDropzone">
+        <div class="itp-upload-icon" aria-hidden="true">↑</div>
+        <h3>Drop images here</h3>
+        <p>Or choose images from your device</p>
+        <button class="itp-btn itp-btn-primary" type="button" id="itpChooseBtn">Choose Images</button>
+        <small>JPG, PNG, WebP, GIF and BMP · Maximum 20 MB per image</small>
+      </div>
+
+      <div class="itp-list-toolbar">
+        <span>PDF page order</span>
+        <div class="itp-toolbar-actions">
+          <button type="button" class="itp-text-btn" id="itpAddMoreBtn">+ Add more</button>
+          <button type="button" class="itp-text-btn itp-danger-text" id="itpClearBtn" disabled>Clear all</button>
+        </div>
+      </div>
+
+      <div class="itp-image-list" id="itpImageList">
+        <div class="itp-empty-list">
+          <strong>No images added yet</strong>
+          <p>Your uploaded images will appear here.</p>
+        </div>
+      </div>
+
+      <p class="itp-tip">Use the up and down arrows to arrange the pages before creating your PDF.</p>
+    </div>
+
+    <aside class="itp-card itp-settings-card">
+      <div class="itp-card-heading">
+        <div>
+          <h2>PDF Settings</h2>
+          <p>Customize your output document.</p>
+        </div>
+      </div>
+
+      <div class="itp-field">
+        <label for="itpPageSize">Page Size</label>
+        <select id="itpPageSize">
+          <option value="a4">A4</option>
+          <option value="letter">US Letter</option>
+          <option value="fit">Fit to Image</option>
+        </select>
+      </div>
+
+      <div class="itp-field">
+        <label for="itpOrientation">Orientation</label>
+        <select id="itpOrientation">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+      </div>
+
+      <div class="itp-field">
+        <label for="itpMargin">Page Margin</label>
+        <select id="itpMargin">
+          <option value="0">No margin</option>
+          <option value="5">Small (5 mm)</option>
+          <option value="10" selected>Medium (10 mm)</option>
+          <option value="20">Large (20 mm)</option>
+        </select>
+      </div>
+
+      <div class="itp-field">
+        <label for="itpPlacement">Image Placement</label>
+        <select id="itpPlacement">
+          <option value="contain">Fit entire image</option>
+          <option value="fill">Fill page (may crop)</option>
+        </select>
+      </div>
+
+      <div class="itp-field">
+        <label for="itpQuality">Image Quality</label>
+        <select id="itpQuality">
+          <option value="0.55">Smaller PDF</option>
+          <option value="0.75" selected>Balanced</option>
+          <option value="0.92">High quality</option>
+        </select>
+      </div>
+
+      <div class="itp-field">
+        <label for="itpBackground">Page Background</label>
+        <select id="itpBackground">
+          <option value="#FFFFFF">White</option>
+          <option value="#F5F5F5">Light grey</option>
+          <option value="#000000">Black</option>
+        </select>
+      </div>
+
+      <div class="itp-summary">
+        <div><span>Images / pages</span><strong id="itpSummaryCount">0</strong></div>
+        <div><span>Estimated source size</span><strong id="itpSummarySize">0 KB</strong></div>
+      </div>
+
+      <button type="button" class="itp-btn itp-btn-primary itp-create-btn" id="itpCreateBtn" disabled>
+        Create &amp; Download PDF
+      </button>
+      <p class="itp-status" id="itpStatus" role="status" aria-live="polite"></p>
+      <p class="itp-privacy-note">🔒 Your images are processed in your browser and are not intentionally uploaded to a DigiiFox server.</p>
+    </aside>
+  </section>
+
+  <section class="itp-info-section">
+    <h2>How to Convert Images to PDF</h2>
+    <div class="itp-info-grid">
+      <article class="itp-info-card">
+        <span>01</span>
+        <h3>Upload Images</h3>
+        <p>Select one image or multiple images from your device. You can add more images at any time.</p>
+      </article>
+      <article class="itp-info-card">
+        <span>02</span>
+        <h3>Arrange and Customize</h3>
+        <p>Reorder your images and choose the page size, orientation, margins, placement and quality.</p>
+      </article>
+      <article class="itp-info-card">
+        <span>03</span>
+        <h3>Create Your PDF</h3>
+        <p>Click Create &amp; Download PDF to save all your images in one PDF document.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="itp-info-section itp-faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details class="itp-faq">
+      <summary>Can I convert multiple images into one PDF?</summary>
+      <p>Yes. Add multiple images and the tool places each image on its own PDF page in the order shown in the image list.</p>
+    </details>
+
+    <details class="itp-faq">
+      <summary>Can I change the order of the pages?</summary>
+      <p>Yes. Use the up and down arrows beside an image to change its position before generating the PDF.</p>
+    </details>
+
+    <details class="itp-faq">
+      <summary>What does Fit to Image mean?</summary>
+      <p>Fit to Image creates a PDF page whose dimensions follow each image's aspect ratio and dimensions. A small margin, if selected, is applied around the image.</p>
+    </details>
+
+    <details class="itp-faq">
+      <summary>Will my image quality be reduced?</summary>
+      <p>The quality setting controls JPEG compression for the images embedded in the PDF. Higher quality usually produces a larger PDF. Some input formats are converted to JPEG during processing.</p>
+    </details>
+
+    <details class="itp-faq">
+      <summary>Are my files uploaded to a server?</summary>
+      <p>The conversion is performed in your browser, without intentionally uploading your images to a DigiiFox server. The PDF library is loaded from a third-party CDN, so an internet connection is required unless you host the library locally.</p>
+    </details>
+
+    <details class="itp-faq">
+      <summary>Can I convert transparent PNG images?</summary>
+      <p>Yes. Transparent areas are rendered using the selected page background before the image is added to the PDF.</p>
+    </details>
+  </section>
+
+  <section class="itp-related-section">
+    <h2>Explore More Image Tools</h2>
+    <div class="itp-related-grid">
+      <a href="jpg-to-png.html" class="itp-related-card">
+        <h3>JPG to PNG</h3>
+        <p>Convert JPG images to PNG format.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-compressor.html" class="itp-related-card">
+        <h3>Image Compressor</h3>
+        <p>Reduce image file sizes.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-resizer.html" class="itp-related-card">
+        <h3>Image Resizer</h3>
+        <p>Resize images to your desired dimensions.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-cropper.html" class="itp-related-card">
+        <h3>Image Cropper</h3>
+        <p>Crop images to the area you need.</p>
+        <span>Use Tool →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="itp-footer">
+  <div class="itp-footer-inner">
+    <div class="itp-footer-brand">
+      <a href="../index.html" class="itp-logo">Digii<span>Fox</span></a>
+      <p>Simple, useful tools for everyday digital tasks.</p>
+    </div>
+    <div class="itp-footer-column">
+      <h3>Explore</h3>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </div>
+    <div class="itp-footer-column">
+      <h3>Popular Image Tools</h3>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-cropper.html">Image Cropper</a>
+      <a href="image-format-converter.html">Image Format Converter</a>
+    </div>
+    <div class="itp-footer-column">
+      <h3>Helpful Links</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">All Image Tools</a>
+    </div>
+  </div>
+  <div class="itp-footer-bottom">
+    <p>© <span id="itpYear"></span> DigiiFox. All rights reserved.</p>
+    <p>Made for simple and productive digital work.</p>
+  </div>
+</footer>
+
+</body>
+</html>

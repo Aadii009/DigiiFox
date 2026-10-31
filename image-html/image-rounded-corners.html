@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Round the corners of your photos online with DigiiFox Image Round Corners. Adjust corner radius, background color and export format in your browser.">
+  <title>Image Round Corners - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-round-corners.css">
+</head>
+<body>
+
+<header class="irc-header">
+  <a href="../index.html" class="irc-logo">Digii<span>Fox</span></a>
+  <nav class="irc-nav" aria-label="Main navigation">
+    <a href="../index.html">Home</a>
+    <a href="../pages/image-tools.html" class="active">Image Tools</a>
+    <a href="../pages/pdf-tools.html">PDF Tools</a>
+    <a href="../pages/calculators.html">Calculators</a>
+  </nav>
+</header>
+
+<main class="irc-main">
+  <section class="irc-hero">
+    <span class="irc-badge">IMAGE TOOLS</span>
+    <h1>Image <span>Round Corners</span></h1>
+    <p>Give your photos a smooth, rounded look. Adjust the corner radius, choose a background, preview the result and download your image.</p>
+  </section>
+
+  <section class="irc-workspace">
+    <div class="irc-upload-card" id="uploadCard">
+      <div class="irc-upload-icon" aria-hidden="true">＋</div>
+      <h2>Choose an Image</h2>
+      <p>Select a photo from your device or drag and drop it here.</p>
+      <label class="irc-primary-button" for="imageInput">Select Image</label>
+      <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+      <p class="irc-file-note">JPG, PNG or WebP · Maximum 25 MB</p>
+    </div>
+
+    <div class="irc-editor" id="editor" hidden>
+      <aside class="irc-controls">
+        <div class="irc-panel-heading">
+          <h2>Corner Settings</h2>
+          <button type="button" id="resetButton" class="irc-text-button">Reset</button>
+        </div>
+
+        <div class="irc-field">
+          <div class="irc-label-row">
+            <label for="radius">Corner Roundness</label>
+            <output id="radiusValue" for="radius">60 px</output>
+          </div>
+          <input type="range" id="radius" min="0" max="500" value="60">
+          <div class="irc-range-labels">
+            <span>Square</span><span>Fully rounded</span>
+          </div>
+          <small>The maximum is adjusted to suit the image dimensions.</small>
+        </div>
+
+        <div class="irc-field">
+          <label for="backgroundColor">Background Color</label>
+          <div class="irc-color-row">
+            <input type="color" id="backgroundColor" value="#ffffff" aria-label="Choose background color">
+            <input type="text" id="backgroundColorText" value="#ffffff" maxlength="7" aria-label="Background color hex code">
+          </div>
+          <small>Used in the corners when transparency is turned off.</small>
+        </div>
+
+        <div class="irc-field">
+          <label class="irc-checkbox-row" for="transparentCorners">
+            <input type="checkbox" id="transparentCorners" checked>
+            <span>
+              Transparent Corners
+              <small>Keep the area outside rounded corners transparent in PNG and WebP.</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="irc-field">
+          <label for="outputFormat">Download Format</label>
+          <select id="outputFormat">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+
+        <div class="irc-field" id="qualityField" hidden>
+          <div class="irc-label-row">
+            <label for="quality">Image Quality</label>
+            <output id="qualityValue" for="quality">92%</output>
+          </div>
+          <input type="range" id="quality" min="50" max="100" value="92">
+        </div>
+
+        <button type="button" id="downloadButton" class="irc-primary-button irc-full-button">
+          Download Image
+        </button>
+        <button type="button" id="changeImageButton" class="irc-secondary-button">
+          Choose Another Image
+        </button>
+
+        <p class="irc-privacy-note">🔒 Your image is processed locally in your browser.</p>
+      </aside>
+
+      <section class="irc-preview-panel">
+        <div class="irc-preview-heading">
+          <div>
+            <h2>Live Preview</h2>
+            <p>Changes appear here as you adjust the settings.</p>
+          </div>
+          <span class="irc-preview-tag">PREVIEW</span>
+        </div>
+
+        <div class="irc-canvas-wrap">
+          <canvas id="previewCanvas" aria-label="Preview of your rounded image"></canvas>
+          <p id="previewPlaceholder">Your image preview will appear here.</p>
+        </div>
+
+        <div class="irc-image-info" id="imageInfo"></div>
+        <p class="irc-error" id="errorMessage" role="alert" aria-live="polite"></p>
+      </section>
+    </div>
+  </section>
+
+  <section class="irc-info-section">
+    <h2>How to Use Image Round Corners</h2>
+    <div class="irc-steps">
+      <article class="irc-step">
+        <span>01</span>
+        <h3>Upload an Image</h3>
+        <p>Select a JPG, PNG or WebP image from your device.</p>
+      </article>
+      <article class="irc-step">
+        <span>02</span>
+        <h3>Adjust the Corners</h3>
+        <p>Use the slider to choose how rounded your image should be.</p>
+      </article>
+      <article class="irc-step">
+        <span>03</span>
+        <h3>Choose Your Background</h3>
+        <p>Keep the corners transparent or select a background color.</p>
+      </article>
+      <article class="irc-step">
+        <span>04</span>
+        <h3>Download Your Image</h3>
+        <p>Choose a format and save the finished image.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="irc-info-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="irc-faq-list">
+      <details>
+        <summary>How can I round the corners of a photo?</summary>
+        <p>Upload your image, adjust the Corner Roundness slider, review the preview, and download the result.</p>
+      </details>
+      <details>
+        <summary>Can I make the corners transparent?</summary>
+        <p>Yes. Enable Transparent Corners and export as PNG or WebP. JPG does not support transparency, so it uses the selected background color instead.</p>
+      </details>
+      <details>
+        <summary>Can I change the background color?</summary>
+        <p>Yes. Turn off Transparent Corners and select a color using the color picker or enter a hexadecimal color code.</p>
+      </details>
+      <details>
+        <summary>Will the image dimensions change?</summary>
+        <p>No. The output keeps the original image width and height. The corners are rounded within those dimensions.</p>
+      </details>
+      <details>
+        <summary>Which formats can I use?</summary>
+        <p>You can upload JPG, PNG and WebP files and download the result in PNG, JPG or WebP format.</p>
+      </details>
+      <details>
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. The image is processed locally in your browser and is not uploaded to a DigiiFox server by this tool.</p>
+      </details>
+      <details>
+        <summary>Does rounding corners reduce image quality?</summary>
+        <p>The rounded shape is created at the image's original dimensions. PNG is lossless, while JPG and WebP use the selected compression quality.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="irc-related">
+    <h2>Explore More Image Tools</h2>
+    <div class="irc-related-links">
+      <a href="./image-border-maker.html">Image Border Maker</a>
+      <a href="./image-cropper.html">Image Cropper</a>
+      <a href="./image-resizer.html">Image Resizer</a>
+      <a href="./image-rotator.html">Image Rotator</a>
+      <a href="./image-compressor.html">Image Compressor</a>
+      <a href="./image-watermark.html">Image Watermark</a>
+    </div>
+  </section>
+</main>
+
+<footer class="irc-footer">
+  <div class="irc-footer-grid">
+    <div class="irc-footer-brand">
+      <a href="../index.html" class="irc-logo">Digii<span>Fox</span></a>
+      <p>Simple, useful online tools designed to make everyday tasks easier.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </div>
+    <div>
+      <h3>Image Tools</h3>
+      <a href="./image-round-corners.html">Image Round Corners</a>
+      <a href="./image-border-maker.html">Image Border Maker</a>
+      <a href="./image-cropper.html">Image Cropper</a>
+      <a href="./image-rotator.html">Image Rotator</a>
+    </div>
+    <div>
+      <h3>Helpful Links</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">All Image Tools</a>
+      <a href="../pages/pdf-tools.html">All PDF Tools</a>
+    </div>
+  </div>
+  <div class="irc-footer-bottom">
+    <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+    <p>Tools that make digital work easier.</p>
+  </div>
+</footer>
+
+<script src="../image-js/image-round-corners.js"></script>
+</body>
+</html>

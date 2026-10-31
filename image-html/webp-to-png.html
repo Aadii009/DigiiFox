@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert WebP images to PNG online for free with DigiiFox. Preview and download your PNG image directly in your browser.">
+  <title>WebP to PNG Converter Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/webp-to-png.css">
+  <script src="../image-js/webp-to-png.js" defer></script>
+</head>
+<body>
+  <header class="wp-header">
+    <div class="wp-header-inner">
+      <a href="../index.html" class="wp-logo">Digii<span>Fox</span></a>
+      <button class="wp-menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="wp-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wp-container">
+    <section class="wp-hero">
+      <div class="wp-breadcrumb">
+        <a href="../index.html">Home</a> /
+        <a href="../pages/image-tools.html">Image Tools</a> /
+        <span>WebP to PNG</span>
+      </div>
+      <span class="wp-label">FREE IMAGE CONVERTER</span>
+      <h1>WebP to <span>PNG</span> Converter</h1>
+      <p>Convert WebP images into PNG files in seconds. Keep transparency, preview your result, and download your image for free.</p>
+    </section>
+
+    <section class="wp-tool-card">
+      <div class="wp-upload-area" id="uploadBox" tabindex="0" role="button" aria-label="Choose a WebP image">
+        <div class="wp-upload-icon">↑</div>
+        <h2>Upload your WebP image</h2>
+        <p>Drag and drop your image here, or click to browse</p>
+        <button type="button" class="wp-primary-btn" id="chooseImageButton">Choose WebP Image</button>
+        <span class="wp-upload-note">WEBP format · Maximum 25 MB</span>
+        <input type="file" id="imageInput" accept=".webp,image/webp" hidden>
+      </div>
+
+      <p class="wp-status" id="statusMessage" role="status" aria-live="polite"></p>
+
+      <div class="wp-editor" id="editor" hidden>
+        <div class="wp-file-heading">
+          <div>
+            <h2>Your image</h2>
+            <p>Review the original and converted image below.</p>
+          </div>
+          <button type="button" class="wp-secondary-btn" id="changeImageButton">Change Image</button>
+        </div>
+
+        <div class="wp-preview-grid">
+          <article class="wp-preview-card">
+            <h3>Original WebP</h3>
+            <div class="wp-preview-frame">
+              <img id="originalPreview" alt="Original WebP preview">
+            </div>
+            <div class="wp-image-info">
+              <span>File size</span><strong id="originalSize">—</strong>
+              <span>Dimensions</span><strong id="originalDimensions">—</strong>
+              <span>Format</span><strong>WEBP</strong>
+            </div>
+          </article>
+
+          <article class="wp-preview-card">
+            <h3>Converted PNG</h3>
+            <div class="wp-preview-frame" id="convertedFrame">
+              <div class="wp-placeholder" id="previewPlaceholder">Your PNG preview will appear here.</div>
+              <img id="convertedPreview" alt="Converted PNG preview" hidden>
+            </div>
+            <div class="wp-image-info">
+              <span>File size</span><strong id="convertedSize">—</strong>
+              <span>Dimensions</span><strong id="convertedDimensions">—</strong>
+              <span>Format</span><strong id="convertedFormat">PNG</strong>
+            </div>
+          </article>
+        </div>
+
+        <div class="wp-summary" id="conversionSummary">
+          <strong id="summaryTitle">Ready to convert</strong>
+          <p id="summaryText">Your PNG image will appear here after conversion.</p>
+        </div>
+
+        <div class="wp-action-row">
+          <button type="button" class="wp-primary-btn" id="convertButton">Convert to PNG</button>
+          <a class="wp-primary-btn wp-download-btn" id="downloadButton" href="#" download="digifox-converted.png" hidden>Download PNG</a>
+          <button type="button" class="wp-secondary-btn" id="resetButton">Start Over</button>
+        </div>
+      </div>
+
+      <div class="wp-privacy-note">
+        <strong>Your privacy matters.</strong>
+        <span>Images are processed in your browser and are not sent to DigiiFox servers.</span>
+      </div>
+    </section>
+
+    <section class="wp-content-section">
+      <h2>How to Convert WebP to PNG</h2>
+      <div class="wp-steps-grid">
+        <article class="wp-step">
+          <span>01</span>
+          <h3>Upload an image</h3>
+          <p>Select a WebP image from your device or drag it into the upload area.</p>
+        </article>
+        <article class="wp-step">
+          <span>02</span>
+          <h3>Convert to PNG</h3>
+          <p>Click the conversion button and wait for the PNG preview to appear.</p>
+        </article>
+        <article class="wp-step">
+          <span>03</span>
+          <h3>Download your PNG</h3>
+          <p>Preview the result and download the converted image to your device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wp-content-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="wp-faq-list">
+        <details>
+          <summary>Is this WebP to PNG converter free?</summary>
+          <p>Yes. You can convert WebP images to PNG for free using this browser-based tool.</p>
+        </details>
+        <details>
+          <summary>Will my image transparency be preserved?</summary>
+          <p>Yes. PNG supports transparency, and the converter preserves transparent areas when the browser can decode them correctly.</p>
+        </details>
+        <details>
+          <summary>Will converting WebP to PNG improve image quality?</summary>
+          <p>No. Converting formats does not restore details lost in an earlier lossy conversion. PNG can preserve the decoded image without adding further lossy compression.</p>
+        </details>
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>No. Conversion happens in your browser. Your image stays on your device during the conversion process.</p>
+        </details>
+        <details>
+          <summary>Why is my PNG file larger than the WebP file?</summary>
+          <p>PNG often creates larger files because it uses a different compression method. This can be normal, especially for photographs.</p>
+        </details>
+        <details>
+          <summary>What is the maximum supported file size?</summary>
+          <p>This tool accepts WebP files up to 25 MB and limits image dimensions to help avoid excessive browser memory use.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="wp-content-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="wp-related-grid">
+        <a href="image-to-webp.html">Image to WebP <span>→</span></a>
+        <a href="webp-to-jpg.html">WebP to JPG <span>→</span></a>
+        <a href="png-to-jpg.html">PNG to JPG <span>→</span></a>
+        <a href="jpg-to-png.html">JPG to PNG <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wp-footer">
+    <div class="wp-footer-grid">
+      <div class="wp-footer-brand">
+        <a href="../index.html" class="wp-logo">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for your everyday digital tasks.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div>
+        <h3>Image Tools</h3>
+        <a href="image-to-webp.html">Image to WebP</a>
+        <a href="webp-to-jpg.html">WebP to JPG</a>
+        <a href="png-to-jpg.html">PNG to JPG</a>
+        <a href="image-compressor.html">Image Compressor</a>
+      </div>
+      <div>
+        <h3>Helpful Links</h3>
+        <a href="../pages/image-tools.html">All Image Tools</a>
+        <a href="../pages/pdf-tools.html">All PDF Tools</a>
+        <a href="../pages/calculators.html">All Calculators</a>
+      </div>
+    </div>
+    <div class="wp-footer-bottom">
+      <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Fast tools. Simple solutions.</p>
+    </div>
+  </footer>
+</body>
+</html>

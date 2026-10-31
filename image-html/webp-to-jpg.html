@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert WebP images to JPG online with DigiiFox. Adjust JPEG quality, compare file sizes, and download your converted images for free.">
+  <title>WebP to JPG Converter Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/webp-to-jpg.css">
+</head>
+<body>
+
+  <header class="wj-header">
+    <div class="wj-nav-container">
+      <a href="../index.html" class="wj-brand">Digii<span>Fox</span></a>
+
+      <button class="wj-menu-toggle" id="menuToggle"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="wj-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wj-main">
+
+    <section class="wj-hero">
+      <div class="wj-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <span>/</span>
+        <span>WebP to JPG</span>
+      </div>
+
+      <span class="wj-badge">FREE IMAGE TOOL</span>
+      <h1>WebP to <span>JPG</span></h1>
+      <p>Convert WebP images into widely compatible JPG files. Adjust image quality, compare file sizes, and download your results.</p>
+    </section>
+
+    <section class="wj-workspace">
+
+      <div class="wj-upload-box" id="uploadBox">
+        <div class="wj-upload-icon">↑</div>
+        <h2>Upload Your WebP Image</h2>
+        <p>Drag and drop a WebP image here, or choose a file from your device.</p>
+
+        <label for="imageInput" class="wj-primary-button">Choose WebP Image</label>
+        <input type="file" id="imageInput" accept="image/webp" hidden>
+
+        <p class="wj-file-note">WebP format only · Maximum 25 MB</p>
+      </div>
+
+      <section class="wj-editor" id="editor" hidden>
+
+        <div class="wj-editor-heading">
+          <div>
+            <h2>Convert WebP to JPG</h2>
+            <p>Choose your preferred JPG quality before converting.</p>
+          </div>
+          <button type="button" id="changeImageButton" class="wj-secondary-button">
+            Change Image
+          </button>
+        </div>
+
+        <div class="wj-quality-panel">
+          <div class="wj-quality-heading">
+            <label for="quality">JPG Quality</label>
+            <strong id="qualityValue">92%</strong>
+          </div>
+
+          <input type="range" id="quality" min="10" max="100" value="92">
+
+          <div class="wj-quality-labels">
+            <span>Smaller file</span>
+            <span>Higher quality</span>
+          </div>
+
+          <p>Higher quality usually creates larger files. JPG does not support transparency, so transparent areas will become white.</p>
+        </div>
+
+        <div class="wj-preview-grid">
+
+          <article class="wj-preview-card">
+            <div class="wj-preview-heading">
+              <h3>Original WebP</h3>
+              <span class="wj-preview-tag">WebP</span>
+            </div>
+
+            <div class="wj-image-preview">
+              <img id="originalPreview" alt="Original WebP image preview">
+            </div>
+
+            <div class="wj-preview-details">
+              <div>
+                <span>File Size</span>
+                <strong id="originalSize">—</strong>
+              </div>
+              <div>
+                <span>Dimensions</span>
+                <strong id="originalDimensions">—</strong>
+              </div>
+              <div>
+                <span>Format</span>
+                <strong>WebP</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="wj-preview-card">
+            <div class="wj-preview-heading">
+              <h3>Converted JPG</h3>
+              <span class="wj-preview-tag wj-jpg-tag">JPG</span>
+            </div>
+
+            <div class="wj-image-preview">
+              <img id="convertedPreview" alt="Converted JPG image preview" hidden>
+              <div class="wj-preview-placeholder" id="previewPlaceholder">
+                Your converted JPG will appear here.
+              </div>
+            </div>
+
+            <div class="wj-preview-details">
+              <div>
+                <span>File Size</span>
+                <strong id="convertedSize">—</strong>
+              </div>
+              <div>
+                <span>Dimensions</span>
+                <strong id="convertedDimensions">—</strong>
+              </div>
+              <div>
+                <span>Format</span>
+                <strong id="convertedFormat">JPG</strong>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="wj-conversion-summary" id="conversionSummary" hidden>
+          <div class="wj-summary-icon">✓</div>
+          <div class="wj-summary-content">
+            <strong id="summaryTitle">Conversion complete</strong>
+            <p id="summaryText">Your JPG image is ready.</p>
+          </div>
+          <span class="wj-savings-badge" id="savingsBadge">—</span>
+        </div>
+
+        <div class="wj-actions">
+          <button type="button" id="convertButton" class="wj-primary-button">
+            Convert to JPG
+          </button>
+
+          <a id="downloadButton" class="wj-primary-button wj-download-button"
+            href="#" download="digifox-converted.jpg" hidden>
+            Download JPG Image
+          </a>
+        </div>
+
+        <p class="wj-status" id="statusMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <div class="wj-privacy-note">
+        <strong>Your privacy matters.</strong>
+        <span>Your image is converted locally in your browser and is not uploaded to a DigiiFox server.</span>
+      </div>
+
+    </section>
+
+    <section class="wj-info-section">
+      <h2>How to Convert WebP to JPG</h2>
+
+      <div class="wj-steps">
+        <article class="wj-step-card">
+          <span class="wj-step-number">01</span>
+          <h3>Upload WebP</h3>
+          <p>Choose a WebP image from your computer or mobile device.</p>
+        </article>
+
+        <article class="wj-step-card">
+          <span class="wj-step-number">02</span>
+          <h3>Adjust Quality</h3>
+          <p>Use the slider to balance JPG image quality and file size.</p>
+        </article>
+
+        <article class="wj-step-card">
+          <span class="wj-step-number">03</span>
+          <h3>Convert Image</h3>
+          <p>Click Convert to JPG to create your new image file.</p>
+        </article>
+
+        <article class="wj-step-card">
+          <span class="wj-step-number">04</span>
+          <h3>Download JPG</h3>
+          <p>Preview the result and save the converted image to your device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wj-info-section wj-faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <details class="wj-faq-item">
+        <summary>Is this WebP to JPG converter free?</summary>
+        <p>Yes. You can convert WebP images to JPG for free using DigiiFox.</p>
+      </details>
+
+      <details class="wj-faq-item">
+        <summary>Why convert WebP to JPG?</summary>
+        <p>JPG is supported by many image viewers, applications, websites, and older workflows. Converting can help when a particular application does not accept WebP.</p>
+      </details>
+
+      <details class="wj-faq-item">
+        <summary>What happens to transparent areas?</summary>
+        <p>JPG does not support transparency. Transparent areas in your WebP image are filled with white during conversion.</p>
+      </details>
+
+      <details class="wj-faq-item">
+        <summary>Will the converted JPG look exactly the same?</summary>
+        <p>Not necessarily. JPG uses lossy compression, which may change image details. A higher quality setting usually preserves more visual detail.</p>
+      </details>
+
+      <details class="wj-faq-item">
+        <summary>Will the JPG file always be smaller?</summary>
+        <p>No. File size depends on the original WebP, the image content, and the selected JPG quality. The converted file may be larger or smaller.</p>
+      </details>
+
+      <details class="wj-faq-item">
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. Conversion is performed locally in your browser. This tool does not send your selected image to a DigiiFox server.</p>
+      </details>
+
+      <details class="wj-faq-item">
+        <summary>What is the maximum supported image size?</summary>
+        <p>The tool accepts WebP files up to 25 MB and 40 megapixels. Very large images may require more memory than some devices can provide.</p>
+      </details>
+    </section>
+
+    <section class="wj-related-section">
+      <h2>Explore More Image Tools</h2>
+
+      <div class="wj-related-grid">
+        <a href="image-to-webp.html" class="wj-related-card">
+          <span>Image → WebP</span>
+          <strong>Image to WebP</strong>
+          <small>Convert images to WebP format.</small>
+        </a>
+
+        <a href="png-to-jpg.html" class="wj-related-card">
+          <span>PNG → JPG</span>
+          <strong>PNG to JPG</strong>
+          <small>Convert PNG images to JPG.</small>
+        </a>
+
+        <a href="jpg-to-png.html" class="wj-related-card">
+          <span>JPG → PNG</span>
+          <strong>JPG to PNG</strong>
+          <small>Convert JPG images to PNG.</small>
+        </a>
+
+        <a href="image-compressor.html" class="wj-related-card">
+          <span>Compress</span>
+          <strong>Image Compressor</strong>
+          <small>Reduce image file size.</small>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wj-footer">
+    <div class="wj-footer-grid">
+
+      <div class="wj-footer-brand">
+        <a href="../index.html" class="wj-brand">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools to help you get things done faster.</p>
+      </div>
+
+      <div class="wj-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+
+      <div class="wj-footer-column">
+        <h3>Image Tools</h3>
+        <a href="image-to-webp.html">Image to WebP</a>
+        <a href="png-to-jpg.html">PNG to JPG</a>
+        <a href="jpg-to-png.html">JPG to PNG</a>
+        <a href="image-resizer.html">Image Resizer</a>
+      </div>
+
+      <div class="wj-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../pages/image-tools.html">All Tools</a>
+      </div>
+
+    </div>
+
+    <div class="wj-footer-bottom">
+      <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Tools made simple.</p>
+    </div>
+  </footer>
+
+  <script src="../image-js/webp-to-jpg.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View image dimensions, format, file size and available EXIF metadata with DigiiFox Image Metadata Viewer.">
+  <title>Image Metadata Viewer | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-metadata-viewer.css">
+  <script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
+  <script src="../image-js/image-metadata-viewer.js" defer></script>
+</head>
+<body>
+
+<header class="imv-header">
+  <div class="imv-header-inner">
+    <a href="../index.html" class="imv-logo">Digii<span>Fox</span></a>
+    <nav class="imv-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </div>
+</header>
+
+<main class="imv-main">
+  <section class="imv-hero">
+    <span class="imv-eyebrow">FREE ONLINE IMAGE TOOL</span>
+    <h1>Image Metadata <span>Viewer</span></h1>
+    <p>Inspect image properties and available EXIF information, including camera details, capture date, and GPS metadata when present.</p>
+  </section>
+
+  <section class="imv-workspace">
+    <div class="imv-card">
+      <h2>Choose an Image</h2>
+      <p class="imv-muted">Select an image from your device to inspect its properties.</p>
+
+      <input type="file" id="imvFileInput" accept="image/*" hidden>
+
+      <div class="imv-dropzone" id="imvDropzone">
+        <div class="imv-upload-icon" aria-hidden="true">↑</div>
+        <h3>Drop your image here</h3>
+        <p>Or browse your device to select a file</p>
+        <button type="button" class="imv-btn imv-btn-primary" id="imvChooseBtn">Choose Image</button>
+        <small>Common image formats · Maximum file size 25 MB</small>
+      </div>
+
+      <div class="imv-preview-wrap" id="imvPreviewWrap" hidden>
+        <img id="imvPreview" alt="Selected image preview">
+        <div class="imv-preview-caption" id="imvPreviewCaption"></div>
+      </div>
+
+      <div class="imv-file-actions">
+        <button type="button" class="imv-btn imv-btn-secondary" id="imvChangeBtn" hidden>Choose Another Image</button>
+        <button type="button" class="imv-btn imv-btn-secondary" id="imvClearBtn" disabled>Clear</button>
+      </div>
+
+      <p class="imv-status" id="imvStatus" role="status" aria-live="polite"></p>
+      <div class="imv-privacy-note">
+        <strong>Privacy:</strong> Image properties are inspected in your browser. The EXIF parsing library is loaded from a third-party CDN, but your image is not intentionally uploaded to a DigiiFox server.
+      </div>
+    </div>
+
+    <div class="imv-card imv-results-card">
+      <div class="imv-results-heading">
+        <div>
+          <h2>Image Information</h2>
+          <p class="imv-muted">Properties and metadata detected in your file.</p>
+        </div>
+        <span class="imv-badge" id="imvMetadataBadge">Waiting for image</span>
+      </div>
+
+      <div class="imv-section-heading">Basic Properties</div>
+      <div class="imv-data-grid" id="imvBasicInfo">
+        <div class="imv-empty-state">Choose an image to view its properties.</div>
+      </div>
+
+      <div class="imv-section-heading">EXIF &amp; Camera Details</div>
+      <div class="imv-table-wrap">
+        <table class="imv-table">
+          <thead>
+            <tr><th>Property</th><th>Value</th></tr>
+          </thead>
+          <tbody id="imvExifInfo">
+            <tr><td colspan="2" class="imv-table-empty">No metadata loaded yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="imv-section-heading">GPS Information</div>
+      <div class="imv-gps-panel" id="imvGpsInfo">
+        GPS information will appear here if location metadata is present.
+      </div>
+
+      <div class="imv-results-actions">
+        <button type="button" class="imv-btn imv-btn-primary" id="imvDownloadBtn" disabled>Download Metadata as TXT</button>
+        <button type="button" class="imv-btn imv-btn-secondary" id="imvCopyBtn" disabled>Copy Metadata</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="imv-info-section">
+    <h2>How to View Image Metadata</h2>
+    <div class="imv-info-grid">
+      <article class="imv-info-card">
+        <span>01</span>
+        <h3>Select an Image</h3>
+        <p>Choose an image file from your device or drag it into the upload area.</p>
+      </article>
+      <article class="imv-info-card">
+        <span>02</span>
+        <h3>Inspect the Details</h3>
+        <p>Review the dimensions, format, size and any available EXIF or GPS metadata.</p>
+      </article>
+      <article class="imv-info-card">
+        <span>03</span>
+        <h3>Save Your Report</h3>
+        <p>Copy the displayed metadata or download a text report for later reference.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="imv-info-section imv-faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details class="imv-faq">
+      <summary>What is image metadata?</summary>
+      <p>Image metadata is information stored in or associated with an image file. It may include dimensions, capture date, camera model, exposure settings, orientation and location information.</p>
+    </details>
+
+    <details class="imv-faq">
+      <summary>Why is some EXIF information missing?</summary>
+      <p>Not every image contains EXIF metadata. Screenshots, edited images and images shared through some messaging or social platforms may have metadata removed. This tool displays information it can detect in the selected file.</p>
+    </details>
+
+    <details class="imv-faq">
+      <summary>Can I see where a photo was taken?</summary>
+      <p>If the image contains GPS coordinates, the tool can display them. Many images do not contain location metadata, so a missing GPS section does not mean the photo has no known location.</p>
+    </details>
+
+    <details class="imv-faq">
+      <summary>Does viewing metadata change my image?</summary>
+      <p>No. This tool reads the selected image and displays its properties. It does not modify the original file.</p>
+    </details>
+
+    <details class="imv-faq">
+      <summary>Are my images uploaded to a server?</summary>
+      <p>The image is processed locally in your browser and is not intentionally uploaded to a DigiiFox server. The metadata library is downloaded from a third-party CDN, so an internet connection is required unless the library is hosted locally.</p>
+    </details>
+
+    <details class="imv-faq">
+      <summary>Can I edit or remove metadata here?</summary>
+      <p>This is a viewer, not a metadata editor. It displays available information and can export a text report, but it does not alter or remove metadata from your image.</p>
+    </details>
+  </section>
+
+  <section class="imv-related-section">
+    <h2>Explore More Image Tools</h2>
+    <div class="imv-related-grid">
+      <a href="image-format-converter.html" class="imv-related-card">
+        <h3>Image Format Converter</h3>
+        <p>Convert images between supported formats.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-resizer.html" class="imv-related-card">
+        <h3>Image Resizer</h3>
+        <p>Change image dimensions quickly.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-compressor.html" class="imv-related-card">
+        <h3>Image Compressor</h3>
+        <p>Reduce image file size.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-to-base64.html" class="imv-related-card">
+        <h3>Image to Base64</h3>
+        <p>Convert an image into a Base64 string.</p>
+        <span>Use Tool →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="imv-footer">
+  <div class="imv-footer-inner">
+    <div class="imv-footer-brand">
+      <a href="../index.html" class="imv-logo">Digii<span>Fox</span></a>
+      <p>Simple, useful tools for everyday digital tasks.</p>
+    </div>
+    <div class="imv-footer-column">
+      <h3>Explore</h3>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </div>
+    <div class="imv-footer-column">
+      <h3>Popular Image Tools</h3>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-cropper.html">Image Cropper</a>
+      <a href="image-watermark.html">Image Watermark</a>
+    </div>
+    <div class="imv-footer-column">
+      <h3>Helpful Links</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">All Image Tools</a>
+    </div>
+  </div>
+  <div class="imv-footer-bottom">
+    <p>© <span id="imvYear"></span> DigiiFox. All rights reserved.</p>
+    <p>Made for simple and productive digital work.</p>
+  </div>
+</footer>
+
+</body>
+</html>

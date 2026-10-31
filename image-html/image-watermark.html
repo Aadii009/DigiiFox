@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Add customizable text watermarks to JPG, PNG and WebP images online for free with DigiiFox.">
+  <title>Image Watermark Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-watermark.css">
+</head>
+<body>
+  <header class="iw-header">
+    <div class="iw-header-inner">
+      <a class="iw-logo" href="../index.html">Digii<span>Fox</span></a>
+      <button class="iw-menu-toggle" id="menuToggle" type="button"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="iw-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="iw-container">
+    <section class="iw-hero">
+      <span class="iw-eyebrow">FREE ONLINE IMAGE TOOL</span>
+      <h1>Image <span>Watermark</span></h1>
+      <p>Add your brand name, signature, or copyright notice to an image. Customize its appearance and download your watermarked image.</p>
+    </section>
+
+    <section class="iw-tool-card">
+      <div class="iw-upload-area" id="uploadBox">
+        <div class="iw-upload-icon" aria-hidden="true">T</div>
+        <h2>Upload your image</h2>
+        <p>Drag and drop an image here, or select it from your device.</p>
+        <button class="iw-button iw-primary" id="chooseImageButton" type="button">Choose Image</button>
+        <p class="iw-upload-note">JPG, JPEG, PNG or WebP · Maximum 25 MB</p>
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+      </div>
+
+      <section class="iw-editor" id="editor" hidden>
+        <div class="iw-section-heading">
+          <div>
+            <h2>Customize your watermark</h2>
+            <p>Adjust the text and styling, then preview the result.</p>
+          </div>
+          <button class="iw-button iw-light" id="changeImageButton" type="button">Change Image</button>
+        </div>
+
+        <div class="iw-workspace">
+          <div class="iw-preview-column">
+            <div class="iw-preview-panel">
+              <div class="iw-preview-heading">
+                <h3>Live preview</h3>
+                <span class="iw-badge">Preview</span>
+              </div>
+              <div class="iw-preview-frame">
+                <canvas id="previewCanvas" aria-label="Image preview with watermark"></canvas>
+              </div>
+              <div class="iw-image-info">
+                <div>
+                  <span>Original dimensions</span>
+                  <strong id="originalDimensions">—</strong>
+                </div>
+                <div>
+                  <span>Original file size</span>
+                  <strong id="originalSize">—</strong>
+                </div>
+              </div>
+              <p class="iw-preview-note">The preview is scaled to fit. Your downloaded image will use the original dimensions.</p>
+            </div>
+          </div>
+
+          <div class="iw-settings-panel">
+            <section class="iw-control-section">
+              <h3>Watermark text</h3>
+              <label for="watermarkText">Text or copyright notice</label>
+              <input type="text" id="watermarkText" maxlength="120"
+                placeholder="© Your Brand Name" value="© Your Brand Name">
+              <p class="iw-field-help">Use a short phrase for a clean watermark.</p>
+            </section>
+
+            <section class="iw-control-section">
+              <h3>Text appearance</h3>
+              <div class="iw-field">
+                <label for="fontFamily">Font style</label>
+                <select id="fontFamily">
+                  <option value="Arial, Helvetica, sans-serif">Arial</option>
+                  <option value="Georgia, serif">Georgia</option>
+                  <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                  <option value="Verdana, sans-serif">Verdana</option>
+                  <option value="'Courier New', monospace">Courier New</option>
+                </select>
+              </div>
+
+              <div class="iw-field">
+                <div class="iw-label-row">
+                  <label for="fontSize">Font size</label>
+                  <strong id="fontSizeValue">5% of image width</strong>
+                </div>
+                <input type="range" id="fontSize" min="2" max="12" value="5">
+                <div class="iw-range-labels"><span>Small</span><span>Large</span></div>
+              </div>
+
+              <div class="iw-field iw-color-field">
+                <label for="watermarkColor">Text color</label>
+                <div class="iw-color-control">
+                  <input type="color" id="watermarkColor" value="#ffffff">
+                  <span id="colorValue">#FFFFFF</span>
+                </div>
+              </div>
+
+              <div class="iw-field">
+                <div class="iw-label-row">
+                  <label for="opacity">Opacity</label>
+                  <strong id="opacityValue">55%</strong>
+                </div>
+                <input type="range" id="opacity" min="10" max="100" value="55">
+                <div class="iw-range-labels"><span>Transparent</span><span>Opaque</span></div>
+              </div>
+
+              <div class="iw-field">
+                <div class="iw-label-row">
+                  <label for="rotation">Text rotation</label>
+                  <strong id="rotationValue">-25°</strong>
+                </div>
+                <input type="range" id="rotation" min="-90" max="90" value="-25">
+                <div class="iw-range-labels"><span>-90°</span><span>90°</span></div>
+              </div>
+            </section>
+
+            <section class="iw-control-section">
+              <h3>Watermark position</h3>
+              <label for="position">Choose a position</label>
+              <select id="position">
+                <option value="bottom-right" selected>Bottom right</option>
+                <option value="bottom-left">Bottom left</option>
+                <option value="top-right">Top right</option>
+                <option value="top-left">Top left</option>
+                <option value="center">Center</option>
+                <option value="top-center">Top center</option>
+                <option value="bottom-center">Bottom center</option>
+                <option value="middle-left">Middle left</option>
+                <option value="middle-right">Middle right</option>
+              </select>
+              <div class="iw-field">
+                <div class="iw-label-row">
+                  <label for="margin">Edge margin</label>
+                  <strong id="marginValue">4%</strong>
+                </div>
+                <input type="range" id="margin" min="1" max="12" value="4">
+              </div>
+              <label class="iw-checkbox-row">
+                <input type="checkbox" id="boldText" checked>
+                <span>Use bold text</span>
+              </label>
+            </section>
+
+            <section class="iw-control-section">
+              <h3>Export settings</h3>
+              <div class="iw-field">
+                <label for="outputFormat">Output format</label>
+                <select id="outputFormat">
+                  <option value="image/jpeg">JPG</option>
+                  <option value="image/png" selected>PNG</option>
+                  <option value="image/webp">WebP</option>
+                </select>
+              </div>
+              <div class="iw-field" id="qualityGroup" hidden>
+                <div class="iw-label-row">
+                  <label for="quality">Output quality</label>
+                  <strong id="qualityValue">92%</strong>
+                </div>
+                <input type="range" id="quality" min="10" max="100" value="92">
+              </div>
+            </section>
+
+            <div class="iw-privacy-note">
+              <strong>Private, browser-based processing</strong>
+              <p>Your image is processed in your browser and is not uploaded to a DigiiFox server by this tool.</p>
+            </div>
+
+            <button class="iw-button iw-primary iw-full-button" id="downloadButton" type="button">
+              Apply Watermark &amp; Download
+            </button>
+            <button class="iw-button iw-light iw-full-button iw-reset-button" id="resetButton" type="button">
+              Reset Settings
+            </button>
+            <p class="iw-status" id="statusMessage" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="iw-info-card">
+      <h2>How to Add a Watermark to an Image</h2>
+      <ol class="iw-steps">
+        <li><strong>Upload an image.</strong> Choose a JPG, PNG or WebP file from your device.</li>
+        <li><strong>Enter your watermark.</strong> Type your brand name, signature or copyright notice.</li>
+        <li><strong>Customize its appearance.</strong> Choose the font, size, color, opacity, rotation and position.</li>
+        <li><strong>Choose an output format.</strong> Select JPG, PNG or WebP. Adjust quality for JPG or WebP.</li>
+        <li><strong>Download your image.</strong> Apply the watermark and save the finished image to your device.</li>
+      </ol>
+    </section>
+
+    <section class="iw-info-card">
+      <h2>Why Use an Image Watermark?</h2>
+      <p>A watermark can help identify the creator of an image, display a business or photography brand, and communicate copyright information. A subtle watermark can protect your branding without distracting too much from the picture.</p>
+      <p>Watermarks are not foolproof copyright protection: they may be cropped out or removed. Keep an original copy of your image, and consider placing the watermark where it is harder to crop away.</p>
+    </section>
+
+    <section class="iw-info-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="iw-faq-item">
+        <h3>1. Is this image watermark tool free?</h3>
+        <p>Yes. You can add a text watermark to supported images and download the result for free.</p>
+      </div>
+      <div class="iw-faq-item">
+        <h3>2. Can I change the watermark color and transparency?</h3>
+        <p>Yes. Choose a text color and adjust the opacity slider from 10% to 100%.</p>
+      </div>
+      <div class="iw-faq-item">
+        <h3>3. Can I move the watermark?</h3>
+        <p>Yes. Choose from nine positions, including the corners, edges and center of the image.</p>
+      </div>
+      <div class="iw-faq-item">
+        <h3>4. Will the original image quality be preserved?</h3>
+        <p>The tool exports at the original image dimensions. The final file size and quality depend on the chosen format and quality setting. JPG does not support transparency.</p>
+      </div>
+      <div class="iw-faq-item">
+        <h3>5. Are my images uploaded to a server?</h3>
+        <p>No. This tool uses your browser's local image-processing features; it does not send your image to a DigiiFox server.</p>
+      </div>
+      <div class="iw-faq-item">
+        <h3>6. Can I add an image or logo as a watermark?</h3>
+        <p>This version supports text watermarks. Logo and image watermarks are not included in this version.</p>
+      </div>
+    </section>
+
+    <section class="iw-related">
+      <h2>Explore More Image Tools</h2>
+      <div class="iw-related-grid">
+        <a href="image-rotator.html">Image Rotator <span>→</span></a>
+        <a href="image-cropper.html">Image Cropper <span>→</span></a>
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-format-converter.html">Format Converter <span>→</span></a>
+        <a href="image-upscaler.html">Image Upscaler <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="iw-footer">
+    <div class="iw-footer-grid">
+      <div class="iw-footer-brand">
+        <a class="iw-logo" href="../index.html">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for everyday tasks.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div>
+        <h3>Image Tools</h3>
+        <a href="image-rotator.html">Image Rotator</a>
+        <a href="image-cropper.html">Image Cropper</a>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-compressor.html">Image Compressor</a>
+      </div>
+      <div>
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../index.html">Contact</a>
+      </div>
+    </div>
+    <div class="iw-footer-bottom">© <span id="currentYear"></span> DigiiFox. All rights reserved.</div>
+  </footer>
+
+  <script src="../image-js/image-watermark.js"></script>
+</body>
+</html>

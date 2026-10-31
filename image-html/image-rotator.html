@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rotate and flip images online for free. Rotate JPG, PNG and WebP images, preview changes and download the result.">
+  <title>Image Rotator Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-rotator.css">
+</head>
+<body>
+  <header class="rot-header">
+    <div class="rot-header-inner">
+      <a class="rot-logo" href="../index.html">Digii<span>Fox</span></a>
+      <button class="rot-menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="rot-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="rot-container">
+    <section class="rot-hero">
+      <span class="rot-eyebrow">FREE ONLINE IMAGE TOOL</span>
+      <h1>Image <span>Rotator</span></h1>
+      <p>Rotate images left or right, flip them horizontally or vertically, and download your image in your preferred format.</p>
+    </section>
+
+    <section class="rot-tool-card">
+      <div class="rot-upload-area" id="uploadBox">
+        <div class="rot-upload-icon" aria-hidden="true">↻</div>
+        <h2>Upload your image</h2>
+        <p>Drag and drop an image here, or choose a file from your device.</p>
+        <button class="rot-button rot-primary" id="chooseImageButton" type="button">Choose Image</button>
+        <p class="rot-upload-note">JPG, JPEG, PNG or WebP · Maximum file size 25 MB</p>
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+      </div>
+
+      <section class="rot-editor" id="editor" hidden>
+        <div class="rot-section-heading">
+          <div>
+            <h2>Edit your image</h2>
+            <p>Rotate or flip the image until it looks right.</p>
+          </div>
+          <button class="rot-button rot-light" id="changeImageButton" type="button">Change Image</button>
+        </div>
+
+        <div class="rot-workspace">
+          <div class="rot-preview-panel">
+            <div class="rot-preview-heading">
+              <h3>Live preview</h3>
+              <span class="rot-badge" id="angleBadge">0°</span>
+            </div>
+            <div class="rot-preview-frame">
+              <img id="imagePreview" alt="Preview of the image being rotated">
+            </div>
+            <div class="rot-preview-info">
+              <div>
+                <span>Original dimensions</span>
+                <strong id="originalDimensions">—</strong>
+              </div>
+              <div>
+                <span>Original file size</span>
+                <strong id="originalSize">—</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="rot-settings-panel">
+            <section class="rot-control-section">
+              <h3>Rotate image</h3>
+              <p class="rot-control-description">Turn your image in 90-degree increments.</p>
+              <div class="rot-button-grid">
+                <button class="rot-control-button" id="rotateLeftButton" type="button">
+                  <span class="rot-control-icon" aria-hidden="true">↶</span>
+                  <span>Rotate Left</span>
+                  <small>−90°</small>
+                </button>
+                <button class="rot-control-button" id="rotateRightButton" type="button">
+                  <span class="rot-control-icon" aria-hidden="true">↷</span>
+                  <span>Rotate Right</span>
+                  <small>+90°</small>
+                </button>
+              </div>
+              <div class="rot-quick-angles">
+                <button type="button" data-angle="0">0°</button>
+                <button type="button" data-angle="90">90°</button>
+                <button type="button" data-angle="180">180°</button>
+                <button type="button" data-angle="270">270°</button>
+              </div>
+            </section>
+
+            <section class="rot-control-section">
+              <h3>Flip image</h3>
+              <p class="rot-control-description">Mirror the image along an axis.</p>
+              <div class="rot-button-grid">
+                <button class="rot-control-button" id="flipHorizontalButton" type="button">
+                  <span class="rot-control-icon" aria-hidden="true">↔</span>
+                  <span>Flip Horizontal</span>
+                </button>
+                <button class="rot-control-button" id="flipVerticalButton" type="button">
+                  <span class="rot-control-icon" aria-hidden="true">↕</span>
+                  <span>Flip Vertical</span>
+                </button>
+              </div>
+            </section>
+
+            <button class="rot-button rot-light rot-full-button" id="resetEditsButton" type="button">Reset Rotation &amp; Flips</button>
+
+            <div class="rot-field">
+              <label for="outputFormat">Output format</label>
+              <select id="outputFormat">
+                <option value="image/jpeg">JPG</option>
+                <option value="image/png">PNG</option>
+                <option value="image/webp" selected>WebP</option>
+              </select>
+            </div>
+
+            <div class="rot-field" id="qualityGroup">
+              <div class="rot-label-row">
+                <label for="qualitySlider">Image quality</label>
+                <strong id="qualityValue">92%</strong>
+              </div>
+              <input type="range" id="qualitySlider" min="10" max="100" value="92">
+              <div class="rot-range-labels"><span>Smaller file</span><span>Higher quality</span></div>
+            </div>
+
+            <div class="rot-limit-note">
+              <strong>Image processing</strong>
+              <p>Maximum file size: 25 MB. Maximum input dimensions: 12,000 px per side and 40 megapixels.</p>
+            </div>
+
+            <button class="rot-button rot-primary rot-full-button" id="saveImageButton" type="button">Rotate &amp; Prepare Download</button>
+            <p class="rot-status" id="statusMessage" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <section class="rot-result" id="resultPanel" hidden>
+          <div class="rot-result-heading">
+            <div>
+              <span class="rot-eyebrow">YOUR EDITED IMAGE</span>
+              <h2>Ready to download</h2>
+            </div>
+            <span class="rot-badge rot-success">Completed</span>
+          </div>
+
+          <div class="rot-result-preview">
+            <img id="resultPreview" alt="Rotated image ready to download">
+          </div>
+
+          <div class="rot-result-stats">
+            <div><span>Output dimensions</span><strong id="resultDimensions">—</strong></div>
+            <div><span>Output file size</span><strong id="resultSize">—</strong></div>
+            <div><span>Output format</span><strong id="resultFormat">—</strong></div>
+          </div>
+
+          <p class="rot-result-summary" id="resultSummary"></p>
+
+          <div class="rot-result-actions">
+            <a class="rot-button rot-primary" id="downloadButton" href="#" download="digifox-rotated-image.webp">Download Image</a>
+            <button class="rot-button rot-light" id="startOverButton" type="button">Start Over</button>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="rot-info-card">
+      <h2>How to Rotate an Image</h2>
+      <ol class="rot-steps">
+        <li><strong>Upload your image.</strong> Select a JPG, PNG or WebP image from your device.</li>
+        <li><strong>Rotate or flip.</strong> Use Rotate Left, Rotate Right, the angle buttons, or the flip controls.</li>
+        <li><strong>Choose your format.</strong> Select JPG, PNG or WebP. Adjust quality for JPG or WebP if needed.</li>
+        <li><strong>Preview and download.</strong> Click Rotate &amp; Prepare Download, review the result, and download your image.</li>
+      </ol>
+    </section>
+
+    <section class="rot-info-card">
+      <h2>Why Use an Image Rotator?</h2>
+      <p>An image rotator helps correct sideways photos, adjust image orientation, and create mirrored versions of pictures. Rotating by 90° or 270° swaps the width and height of the image, while a 180° rotation keeps the same dimensions.</p>
+      <p>Flipping horizontally creates a mirror image from left to right. Flipping vertically reverses the image from top to bottom. Your changes are applied to the exported image when you prepare the download.</p>
+    </section>
+
+    <section class="rot-info-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="rot-faq-item">
+        <h3>1. Is this image rotator free?</h3>
+        <p>Yes. You can rotate and flip supported images for free in your browser.</p>
+      </div>
+      <div class="rot-faq-item">
+        <h3>2. Can I rotate an image by 90 degrees?</h3>
+        <p>Yes. Use Rotate Left or Rotate Right, or select a specific angle using the 0°, 90°, 180° and 270° buttons.</p>
+      </div>
+      <div class="rot-faq-item">
+        <h3>3. What is the difference between rotating and flipping?</h3>
+        <p>Rotating turns the image around its center. Flipping mirrors the image horizontally or vertically.</p>
+      </div>
+      <div class="rot-faq-item">
+        <h3>4. Will rotating change the image dimensions?</h3>
+        <p>A 90° or 270° rotation swaps the width and height. A 0° or 180° rotation keeps the same width and height.</p>
+      </div>
+      <div class="rot-faq-item">
+        <h3>5. Which formats can I use?</h3>
+        <p>You can upload JPG, JPEG, PNG or WebP images and export the result as JPG, PNG or WebP.</p>
+      </div>
+      <div class="rot-faq-item">
+        <h3>6. Are my images uploaded to a server?</h3>
+        <p>No. This tool processes images locally in your browser. Your image is not sent to a DigiiFox server by this tool.</p>
+      </div>
+    </section>
+
+    <section class="rot-related">
+      <h2>Explore More Image Tools</h2>
+      <div class="rot-related-grid">
+        <a href="image-cropper.html">Image Cropper <span>→</span></a>
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-resolution-changer.html">Resolution Changer <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-format-converter.html">Format Converter <span>→</span></a>
+        <a href="image-upscaler.html">Image Upscaler <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rot-footer">
+    <div class="rot-footer-grid">
+      <div class="rot-footer-brand">
+        <a class="rot-logo" href="../index.html">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for everyday tasks.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div>
+        <h3>Image Tools</h3>
+        <a href="image-cropper.html">Image Cropper</a>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-format-converter.html">Format Converter</a>
+      </div>
+      <div>
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../index.html">Contact</a>
+      </div>
+    </div>
+    <div class="rot-footer-bottom">© <span id="currentYear"></span> DigiiFox. All rights reserved.</div>
+  </footer>
+
+  <script src="../image-js/image-rotator.js"></script>
+</body>
+</html>

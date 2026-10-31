@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert JPG and JPEG images to PNG online with DigiiFox. Preview your image and download the converted PNG directly from your browser.">
+    <meta name="theme-color" content="#2563eb">
+
+    <title>JPG to PNG Converter Online - Free | DigiiFox</title>
+
+    <link rel="stylesheet" href="../image-css/jpg-to-png.css">
+    <script src="../image-js/jpg-to-png.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a class="brand" href="../index.html" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle"
+                    type="button" aria-label="Open navigation"
+                    aria-expanded="false" aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pages/pdf-tools.html">PDF Tools</a>
+                <a href="../pages/image-tools.html" class="active">Image Tools</a>
+                <a href="../pages/calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-wrap">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html">Home</a>
+                <span aria-hidden="true">/</span>
+                <a href="../pages/image-tools.html">Image Tools</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">JPG to PNG</span>
+            </nav>
+        </div>
+
+        <!-- Compact Hero -->
+        <section class="tool-hero">
+            <div class="tool-hero-inner">
+                <span class="section-kicker">DIGIIFOX IMAGE TOOLS</span>
+                <h1>JPG to PNG <span>Converter</span></h1>
+                <p>
+                    Convert JPG and JPEG images into PNG format in a few simple steps.
+                    Preview your image and download the converted file.
+                </p>
+
+                <div class="hero-benefits">
+                    <span><b>✓</b> Free to use</span>
+                    <span><b>✓</b> No installation</span>
+                    <span><b>✓</b> Browser-based conversion</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Tool -->
+        <section class="converter-section">
+            <div class="converter-layout">
+
+                <div class="converter-main">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="panel-step">IMAGE CONVERTER</span>
+                            <h2>Convert your image</h2>
+                            <p>Upload a JPG or JPEG file to get started.</p>
+                        </div>
+                        <span class="format-badge">JPG <span>→</span> PNG</span>
+                    </div>
+
+                    <!-- Upload Area -->
+                    <div class="upload-zone" id="uploadZone" tabindex="0"
+                         role="button" aria-label="Choose a JPG or JPEG image">
+                        <input type="file" id="imageInput"
+                               accept=".jpg,.jpeg,image/jpeg"
+                               hidden>
+
+                        <div class="upload-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" fill="none">
+                                <rect x="7" y="9" width="34" height="30" rx="5"
+                                      stroke="currentColor" stroke-width="2.5"/>
+                                <circle cx="18" cy="19" r="3.5"
+                                        stroke="currentColor" stroke-width="2.5"/>
+                                <path d="M10 33L20 25L26 30L32 23L39 30"
+                                      stroke="currentColor" stroke-width="2.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M33 5V15M28 10L33 5L38 10"
+                                      stroke="currentColor" stroke-width="2.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <h3>Drop your JPG image here</h3>
+                        <p>Or choose an image from your device</p>
+
+                        <button type="button" class="primary-button" id="chooseImageButton">
+                            Choose JPG Image
+                        </button>
+
+                        <span class="upload-note">JPG or JPEG · Maximum 25 MB</span>
+                    </div>
+
+                    <!-- Status / Errors -->
+                    <div class="status-message" id="statusMessage"
+                         role="status" aria-live="polite" hidden></div>
+
+                    <!-- Preview Area -->
+                    <div class="preview-area" id="previewArea" hidden>
+                        <div class="preview-heading">
+                            <div>
+                                <span class="panel-step">PREVIEW</span>
+                                <h3>Your image conversion</h3>
+                            </div>
+                            <button type="button" class="text-button" id="resetButton">
+                                Start over
+                            </button>
+                        </div>
+
+                        <div class="preview-grid">
+                            <article class="image-preview-card">
+                                <div class="image-preview-title">
+                                    <span>Original image</span>
+                                    <span class="file-format-label">JPG</span>
+                                </div>
+
+                                <div class="image-canvas original-canvas">
+                                    <img id="originalPreview" alt="Original JPG image preview">
+                                </div>
+
+                                <div class="image-file-info">
+                                    <strong id="originalFileName">original.jpg</strong>
+                                    <span id="originalFileDetails">—</span>
+                                </div>
+                            </article>
+
+                            <article class="image-preview-card">
+                                <div class="image-preview-title">
+                                    <span>Converted image</span>
+                                    <span class="file-format-label png-label">PNG</span>
+                                </div>
+
+                                <div class="image-canvas png-canvas">
+                                    <img id="convertedPreview" alt="Converted PNG image preview">
+                                    <div class="result-placeholder" id="resultPlaceholder">
+                                        Your PNG preview will appear here.
+                                    </div>
+                                </div>
+
+                                <div class="image-file-info">
+                                    <strong id="convertedFileName">Your image.png</strong>
+                                    <span id="convertedFileDetails">Waiting for conversion</span>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="conversion-summary" id="conversionSummary" hidden>
+                            <div class="summary-icon" aria-hidden="true">✓</div>
+                            <div class="summary-text">
+                                <strong>Conversion complete</strong>
+                                <span id="summaryText">Your image is ready to download.</span>
+                            </div>
+                        </div>
+
+                        <div class="action-row">
+                            <button type="button" class="primary-button download-button"
+                                    id="downloadButton" disabled>
+                                <span aria-hidden="true">↓</span>
+                                Download PNG
+                            </button>
+                            <button type="button" class="secondary-button"
+                                    id="convertAnotherButton">
+                                Convert Another Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="converter-sidebar">
+                    <div class="sidebar-card">
+                        <div class="sidebar-icon">PNG</div>
+                        <h3>Why convert to PNG?</h3>
+                        <p>
+                            PNG is a lossless image format that is useful for graphics,
+                            screenshots, and images that need repeated editing.
+                        </p>
+
+                        <div class="sidebar-divider"></div>
+
+                        <div class="format-detail">
+                            <span class="detail-dot"></span>
+                            <div>
+                                <strong>Lossless format</strong>
+                                <p>PNG encoding does not add further lossy compression.</p>
+                            </div>
+                        </div>
+
+                        <div class="format-detail">
+                            <span class="detail-dot"></span>
+                            <div>
+                                <strong>Transparency support</strong>
+                                <p>PNG supports transparency, but a JPG's solid background stays solid.</p>
+                            </div>
+                        </div>
+
+                        <div class="format-detail">
+                            <span class="detail-dot"></span>
+                            <div>
+                                <strong>Easy to download</strong>
+                                <p>Save the converted PNG directly to your device.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-tip">
+                        <span class="tip-icon">i</span>
+                        <div>
+                            <strong>Good to know</strong>
+                            <p>
+                                PNG files can be larger than JPG files. Converting a JPG
+                                to PNG does not restore image details lost during the
+                                original JPG compression.
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+        <!-- How to Use -->
+        <section class="how-section">
+            <div class="section-container">
+                <div class="center-heading">
+                    <span class="section-kicker">SIMPLE WORKFLOW</span>
+                    <h2>How to Convert JPG to PNG</h2>
+                    <p>Convert your image with these four simple steps.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <article class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>Choose a JPG</h3>
+                        <p>Select a JPG or JPEG image from your computer or phone.</p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>Preview Your Image</h3>
+                        <p>Check the original image and its file information.</p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>Convert to PNG</h3>
+                        <p>Start the conversion. Your browser creates the PNG image.</p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">04</div>
+                        <h3>Download the PNG</h3>
+                        <p>Save the converted image to your device.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section section-container">
+            <div class="center-heading">
+                <span class="section-kicker">NEED HELP?</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about JPG to PNG conversion.</p>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Is the JPG to PNG converter free?</summary>
+                    <p>Yes. This browser-based tool is designed for free image conversion without installing a separate application.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will converting JPG to PNG improve image quality?</summary>
+                    <p>No. The conversion does not recover details lost when the JPG was originally compressed. PNG avoids adding further lossy compression during the conversion.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will my PNG file be smaller than the JPG?</summary>
+                    <p>Usually not. PNG files can be larger than JPG files because the formats use different compression methods. The result depends on the image content.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will converting JPG to PNG make the background transparent?</summary>
+                    <p>No. JPG does not store transparency. The converted PNG will retain the visible background. You need a separate background-removal or editing tool to make a background transparent.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are my images uploaded to a server?</summary>
+                    <p>This tool uses your browser to read and convert the selected image. The conversion code does not intentionally upload your image to a server.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Which files can I convert?</summary>
+                    <p>This tool accepts JPG and JPEG images up to 25 MB per file. Other formats should be converted using a compatible image converter.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I use this converter on my phone?</summary>
+                    <p>Yes. You can use it in a modern mobile browser. The upload area, preview cards, and controls adapt to smaller screens.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <span class="section-kicker">MORE IMAGE TOOLS</span>
+                <h2>Need Another Image Tool?</h2>
+                <p>Explore the DigiiFox toolkit for more ways to convert, resize, and edit images.</p>
+                <a href="../pages/image-tools.html" class="cta-button">
+                    Explore Image Tools <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="footer-brand-column">
+                <a class="brand footer-brand" href="../index.html">
+                    Digii<span>Fox</span>
+                </a>
+                <p class="footer-description">
+                    Simple online tools to help you work smarter with documents,
+                    images, and everyday tasks.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="../pages/pdf-tools.html">PDF Tools</a>
+                <a href="../pages/image-tools.html">Image Tools</a>
+                <a href="../pages/calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Image Tools</h3>
+                <a href="jpg-to-png.html">JPG to PNG</a>
+                <a href="png-to-jpg.html">PNG to JPG</a>
+                <a href="image-compressor.html">Image Compressor</a>
+                <a href="image-resizer.html">Image Resizer</a>
+                <a href="image-cropper.html">Image Cropper</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html#about">About Us</a>
+                <a href="../index.html#contact">Contact</a>
+                <a href="../index.html#privacy">Privacy Policy</a>
+                <a href="../index.html#terms">Terms of Use</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Built to make your digital work easier.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

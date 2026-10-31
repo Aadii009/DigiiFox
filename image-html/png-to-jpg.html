@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert PNG images to JPG online for free with DigiiFox. Adjust image quality, preview the result, and download your JPG image.">
+    <title>PNG to JPG Converter Online Free | DigiiFox</title>
+
+    <link rel="stylesheet" href="../image-css/png-to-jpg.css">
+    <script src="../image-js/png-to-jpg.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="brand" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle"
+                    type="button" aria-label="Toggle navigation"
+                    aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pages/pdf-tools.html">PDF Tools</a>
+                <a href="../pages/image-tools.html" class="active">Image Tools</a>
+                <a href="../pages/calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <a href="../pages/image-tools.html">Image Tools</a>
+                <span>/</span>
+                <span aria-current="page">PNG to JPG</span>
+            </nav>
+        </div>
+
+        <!-- Hero -->
+        <section class="tool-hero">
+            <div class="hero-badge">Free Online Image Tool</div>
+            <h1>PNG to <span>JPG Converter</span></h1>
+            <p>
+                Convert PNG images to JPG in seconds. Adjust image quality,
+                preview the result, and download your converted image.
+            </p>
+            <div class="hero-features">
+                <span>Free to use</span>
+                <span>Browser-based conversion</span>
+                <span>No account required</span>
+            </div>
+        </section>
+
+        <!-- Converter -->
+        <section class="tool-workspace">
+            <div class="workspace-heading">
+                <div>
+                    <h2>Convert Your Image</h2>
+                    <p>Upload a PNG image to get started.</p>
+                </div>
+                <span class="format-badge">PNG → JPG</span>
+            </div>
+
+            <div class="upload-area" id="uploadArea">
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept=".png,image/png"
+                    hidden
+                >
+
+                <div class="upload-icon" aria-hidden="true">↑</div>
+                <h3>Drag and drop your PNG image here</h3>
+                <p>or select an image from your device</p>
+
+                <button type="button" class="primary-button" id="browseButton">
+                    Choose PNG Image
+                </button>
+
+                <div class="upload-note">
+                    PNG format · Maximum file size: 25 MB
+                </div>
+            </div>
+
+            <div class="status-message" id="statusMessage"
+                 role="status" aria-live="polite" hidden></div>
+
+            <div class="converter-layout">
+                <!-- Image previews -->
+                <div class="preview-section">
+                    <div class="preview-grid">
+                        <article class="preview-card">
+                            <div class="preview-card-heading">
+                                <h3>Original Image</h3>
+                                <span class="format-label">PNG</span>
+                            </div>
+
+                            <div class="image-preview" id="originalPreviewBox">
+                                <div class="empty-preview">
+                                    Your original image will appear here.
+                                </div>
+                                <img id="originalPreview"
+                                     alt="Original PNG preview" hidden>
+                            </div>
+
+                            <div class="image-details" id="originalDetails">
+                                <span>File size: —</span>
+                                <span>Dimensions: —</span>
+                            </div>
+                        </article>
+
+                        <article class="preview-card">
+                            <div class="preview-card-heading">
+                                <h3>Converted Image</h3>
+                                <span class="format-label output-label">JPG</span>
+                            </div>
+
+                            <div class="image-preview" id="outputPreviewBox">
+                                <div class="empty-preview">
+                                    Your converted image will appear here.
+                                </div>
+                                <img id="outputPreview"
+                                     alt="Converted JPG preview" hidden>
+                            </div>
+
+                            <div class="image-details" id="outputDetails">
+                                <span>File size: —</span>
+                                <span>Dimensions: —</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="conversion-actions">
+                        <button type="button" class="primary-button"
+                                id="downloadButton" disabled>
+                            Download JPG
+                        </button>
+                        <button type="button" class="secondary-button"
+                                id="resetButton">
+                            Reset
+                        </button>
+                    </div>
+
+                    <p class="privacy-note">
+                        Your image is processed in your browser and is not
+                        intentionally uploaded to a conversion server.
+                    </p>
+                </div>
+
+                <!-- Settings -->
+                <aside class="settings-card">
+                    <h3>Conversion Settings</h3>
+                    <p class="settings-description">
+                        Customize the quality of your JPG image.
+                    </p>
+
+                    <div class="setting-group">
+                        <label for="qualitySlider">
+                            JPG Quality
+                            <strong id="qualityValue">92%</strong>
+                        </label>
+
+                        <input type="range" id="qualitySlider"
+                               min="10" max="100" value="92" step="1">
+
+                        <div class="range-labels">
+                            <span>Smaller file</span>
+                            <span>Higher quality</span>
+                        </div>
+                    </div>
+
+                    <div class="quality-info">
+                        <strong>What does quality mean?</strong>
+                        <p>
+                            Higher quality generally preserves more detail
+                            but creates a larger file. Lower quality reduces
+                            file size but may introduce visible compression.
+                        </p>
+                    </div>
+
+                    <div class="background-info">
+                        <span class="background-swatch" aria-hidden="true"></span>
+                        <div>
+                            <strong>Background: White</strong>
+                            <p>Transparent PNG areas become white in JPG.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-tip">
+                        <strong>Tip</strong>
+                        <p>
+                            Use a higher quality setting for photos and images
+                            where details matter.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- How to Use -->
+        <section class="content-section">
+            <div class="section-heading">
+                <span class="section-eyebrow">Simple and quick</span>
+                <h2>How to Convert PNG to JPG</h2>
+                <p>Convert your image in just three simple steps.</p>
+            </div>
+
+            <div class="steps-grid">
+                <article class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Upload a PNG</h3>
+                    <p>Select a PNG image from your device or drag it into
+                       the upload area.</p>
+                </article>
+
+                <article class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Choose Quality</h3>
+                    <p>Adjust the JPG quality slider to balance image detail
+                       and file size.</p>
+                </article>
+
+                <article class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Download JPG</h3>
+                    <p>Preview the converted image and download the JPG file
+                       to your device.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="content-section faq-section">
+            <div class="section-heading">
+                <span class="section-eyebrow">Got questions?</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Learn more about converting PNG images to JPG.</p>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Is this PNG to JPG converter free?</summary>
+                    <p>Yes. You can use this browser-based converter without
+                       creating an account.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will converting PNG to JPG reduce quality?</summary>
+                    <p>JPG uses lossy compression, so some image information
+                       may be lost. A higher quality setting generally reduces
+                       visible compression, though it may increase file size.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What happens to transparent areas?</summary>
+                    <p>JPG does not support transparency. Transparent areas in
+                       your PNG are filled with white during conversion.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are my images uploaded to a server?</summary>
+                    <p>This tool performs conversion locally in your browser.
+                       The conversion code does not intentionally upload your
+                       image to a server.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I convert a large PNG image?</summary>
+                    <p>The tool accepts files up to 25 MB and limits image
+                       dimensions to approximately 40 megapixels to help
+                       avoid excessive browser memory use.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I use the converted JPG commercially?</summary>
+                    <p>The converter does not change your ownership rights.
+                       Make sure you have permission to use the original image
+                       for your intended purpose.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="related-tools">
+            <div>
+                <span class="section-eyebrow">Explore more</span>
+                <h2>More Image Tools</h2>
+                <p>Discover more tools to work with your images.</p>
+            </div>
+
+            <a href="../pages/image-tools.html" class="secondary-button">
+                Explore Image Tools
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand-column">
+                <a href="../index.html" class="brand footer-brand">
+                    Digii<span>Fox</span>
+                </a>
+                <p>
+                    Simple online tools to help you work smarter,
+                    save time, and get things done.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="../pages/pdf-tools.html">PDF Tools</a>
+                <a href="../pages/image-tools.html">Image Tools</a>
+                <a href="../pages/calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Image Tools</h3>
+                <a href="jpg-to-png.html">JPG to PNG</a>
+                <a href="png-to-jpg.html">PNG to JPG</a>
+                <a href="image-compressor.html">Image Compressor</a>
+                <a href="image-resizer.html">Image Resizer</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../pages/about.html">About Us</a>
+                <a href="../pages/contact.html">Contact</a>
+                <a href="../pages/privacy-policy.html">Privacy Policy</a>
+                <a href="../pages/terms.html">Terms of Use</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="currentYear"></span> DigiiFox.
+                All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

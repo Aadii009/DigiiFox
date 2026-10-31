@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert images to Base64 strings, Data URLs, or HTML image markup online. Copy or download your output securely in your browser.">
+  <title>Image to Base64 Converter - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-to-base64.css">
+  <script src="../image-js/image-to-base64.js" defer></script>
+</head>
+<body>
+  <header class="itb-header">
+    <a href="../index.html" class="itb-logo">Digii<span>Fox</span></a>
+    <nav class="itb-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html" class="active">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </header>
+
+  <main class="itb-main">
+    <section class="itb-hero">
+      <span class="itb-eyebrow">IMAGE TOOL</span>
+      <h1>Image to <span>Base64</span></h1>
+      <p>Convert your images into Base64 strings, Data URLs, or HTML image markup. Copy or download the output in seconds.</p>
+    </section>
+
+    <section class="itb-workspace">
+      <section class="itb-card">
+        <div class="itb-section-heading">
+          <div>
+            <h2>Upload your image</h2>
+            <p>Select an image to generate its Base64 representation.</p>
+          </div>
+          <span class="itb-step">STEP 1</span>
+        </div>
+
+        <label class="itb-dropzone" id="itb-dropzone" for="itb-file">
+          <span class="itb-upload-icon" aria-hidden="true">＋</span>
+          <strong>Choose an image or drag it here</strong>
+          <span>Use a browser-supported image file up to 15 MB.</span>
+          <span class="itb-select-button">Select Image</span>
+          <input type="file" id="itb-file" accept="image/*" hidden>
+        </label>
+
+        <p class="itb-status" id="itb-status" role="status" aria-live="polite">
+          No image selected yet.
+        </p>
+      </section>
+
+      <section class="itb-card itb-image-card" id="itb-image-card" hidden>
+        <div class="itb-section-heading">
+          <div>
+            <h2>Image details</h2>
+            <p>Check the selected image before converting it.</p>
+          </div>
+          <button type="button" class="itb-text-button" id="itb-remove">Remove image</button>
+        </div>
+
+        <div class="itb-image-details">
+          <div class="itb-image-preview">
+            <img id="itb-preview" alt="Selected image preview">
+          </div>
+          <div class="itb-metadata">
+            <div class="itb-metadata-row">
+              <span>File name</span>
+              <strong id="itb-name">—</strong>
+            </div>
+            <div class="itb-metadata-row">
+              <span>File size</span>
+              <strong id="itb-size">—</strong>
+            </div>
+            <div class="itb-metadata-row">
+              <span>Image format</span>
+              <strong id="itb-format">—</strong>
+            </div>
+            <div class="itb-metadata-row">
+              <span>Dimensions</span>
+              <strong id="itb-dimensions">—</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="itb-card">
+        <div class="itb-section-heading">
+          <div>
+            <h2>Conversion settings</h2>
+            <p>Choose how you want your image data to be displayed.</p>
+          </div>
+          <span class="itb-step">STEP 2</span>
+        </div>
+
+        <div class="itb-settings">
+          <div class="itb-field">
+            <label for="itb-output-type">Output type</label>
+            <select id="itb-output-type">
+              <option value="base64">Base64 string only</option>
+              <option value="dataurl" selected>Complete Data URL</option>
+              <option value="html">HTML &lt;img&gt; markup</option>
+            </select>
+            <small>
+              Base64 only contains the encoded data. A Data URL also includes the image MIME type.
+            </small>
+          </div>
+
+          <div class="itb-field">
+            <label for="itb-line-format">Output formatting</label>
+            <select id="itb-line-format">
+              <option value="single" selected>Single line</option>
+              <option value="wrapped">Wrap into readable lines</option>
+            </select>
+            <small>Formatting changes how the output is displayed, not the image itself.</small>
+          </div>
+        </div>
+
+        <div class="itb-actions">
+          <button type="button" class="itb-primary-button" id="itb-convert" disabled>
+            Convert to Base64
+          </button>
+          <button type="button" class="itb-secondary-button" id="itb-clear">
+            Start Over
+          </button>
+        </div>
+      </section>
+
+      <section class="itb-card itb-output-card">
+        <div class="itb-section-heading">
+          <div>
+            <h2>Generated output</h2>
+            <p>Your encoded image data will appear below.</p>
+          </div>
+          <span class="itb-step">STEP 3</span>
+        </div>
+
+        <div class="itb-output-meta">
+          <span id="itb-output-size">Output size: —</span>
+          <span id="itb-output-status">Not converted</span>
+        </div>
+
+        <label for="itb-output" class="itb-output-label">Base64 output</label>
+        <textarea
+          id="itb-output"
+          class="itb-output"
+          placeholder="Your Base64 output will appear here..."
+          spellcheck="false"
+          readonly
+          aria-describedby="itb-output-help"
+        ></textarea>
+        <p class="itb-help" id="itb-output-help">
+          Large images can generate very long strings. The output is displayed as text and is not executed as HTML.
+        </p>
+
+        <div class="itb-actions itb-output-actions">
+          <button type="button" class="itb-primary-button" id="itb-copy" disabled>
+            Copy Output
+          </button>
+          <button type="button" class="itb-secondary-button" id="itb-download" disabled>
+            Download TXT
+          </button>
+        </div>
+
+        <p class="itb-copy-status" id="itb-copy-status" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+
+    <section class="itb-info-section">
+      <article class="itb-info-card">
+        <h2>How to Use Image to Base64</h2>
+        <ol>
+          <li>Select an image from your device or drag it into the upload area.</li>
+          <li>Check the image preview, file size, format, and dimensions.</li>
+          <li>Select Base64 string, Data URL, or HTML image markup.</li>
+          <li>Choose single-line or wrapped output formatting.</li>
+          <li>Click <strong>Convert to Base64</strong>.</li>
+          <li>Copy the generated output or download it as a text file.</li>
+        </ol>
+      </article>
+
+      <article class="itb-info-card">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is Base64 encoding?</summary>
+          <p>Base64 is a way to represent binary data using text characters. It is commonly used to embed image data in HTML, CSS, JSON, and other text-based formats.</p>
+        </details>
+
+        <details>
+          <summary>What is the difference between Base64 and a Data URL?</summary>
+          <p>A Base64 string contains the encoded data. A Data URL adds a prefix such as data:image/png;base64, so compatible software can identify the data type.</p>
+        </details>
+
+        <details>
+          <summary>Does Base64 make my image smaller?</summary>
+          <p>No. Base64 encoding usually increases the data size by roughly one-third, before any additional formatting. It is an encoding method, not an image compression method.</p>
+        </details>
+
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>This tool reads the selected file in your browser and does not intentionally upload it to a DigiiFox server. Your website connection and hosting provider still serve the page itself.</p>
+        </details>
+
+        <details>
+          <summary>Can I use the output in HTML?</summary>
+          <p>Yes. Select HTML image markup to generate an img element with the encoded Data URL in its src attribute. Very large Data URLs may not be suitable for every website or application.</p>
+        </details>
+
+        <details>
+          <summary>Why is the output so long?</summary>
+          <p>Base64 represents the image's binary data as text, which increases its size. High-resolution images typically generate longer strings.</p>
+        </details>
+      </article>
+    </section>
+
+    <section class="itb-related">
+      <h2>Explore More Image Tools</h2>
+      <div class="itb-related-grid">
+        <a href="image-format-converter.html">Image Format Converter <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-to-webp.html">Image to WebP <span>→</span></a>
+        <a href="image-collage-maker.html">Image Collage Maker <span>→</span></a>
+        <a href="image-filters.html">Image Filters <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="itb-footer">
+    <div class="itb-footer-main">
+      <div class="itb-footer-brand">
+        <a href="../index.html" class="itb-logo">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools designed to make everyday digital tasks easier.</p>
+      </div>
+
+      <div class="itb-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+
+      <div class="itb-footer-column">
+        <h3>Popular Image Tools</h3>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-cropper.html">Image Cropper</a>
+        <a href="image-collage-maker.html">Image Collage Maker</a>
+      </div>
+
+      <div class="itb-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../pages/image-tools.html">Browse Image Tools</a>
+        <a href="../index.html">All Tools</a>
+      </div>
+    </div>
+
+    <div class="itb-footer-bottom">
+      <p>© <span id="itb-year"></span> DigiiFox. All rights reserved.</p>
+      <p>Made for simple, productive workflows.</p>
+    </div>
+  </footer>
+</body>
+</html> 

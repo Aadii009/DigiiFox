@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Upscale images online with DigiiFox. Increase image dimensions by 2x or 4x and download the resized image for free.">
+  <title>Image Upscaler Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-upscaler.css">
+  <script src="../image-js/image-upscaler.js" defer></script>
+</head>
+<body>
+  <header class="iu-header">
+    <div class="iu-header-inner">
+      <a href="../index.html" class="iu-logo">Digii<span>Fox</span></a>
+      <button class="iu-menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="iu-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="iu-container">
+    <section class="iu-hero">
+      <div class="iu-breadcrumb">
+        <a href="../index.html">Home</a> /
+        <a href="../pages/image-tools.html">Image Tools</a> /
+        <span>Image Upscaler</span>
+      </div>
+      <span class="iu-label">FREE IMAGE TOOL</span>
+      <h1>Image <span>Upscaler</span></h1>
+      <p>Increase your image dimensions by 2× or 4×. Preview the resized image and download it in your preferred format.</p>
+    </section>
+
+    <section class="iu-tool-card">
+      <div class="iu-upload-area" id="uploadBox" tabindex="0" role="button" aria-label="Choose an image">
+        <div class="iu-upload-icon">↑</div>
+        <h2>Upload your image</h2>
+        <p>Drag and drop your image here, or click to browse</p>
+        <button type="button" class="iu-primary-btn" id="chooseImageButton">Choose Image</button>
+        <span class="iu-upload-note">JPG · PNG · WEBP · Maximum 25 MB</span>
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" hidden>
+      </div>
+
+      <p class="iu-status" id="statusMessage" role="status" aria-live="polite"></p>
+
+      <div class="iu-editor" id="editor" hidden>
+        <div class="iu-section-heading">
+          <div>
+            <h2>Upscale Settings</h2>
+            <p>Choose your enlargement level and output format.</p>
+          </div>
+          <button type="button" class="iu-secondary-btn" id="changeImageButton">Change Image</button>
+        </div>
+
+        <div class="iu-settings-grid">
+          <div class="iu-setting">
+            <label for="scaleSelect">Upscale level</label>
+            <select id="scaleSelect">
+              <option value="2">2× — Double dimensions</option>
+              <option value="4">4× — Quadruple dimensions</option>
+            </select>
+            <small>4× creates four times the width and height.</small>
+          </div>
+
+          <div class="iu-setting">
+            <label for="formatSelect">Output format</label>
+            <select id="formatSelect">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+            <small>PNG is recommended when transparency matters.</small>
+          </div>
+
+          <div class="iu-setting iu-quality-setting" id="qualitySetting" hidden>
+            <label for="qualitySlider">Output quality <strong id="qualityValue">92%</strong></label>
+            <input type="range" id="qualitySlider" min="10" max="100" value="92">
+            <div class="iu-range-labels"><span>Smaller file</span><span>Higher quality</span></div>
+          </div>
+        </div>
+
+        <div class="iu-dimension-note" id="dimensionNote">
+          Select an upscale level to calculate the output dimensions.
+        </div>
+
+        <div class="iu-preview-grid">
+          <article class="iu-preview-card">
+            <h3>Original Image</h3>
+            <div class="iu-preview-frame">
+              <img id="originalPreview" alt="Original uploaded image">
+            </div>
+            <div class="iu-image-info">
+              <span>File size</span><strong id="originalSize">—</strong>
+              <span>Dimensions</span><strong id="originalDimensions">—</strong>
+              <span>Format</span><strong id="originalFormat">—</strong>
+            </div>
+          </article>
+
+          <article class="iu-preview-card">
+            <h3>Upscaled Image</h3>
+            <div class="iu-preview-frame">
+              <div class="iu-placeholder" id="previewPlaceholder">Your upscaled preview will appear here.</div>
+              <img id="upscaledPreview" alt="Upscaled image preview" hidden>
+            </div>
+            <div class="iu-image-info">
+              <span>File size</span><strong id="upscaledSize">—</strong>
+              <span>Dimensions</span><strong id="upscaledDimensions">—</strong>
+              <span>Format</span><strong id="upscaledFormat">—</strong>
+            </div>
+          </article>
+        </div>
+
+        <div class="iu-summary">
+          <strong id="summaryTitle">Ready to upscale</strong>
+          <p id="summaryText">Choose your settings, then click Upscale Image.</p>
+        </div>
+
+        <div class="iu-action-row">
+          <button type="button" class="iu-primary-btn" id="upscaleButton">Upscale Image</button>
+          <a class="iu-primary-btn iu-download-btn" id="downloadButton" href="#" download="digifox-upscaled.png" hidden>Download Image</a>
+          <button type="button" class="iu-secondary-btn" id="resetButton">Start Over</button>
+        </div>
+      </div>
+
+      <div class="iu-privacy-note">
+        <strong>Your privacy matters.</strong>
+        <span>Images are processed in your browser and are not sent to DigiiFox servers.</span>
+      </div>
+    </section>
+
+    <section class="iu-content-section">
+      <h2>How to Upscale an Image</h2>
+      <div class="iu-steps-grid">
+        <article class="iu-step">
+          <span>01</span>
+          <h3>Upload an image</h3>
+          <p>Choose a JPG, PNG, or WebP image from your device.</p>
+        </article>
+        <article class="iu-step">
+          <span>02</span>
+          <h3>Choose the scale</h3>
+          <p>Select 2× or 4× and choose the output format you prefer.</p>
+        </article>
+        <article class="iu-step">
+          <span>03</span>
+          <h3>Upscale and download</h3>
+          <p>Generate the larger image, preview it, and download the result.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="iu-content-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="iu-faq-list">
+        <details>
+          <summary>What does an image upscaler do?</summary>
+          <p>An image upscaler increases an image's pixel dimensions. This version uses browser canvas resizing rather than an AI model.</p>
+        </details>
+        <details>
+          <summary>What is the difference between 2× and 4×?</summary>
+          <p>2× doubles the width and height, producing four times as many pixels. 4× quadruples the width and height, producing sixteen times as many pixels.</p>
+        </details>
+        <details>
+          <summary>Does this tool use AI?</summary>
+          <p>No. This version enlarges images using browser canvas interpolation. It does not generate new details like an AI-powered upscaler.</p>
+        </details>
+        <details>
+          <summary>Will my image become sharper?</summary>
+          <p>The image will have more pixels, but enlargement cannot recover details that were not present in the original. A larger image may still look soft.</p>
+        </details>
+        <details>
+          <summary>Will transparency be preserved?</summary>
+          <p>Choose PNG or WebP to preserve transparency where supported. JPG does not support transparency, so transparent areas become white.</p>
+        </details>
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>No. The resizing happens locally in your browser, and the tool does not send your image to DigiiFox.</p>
+        </details>
+        <details>
+          <summary>Why can't I upscale some very large images?</summary>
+          <p>Large output dimensions can require substantial memory. This tool limits the output to 40 megapixels and 12,000 pixels on either side to reduce browser failures.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="iu-content-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="iu-related-grid">
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-cropper.html">Image Cropper <span>→</span></a>
+        <a href="image-to-webp.html">Image to WebP <span>→</span></a>
+        <a href="webp-to-png.html">WebP to PNG <span>→</span></a>
+        <a href="jpg-to-png.html">JPG to PNG <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="iu-footer">
+    <div class="iu-footer-grid">
+      <div class="iu-footer-brand">
+        <a href="../index.html" class="iu-logo">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for your everyday digital tasks.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div>
+        <h3>Image Tools</h3>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-to-webp.html">Image to WebP</a>
+        <a href="webp-to-png.html">WebP to PNG</a>
+      </div>
+      <div>
+        <h3>Helpful Links</h3>
+        <a href="../pages/image-tools.html">All Image Tools</a>
+        <a href="../pages/pdf-tools.html">All PDF Tools</a>
+        <a href="../pages/calculators.html">All Calculators</a>
+      </div>
+    </div>
+    <div class="iu-footer-bottom">
+      <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Fast tools. Simple solutions.</p>
+    </div>
+  </footer>
+</body>
+</html>

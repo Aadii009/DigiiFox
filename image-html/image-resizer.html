@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resize images online with DigiiFox. Set custom image dimensions, preserve aspect ratio, preview results, and download resized images in your browser.">
+  <title>Image Resizer Online - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-resizer.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="ir-header">
+    <div class="ir-header-inner">
+      <a class="ir-brand" href="../index.html" aria-label="DigiiFox home">
+        Digii<span>Fox</span>
+      </a>
+
+      <button class="ir-menu-toggle" id="menuToggle" type="button"
+        aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="ir-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a class="active" href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="ir-container">
+      <div class="ir-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <span>/</span>
+        <span>Image Resizer</span>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="ir-hero">
+      <div class="ir-container">
+        <span class="ir-eyebrow">DIGIIFOX IMAGE TOOLS</span>
+        <h1>Image <span>Resizer</span></h1>
+        <p>
+          Resize images to the dimensions you need. Set custom pixel sizes,
+          preserve the aspect ratio, and download your resized image in seconds.
+        </p>
+
+        <div class="ir-hero-points">
+          <span>✓ Custom dimensions</span>
+          <span>✓ Aspect ratio control</span>
+          <span>✓ Browser-based processing</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main workspace -->
+    <section class="ir-container ir-workspace-section">
+      <div class="ir-workspace">
+
+        <div class="ir-main-panel">
+          <div class="ir-section-heading">
+            <div>
+              <span class="ir-step-label">STEP 1</span>
+              <h2>Upload your image</h2>
+              <p>Choose the image you want to resize.</p>
+            </div>
+            <span class="ir-file-badge">JPG · PNG · WebP</span>
+          </div>
+
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"
+            hidden
+          >
+
+          <div class="ir-drop-zone" id="dropZone" role="button" tabindex="0"
+            aria-label="Choose an image or drag and drop it here">
+            <div class="ir-upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <h3>Drag &amp; drop your image here</h3>
+            <p>or select a file from your device</p>
+
+            <button class="ir-primary-btn" id="chooseImageBtn" type="button">
+              Choose Image
+            </button>
+
+            <small>JPG, PNG, or WebP · Maximum 25 MB</small>
+          </div>
+
+          <div class="ir-error-message" id="errorMessage" role="alert" hidden></div>
+
+          <!-- Previews -->
+          <div class="ir-preview-grid" id="previewGrid" hidden>
+            <article class="ir-preview-card">
+              <div class="ir-preview-header">
+                <h3>Original Image</h3>
+                <span class="ir-status-tag">Original</span>
+              </div>
+
+              <div class="ir-image-stage">
+                <img id="originalPreview" alt="Original image preview">
+              </div>
+
+              <div class="ir-image-details">
+                <span id="originalDimensions">Dimensions: —</span>
+                <strong id="originalSize">Size: —</strong>
+              </div>
+            </article>
+
+            <article class="ir-preview-card">
+              <div class="ir-preview-header">
+                <h3>Resized Image</h3>
+                <span class="ir-status-tag ir-status-new" id="outputStatus">Preview</span>
+              </div>
+
+              <div class="ir-image-stage">
+                <img id="resizedPreview" alt="Resized image preview">
+                <div class="ir-preview-placeholder" id="previewPlaceholder">
+                  Your resized image will appear here.
+                </div>
+              </div>
+
+              <div class="ir-image-details">
+                <span id="resizedDimensions">Dimensions: —</span>
+                <strong id="resizedSize">Size: —</strong>
+              </div>
+            </article>
+          </div>
+
+          <!-- Results -->
+          <div class="ir-results-card" id="resultsCard" hidden>
+            <div class="ir-results-heading">
+              <div>
+                <span class="ir-step-label">RESIZE RESULT</span>
+                <h3>Your image is ready</h3>
+              </div>
+              <span class="ir-result-badge" id="dimensionBadge">—</span>
+            </div>
+
+            <div class="ir-size-comparison">
+              <div>
+                <span>Original dimensions</span>
+                <strong id="resultOriginalDimensions">—</strong>
+              </div>
+
+              <div class="ir-comparison-arrow" aria-hidden="true">→</div>
+
+              <div>
+                <span>New dimensions</span>
+                <strong id="resultResizedDimensions">—</strong>
+              </div>
+            </div>
+
+            <div class="ir-file-comparison">
+              <div>
+                <span>Original file size</span>
+                <strong id="resultOriginalSize">—</strong>
+              </div>
+
+              <div>
+                <span>New file size</span>
+                <strong id="resultResizedSize">—</strong>
+              </div>
+            </div>
+
+            <p class="ir-result-note" id="resultNote"></p>
+
+            <button class="ir-primary-btn ir-download-btn" id="downloadBtn" type="button">
+              Download Resized Image
+            </button>
+          </div>
+        </div>
+
+        <!-- Resize settings -->
+        <aside class="ir-settings-panel">
+          <div class="ir-settings-title">
+            <span class="ir-step-label">STEP 2</span>
+            <h2>Resize settings</h2>
+            <p>Choose your desired image dimensions.</p>
+          </div>
+
+          <div class="ir-setting-group">
+            <label for="resizeMode">Resize method</label>
+
+            <select id="resizeMode">
+              <option value="dimensions">Custom dimensions</option>
+              <option value="percentage">Resize by percentage</option>
+            </select>
+
+            <p class="ir-setting-help">
+              Enter exact pixel dimensions or scale your image by a percentage.
+            </p>
+          </div>
+
+          <!-- Exact dimensions -->
+          <div id="dimensionControls">
+            <div class="ir-dimensions-grid">
+              <div class="ir-setting-group">
+                <label for="imageWidth">Width (px)</label>
+                <input type="number" id="imageWidth" min="1" max="12000"
+                  placeholder="Width">
+              </div>
+
+              <div class="ir-setting-group">
+                <label for="imageHeight">Height (px)</label>
+                <input type="number" id="imageHeight" min="1" max="12000"
+                  placeholder="Height">
+              </div>
+            </div>
+
+            <label class="ir-ratio-control" for="lockRatio">
+              <input type="checkbox" id="lockRatio" checked>
+              <span class="ir-ratio-icon" aria-hidden="true">↔</span>
+              <span>
+                <strong>Lock aspect ratio</strong>
+                <small>Keep the original proportions.</small>
+              </span>
+            </label>
+
+            <p class="ir-setting-help" id="ratioHelp">
+              With the ratio locked, changing one dimension automatically updates the other.
+            </p>
+          </div>
+
+          <!-- Percentage mode -->
+          <div class="ir-setting-group" id="percentageControls" hidden>
+            <label for="scaleSlider">
+              <span>Resize percentage</span>
+              <strong id="scaleValue">50%</strong>
+            </label>
+
+            <input type="range" id="scaleSlider" min="10" max="200" value="50">
+
+            <div class="ir-range-labels">
+              <span>10%</span>
+              <span>100%</span>
+              <span>200%</span>
+            </div>
+
+            <div class="ir-setting-group ir-scale-number">
+              <label for="scaleNumber">Custom percentage</label>
+              <input type="number" id="scaleNumber" min="10" max="200" value="50">
+            </div>
+
+            <p class="ir-setting-help">
+              Percentage resizing preserves the original aspect ratio.
+              Values above 100% enlarge the image and may reduce perceived sharpness.
+            </p>
+          </div>
+
+          <div class="ir-setting-group">
+            <label for="outputFormat">Output format</label>
+
+            <select id="outputFormat">
+              <option value="image/webp">WebP — Recommended</option>
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/png">PNG</option>
+            </select>
+
+            <p class="ir-setting-help" id="formatHelp">
+              WebP often offers a good balance between quality and file size.
+            </p>
+          </div>
+
+          <div class="ir-setting-group">
+            <label for="qualitySlider">
+              <span>Output quality</span>
+              <strong id="qualityValue">92%</strong>
+            </label>
+
+            <input type="range" id="qualitySlider" min="10" max="100" value="92">
+
+            <div class="ir-range-labels">
+              <span>Smaller file</span>
+              <span>Better quality</span>
+            </div>
+
+            <p class="ir-setting-help" id="qualityHelp">
+              Quality affects JPEG and WebP exports. It does not control PNG compression.
+            </p>
+          </div>
+
+          <div class="ir-settings-actions">
+            <button class="ir-primary-btn ir-full-btn" id="resizeBtn" type="button" disabled>
+              Resize Image
+            </button>
+
+            <button class="ir-secondary-btn ir-full-btn" id="resetBtn" type="button">
+              Reset
+            </button>
+          </div>
+
+          <div class="ir-privacy-note">
+            <span aria-hidden="true">🔒</span>
+            <div>
+              <strong>Private browser processing</strong>
+              <p>Your selected image is processed locally and is not sent to a DigiiFox server.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- How to use -->
+    <section class="ir-container ir-content-section">
+      <div class="ir-content-card">
+        <span class="ir-step-label">QUICK GUIDE</span>
+        <h2>How to Use the Image Resizer</h2>
+        <p>Resize your image in four simple steps.</p>
+
+        <div class="ir-steps-grid">
+          <article class="ir-step-card">
+            <span class="ir-step-number">01</span>
+            <h3>Upload an image</h3>
+            <p>Select a JPG, PNG, or WebP image from your device.</p>
+          </article>
+
+          <article class="ir-step-card">
+            <span class="ir-step-number">02</span>
+            <h3>Choose dimensions</h3>
+            <p>Enter a width and height in pixels or select percentage resizing.</p>
+          </article>
+
+          <article class="ir-step-card">
+            <span class="ir-step-number">03</span>
+            <h3>Adjust settings</h3>
+            <p>Lock the aspect ratio if needed and select your preferred output format.</p>
+          </article>
+
+          <article class="ir-step-card">
+            <span class="ir-step-number">04</span>
+            <h3>Download your image</h3>
+            <p>Click Resize Image, review the preview, and download your result.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="ir-container ir-content-section">
+      <div class="ir-content-card">
+        <span class="ir-step-label">NEED HELP?</span>
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="ir-faq-list">
+          <details class="ir-faq-item">
+            <summary>What does an image resizer do?</summary>
+            <p>An image resizer changes the pixel dimensions of an image. You can make an image smaller for websites, documents, social media, or other uses.</p>
+          </details>
+
+          <details class="ir-faq-item">
+            <summary>What is an aspect ratio?</summary>
+            <p>An aspect ratio describes the relationship between an image's width and height. Locking the ratio keeps the original proportions and helps prevent stretching.</p>
+          </details>
+
+          <details class="ir-faq-item">
+            <summary>Can I resize an image by percentage?</summary>
+            <p>Yes. Choose Resize by percentage and select a value between 10% and 200%. The tool calculates the new dimensions while preserving the original proportions.</p>
+          </details>
+
+          <details class="ir-faq-item">
+            <summary>Will resizing reduce image quality?</summary>
+            <p>Reducing dimensions can remove detail, while enlarging an image cannot recreate missing detail. JPEG and WebP exports may also introduce compression artifacts depending on the quality setting.</p>
+          </details>
+
+          <details class="ir-faq-item">
+            <summary>Can I keep a transparent background?</summary>
+            <p>Yes, when exporting to PNG or WebP if the original image contains transparency. JPEG does not support transparency, so transparent areas become white.</p>
+          </details>
+
+          <details class="ir-faq-item">
+            <summary>Are my images uploaded to a server?</summary>
+            <p>No. This tool uses your browser to resize and export images. It does not upload your selected image to a DigiiFox server.</p>
+          </details>
+
+          <details class="ir-faq-item">
+            <summary>Why is the resized file larger than the original?</summary>
+            <p>File size depends on the output format, image content, dimensions, and quality. A different format or a lower quality setting may produce a smaller file.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related tools -->
+    <section class="ir-container ir-related-section">
+      <div class="ir-related-card">
+        <div>
+          <span class="ir-step-label">EXPLORE MORE</span>
+          <h2>More Image Tools</h2>
+          <p>Discover more ways to work with your images on DigiiFox.</p>
+        </div>
+
+        <div class="ir-related-links">
+          <a href="jpg-to-png.html">JPG to PNG <span>→</span></a>
+          <a href="png-to-jpg.html">PNG to JPG <span>→</span></a>
+          <a href="image-compressor.html">Image Compressor <span>→</span></a>
+          <a href="image-cropper.html">Image Cropper <span>→</span></a>
+          <a href="../pages/image-tools.html">All Image Tools <span>→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="ir-footer">
+    <div class="ir-container">
+      <div class="ir-footer-grid">
+        <div class="ir-footer-brand">
+          <a class="ir-brand" href="../index.html">Digii<span>Fox</span></a>
+          <p>Simple online tools to make everyday digital tasks easier.</p>
+        </div>
+
+        <div class="ir-footer-column">
+          <h3>Explore</h3>
+          <a href="../index.html">Home</a>
+          <a href="../pages/pdf-tools.html">PDF Tools</a>
+          <a href="../pages/image-tools.html">Image Tools</a>
+          <a href="../pages/calculators.html">Calculators</a>
+        </div>
+
+        <div class="ir-footer-column">
+          <h3>Image Tools</h3>
+          <a href="jpg-to-png.html">JPG to PNG</a>
+          <a href="png-to-jpg.html">PNG to JPG</a>
+          <a href="image-compressor.html">Image Compressor</a>
+          <a href="image-resizer.html">Image Resizer</a>
+        </div>
+
+        <div class="ir-footer-column">
+          <h3>Helpful Links</h3>
+          <a href="../index.html">About DigiiFox</a>
+          <a href="../index.html">Contact</a>
+          <a href="../index.html">Privacy Policy</a>
+          <a href="../index.html">Terms of Use</a>
+        </div>
+      </div>
+
+      <div class="ir-footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Useful tools. Simple solutions.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../image-js/image-resizer.js"></script>
+</body>
+</html>

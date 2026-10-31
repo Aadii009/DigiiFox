@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Change image resolution online for free. Resize JPG, PNG and WebP images using custom pixel dimensions and preset resolutions.">
+  <title>Image Resolution Changer Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-resolution-changer.css">
+</head>
+<body>
+  <header class="rc-header">
+    <div class="rc-header-inner">
+      <a class="rc-logo" href="../index.html">Digii<span>Fox</span></a>
+      <button class="rc-menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="rc-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="rc-container">
+    <section class="rc-hero">
+      <span class="rc-eyebrow">FREE ONLINE IMAGE TOOL</span>
+      <h1>Image <span>Resolution Changer</span></h1>
+      <p>Change image width and height in pixels, use preset resolutions, and download your resized image in your preferred format.</p>
+    </section>
+
+    <section class="rc-tool-card">
+      <div class="rc-upload-area" id="uploadBox">
+        <div class="rc-upload-icon" aria-hidden="true">↑</div>
+        <h2>Upload your image</h2>
+        <p>Drag and drop an image here, or choose a file from your device.</p>
+        <button type="button" class="rc-button rc-primary" id="chooseImageButton">Choose Image</button>
+        <p class="rc-upload-note">JPG, JPEG, PNG or WebP · Maximum file size 25 MB</p>
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+      </div>
+
+      <div class="rc-editor" id="editor" hidden>
+        <div class="rc-section-heading">
+          <div>
+            <h2>Adjust resolution</h2>
+            <p>Set your desired pixel dimensions below.</p>
+          </div>
+          <button type="button" class="rc-button rc-light" id="changeImageButton">Change Image</button>
+        </div>
+
+        <div class="rc-workspace">
+          <div class="rc-preview-panel">
+            <div class="rc-preview-title">
+              <h3>Image preview</h3>
+              <span class="rc-badge" id="originalFormat">Original</span>
+            </div>
+            <div class="rc-preview-frame">
+              <img id="originalPreview" alt="Original image preview">
+            </div>
+            <div class="rc-image-stats">
+              <div><span>Original dimensions</span><strong id="originalDimensions">—</strong></div>
+              <div><span>Original file size</span><strong id="originalSize">—</strong></div>
+            </div>
+          </div>
+
+          <div class="rc-settings-panel">
+            <div class="rc-field">
+              <label for="resolutionPreset">Resolution presets</label>
+              <select id="resolutionPreset">
+                <option value="custom">Custom dimensions</option>
+                <option value="640x480">640 × 480 — VGA</option>
+                <option value="1280x720">1280 × 720 — HD</option>
+                <option value="1920x1080">1920 × 1080 — Full HD</option>
+                <option value="2560x1440">2560 × 1440 — QHD</option>
+                <option value="3840x2160">3840 × 2160 — 4K UHD</option>
+                <option value="1080x1080">1080 × 1080 — Square</option>
+                <option value="1080x1350">1080 × 1350 — Portrait</option>
+                <option value="1080x1920">1080 × 1920 — Story</option>
+              </select>
+            </div>
+
+            <div class="rc-dimensions-grid">
+              <div class="rc-field">
+                <label for="widthInput">Width (px)</label>
+                <input type="number" id="widthInput" min="1" max="12000" step="1" inputmode="numeric">
+              </div>
+              <div class="rc-field">
+                <label for="heightInput">Height (px)</label>
+                <input type="number" id="heightInput" min="1" max="12000" step="1" inputmode="numeric">
+              </div>
+            </div>
+
+            <label class="rc-checkbox-row" for="aspectRatioLock">
+              <input type="checkbox" id="aspectRatioLock" checked>
+              <span><strong>Maintain aspect ratio</strong><small>Keep the original image proportions.</small></span>
+            </label>
+
+            <div class="rc-ratio-note" id="ratioNote">Aspect ratio is locked.</div>
+
+            <div class="rc-field">
+              <label for="outputFormat">Output format</label>
+              <select id="outputFormat">
+                <option value="image/jpeg">JPG</option>
+                <option value="image/png">PNG</option>
+                <option value="image/webp" selected>WebP</option>
+              </select>
+            </div>
+
+            <div class="rc-field" id="qualityGroup">
+              <div class="rc-label-row">
+                <label for="qualitySlider">Image quality</label>
+                <strong id="qualityValue">92%</strong>
+              </div>
+              <input type="range" id="qualitySlider" min="10" max="100" value="92">
+              <div class="rc-range-labels"><span>Smaller file</span><span>Higher quality</span></div>
+            </div>
+
+            <div class="rc-limit-note">
+              <strong>Processing limits</strong>
+              <p>Maximum output dimension: 12,000 px per side. Maximum output: 40 megapixels.</p>
+            </div>
+
+            <button type="button" class="rc-button rc-primary rc-full-button" id="resizeButton">Change Resolution</button>
+            <p class="rc-status" id="statusMessage" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <section class="rc-result" id="resultPanel" hidden>
+          <div class="rc-result-heading">
+            <div>
+              <span class="rc-eyebrow">YOUR RESIZED IMAGE</span>
+              <h2>Ready to download</h2>
+            </div>
+            <span class="rc-badge rc-success">Completed</span>
+          </div>
+          <div class="rc-result-preview">
+            <img id="resizedPreview" alt="Resized image preview">
+          </div>
+          <div class="rc-result-stats">
+            <div><span>New dimensions</span><strong id="resizedDimensions">—</strong></div>
+            <div><span>New file size</span><strong id="resizedSize">—</strong></div>
+            <div><span>Output format</span><strong id="resizedFormat">—</strong></div>
+          </div>
+          <p class="rc-result-summary" id="resultSummary"></p>
+          <div class="rc-result-actions">
+            <a class="rc-button rc-primary" id="downloadButton" href="#" download="digifox-resized-image.webp">Download Image</a>
+            <button type="button" class="rc-button rc-light" id="resetButton">Start Over</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="rc-info-card">
+      <h2>How to Change Image Resolution</h2>
+      <ol class="rc-steps">
+        <li><strong>Upload your image.</strong> Choose a JPG, PNG or WebP image from your device.</li>
+        <li><strong>Set the resolution.</strong> Choose a preset or enter your own width and height in pixels.</li>
+        <li><strong>Choose your settings.</strong> Keep the aspect ratio locked if you want to preserve the image's proportions. Select an output format and quality.</li>
+        <li><strong>Resize and download.</strong> Click Change Resolution, review the result, and download your image.</li>
+      </ol>
+    </section>
+
+    <section class="rc-info-card">
+      <h2>What Is Image Resolution?</h2>
+      <p>Image resolution describes the number of pixels in an image, usually expressed as width × height. For example, 1920 × 1080 means the image is 1920 pixels wide and 1080 pixels tall.</p>
+      <p>Increasing pixel dimensions creates a larger image but does not necessarily restore fine details. Reducing dimensions can make images easier to share or use on websites. JPG and WebP quality settings can also affect file size and visual quality.</p>
+    </section>
+
+    <section class="rc-info-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="rc-faq-item">
+        <h3>1. Is this image resolution changer free?</h3>
+        <p>Yes. You can use this tool to resize supported images for free in your browser.</p>
+      </div>
+      <div class="rc-faq-item">
+        <h3>2. Will changing resolution improve image quality?</h3>
+        <p>Not necessarily. Increasing dimensions makes the image larger in pixels, but ordinary resizing cannot recreate missing details. For a smaller image, resizing down may help reduce its file size.</p>
+      </div>
+      <div class="rc-faq-item">
+        <h3>3. What does maintain aspect ratio mean?</h3>
+        <p>It keeps the original width-to-height proportions when you change one dimension, helping prevent the image from looking stretched or squashed.</p>
+      </div>
+      <div class="rc-faq-item">
+        <h3>4. Which image formats are supported?</h3>
+        <p>You can upload JPG, JPEG, PNG and WebP images. The output can be JPG, PNG or WebP.</p>
+      </div>
+      <div class="rc-faq-item">
+        <h3>5. Are my images uploaded to a server?</h3>
+        <p>No. Image resizing is performed locally in your browser. Your image is not sent to a DigiiFox server by this tool.</p>
+      </div>
+      <div class="rc-faq-item">
+        <h3>6. Why can't I use very large dimensions?</h3>
+        <p>Large images can use substantial memory and may cause your browser to slow down. This tool limits the output to 12,000 pixels per side and 40 megapixels.</p>
+      </div>
+    </section>
+
+    <section class="rc-related">
+      <h2>Explore More Image Tools</h2>
+      <div class="rc-related-grid">
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-format-converter.html">Image Format Converter <span>→</span></a>
+        <a href="image-upscaler.html">Image Upscaler <span>→</span></a>
+        <a href="image-cropper.html">Image Cropper <span>→</span></a>
+        <a href="image-to-webp.html">Image to WebP <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rc-footer">
+    <div class="rc-footer-grid">
+      <div class="rc-footer-brand">
+        <a class="rc-logo" href="../index.html">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for everyday tasks.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div>
+        <h3>Image Tools</h3>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-format-converter.html">Format Converter</a>
+        <a href="image-upscaler.html">Image Upscaler</a>
+      </div>
+      <div>
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../index.html">Contact</a>
+      </div>
+    </div>
+    <div class="rc-footer-bottom">© <span id="currentYear"></span> DigiiFox. All rights reserved.</div>
+  </footer>
+
+  <script src="../image-js/image-resolution-changer.js"></script>
+</body>
+</html>

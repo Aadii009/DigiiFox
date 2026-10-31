@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert JPG and PNG images to WebP online with DigiiFox. Adjust quality, compare file sizes, and download optimized WebP images for free.">
+  <title>Image to WebP Converter Online Free | DigiiFox</title>
+
+  <link rel="stylesheet" href="../image-css/image-to-webp.css">
+</head>
+<body>
+
+  <header class="iw-header">
+    <div class="iw-nav-container">
+      <a href="../index.html" class="iw-brand">Digii<span>Fox</span></a>
+
+      <button class="iw-menu-toggle" id="menuToggle"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <nav class="iw-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="iw-main">
+
+    <section class="iw-hero">
+      <div class="iw-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <span>/</span>
+        <span>Image to WebP</span>
+      </div>
+
+      <span class="iw-badge">FREE IMAGE TOOL</span>
+      <h1>Image to <span>WebP</span></h1>
+      <p>Convert images to WebP format, adjust quality, and create smaller image files for websites and everyday use.</p>
+    </section>
+
+    <section class="iw-workspace">
+
+      <div class="iw-upload-box" id="uploadBox">
+        <div class="iw-upload-icon">↑</div>
+        <h2>Upload Your Image</h2>
+        <p>Drag and drop an image here, or choose one from your device.</p>
+
+        <label for="imageInput" class="iw-primary-button">Choose Image</label>
+        <input type="file" id="imageInput"
+          accept="image/jpeg,image/png,image/webp" hidden>
+
+        <p class="iw-file-note">JPG, PNG, or WebP · Maximum 25 MB</p>
+      </div>
+
+      <section class="iw-editor" id="editor" hidden>
+
+        <div class="iw-editor-heading">
+          <div>
+            <h2>Convert to WebP</h2>
+            <p>Adjust the quality to balance image appearance and file size.</p>
+          </div>
+
+          <button type="button" id="changeImageButton"
+            class="iw-secondary-button">Change Image</button>
+        </div>
+
+        <div class="iw-quality-panel">
+          <div class="iw-quality-heading">
+            <label for="quality">WebP Quality</label>
+            <strong id="qualityValue">85%</strong>
+          </div>
+
+          <input type="range" id="quality" min="10" max="100" value="85">
+
+          <div class="iw-quality-labels">
+            <span>Smaller file</span>
+            <span>Higher quality</span>
+          </div>
+
+          <p>Higher quality usually creates larger files. Actual results depend on the image.</p>
+        </div>
+
+        <div class="iw-preview-grid">
+
+          <article class="iw-preview-card">
+            <div class="iw-preview-heading">
+              <h3>Original Image</h3>
+              <span class="iw-preview-tag">Original</span>
+            </div>
+
+            <div class="iw-image-preview">
+              <img id="originalPreview" alt="Original image preview">
+            </div>
+
+            <div class="iw-preview-details">
+              <div>
+                <span>File Size</span>
+                <strong id="originalSize">—</strong>
+              </div>
+              <div>
+                <span>Dimensions</span>
+                <strong id="originalDimensions">—</strong>
+              </div>
+              <div>
+                <span>Format</span>
+                <strong id="originalFormat">—</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="iw-preview-card iw-output-card">
+            <div class="iw-preview-heading">
+              <h3>WebP Image</h3>
+              <span class="iw-preview-tag iw-webp-tag">WebP</span>
+            </div>
+
+            <div class="iw-image-preview">
+              <img id="convertedPreview" alt="Converted WebP image preview" hidden>
+              <div class="iw-preview-placeholder" id="previewPlaceholder">
+                Your converted image will appear here.
+              </div>
+            </div>
+
+            <div class="iw-preview-details">
+              <div>
+                <span>File Size</span>
+                <strong id="convertedSize">—</strong>
+              </div>
+              <div>
+                <span>Dimensions</span>
+                <strong id="convertedDimensions">—</strong>
+              </div>
+              <div>
+                <span>Format</span>
+                <strong id="convertedFormat">WebP</strong>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="iw-conversion-summary" id="conversionSummary" hidden>
+          <div class="iw-summary-icon">✓</div>
+          <div class="iw-summary-content">
+            <strong id="summaryTitle">Conversion complete</strong>
+            <p id="summaryText">Your WebP image is ready.</p>
+          </div>
+          <span class="iw-savings-badge" id="savingsBadge">—</span>
+        </div>
+
+        <div class="iw-actions">
+          <button type="button" id="convertButton" class="iw-primary-button">
+            Convert to WebP
+          </button>
+
+          <a id="downloadButton" class="iw-primary-button iw-download-button"
+            href="#" download="digifox-converted.webp" hidden>
+            Download WebP Image
+          </a>
+        </div>
+
+        <p class="iw-status" id="statusMessage" role="status" aria-live="polite"></p>
+      </section>
+
+      <div class="iw-privacy-note">
+        <strong>Your privacy matters.</strong>
+        <span>Conversion happens locally in your browser. Your selected image is not uploaded to a DigiiFox server.</span>
+      </div>
+
+    </section>
+
+    <section class="iw-info-section">
+      <h2>How to Convert an Image to WebP</h2>
+
+      <div class="iw-steps">
+        <article class="iw-step-card">
+          <span class="iw-step-number">01</span>
+          <h3>Upload an Image</h3>
+          <p>Choose a JPG, PNG, or WebP image from your device.</p>
+        </article>
+
+        <article class="iw-step-card">
+          <span class="iw-step-number">02</span>
+          <h3>Adjust Quality</h3>
+          <p>Use the quality slider to balance file size and visual detail.</p>
+        </article>
+
+        <article class="iw-step-card">
+          <span class="iw-step-number">03</span>
+          <h3>Convert to WebP</h3>
+          <p>Click the conversion button to generate your WebP image.</p>
+        </article>
+
+        <article class="iw-step-card">
+          <span class="iw-step-number">04</span>
+          <h3>Download</h3>
+          <p>Compare the file sizes and download the converted image.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="iw-info-section iw-faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <details class="iw-faq-item">
+        <summary>What is the WebP image format?</summary>
+        <p>WebP is an image format developed by Google that supports lossy and lossless compression, as well as transparency. It can help websites deliver smaller images, although the size savings depend on the source image and settings.</p>
+      </details>
+
+      <details class="iw-faq-item">
+        <summary>Is this Image to WebP converter free?</summary>
+        <p>Yes. You can convert images to WebP using DigiiFox without paying for the tool.</p>
+      </details>
+
+      <details class="iw-faq-item">
+        <summary>Will WebP always make my image smaller?</summary>
+        <p>No. WebP often reduces file size, but the result depends on the original format, image content, and quality setting. Some converted images may be larger than their originals.</p>
+      </details>
+
+      <details class="iw-faq-item">
+        <summary>Can I convert transparent PNG images?</summary>
+        <p>Yes. WebP supports transparency, so transparent areas in a PNG can be preserved when the browser encodes the image correctly.</p>
+      </details>
+
+      <details class="iw-faq-item">
+        <summary>Does converting an image reduce quality?</summary>
+        <p>WebP quality settings below 100 use lossy compression, which can change image details. Choose a higher quality setting when visual fidelity is important. Conversion from an already compressed image can introduce additional quality loss.</p>
+      </details>
+
+      <details class="iw-faq-item">
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. The image is processed in your browser and is not sent to a DigiiFox server by this tool. The page does require your browser to support WebP encoding.</p>
+      </details>
+
+      <details class="iw-faq-item">
+        <summary>What is the maximum supported file size?</summary>
+        <p>The tool accepts images up to 25 MB and 40 megapixels. Large images can require considerable memory, depending on your device and browser.</p>
+      </details>
+    </section>
+
+    <section class="iw-related-section">
+      <h2>Explore More Image Tools</h2>
+
+      <div class="iw-related-grid">
+        <a href="jpg-to-png.html" class="iw-related-card">
+          <span>JPG → PNG</span>
+          <strong>JPG to PNG Converter</strong>
+          <small>Convert JPG images to PNG format.</small>
+        </a>
+
+        <a href="png-to-jpg.html" class="iw-related-card">
+          <span>PNG → JPG</span>
+          <strong>PNG to JPG Converter</strong>
+          <small>Convert PNG images to JPG format.</small>
+        </a>
+
+        <a href="image-compressor.html" class="iw-related-card">
+          <span>Compress</span>
+          <strong>Image Compressor</strong>
+          <small>Reduce image file size.</small>
+        </a>
+
+        <a href="image-resizer.html" class="iw-related-card">
+          <span>Resize</span>
+          <strong>Image Resizer</strong>
+          <small>Change image dimensions.</small>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="iw-footer">
+    <div class="iw-footer-grid">
+
+      <div class="iw-footer-brand">
+        <a href="../index.html" class="iw-brand">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools to help you get things done faster.</p>
+      </div>
+
+      <div class="iw-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+
+      <div class="iw-footer-column">
+        <h3>Image Tools</h3>
+        <a href="jpg-to-png.html">JPG to PNG</a>
+        <a href="png-to-jpg.html">PNG to JPG</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-resizer.html">Image Resizer</a>
+      </div>
+
+      <div class="iw-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../pages/image-tools.html">All Tools</a>
+      </div>
+
+    </div>
+
+    <div class="iw-footer-bottom">
+      <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Tools made simple.</p>
+    </div>
+  </footer>
+
+  <script src="../image-js/image-to-webp.js"></script>
+</body>
+</html>
