@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert PDF pages into PowerPoint slides online with DigiiFox.">
+    <title>PDF to PowerPoint - DigiiFox</title>
+    <link rel="stylesheet" href="../css/pdf-to-powerpoint.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+    <a href="pdf-tools.html" class="back-link">← All PDF Tools</a>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="tool-label">PDF TOOL</span>
+        <h1>PDF to <span>PowerPoint</span></h1>
+        <p>Turn your PDF pages into slides in a downloadable PowerPoint presentation.</p>
+    </section>
+
+    <section class="converter-card">
+        <div class="upload-area" id="dropArea">
+            <div class="upload-icon">PDF</div>
+            <h2>Select your PDF file</h2>
+            <p>Drag and drop a PDF here, or choose a file from your device.</p>
+
+            <label for="pdfInput" class="upload-button">Choose PDF</label>
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf">
+
+            <p class="file-note">PDF files only · Processed in your browser</p>
+        </div>
+
+        <div class="file-info hidden" id="fileInfo">
+            <div class="file-details">
+                <strong id="fileName">document.pdf</strong>
+                <span id="fileSize"></span>
+            </div>
+            <button type="button" id="removeFile" class="remove-button">Remove</button>
+        </div>
+
+        <div class="options">
+            <label for="presentationName">Presentation name</label>
+            <input
+                type="text"
+                id="presentationName"
+                maxlength="100"
+                value="converted-presentation"
+                placeholder="Enter presentation name"
+            >
+
+            <label for="pageRange">Pages to convert</label>
+            <select id="pageRange">
+                <option value="all">All pages</option>
+                <option value="first">First page only</option>
+            </select>
+
+            <div class="notice">
+                <strong>How it works:</strong>
+                Each PDF page becomes an image on a separate PowerPoint slide.
+                The original page appearance is preserved, but individual text
+                and design elements will not be editable.
+            </div>
+        </div>
+
+        <div class="progress-area hidden" id="progressArea">
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p id="statusText" role="status" aria-live="polite">Preparing...</p>
+        </div>
+
+        <button type="button" id="convertButton" class="convert-button" disabled>
+            Convert to PowerPoint
+        </button>
+
+        <div class="message hidden" id="message" role="alert"></div>
+    </section>
+
+    <section class="info-section">
+        <h2>How to Use PDF to PowerPoint</h2>
+        <ol>
+            <li>Click <strong>Choose PDF</strong> and select your document.</li>
+            <li>Choose whether to convert all pages or just the first page.</li>
+            <li>Enter a name for your PowerPoint presentation.</li>
+            <li>Click <strong>Convert to PowerPoint</strong>.</li>
+            <li>Wait while the PDF pages are rendered into slides.</li>
+            <li>Download the PPTX file and open it in Microsoft PowerPoint or a compatible application.</li>
+        </ol>
+    </section>
+
+    <section class="info-section faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+
+        <details>
+            <summary>Will my PDF layout be preserved?</summary>
+            <p>Each page is rendered as an image, so its visual appearance is generally preserved. The result can vary with unusual fonts, transparency or unsupported PDF features.</p>
+        </details>
+
+        <details>
+            <summary>Can I edit the text on the slides?</summary>
+            <p>The PDF page is inserted as an image. Its individual text, images and shapes cannot be edited separately. You can resize or move the page image in PowerPoint.</p>
+        </details>
+
+        <details>
+            <summary>Does every PDF page become a slide?</summary>
+            <p>Yes. Select All pages to create one slide per PDF page, or choose First page only to convert just the first page.</p>
+        </details>
+
+        <details>
+            <summary>Is my PDF uploaded to a server?</summary>
+            <p>This page processes your PDF in your browser and does not upload it to a DigiiFox server. The required JavaScript libraries load from external CDNs, so an internet connection is needed.</p>
+        </details>
+
+        <details>
+            <summary>Can I convert a password-protected PDF?</summary>
+            <p>This version does not ask for a PDF password. Password-protected or encrypted documents that cannot be opened by the PDF library will fail to convert.</p>
+        </details>
+
+        <details>
+            <summary>Can I convert very large PDFs?</summary>
+            <p>Large documents can use significant browser memory and take longer to process. For best results, try a smaller PDF if conversion fails.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+            <p>Simple online tools to help you get things done.</p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div>
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="compress-pdf.html">Compress PDF</a>
+            <a href="pdf-to-excel.html">PDF to Excel</a>
+            <a href="pdf-to-powerpoint.html">PDF to PowerPoint</a>
+        </div>
+
+        <div>
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="../index.html">Contact</a>
+            <a href="../index.html">Privacy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Tools for everyone.</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="../js/pdf-to-powerpoint.js"></script>
+
+</body>
+</html>

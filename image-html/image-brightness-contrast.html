@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Adjust image brightness and contrast online for free. Preview your edits and download your image in PNG, JPG, or WebP format.">
+  <title>Brightness & Contrast | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/brightness-contrast.css">
+</head>
+<body>
+  <header class="bc-header">
+    <a class="bc-brand" href="../index.html">Digii<span>Fox</span></a>
+    <nav class="bc-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </header>
+
+  <main class="bc-page">
+    <section class="bc-hero">
+      <span class="bc-eyebrow">DIGIIFOX IMAGE TOOLS</span>
+      <h1>Brightness <span>&amp; Contrast</span></h1>
+      <p>Make dark images brighter, improve contrast, and fine-tune your photos with simple controls.</p>
+    </section>
+
+    <section class="bc-workspace" aria-label="Brightness and contrast editor">
+      <div class="bc-upload-panel">
+        <label class="bc-upload-box" id="bcDropZone" for="bcFileInput">
+          <span class="bc-upload-icon" aria-hidden="true">＋</span>
+          <strong>Choose an image</strong>
+          <span>or drag and drop it here</span>
+          <small>JPG, PNG, WebP and other browser-supported image formats</small>
+          <span class="bc-upload-button">Select Image</span>
+        </label>
+        <input type="file" id="bcFileInput" accept="image/*" hidden>
+        <p class="bc-privacy-note">🔒 Your image is processed locally in your browser.</p>
+        <p class="bc-status" id="bcStatus" role="status" aria-live="polite">Choose an image to get started.</p>
+      </div>
+
+      <div class="bc-editor" id="bcEditor" hidden>
+        <div class="bc-preview-heading">
+          <div>
+            <h2>Image Preview</h2>
+            <p id="bcImageInfo">Your image preview will appear here.</p>
+          </div>
+          <button type="button" class="bc-button bc-button-light" id="bcReset">Reset Adjustments</button>
+        </div>
+
+        <div class="bc-preview-stage">
+          <div class="bc-preview-card">
+            <span class="bc-preview-label">Edited Image</span>
+            <canvas id="bcCanvas" aria-label="Edited image preview"></canvas>
+          </div>
+        </div>
+
+        <div class="bc-controls">
+          <div class="bc-control">
+            <div class="bc-control-top">
+              <label for="bcBrightness">Brightness</label>
+              <output id="bcBrightnessValue" for="bcBrightness">100%</output>
+            </div>
+            <input type="range" id="bcBrightness" min="0" max="200" value="100">
+            <div class="bc-range-labels"><span>0% — Darker</span><span>200% — Brighter</span></div>
+          </div>
+
+          <div class="bc-control">
+            <div class="bc-control-top">
+              <label for="bcContrast">Contrast</label>
+              <output id="bcContrastValue" for="bcContrast">100%</output>
+            </div>
+            <input type="range" id="bcContrast" min="0" max="200" value="100">
+            <div class="bc-range-labels"><span>0% — Lower</span><span>200% — Higher</span></div>
+          </div>
+
+          <div class="bc-presets">
+            <span class="bc-presets-title">Quick presets</span>
+            <button type="button" class="bc-preset" data-brightness="100" data-contrast="100">Original</button>
+            <button type="button" class="bc-preset" data-brightness="115" data-contrast="110">Light Enhance</button>
+            <button type="button" class="bc-preset" data-brightness="125" data-contrast="125">Vivid</button>
+            <button type="button" class="bc-preset" data-brightness="85" data-contrast="115">Moody</button>
+            <button type="button" class="bc-preset" data-brightness="110" data-contrast="90">Soft</button>
+          </div>
+        </div>
+
+        <div class="bc-export">
+          <div class="bc-export-heading">
+            <h2>Export Image</h2>
+            <p>Choose your preferred file format and download your edited image.</p>
+          </div>
+
+          <div class="bc-export-row">
+            <div class="bc-format-field">
+              <label for="bcFormat">Output format</label>
+              <select id="bcFormat">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/webp">WebP</option>
+              </select>
+            </div>
+
+            <div class="bc-quality-field" id="bcQualityField" hidden>
+              <label for="bcQuality">Image quality: <output id="bcQualityValue">92%</output></label>
+              <input type="range" id="bcQuality" min="40" max="100" value="92">
+            </div>
+
+            <button type="button" class="bc-button bc-button-primary" id="bcDownload">Download Image</button>
+          </div>
+          <p class="bc-export-note">Note: JPG does not support transparency; transparent areas will appear white.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bc-info-section">
+      <h2>How to Use Brightness &amp; Contrast</h2>
+      <div class="bc-steps">
+        <article class="bc-info-card">
+          <span class="bc-step-number">01</span>
+          <h3>Upload Your Image</h3>
+          <p>Select an image from your device or drag and drop it into the upload area.</p>
+        </article>
+        <article class="bc-info-card">
+          <span class="bc-step-number">02</span>
+          <h3>Adjust the Sliders</h3>
+          <p>Change brightness and contrast until your image looks the way you want.</p>
+        </article>
+        <article class="bc-info-card">
+          <span class="bc-step-number">03</span>
+          <h3>Choose a Format</h3>
+          <p>Select PNG, JPG, or WebP. Adjust quality when exporting JPG or WebP.</p>
+        </article>
+        <article class="bc-info-card">
+          <span class="bc-step-number">04</span>
+          <h3>Download</h3>
+          <p>Download your edited image directly to your device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bc-info-section bc-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="bc-faq-list">
+        <details>
+          <summary>What does brightness do?</summary>
+          <p>Brightness changes how light or dark the image appears. Increasing it can help reveal details in dark photos, while reducing it can make an image darker.</p>
+        </details>
+        <details>
+          <summary>What does contrast do?</summary>
+          <p>Contrast changes the difference between lighter and darker areas. Higher contrast can make an image look more defined, while lower contrast creates a flatter appearance.</p>
+        </details>
+        <details>
+          <summary>Will my original image be changed?</summary>
+          <p>No. The tool edits a browser preview and exports a new image. Your original file remains unchanged unless you choose to replace it yourself.</p>
+        </details>
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>No. Image processing happens locally in your browser. This tool does not upload your selected image to a DigiiFox server.</p>
+        </details>
+        <details>
+          <summary>Which formats can I download?</summary>
+          <p>You can export PNG, JPG, or WebP. The available input formats depend on the image formats supported by your browser.</p>
+        </details>
+        <details>
+          <summary>Will adjusting brightness improve a blurry photo?</summary>
+          <p>No. Brightness and contrast can improve the appearance of lighting and tonal differences, but they cannot restore details that are missing because of blur.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="bc-related-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="bc-related-grid">
+        <a href="image-filters.html" class="bc-related-card"><strong>Image Filters</strong><span>Apply creative effects to your photos →</span></a>
+        <a href="image-compressor.html" class="bc-related-card"><strong>Image Compressor</strong><span>Reduce image file size →</span></a>
+        <a href="image-resizer.html" class="bc-related-card"><strong>Image Resizer</strong><span>Resize images to your needs →</span></a>
+        <a href="image-format-converter.html" class="bc-related-card"><strong>Image Format Converter</strong><span>Convert between image formats →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bc-footer">
+    <div class="bc-footer-inner">
+      <div class="bc-footer-brand">
+        <a class="bc-brand" href="../index.html">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for everyday tasks.</p>
+      </div>
+      <div class="bc-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div class="bc-footer-column">
+        <h3>Image Tools</h3>
+        <a href="image-filters.html">Image Filters</a>
+        <a href="image-rotator.html">Image Rotator</a>
+        <a href="image-round-corners.html">Round Corners</a>
+        <a href="image-watermark.html">Image Watermark</a>
+      </div>
+      <div class="bc-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../index.html">Contact</a>
+        <a href="../index.html">Privacy</a>
+      </div>
+    </div>
+    <div class="bc-footer-bottom">
+      <p>© <span id="bcYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Useful tools. Simple solutions.</p>
+    </div>
+  </footer>
+
+  <script src="../image-js/brightness-contrast.js"></script>
+</body>
+</html>

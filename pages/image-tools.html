@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore free DigiiFox image tools to convert, compress, resize, edit, and optimize your images online.">
+    <meta name="theme-color" content="#2563eb">
+    <title>Image Tools Online - Free Image Converter & Editor | DigiiFox</title>
+
+    <link rel="stylesheet" href="../image-css/image-tools.css">
+    <script src="../image-js/image-tools.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a class="brand" href="../index.html" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html" class="active">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    YOUR ALL-IN-ONE IMAGE TOOLKIT
+                </span>
+
+                <h1>Free Online <span>Image Tools</span></h1>
+
+                <p class="hero-description">
+                    Convert, compress, resize, and edit your images with easy-to-use
+                    online tools. Get your work done quickly with DigiiFox.
+                </p>
+
+                <div class="hero-features">
+                    <span><span class="feature-check">✓</span> Easy to use</span>
+                    <span><span class="feature-check">✓</span> No software installation</span>
+                    <span><span class="feature-check">✓</span> Browser-based tools where supported</span>
+                </div>
+
+                <a href="#all-tools" class="primary-button">
+                    Explore Image Tools <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="visual-card visual-card-main">
+                    <div class="visual-image">
+                        <div class="mountain mountain-back"></div>
+                        <div class="mountain mountain-front"></div>
+                        <div class="sun"></div>
+                    </div>
+                    <div class="visual-card-footer">
+                        <div>
+                            <span class="visual-label">IMAGE EDITOR</span>
+                            <strong>Ready to create</strong>
+                        </div>
+                        <span class="visual-badge">JPG · PNG · WEBP</span>
+                    </div>
+                </div>
+
+                <div class="floating-tool floating-tool-top">
+                    <span class="floating-icon">↔</span>
+                    <span>Resize images</span>
+                </div>
+
+                <div class="floating-tool floating-tool-bottom">
+                    <span class="floating-icon">↓</span>
+                    <span>Compress files</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="stats-section" aria-label="Image tools overview">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <strong>25</strong>
+                    <span>Image Tools</span>
+                </div>
+                <div class="stat-item">
+                    <strong>5</strong>
+                    <span>Tool Categories</span>
+                </div>
+                <div class="stat-item">
+                    <strong>Online</strong>
+                    <span>Convenient Access</span>
+                </div>
+                <div class="stat-item">
+                    <strong>Simple</strong>
+                    <span>Easy Workflows</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools -->
+        <section class="tools-section section-container" id="all-tools">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">EXPLORE OUR TOOLKIT</span>
+                    <h2>All Image Tools</h2>
+                    <p>Choose a tool to get started with your image.</p>
+                </div>
+
+                <div class="tool-count">
+                    <span id="visibleToolCount">25</span> tools available
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="tools-controls">
+                <label class="search-box" for="toolSearch">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input type="search" id="toolSearch" placeholder="Search image tools..." autocomplete="off"
+                        aria-label="Search image tools">
+                    <kbd>Search</kbd>
+                </label>
+
+                <button type="button" class="clear-search" id="clearSearch">
+                    Clear search
+                </button>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filters" role="group" aria-label="Filter tools by category">
+                <button type="button" class="filter-button active" data-filter="all" aria-pressed="true">
+                    All Tools <span>25</span>
+                </button>
+                <button type="button" class="filter-button" data-filter="conversion" aria-pressed="false">
+                    Conversion <span>5</span>
+                </button>
+                <button type="button" class="filter-button" data-filter="optimization" aria-pressed="false">
+                    Optimization <span>5</span>
+                </button>
+                <button type="button" class="filter-button" data-filter="editing" aria-pressed="false">
+                    Editing <span>5</span>
+                </button>
+                <button type="button" class="filter-button" data-filter="design" aria-pressed="false">
+                    Design & Effects <span>5</span>
+                </button>
+                <button type="button" class="filter-button" data-filter="utilities" aria-pressed="false">
+                    Utilities <span>5</span>
+                </button>
+            </div>
+
+            <div class="tool-grid" id="toolGrid">
+
+                <!-- Category 1: Conversion -->
+                <a href="../image-html/jpg-to-png.html" class="tool-card" data-category="conversion"
+                    data-name="JPG to PNG">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-conversion">JP<span>→</span>PN</span>
+                        <span class="tool-number">01</span>
+                    </div>
+                    <h3>JPG to PNG</h3>
+                    <p>Convert JPG images into PNG format for compatible workflows and transparency-ready editing.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/png-to-jpg.html" class="tool-card" data-category="conversion"
+                    data-name="PNG to JPG">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-conversion">PN<span>→</span>JP</span>
+                        <span class="tool-number">02</span>
+                    </div>
+                    <h3>PNG to JPG</h3>
+                    <p>Convert PNG images into compact JPG files for everyday sharing and use.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-to-webp.html" class="tool-card" data-category="conversion"
+                    data-name="Image to WebP">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-conversion">IMG<span>→</span>W</span>
+                        <span class="tool-number">03</span>
+                    </div>
+                    <h3>Image to WebP</h3>
+                    <p>Convert supported images to WebP for efficient web delivery and smaller downloads.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/webp-to-jpg.html" class="tool-card" data-category="conversion"
+                    data-name="WebP to JPG">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-conversion">W<span>→</span>JP</span>
+                        <span class="tool-number">04</span>
+                    </div>
+                    <h3>WebP to JPG</h3>
+                    <p>Convert WebP images to JPG for use in compatible apps and platforms.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/webp-to-png.html" class="tool-card" data-category="conversion"
+                    data-name="WebP to PNG">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-conversion">W<span>→</span>PN</span>
+                        <span class="tool-number">05</span>
+                    </div>
+                    <h3>WebP to PNG</h3>
+                    <p>Convert WebP files into PNG images for editing and supported transparency workflows.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <!-- Category 2: Optimization -->
+                <a href="../image-html/image-compressor.html" class="tool-card" data-category="optimization"
+                    data-name="Image Compressor">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-optimization">⇣</span>
+                        <span class="tool-number">06</span>
+                    </div>
+                    <h3>Image Compressor</h3>
+                    <p>Reduce image file sizes while balancing compression and visual quality.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-resizer.html" class="tool-card" data-category="optimization"
+                    data-name="Image Resizer">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-optimization">↔</span>
+                        <span class="tool-number">07</span>
+                    </div>
+                    <h3>Image Resizer</h3>
+                    <p>Change image width and height to fit your project or platform requirements.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-upscaler.html" class="tool-card" data-category="optimization"
+                    data-name="Image Upscaler">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-optimization">↗</span>
+                        <span class="tool-number">08</span>
+                    </div>
+                    <h3>Image Upscaler</h3>
+                    <p>Increase image dimensions using available upscaling methods.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-resolution-changer.html" class="tool-card" data-category="optimization"
+                    data-name="Image Resolution Changer">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-optimization">DPI</span>
+                        <span class="tool-number">09</span>
+                    </div>
+                    <h3>Image Resolution Changer</h3>
+                    <p>Adjust image dimensions and supported resolution or DPI metadata.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-format-converter.html" class="tool-card" data-category="optimization"
+                    data-name="Image Format Converter">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-optimization">FMT</span>
+                        <span class="tool-number">10</span>
+                    </div>
+                    <h3>Image Format Converter</h3>
+                    <p>Convert supported images between common file formats in one place.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <!-- Category 3: Editing -->
+                <a href="../image-html/image-cropper.html" class="tool-card" data-category="editing"
+                    data-name="Image Cropper">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-editing">□</span>
+                        <span class="tool-number">11</span>
+                    </div>
+                    <h3>Image Cropper</h3>
+                    <p>Crop images to focus on the area you want to keep.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-rotator.html" class="tool-card" data-category="editing"
+                    data-name="Image Rotator">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-editing">↻</span>
+                        <span class="tool-number">12</span>
+                    </div>
+                    <h3>Image Rotator</h3>
+                    <p>Rotate images and flip them horizontally or vertically.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-watermark.html" class="tool-card" data-category="editing"
+                    data-name="Image Watermark">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-editing">WM</span>
+                        <span class="tool-number">13</span>
+                    </div>
+                    <h3>Image Watermark</h3>
+                    <p>Add customizable text watermarks to help identify your images.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-border-maker.html" class="tool-card" data-category="editing"
+                    data-name="Image Border Maker">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-editing">▣</span>
+                        <span class="tool-number">14</span>
+                    </div>
+                    <h3>Image Border Maker</h3>
+                    <p>Add borders with customizable colors, widths, and styles.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-rounded-corners.html" class="tool-card" data-category="editing"
+                    data-name="Image Rounded Corners">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-editing">▢</span>
+                        <span class="tool-number">15</span>
+                    </div>
+                    <h3>Image Rounded Corners</h3>
+                    <p>Create rounded image corners for cards, profiles, and designs.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <!-- Category 4: Design and Effects -->
+                <a href="../image-html/image-filters.html" class="tool-card" data-category="design"
+                    data-name="Image Filters">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-design">FX</span>
+                        <span class="tool-number">16</span>
+                    </div>
+                    <h3>Image Filters</h3>
+                    <p>Apply visual effects such as grayscale, sepia, and blur.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-brightness-contrast.html" class="tool-card" data-category="design"
+                    data-name="Image Brightness Contrast">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-design">☼</span>
+                        <span class="tool-number">17</span>
+                    </div>
+                    <h3>Brightness &amp; Contrast</h3>
+                    <p>Adjust brightness, contrast, and saturation to refine your images.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-background-color-changer.html" class="tool-card" data-category="design"
+                    data-name="Image Background Color Changer">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-design">BG</span>
+                        <span class="tool-number">18</span>
+                    </div>
+                    <h3>Background Color Changer</h3>
+                    <p>Change a suitable image background to a chosen color.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-background-remover.html" class="tool-card" data-category="design"
+                    data-name="Image Background Remover">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-design">BR</span>
+                        <span class="tool-number">19</span>
+                    </div>
+                    <h3>Background Remover</h3>
+                    <p>Remove image backgrounds using a supported background-removal method.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-collage-maker.html" class="tool-card" data-category="design"
+                    data-name="Image Collage Maker">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-design">▦</span>
+                        <span class="tool-number">20</span>
+                    </div>
+                    <h3>Image Collage Maker</h3>
+                    <p>Combine multiple images into a single collage layout.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <!-- Category 5: Utilities -->
+                <a href="../image-html/image-to-base64.html" class="tool-card" data-category="utilities"
+                    data-name="Image to Base64">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-utilities">B64</span>
+                        <span class="tool-number">21</span>
+                    </div>
+                    <h3>Image to Base64</h3>
+                    <p>Encode an image as Base64 text for supported development workflows.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/base64-to-image.html" class="tool-card" data-category="utilities"
+                    data-name="Base64 to Image">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-utilities">64B</span>
+                        <span class="tool-number">22</span>
+                    </div>
+                    <h3>Base64 to Image</h3>
+                    <p>Decode supported Base64 image data and preview the resulting image.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-color-picker.html" class="tool-card" data-category="utilities"
+                    data-name="Image Color Picker">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-utilities">HEX</span>
+                        <span class="tool-number">23</span>
+                    </div>
+                    <h3>Image Color Picker</h3>
+                    <p>Select a pixel color and find its HEX and RGB values.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-metadata-viewer.html" class="tool-card" data-category="utilities"
+                    data-name="Image Metadata Viewer">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-utilities">i</span>
+                        <span class="tool-number">24</span>
+                    </div>
+                    <h3>Image Metadata Viewer</h3>
+                    <p>Inspect image dimensions, format, file size, and available metadata.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+                <a href="../image-html/image-to-pdf.html" class="tool-card" data-category="utilities"
+                    data-name="Image to PDF">
+                    <div class="tool-card-top">
+                        <span class="tool-icon icon-utilities">IMG<span>→</span>PDF</span>
+                        <span class="tool-number">25</span>
+                    </div>
+                    <h3>Image to PDF</h3>
+                    <p>Place one or more images into a downloadable PDF document.</p>
+                    <span class="tool-link">Use Tool <span aria-hidden="true">→</span></span>
+                </a>
+
+            </div>
+
+            <div class="no-results" id="noResults" hidden>
+                <div class="no-results-icon">⌕</div>
+                <h3>No tools found</h3>
+                <p>Try another search term or select a different category.</p>
+                <button type="button" class="primary-button" id="resetFilters">Show all tools</button>
+            </div>
+        </section>
+
+        <!-- How to Use -->
+        <section class="how-section">
+            <div class="section-container">
+                <div class="center-heading">
+                    <span class="section-kicker">SIMPLE WORKFLOW</span>
+                    <h2>How to Use DigiiFox Image Tools</h2>
+                    <p>Get started in a few straightforward steps.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <article class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>Choose a Tool</h3>
+                        <p>Find the image tool you need using search or category filters.</p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>Upload Your Image</h3>
+                        <p>Select an image from your device and adjust the available settings.</p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>Process Your Image</h3>
+                        <p>Preview your changes and run the tool's processing action.</p>
+                    </article>
+
+                    <article class="step-card">
+                        <div class="step-number">04</div>
+                        <h3>Download the Result</h3>
+                        <p>Download the processed image in the format supported by the tool.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section section-container">
+            <div class="center-heading">
+                <span class="section-kicker">NEED HELP?</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Learn more about using the DigiiFox image toolkit.</p>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Are DigiiFox image tools free to use?</summary>
+                    <p>The tools are designed for easy online use. Any usage limits or additional service requirements
+                        will be explained on the relevant tool page.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do I need to install any software?</summary>
+                    <p>No installation is intended for the browser-based tools. You can open the website in a modern
+                        browser. Some advanced features may require an internet connection or an external processing
+                        service.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are my images uploaded to a server?</summary>
+                    <p>Tools that process images locally in your browser can avoid sending the image to our server.
+                        Advanced features may work differently, so each tool should clearly explain its processing
+                        method before you use it.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Which image formats are supported?</summary>
+                    <p>Format support varies by tool and browser. Common formats include JPG, PNG, and WebP, while
+                        specific tools may support additional formats.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will converting an image reduce its quality?</summary>
+                    <p>It depends on the output format and settings. Lossy formats such as JPG can reduce quality, while
+                        PNG can preserve lossless image data. Some format conversions may also change transparency.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I use these tools on my phone?</summary>
+                    <p>Yes. The Image Tools page is designed to adapt to mobile screens. Individual tools will also be
+                        built with responsive layouts where practical.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <span class="section-kicker">MAKE IMAGE WORK EASIER</span>
+                <h2>Your Image Toolkit, All in One Place</h2>
+                <p>Find the right tool, make your changes, and get back to your work.</p>
+                <a href="#all-tools" class="cta-button">Explore All Tools <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="footer-brand-column">
+                <a class="brand footer-brand" href="../index.html">
+                    Digii<span>Fox</span>
+                </a>
+                <p class="footer-description">
+                    Simple online tools to help you work smarter with documents,
+                    images, and everyday tasks.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Image Tools</h3>
+                <a href="../image-html/image-compressor.html">Image Compressor</a>
+                <a href="../image-html/image-resizer.html">Image Resizer</a>
+                <a href="../image-html/image-cropper.html">Image Cropper</a>
+                <a href="../image-html/image-format-converter.html">Format Converter</a>
+                <a href="../image-html/image-to-pdf.html">Image to PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html#about">About Us</a>
+                <a href="../index.html#contact">Contact</a>
+                <a href="../index.html#privacy">Privacy Policy</a>
+                <a href="../index.html#terms">Terms of Use</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Built to make your digital work easier.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

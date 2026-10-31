@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Convert PDF pages to high-quality PNG images directly in your browser with DigiiFox.">
+    <title>PDF to PNG Converter | DigiiFox</title>
+    <link rel="stylesheet" href="../css/pdf-to-png.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </nav>
+    </header>
+
+    <!-- Compact Hero -->
+    <section class="hero">
+        <a href="pdf-tools.html" class="back-link">← Back to PDF Tools</a>
+
+        <div class="tool-badge">PDF TOOL</div>
+
+        <h1>PDF to PNG Converter</h1>
+
+        <p>
+            Convert PDF pages into clear PNG images. Download individual pages
+            or save all your images together in a ZIP file.
+        </p>
+    </section>
+
+    <!-- Main Tool -->
+    <main class="tool-container">
+
+        <section class="upload-box" id="uploadBox">
+            <div class="upload-icon">🖼️</div>
+
+            <h2>Select your PDF file</h2>
+
+            <p>Drag and drop your PDF here, or select a file from your device.</p>
+
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+            <button type="button" class="primary-btn" id="chooseFileBtn">
+                Choose PDF File
+            </button>
+
+            <p class="file-limit">PDF files only · Maximum size: 50 MB</p>
+        </section>
+
+        <!-- Selected File -->
+        <section class="file-panel hidden" id="filePanel">
+            <div class="file-details">
+                <div class="file-icon">📄</div>
+
+                <div class="file-info">
+                    <h3 id="fileName">document.pdf</h3>
+                    <p id="fileSize">0 MB</p>
+                    <p id="pageCount">Loading PDF details...</p>
+                </div>
+            </div>
+
+            <button type="button" class="text-btn" id="removeFileBtn">
+                Remove file
+            </button>
+        </section>
+
+        <!-- Conversion Settings -->
+        <section class="settings-panel hidden" id="settingsPanel">
+            <h2>Conversion Settings</h2>
+
+            <div class="form-group">
+                <label for="pageMode">Pages to convert</label>
+
+                <select id="pageMode">
+                    <option value="all">All pages</option>
+                    <option value="selected">Selected pages</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="selectedPagesGroup">
+                <label for="selectedPages">Enter page numbers</label>
+
+                <input type="text" id="selectedPages" placeholder="Example: 1, 3, 5-7" autocomplete="off">
+
+                <small>Separate pages with commas. Use a hyphen for a range.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="imageQuality">Image resolution</label>
+
+                <select id="imageQuality">
+                    <option value="1">Standard — 72 DPI</option>
+                    <option value="1.5" selected>High — 108 DPI</option>
+                    <option value="2">Very High — 144 DPI</option>
+                </select>
+
+                <small>Higher resolution creates larger image files.</small>
+            </div>
+
+            <button type="button" class="primary-btn convert-btn" id="convertBtn">
+                Convert PDF to PNG
+            </button>
+
+            <div class="progress-area hidden" id="progressArea">
+                <div class="progress-track">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <p id="progressText">Preparing conversion...</p>
+            </div>
+        </section>
+
+        <!-- Results -->
+        <section class="results-panel hidden" id="resultsPanel">
+            <div class="results-heading">
+                <div>
+                    <h2>Your PNG Images</h2>
+                    <p id="resultsSummary">Conversion complete.</p>
+                </div>
+
+                <button type="button" class="primary-btn zip-btn" id="downloadZipBtn">
+                    Download ZIP
+                </button>
+            </div>
+
+            <div class="image-grid" id="imageGrid"></div>
+
+            <button type="button" class="secondary-btn" id="convertAnotherBtn">
+                Convert Another PDF
+            </button>
+        </section>
+
+        <!-- Status -->
+        <div class="status-message hidden" id="statusMessage" role="status" aria-live="polite"></div>
+
+        <!-- Privacy Information -->
+        <section class="privacy-note">
+            <span class="privacy-icon">🔒</span>
+
+            <div>
+                <h3>Your files stay on your device</h3>
+                <p>
+                    DigiiFox processes your PDF in your browser. Your document
+                    is not uploaded to our server. The conversion libraries
+                    are loaded from third-party CDNs.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Full-Sized Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <a href="../index.html" class="logo footer-logo">
+                    Digii<span>Fox</span>
+                </a>
+
+                <p>
+                    Simple online tools to help you work smarter.
+                    Convert files, manage images, and calculate with ease.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="rotate-pdf.html">Rotate PDF</a>
+                <a href="pdf-to-jpg.html">PDF to JPG</a>
+                <a href="jpg-to-pdf.html">JPG to PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Our Promise</h3>
+                <p>Easy-to-use tools</p>
+                <p>Browser-based processing</p>
+                <p>Privacy-focused design</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+
+    <script src="../js/pdf-to-png.js"></script>
+</body>
+
+</html>

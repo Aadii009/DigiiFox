@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compress images online with DigiiFox. Adjust image quality, compare file sizes, preview results, and download compressed images directly in your browser.">
+  <title>Image Compressor Online - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-compressor.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="ic-header">
+    <div class="ic-header-inner">
+      <a class="ic-brand" href="../index.html" aria-label="DigiiFox home">
+        Digii<span>Fox</span>
+      </a>
+
+      <button class="ic-menu-toggle" id="menuToggle" type="button"
+        aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="ic-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a class="active" href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Breadcrumb -->
+    <div class="ic-container">
+      <div class="ic-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <span>/</span>
+        <span>Image Compressor</span>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="ic-hero">
+      <div class="ic-container">
+        <span class="ic-eyebrow">DIGIIFOX IMAGE TOOLS</span>
+        <h1>Image <span>Compressor</span></h1>
+        <p>
+          Reduce image file sizes in seconds. Adjust quality, compare results,
+          and download your optimized image without uploading it to a server.
+        </p>
+        <div class="ic-hero-points">
+          <span>✓ Easy to use</span>
+          <span>✓ Browser-based processing</span>
+          <span>✓ Free to try</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compressor workspace -->
+    <section class="ic-container ic-workspace-section">
+      <div class="ic-workspace">
+
+        <div class="ic-main-panel">
+          <div class="ic-section-heading">
+            <div>
+              <span class="ic-step-label">STEP 1</span>
+              <h2>Upload your image</h2>
+              <p>Select an image to start compressing.</p>
+            </div>
+            <span class="ic-file-badge">JPG · PNG · WebP</span>
+          </div>
+
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"
+            hidden
+          >
+
+          <div class="ic-drop-zone" id="dropZone" role="button" tabindex="0"
+            aria-label="Choose an image or drag and drop it here">
+            <div class="ic-upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Drag &amp; drop your image here</h3>
+            <p>or select a file from your device</p>
+            <button class="ic-primary-btn" id="chooseImageBtn" type="button">
+              Choose Image
+            </button>
+            <small>JPG, PNG, or WebP · Maximum 25 MB</small>
+          </div>
+
+          <div class="ic-error-message" id="errorMessage" role="alert" hidden></div>
+
+          <!-- Image previews -->
+          <div class="ic-preview-grid" id="previewGrid" hidden>
+            <article class="ic-preview-card">
+              <div class="ic-preview-header">
+                <h3>Original Image</h3>
+                <span class="ic-status-tag">Original</span>
+              </div>
+              <div class="ic-image-stage">
+                <img id="originalPreview" alt="Original image preview">
+              </div>
+              <div class="ic-image-details">
+                <span id="originalDimensions">Dimensions: —</span>
+                <strong id="originalSize">Size: —</strong>
+              </div>
+            </article>
+
+            <article class="ic-preview-card">
+              <div class="ic-preview-header">
+                <h3>Compressed Image</h3>
+                <span class="ic-status-tag ic-status-new" id="outputStatus">Preview</span>
+              </div>
+              <div class="ic-image-stage">
+                <img id="compressedPreview" alt="Compressed image preview">
+                <div class="ic-preview-placeholder" id="previewPlaceholder">
+                  Adjust the settings to generate your preview.
+                </div>
+              </div>
+              <div class="ic-image-details">
+                <span id="compressedDimensions">Dimensions: —</span>
+                <strong id="compressedSize">Size: —</strong>
+              </div>
+            </article>
+          </div>
+
+          <!-- Results -->
+          <div class="ic-results-card" id="resultsCard" hidden>
+            <div class="ic-results-heading">
+              <div>
+                <span class="ic-step-label">COMPRESSION RESULT</span>
+                <h3>Your image is ready</h3>
+              </div>
+              <span class="ic-savings-badge" id="savingsBadge">—</span>
+            </div>
+
+            <div class="ic-size-comparison">
+              <div>
+                <span>Original size</span>
+                <strong id="resultOriginalSize">—</strong>
+              </div>
+              <div class="ic-comparison-arrow" aria-hidden="true">→</div>
+              <div>
+                <span>Compressed size</span>
+                <strong id="resultCompressedSize">—</strong>
+              </div>
+            </div>
+
+            <div class="ic-progress-track" aria-hidden="true">
+              <div class="ic-progress-bar" id="sizeProgress"></div>
+            </div>
+            <p class="ic-result-note" id="resultNote"></p>
+
+            <button class="ic-primary-btn ic-download-btn" id="downloadBtn" type="button">
+              Download Compressed Image
+            </button>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <aside class="ic-settings-panel">
+          <div class="ic-settings-title">
+            <span class="ic-step-label">STEP 2</span>
+            <h2>Compression settings</h2>
+            <p>Customize your output image.</p>
+          </div>
+
+          <div class="ic-setting-group">
+            <label for="qualitySlider">
+              <span>Image quality</span>
+              <strong id="qualityValue">75%</strong>
+            </label>
+            <input type="range" id="qualitySlider" min="10" max="100" value="75">
+            <div class="ic-range-labels">
+              <span>Smaller file</span>
+              <span>Better quality</span>
+            </div>
+            <p class="ic-setting-help">
+              Lower quality usually creates a smaller JPEG or WebP file.
+            </p>
+          </div>
+
+          <div class="ic-setting-group">
+            <label for="outputFormat">Output format</label>
+            <select id="outputFormat">
+              <option value="image/webp">WebP — Recommended</option>
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/png">PNG</option>
+            </select>
+            <p class="ic-setting-help" id="formatHelp">
+              WebP often offers a good balance between image quality and file size.
+            </p>
+          </div>
+
+          <div class="ic-setting-group">
+            <label for="maxWidth">Maximum width (px)</label>
+            <input type="number" id="maxWidth" min="1" max="12000"
+              placeholder="Keep original width">
+            <p class="ic-setting-help">
+              Optional. Resize large images to reduce their dimensions and file size.
+            </p>
+          </div>
+
+          <div class="ic-setting-group">
+            <label for="maxHeight">Maximum height (px)</label>
+            <input type="number" id="maxHeight" min="1" max="12000"
+              placeholder="Keep original height">
+            <p class="ic-setting-help">
+              Leave both dimension fields blank to keep the original dimensions.
+              The image aspect ratio is preserved.
+            </p>
+          </div>
+
+          <div class="ic-settings-actions">
+            <button class="ic-primary-btn ic-full-btn" id="compressBtn" type="button" disabled>
+              Compress Image
+            </button>
+            <button class="ic-secondary-btn ic-full-btn" id="resetBtn" type="button">
+              Reset
+            </button>
+          </div>
+
+          <div class="ic-privacy-note">
+            <span aria-hidden="true">🔒</span>
+            <div>
+              <strong>Your image stays in your browser</strong>
+              <p>This tool processes your image locally. It does not send the image to a DigiiFox server.</p>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- How to use -->
+    <section class="ic-container ic-content-section">
+      <div class="ic-content-card">
+        <span class="ic-step-label">QUICK GUIDE</span>
+        <h2>How to Use the Image Compressor</h2>
+        <p>Follow these simple steps to optimize your image.</p>
+
+        <div class="ic-steps-grid">
+          <article class="ic-step-card">
+            <span class="ic-step-number">01</span>
+            <h3>Upload an image</h3>
+            <p>Select a JPG, PNG, or WebP image from your device, or drag it into the upload area.</p>
+          </article>
+          <article class="ic-step-card">
+            <span class="ic-step-number">02</span>
+            <h3>Choose your settings</h3>
+            <p>Adjust the quality, select an output format, and optionally set maximum dimensions.</p>
+          </article>
+          <article class="ic-step-card">
+            <span class="ic-step-number">03</span>
+            <h3>Compress the image</h3>
+            <p>Click the Compress Image button and review the output preview and file size.</p>
+          </article>
+          <article class="ic-step-card">
+            <span class="ic-step-number">04</span>
+            <h3>Download the result</h3>
+            <p>Check the result and click Download Compressed Image to save the file.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="ic-container ic-content-section">
+      <div class="ic-content-card">
+        <span class="ic-step-label">NEED HELP?</span>
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="ic-faq-list">
+          <details class="ic-faq-item">
+            <summary>What does an image compressor do?</summary>
+            <p>An image compressor helps reduce an image's file size. This can make images easier to share and may help websites load faster.</p>
+          </details>
+
+          <details class="ic-faq-item">
+            <summary>Which image formats are supported?</summary>
+            <p>You can upload JPEG, PNG, and WebP images. You can choose WebP, JPEG, or PNG for the output. Animated images are not supported by this tool.</p>
+          </details>
+
+          <details class="ic-faq-item">
+            <summary>Will compressing reduce image quality?</summary>
+            <p>Lossy formats such as JPEG and WebP may lose some detail as quality is reduced. You can adjust the slider to balance file size and appearance.</p>
+          </details>
+
+          <details class="ic-faq-item">
+            <summary>Can I compress a PNG without losing quality?</summary>
+            <p>This browser-based tool can export PNG images, but its quality slider does not control PNG compression. PNG output may be larger than the original. For smaller files, try WebP or JPEG if those formats suit your image.</p>
+          </details>
+
+          <details class="ic-faq-item">
+            <summary>Are my images uploaded to a server?</summary>
+            <p>No. The image processing takes place in your browser. Your selected image is not sent to a DigiiFox server by this tool.</p>
+          </details>
+
+          <details class="ic-faq-item">
+            <summary>Why is the compressed image sometimes larger?</summary>
+            <p>The output format, quality setting, image content, and dimensions affect file size. If the output is larger, try a lower quality setting, resize the image, or choose a different format.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related tools -->
+    <section class="ic-container ic-related-section">
+      <div class="ic-related-card">
+        <div>
+          <span class="ic-step-label">EXPLORE MORE</span>
+          <h2>More Image Tools</h2>
+          <p>Discover more ways to work with your images on DigiiFox.</p>
+        </div>
+        <div class="ic-related-links">
+          <a href="jpg-to-png.html">JPG to PNG <span>→</span></a>
+          <a href="png-to-jpg.html">PNG to JPG <span>→</span></a>
+          <a href="image-resizer.html">Image Resizer <span>→</span></a>
+          <a href="image-cropper.html">Image Cropper <span>→</span></a>
+          <a href="../pages/image-tools.html">All Image Tools <span>→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="ic-footer">
+    <div class="ic-container">
+      <div class="ic-footer-grid">
+        <div class="ic-footer-brand">
+          <a class="ic-brand" href="../index.html">Digii<span>Fox</span></a>
+          <p>Simple online tools to make everyday digital tasks easier.</p>
+        </div>
+
+        <div class="ic-footer-column">
+          <h3>Explore</h3>
+          <a href="../index.html">Home</a>
+          <a href="../pages/pdf-tools.html">PDF Tools</a>
+          <a href="../pages/image-tools.html">Image Tools</a>
+          <a href="../pages/calculators.html">Calculators</a>
+        </div>
+
+        <div class="ic-footer-column">
+          <h3>Image Tools</h3>
+          <a href="jpg-to-png.html">JPG to PNG</a>
+          <a href="png-to-jpg.html">PNG to JPG</a>
+          <a href="image-compressor.html">Image Compressor</a>
+          <a href="image-resizer.html">Image Resizer</a>
+        </div>
+
+        <div class="ic-footer-column">
+          <h3>Helpful Links</h3>
+          <a href="../index.html">About DigiiFox</a>
+          <a href="../index.html">Contact</a>
+          <a href="../index.html">Privacy Policy</a>
+          <a href="../index.html">Terms of Use</a>
+        </div>
+      </div>
+
+      <div class="ic-footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Useful tools. Simple solutions.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../image-js/image-compressor.js"></script>
+</body>
+</html>

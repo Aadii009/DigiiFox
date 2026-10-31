@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crop images online with DigiiFox. Adjust the crop area, choose an aspect ratio, and download your cropped image in PNG, JPG, or WebP format.">
+  <title>Image Cropper Online Free | DigiiFox</title>
+
+  <link rel="stylesheet" href="../image-css/image-cropper.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+</head>
+<body>
+
+  <header class="ic-header">
+    <div class="ic-nav-container">
+      <a href="../index.html" class="ic-brand">Digii<span>Fox</span></a>
+
+      <button class="ic-menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <nav class="ic-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="ic-main">
+    <section class="ic-hero">
+      <div class="ic-breadcrumb">
+        <a href="../index.html">Home</a>
+        <span>/</span>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <span>/</span>
+        <span>Image Cropper</span>
+      </div>
+
+      <span class="ic-badge">FREE IMAGE TOOL</span>
+      <h1>Image <span>Cropper</span></h1>
+      <p>Crop your images precisely, choose your preferred aspect ratio, and download the result in seconds.</p>
+    </section>
+
+    <section class="ic-workspace">
+
+      <div class="ic-upload-box" id="uploadBox">
+        <div class="ic-upload-icon">↑</div>
+        <h2>Upload an Image</h2>
+        <p>Drag and drop an image here, or select a file from your device.</p>
+        <label for="imageInput" class="ic-primary-button">Choose Image</label>
+        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+        <p class="ic-file-note">JPG, PNG, or WebP · Maximum 25 MB</p>
+      </div>
+
+      <div class="ic-editor" id="editor" hidden>
+        <div class="ic-editor-heading">
+          <div>
+            <h2>Crop Your Image</h2>
+            <p>Drag the crop area to reposition it. Drag its edges to resize.</p>
+          </div>
+          <button type="button" id="changeImageButton" class="ic-secondary-button">Change Image</button>
+        </div>
+
+        <div class="ic-image-stage">
+          <img id="sourceImage" alt="Image being cropped">
+        </div>
+
+        <div class="ic-settings-grid">
+          <div class="ic-setting">
+            <label for="aspectRatio">Aspect Ratio</label>
+            <select id="aspectRatio">
+              <option value="free">Free</option>
+              <option value="1">1:1 — Square</option>
+              <option value="1.3333333333">4:3</option>
+              <option value="1.7777777778">16:9</option>
+              <option value="0.8">4:5 — Portrait</option>
+              <option value="0.6666666667">2:3 — Portrait</option>
+              <option value="1.5">3:2</option>
+            </select>
+          </div>
+
+          <div class="ic-setting">
+            <label for="outputFormat">Output Format</label>
+            <select id="outputFormat">
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+
+          <div class="ic-setting ic-quality-setting" id="qualitySetting" hidden>
+            <label for="quality">
+              Quality <span id="qualityValue">92%</span>
+            </label>
+            <input type="range" id="quality" min="10" max="100" value="92">
+          </div>
+        </div>
+
+        <div class="ic-editor-actions">
+          <button type="button" id="rotateLeft" class="ic-secondary-button">↶ Rotate Left</button>
+          <button type="button" id="rotateRight" class="ic-secondary-button">↷ Rotate Right</button>
+          <button type="button" id="resetCrop" class="ic-secondary-button">Reset Crop</button>
+          <button type="button" id="cropButton" class="ic-primary-button">Crop Image</button>
+        </div>
+
+        <p class="ic-status" id="statusMessage" role="status" aria-live="polite"></p>
+      </div>
+
+      <section class="ic-result" id="result" hidden>
+        <div class="ic-result-heading">
+          <div>
+            <h2>Your Cropped Image</h2>
+            <p>Your image is ready to preview and download.</p>
+          </div>
+          <span class="ic-success-label">Ready</span>
+        </div>
+
+        <div class="ic-result-preview">
+          <img id="resultImage" alt="Cropped image preview">
+        </div>
+
+        <div class="ic-image-info">
+          <div>
+            <span>Dimensions</span>
+            <strong id="resultDimensions">—</strong>
+          </div>
+          <div>
+            <span>File Size</span>
+            <strong id="resultSize">—</strong>
+          </div>
+          <div>
+            <span>Format</span>
+            <strong id="resultFormat">—</strong>
+          </div>
+        </div>
+
+        <div class="ic-result-actions">
+          <a id="downloadButton" class="ic-primary-button" href="#" download="digifox-cropped-image.png">Download Cropped Image</a>
+          <button type="button" id="cropAgainButton" class="ic-secondary-button">Adjust Crop</button>
+        </div>
+      </section>
+
+      <div class="ic-privacy-note">
+        <strong>Your privacy matters.</strong>
+        <span>Image cropping is processed in your browser. Your selected image is not sent to a DigiiFox server.</span>
+      </div>
+    </section>
+
+    <section class="ic-info-section">
+      <h2>How to Use the Image Cropper</h2>
+      <div class="ic-steps">
+        <article class="ic-step-card">
+          <span class="ic-step-number">01</span>
+          <h3>Upload Your Image</h3>
+          <p>Select a JPG, PNG, or WebP image from your device.</p>
+        </article>
+        <article class="ic-step-card">
+          <span class="ic-step-number">02</span>
+          <h3>Adjust the Crop</h3>
+          <p>Move or resize the crop area. Choose a preset aspect ratio if needed.</p>
+        </article>
+        <article class="ic-step-card">
+          <span class="ic-step-number">03</span>
+          <h3>Choose Your Format</h3>
+          <p>Select PNG, JPG, or WebP. Adjust quality for JPG and WebP images.</p>
+        </article>
+        <article class="ic-step-card">
+          <span class="ic-step-number">04</span>
+          <h3>Crop and Download</h3>
+          <p>Select Crop Image, review the result, and download it to your device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ic-info-section ic-faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <details class="ic-faq-item">
+        <summary>Is this image cropper free?</summary>
+        <p>Yes. You can use the DigiiFox Image Cropper for free in your browser.</p>
+      </details>
+
+      <details class="ic-faq-item">
+        <summary>Which image formats are supported?</summary>
+        <p>You can upload JPG, PNG, and WebP images. Cropped images can be exported as PNG, JPG, or WebP.</p>
+      </details>
+
+      <details class="ic-faq-item">
+        <summary>How do I crop an image to a square?</summary>
+        <p>Choose the 1:1 — Square option in the Aspect Ratio menu, then position and resize the crop area as needed.</p>
+      </details>
+
+      <details class="ic-faq-item">
+        <summary>Will cropping reduce my image quality?</summary>
+        <p>Cropping removes pixels outside the selected area. PNG export preserves the cropped pixels without lossy compression; JPG and WebP quality depends on the selected quality setting.</p>
+      </details>
+
+      <details class="ic-faq-item">
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. The cropping and image export happen locally in your browser. This page loads the Cropper.js library from a third-party CDN, so an internet connection is required for the editor to initialize.</p>
+      </details>
+
+      <details class="ic-faq-item">
+        <summary>What is the maximum file size?</summary>
+        <p>Images can be up to 25 MB and 40 megapixels. Very large images may still be limited by your device's available memory.</p>
+      </details>
+    </section>
+
+    <section class="ic-related-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="ic-related-grid">
+        <a href="jpg-to-png.html" class="ic-related-card">
+          <span>JPG → PNG</span>
+          <strong>JPG to PNG Converter</strong>
+          <small>Convert JPG images to PNG format.</small>
+        </a>
+        <a href="png-to-jpg.html" class="ic-related-card">
+          <span>PNG → JPG</span>
+          <strong>PNG to JPG Converter</strong>
+          <small>Convert PNG images to JPG format.</small>
+        </a>
+        <a href="image-compressor.html" class="ic-related-card">
+          <span>Compress</span>
+          <strong>Image Compressor</strong>
+          <small>Reduce image file size.</small>
+        </a>
+        <a href="image-resizer.html" class="ic-related-card">
+          <span>Resize</span>
+          <strong>Image Resizer</strong>
+          <small>Change image dimensions.</small>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ic-footer">
+    <div class="ic-footer-grid">
+      <div class="ic-footer-brand">
+        <a href="../index.html" class="ic-brand">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools to help you get things done faster.</p>
+      </div>
+
+      <div class="ic-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+
+      <div class="ic-footer-column">
+        <h3>Image Tools</h3>
+        <a href="jpg-to-png.html">JPG to PNG</a>
+        <a href="png-to-jpg.html">PNG to JPG</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-resizer.html">Image Resizer</a>
+      </div>
+
+      <div class="ic-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../pages/image-tools.html">All Tools</a>
+      </div>
+    </div>
+
+    <div class="ic-footer-bottom">
+      <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Tools made simple.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+  <script src="../image-js/image-cropper.js"></script>
+</body>
+</html>

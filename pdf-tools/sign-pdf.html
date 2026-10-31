@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Draw your signature, place it on a PDF page, and download your signed PDF with DigiiFox.">
+    <title>Sign PDF Online - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/sign-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+
+        <nav class="navigation">
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="eyebrow">PDF TOOL</span>
+        <h1>Sign <span>PDF</span></h1>
+        <p>
+            Draw your signature, position it on your document,
+            and download your signed PDF.
+        </p>
+    </section>
+
+    <section class="tool-container">
+        <div class="tool-card">
+
+            <div class="upload-area" id="dropArea">
+                <div class="upload-icon" aria-hidden="true">PDF</div>
+                <h2>Upload your PDF</h2>
+                <p>Choose a document to add your signature.</p>
+
+                <label for="pdfInput" class="primary-button">Choose PDF File</label>
+                <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+                <p class="file-note">PDF files only · Maximum 50 MB</p>
+            </div>
+
+            <div class="file-details" id="fileDetails" hidden>
+                <div class="file-badge">PDF</div>
+                <div class="file-info">
+                    <strong id="fileName"></strong>
+                    <span id="fileSize"></span>
+                </div>
+                <button type="button" id="removeFile" class="remove-button" aria-label="Remove PDF">×</button>
+            </div>
+
+            <section class="signature-section" id="signatureSection" hidden>
+                <h2>1. Create your signature</h2>
+                <p class="section-description">
+                    Draw using your mouse, trackpad, or touchscreen.
+                </p>
+
+                <div class="signature-pad-wrap">
+                    <canvas id="signatureCanvas" aria-label="Draw your signature here"></canvas>
+                    <span class="signature-placeholder" id="signaturePlaceholder">
+                        Draw your signature here
+                    </span>
+                </div>
+
+                <div class="signature-actions">
+                    <button type="button" class="secondary-button" id="clearSignature">
+                        Clear Signature
+                    </button>
+
+                    <label class="signature-color-label" for="signatureColor">
+                        Ink color
+                        <input type="color" id="signatureColor" value="#173b78">
+                    </label>
+                </div>
+
+                <button type="button" class="primary-button place-button" id="placeSignature" disabled>
+                    Place Signature on PDF
+                </button>
+            </section>
+
+            <section class="preview-section" id="previewSection" hidden>
+                <div class="section-heading">
+                    <div>
+                        <h2>2. Position your signature</h2>
+                        <p class="section-description">
+                            Drag the signature to where you want it on the page.
+                        </p>
+                    </div>
+
+                    <div class="page-control">
+                        <label for="pageSelect">Page</label>
+                        <select id="pageSelect"></select>
+                    </div>
+                </div>
+
+                <div class="preview-help">
+                    The signature is placed on the selected page. You can move it before downloading.
+                </div>
+
+                <div class="pdf-preview-outer">
+                    <div class="pdf-preview" id="pdfPreview">
+                        <canvas id="pdfCanvas"></canvas>
+                        <img
+                            id="signatureOverlay"
+                            alt="Signature preview. Drag to reposition."
+                            draggable="false"
+                            hidden
+                        >
+                    </div>
+                </div>
+
+                <div class="signature-size-control">
+                    <label for="signatureSize">
+                        Signature size
+                        <span id="signatureSizeLabel">25%</span>
+                    </label>
+                    <input type="range" id="signatureSize" min="10" max="60" value="25">
+                </div>
+
+                <button type="button" class="primary-button download-button" id="downloadButton">
+                    Download Signed PDF
+                </button>
+            </section>
+
+            <div id="progressArea" class="progress-area" hidden>
+                <div class="progress-track">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <p id="progressText" role="status">Preparing PDF...</p>
+            </div>
+
+            <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+            <p class="privacy-note">
+                <strong>Privacy:</strong> Your PDF and signature are processed in your browser.
+                They are not uploaded to a DigiiFox server. External libraries are loaded from CDNs.
+            </p>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>How to Use Sign PDF</h2>
+
+        <div class="steps-grid">
+            <article class="step-card">
+                <span class="step-number">01</span>
+                <h3>Upload your PDF</h3>
+                <p>Select the PDF document you want to sign.</p>
+            </article>
+
+            <article class="step-card">
+                <span class="step-number">02</span>
+                <h3>Draw your signature</h3>
+                <p>Use your mouse or touchscreen to create a signature.</p>
+            </article>
+
+            <article class="step-card">
+                <span class="step-number">03</span>
+                <h3>Position and download</h3>
+                <p>Choose a page, drag your signature into position, and download the signed PDF.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="info-section faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+            <summary>Is this a legally valid digital signature?</summary>
+            <p>This tool adds a visual signature image to a PDF. It does not create a certificate-based digital signature or independently verify your identity. Legal requirements vary by document and jurisdiction.</p>
+        </details>
+
+        <details>
+            <summary>Can I sign a specific page?</summary>
+            <p>Yes. Use the page selector to choose a page, then position your signature on the preview before downloading.</p>
+        </details>
+
+        <details>
+            <summary>Can I change the signature size and color?</summary>
+            <p>Yes. Choose an ink color before drawing, then use the signature size slider to resize the signature on the PDF page.</p>
+        </details>
+
+        <details>
+            <summary>Will the original PDF text remain selectable?</summary>
+            <p>Yes, the tool adds the signature image to the existing PDF rather than converting every page into an image. Existing document features may still vary depending on the PDF.</p>
+        </details>
+
+        <details>
+            <summary>Is my document uploaded to a server?</summary>
+            <p>No. PDF processing happens in your browser. The required JavaScript libraries load from CDNs, so an internet connection is needed to open this tool.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+            <p>Simple online tools to help you get more done.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">All PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="compress-pdf.html">Compress PDF</a>
+            <a href="protect-pdf.html">Protect PDF</a>
+            <a href="sign-pdf.html">Sign PDF</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="../index.html">Contact</a>
+            <a href="../index.html">Privacy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Tools for everyday productivity.</p>
+    </div>
+</footer>
+
+<script src="../js/sign-pdf.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract text from PowerPoint slides and convert it into a PDF with DigiiFox.">
+    <title>PowerPoint to PDF - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/powerpoint-to-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="../js/powerpoint-to-pdf.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a class="logo" href="../index.html">Digii<span>Fox</span></a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">DIGIIFOX PDF TOOLS</span>
+                <h1>PowerPoint to <span>PDF</span></h1>
+                <p>Extract text from your PowerPoint slides and create a clean, downloadable PDF document.</p>
+            </div>
+        </section>
+
+        <section class="converter-section">
+            <div class="converter-card">
+                <div class="section-heading">
+                    <h2>Convert your PowerPoint</h2>
+                    <p>Upload a PPTX presentation, preview its text, and create your PDF.</p>
+                </div>
+
+                <label class="upload-area" for="powerpointFile">
+                    <span class="upload-title">Choose a PowerPoint file</span>
+                    <span class="upload-description">Supported format: PPTX</span>
+                    <span class="upload-button">Browse Files</span>
+                    <input
+                        type="file"
+                        id="powerpointFile"
+                        accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                        aria-label="Choose a PowerPoint file"
+                    >
+                </label>
+
+                <p id="fileInfo" class="file-info" aria-live="polite">
+                    No file selected.
+                </p>
+
+                <div id="conversionPanel" class="conversion-panel" hidden>
+                    <div class="presentation-summary">
+                        <div>
+                            <span class="summary-label">SLIDES FOUND</span>
+                            <strong id="slideCount">0</strong>
+                        </div>
+                        <p>Text-based conversion only. Original slide designs are not preserved.</p>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="field-group">
+                            <label for="pageSize">PDF paper size</label>
+                            <select id="pageSize">
+                                <option value="a4">A4</option>
+                                <option value="a3">A3</option>
+                                <option value="letter">Letter</option>
+                                <option value="legal">Legal</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="orientation">PDF orientation</label>
+                            <select id="orientation">
+                                <option value="landscape">Landscape</option>
+                                <option value="portrait">Portrait</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="fontSize">Text size</label>
+                            <select id="fontSize">
+                                <option value="10">Small</option>
+                                <option value="12" selected>Normal</option>
+                                <option value="15">Large</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="preview-heading">
+                        <div>
+                            <h3>Slide text preview</h3>
+                            <p>Review the extracted text before downloading.</p>
+                        </div>
+                        <span class="preview-badge">Preview</span>
+                    </div>
+
+                    <div id="slidePreview" class="slide-preview"></div>
+
+                    <p id="statusMessage" class="status-message" aria-live="polite"></p>
+
+                    <button type="button" id="convertBtn" class="primary-button">
+                        Convert & Download PDF
+                    </button>
+
+                    <button type="button" id="resetBtn" class="secondary-button">
+                        Choose Another File
+                    </button>
+                </div>
+
+                <p class="privacy-note">
+                    The presentation is processed in your browser. Conversion libraries load from external CDNs, so an internet connection is required.
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-container">
+                <h2>How to Use PowerPoint to PDF</h2>
+
+                <ol class="steps-list">
+                    <li><strong>Upload your presentation:</strong> Select a PPTX file from your device.</li>
+                    <li><strong>Review the slides:</strong> Preview the text extracted from your presentation.</li>
+                    <li><strong>Customize the PDF:</strong> Choose paper size, orientation, and text size.</li>
+                    <li><strong>Download your file:</strong> Click Convert &amp; Download PDF.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="info-container">
+                <h2>Frequently Asked Questions</h2>
+
+                <details>
+                    <summary>Which PowerPoint file formats are supported?</summary>
+                    <p>This version supports PPTX files. Older PPT files are not supported.</p>
+                </details>
+
+                <details>
+                    <summary>Will the PDF look exactly like my slides?</summary>
+                    <p>No. This version extracts slide text and places it into a readable PDF. It does not preserve original slide layouts, backgrounds, images, animations, or charts.</p>
+                </details>
+
+                <details>
+                    <summary>Will every slide appear in the PDF?</summary>
+                    <p>The converter creates one PDF page for each slide it can read from the presentation.</p>
+                </details>
+
+                <details>
+                    <summary>Can I convert presentations with images and charts?</summary>
+                    <p>Text inside standard PowerPoint text elements can be extracted. Text embedded in images and chart graphics may not be included.</p>
+                </details>
+
+                <details>
+                    <summary>Are my files uploaded to a server?</summary>
+                    <p>This page processes the presentation locally in your browser. Its JavaScript libraries are downloaded from external CDNs.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a class="logo footer-logo" href="../index.html">Digii<span>Fox</span></a>
+                <p>Simple, useful online tools for everyday tasks.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="pdf-organizer.html">PDF Organizer</a>
+                <a href="excel-to-pdf.html">Excel to PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html">About DigiiFox</a>
+                <a href="../index.html">Contact</a>
+                <a href="../index.html">Privacy</a>
+                <a href="../index.html">Terms</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+</body>
+</html>

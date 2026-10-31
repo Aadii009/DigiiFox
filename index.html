@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="DigiiFox offers easy-to-use PDF tools, image tools, and calculators. Process supported files directly in your browser.">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <title>DigiiFox — Smart Tools. Simple Solutions.</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo" aria-label="DigiiFox Home">
+                <span class="logo-icon">🦊</span>
+                <span>Digii<span class="logo-highlight">Fox</span></span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="navLinks">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#pdf-tools">PDF Tools</a>
+                <a href="#image-tools">Image Tools</a>
+                <a href="#calculators">Calculators</a>
+            </nav>
+
+            <a href="#all-tools" class="nav-button">Explore Tools</a>
+
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    Simple tools. Privacy first.
+                </div>
+
+                <h1>
+                    Everything You Need.
+                    <span>All in One Place.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Convert PDFs, edit images, and calculate anything
+                    with simple, powerful tools designed for everyone.
+                </p>
+
+                <!-- Tool Search -->
+                <form class="search-box" id="searchForm" role="search">
+
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+
+                    <input type="search" id="toolSearch" placeholder="Search PDF tools, image tools, calculators..."
+                        aria-label="Search tools" autocomplete="off">
+
+                    <button type="submit">Search</button>
+
+                </form>
+
+                <p class="search-hint">
+                    Popular:
+                    <button class="search-suggestion" data-search="merge pdf">
+                        Merge PDF
+                    </button>
+                    <button class="search-suggestion" data-search="image compressor">
+                        Image Compressor
+                    </button>
+                    <button class="search-suggestion" data-search="bmi calculator">
+                        BMI Calculator
+                    </button>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Search Results -->
+        <section class="search-results-section" id="searchResultsSection" hidden>
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">SEARCH RESULTS</span>
+                        <h2>Find Your Tool</h2>
+                    </div>
+                </div>
+
+                <p id="searchMessage" aria-live="polite"></p>
+
+                <div class="tool-grid" id="searchResults"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Main Categories -->
+        <section class="categories section-padding" id="all-tools">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">EXPLORE DIGIIFOX</span>
+                        <h2>What Do You Want to Do?</h2>
+                    </div>
+
+                    <p>
+                        Choose a category and find the right tool
+                        for your task.
+                    </p>
+                </div>
+
+
+                <div class="category-grid">
+
+                    <!-- PDF Category -->
+                    <a href="#pdf-tools" class="category-card pdf-card">
+
+                        <div class="category-icon">📄</div>
+
+                        <span class="category-label">DOCUMENT TOOLS</span>
+
+                        <h3>PDF Tools</h3>
+
+                        <p>
+                            Merge, split, compress, convert, and
+                            organize your PDF documents.
+                        </p>
+
+                        <div class="category-bottom">
+                            <span>Explore PDF Tools</span>
+                            <span class="arrow">→</span>
+                        </div>
+
+                    </a>
+
+
+                    <!-- Image Category -->
+                    <a href="#image-tools" class="category-card image-card">
+
+                        <div class="category-icon">🖼️</div>
+
+                        <span class="category-label">IMAGE TOOLS</span>
+
+                        <h3>Image Tools</h3>
+
+                        <p>
+                            Resize, compress, convert, and edit
+                            your images with ease.
+                        </p>
+
+                        <div class="category-bottom">
+                            <span>Explore Image Tools</span>
+                            <span class="arrow">→</span>
+                        </div>
+
+                    </a>
+
+
+                    <!-- Calculator Category -->
+                    <a href="#calculators" class="category-card calculator-card">
+
+                        <div class="category-icon">🧮</div>
+
+                        <span class="category-label">SMART CALCULATORS</span>
+
+                        <h3>Calculators</h3>
+
+                        <p>
+                            Solve mathematical problems and calculate
+                            health, finance, and everyday values.
+                        </p>
+
+                        <div class="category-bottom">
+                            <span>Explore Calculators</span>
+                            <span class="arrow">→</span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Popular Tools -->
+        <section class="popular-tools section-padding">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">QUICK ACCESS</span>
+                        <h2>Popular Tools</h2>
+                    </div>
+
+                    <p>
+                        Your everyday tools, just one click away.
+                    </p>
+                </div>
+
+
+                <div class="tool-grid">
+
+                    <a href="#pdf-tools" class="tool-card" data-tool="merge pdf pdf merger combine documents">
+
+                        <div class="tool-icon pdf-icon">📑</div>
+                        <h3>Merge PDF</h3>
+                        <p>Combine multiple PDF files into one.</p>
+                        <span class="tool-link">Explore tool →</span>
+
+                    </a>
+
+
+                    <a href="#pdf-tools" class="tool-card" data-tool="compress pdf reduce pdf file size">
+
+                        <div class="tool-icon pdf-icon">🗜️</div>
+                        <h3>Compress PDF</h3>
+                        <p>Reduce the size of PDF documents.</p>
+                        <span class="tool-link">Explore tool →</span>
+
+                    </a>
+
+
+                    <a href="#image-tools" class="tool-card" data-tool="image compressor compress image photo">
+
+                        <div class="tool-icon image-icon">🖼️</div>
+                        <h3>Image Compressor</h3>
+                        <p>Reduce image file size in your browser.</p>
+                        <span class="tool-link">Explore tool →</span>
+
+                    </a>
+
+
+                    <a href="#image-tools" class="tool-card" data-tool="image resizer resize photo dimensions">
+
+                        <div class="tool-icon image-icon">📐</div>
+                        <h3>Image Resizer</h3>
+                        <p>Change image dimensions easily.</p>
+                        <span class="tool-link">Explore tool →</span>
+
+                    </a>
+
+
+                    <a href="#calculators" class="tool-card" data-tool="bmi calculator health body mass index">
+
+                        <div class="tool-icon calculator-icon">💚</div>
+                        <h3>BMI Calculator</h3>
+                        <p>Calculate body mass index using height and weight.</p>
+                        <span class="tool-link">Explore tool →</span>
+
+                    </a>
+
+
+                    <a href="#calculators" class="tool-card" data-tool="percentage calculator maths percent">
+
+                        <div class="tool-icon calculator-icon">％</div>
+                        <h3>Percentage Calculator</h3>
+                        <p>Calculate percentages quickly and easily.</p>
+                        <span class="tool-link">Explore tool →</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PDF Tools Preview -->
+        <section class="preview-section pdf-preview section-padding" id="pdf-tools">
+
+            <div class="container preview-container">
+
+                <div class="preview-copy">
+                    <span class="eyebrow">DOCUMENT SOLUTIONS</span>
+
+                    <h2>Everything PDF.<br>Made Simple.</h2>
+
+                    <p>
+                        Organize documents, convert files, and manage
+                        PDFs using tools designed for easy workflows.
+                    </p>
+
+                    <a href="pages/pdf-tools.html" class="section-button pdf-button">
+                        Explore PDF Tools →
+                    </a>
+                </div>
+
+                <div class="preview-visual pdf-visual">
+                    <div class="document-sheet">
+                        <span>PDF</span>
+                        <div class="document-line"></div>
+                        <div class="document-line short"></div>
+                        <div class="document-line"></div>
+                        <div class="document-line medium"></div>
+                        <div class="document-line short"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Image Tools Preview -->
+        <section class="preview-section image-preview section-padding" id="image-tools">
+
+            <div class="container preview-container reverse-layout">
+
+                <div class="preview-copy">
+                    <span class="eyebrow">CREATIVE SOLUTIONS</span>
+
+                    <h2>Your Images.<br>Your Way.</h2>
+
+                    <p>
+                        Resize, convert, compress, and improve images
+                        with convenient browser-based tools.
+                    </p>
+
+                    <a href="pages/image-tools.html" class="section-button image-button">
+                        Explore Image Tools →
+                    </a>
+                </div>
+
+                <div class="preview-visual image-visual">
+                    <div class="image-frame">
+                        <span class="mountain-sun"></span>
+                        <span class="mountain mountain-back"></span>
+                        <span class="mountain mountain-front"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Calculator Tools Preview -->
+        <section class="preview-section calculator-preview section-padding" id="calculators">
+
+            <div class="container preview-container">
+
+                <div class="preview-copy">
+                    <span class="eyebrow">CALCULATE WITH CONFIDENCE</span>
+
+                    <h2>Numbers Made<br>Easy to Understand.</h2>
+
+                    <p>
+                        Explore health, financial, mathematical,
+                        and everyday calculators with clear
+                        formulas and helpful explanations.
+                    </p>
+
+                    <a href="pages/calculators.html" class="section-button calculator-button">
+                        Explore Calculators →
+                    </a>
+                </div>
+
+                <div class="preview-visual calculator-visual">
+
+                    <div class="calculator-display">
+                        <span>125 × 8</span>
+                        <strong>1,000</strong>
+                        <div class="calculator-keys">
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                            <span>÷</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>×</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Privacy Section -->
+        <section class="privacy-section section-padding">
+
+            <div class="container privacy-container">
+
+                <div class="privacy-icon">🔒</div>
+
+                <div>
+                    <span class="eyebrow">PRIVACY FIRST</span>
+
+                    <h2>Your Files Belong to You.</h2>
+
+                    <p>
+                        DigiiFox is designed to process supported files
+                        directly in your browser, without uploading
+                        them to our servers.
+                    </p>
+
+                    <p class="privacy-note">
+                        Local processing availability depends on the tool.
+                        We will clearly identify any limitations.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="index.html" class="logo footer-logo">
+                <span class="logo-icon">🦊</span>
+                <span>Digii<span class="logo-highlight">Fox</span></span>
+            </a>
+
+            <p>
+                Smart Tools. Simple Solutions.
+            </p>
+
+            <div class="footer-links">
+                <a href="#pdf-tools">PDF Tools</a>
+                <a href="#image-tools">Image Tools</a>
+                <a href="#calculators">Calculators</a>
+                <a href="pages/privacy.html">Privacy Policy</a>
+                <a href="pages/contact.html">Contact</a>
+            </div>
+
+            <p class="copyright">
+                © <span id="currentYear"></span> DigiiFox.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

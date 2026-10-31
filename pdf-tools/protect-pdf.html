@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Password protect PDF documents using AES-256 encryption directly in your browser with DigiiFox.">
+    <title>Protect PDF with Password | DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/protect-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@pdfsmaller/pdf-encrypt@1.2.0/dist/pdf-encrypt.umd.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </nav>
+    </header>
+
+    <!-- Compact Hero: Calm Red PDF Theme -->
+    <section class="hero">
+        <a href="pdf-tools.html" class="back-link">← Back to PDF Tools</a>
+        <div class="tool-badge">PDF SECURITY TOOL</div>
+        <h1>Protect PDF with Password</h1>
+        <p>Encrypt your PDF with a password so readers must enter it before opening the document.</p>
+    </section>
+
+    <!-- Main Tool -->
+    <main class="tool-container">
+
+        <section class="upload-box" id="uploadBox">
+            <div class="upload-icon">🔐</div>
+            <h2>Select your PDF file</h2>
+            <p>Drag and drop your PDF here, or choose it from your device.</p>
+
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+            <button type="button" class="primary-btn" id="chooseFileBtn">
+                Choose PDF File
+            </button>
+
+            <p class="file-limit">PDF files only · Maximum size: 50 MB</p>
+        </section>
+
+        <!-- File Information -->
+        <section class="file-panel hidden" id="filePanel">
+            <div class="file-details">
+                <div class="file-icon">📄</div>
+
+                <div class="file-info">
+                    <h3 id="fileName">document.pdf</h3>
+                    <p id="fileSize">0 MB</p>
+                    <p id="pageCount">Checking PDF...</p>
+                </div>
+            </div>
+
+            <button type="button" class="text-btn" id="removeFileBtn">
+                Remove file
+            </button>
+        </section>
+
+        <!-- Password Settings -->
+        <section class="settings-panel hidden" id="settingsPanel">
+            <h2>Set Your PDF Password</h2>
+
+            <div class="security-notice">
+                <span>🔒</span>
+                <p>
+                    Your password is used to encrypt the downloaded PDF.
+                    DigiiFox does not ask you to create an account.
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Open password</label>
+
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a strong password"
+                        minlength="8"
+                        maxlength="128"
+                        autocomplete="new-password"
+                    >
+
+                    <button type="button" class="show-password" data-target="password">
+                        Show
+                    </button>
+                </div>
+
+                <small>Use at least 8 characters. A longer, unique password is better.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm password</label>
+
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Enter the same password again"
+                        minlength="8"
+                        maxlength="128"
+                        autocomplete="new-password"
+                    >
+
+                    <button type="button" class="show-password" data-target="confirmPassword">
+                        Show
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="allowPrinting" checked>
+                    Allow printing
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="allowCopying">
+                    Allow copying text and images
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="allowModifying">
+                    Allow modifying the document
+                </label>
+
+                <small>
+                    These permissions are advisory and may not be enforced by every PDF reader.
+                    The open password is the main access control.
+                </small>
+            </div>
+
+            <button type="button" class="primary-btn action-btn" id="protectBtn">
+                🔐 Encrypt & Download PDF
+            </button>
+
+            <div class="progress-area hidden" id="progressArea">
+                <div class="progress-track">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p id="progressText">Preparing encryption...</p>
+            </div>
+        </section>
+
+        <!-- Status -->
+        <div class="status-message hidden" id="statusMessage" role="status" aria-live="polite"></div>
+
+        <!-- Privacy -->
+        <section class="privacy-note">
+            <span class="privacy-icon">🛡️</span>
+
+            <div>
+                <h3>Private, browser-based encryption</h3>
+                <p>
+                    The PDF and password are processed in your browser. This tool
+                    does not upload them to the DigiiFox server. Required JavaScript
+                    libraries are loaded from third-party CDNs.
+                </p>
+                <p>
+                    Keep your password safe. If you lose it, DigiiFox cannot recover
+                    it for you.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Full-Sized Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <a href="../index.html" class="logo footer-logo">Digii<span>Fox</span></a>
+
+                <p>
+                    Simple online tools to help you work smarter.
+                    Convert files, manage images, and calculate with ease.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="rotate-pdf.html">Rotate PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Our Promise</h3>
+                <p>Easy-to-use tools</p>
+                <p>Browser-based processing</p>
+                <p>Privacy-focused design</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+
+    <script src="../js/protect-pdf.js"></script>
+</body>
+</html>

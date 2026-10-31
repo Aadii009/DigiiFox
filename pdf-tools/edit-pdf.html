@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Add text to your PDF documents online with DigiiFox Edit PDF.">
+    <title>Edit PDF Online - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/edit-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+
+    <nav class="main-nav">
+        <a href="pdf-tools.html">PDF Tools</a>
+        <a href="image-tools.html">Image Tools</a>
+        <a href="calculators.html">Calculators</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a> /
+            <a href="pdf-tools.html">PDF Tools</a> /
+            <span>Edit PDF</span>
+        </div>
+
+        <div class="hero-content">
+            <div>
+                <span class="eyebrow">PDF TOOL</span>
+                <h1>Edit PDF</h1>
+                <p>Add text to your PDF documents, choose its position,
+                   customize its appearance, and download your edited file.</p>
+            </div>
+            <div class="hero-art" aria-hidden="true">PDF</div>
+        </div>
+    </section>
+
+    <section class="editor-section">
+        <div class="upload-card" id="uploadCard">
+            <div class="upload-content">
+                <div class="upload-symbol" aria-hidden="true">↑</div>
+                <h2>Upload your PDF</h2>
+                <p>Drag and drop your PDF here or select a file from your device.</p>
+
+                <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+                <button type="button" id="chooseFileBtn" class="primary-btn">
+                    Choose PDF File
+                </button>
+
+                <span class="file-limit">PDF files only · Maximum 50 MB</span>
+            </div>
+        </div>
+
+        <p id="statusMessage" class="status-message" role="status" aria-live="polite">
+            Select a PDF to get started.
+        </p>
+
+        <div id="editorWorkspace" class="editor-workspace" hidden>
+            <div class="editor-toolbar">
+                <div>
+                    <h2>Text Editor</h2>
+                    <p>Click on the PDF preview to position your text.</p>
+                </div>
+
+                <button type="button" id="downloadBtn" class="primary-btn">
+                    Download Edited PDF
+                </button>
+            </div>
+
+            <div class="editor-layout">
+                <aside class="settings-panel">
+                    <h3>Text Settings</h3>
+
+                    <label for="overlayText">Your text</label>
+                    <textarea id="overlayText" rows="4"
+                        placeholder="Enter the text to add"></textarea>
+
+                    <label for="fontSize">Font size</label>
+                    <input type="number" id="fontSize" min="6" max="72" value="18">
+
+                    <label for="textColor">Text color</label>
+                    <input type="color" id="textColor" value="#222222">
+
+                    <label for="pageMode">Apply text to</label>
+                    <select id="pageMode">
+                        <option value="current">Current page only</option>
+                        <option value="all">All pages</option>
+                    </select>
+
+                    <div class="position-info">
+                        <strong>Text position</strong>
+                        <p id="positionMessage">Click anywhere on the PDF preview.</p>
+                    </div>
+
+                    <button type="button" id="resetPositionBtn" class="secondary-btn">
+                        Reset Position
+                    </button>
+
+                    <p class="privacy-note">
+                        Your PDF is processed in your browser using JavaScript libraries.
+                    </p>
+                </aside>
+
+                <section class="preview-panel">
+                    <div class="preview-toolbar">
+                        <button type="button" id="prevPageBtn" class="secondary-btn">
+                            Previous
+                        </button>
+
+                        <span id="pageIndicator">Page 0 of 0</span>
+
+                        <button type="button" id="nextPageBtn" class="secondary-btn">
+                            Next
+                        </button>
+                    </div>
+
+                    <div id="canvasContainer" class="canvas-container">
+                        <canvas id="pdfCanvas"></canvas>
+                        <div id="textPreview" class="text-preview" hidden></div>
+                    </div>
+
+                    <p class="preview-help">
+                        Select a position, enter your text, and download the result.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <section class="information-section">
+        <h2>How to Use Edit PDF</h2>
+
+        <ol>
+            <li>Upload the PDF document you want to edit.</li>
+            <li>Enter the text you want to add.</li>
+            <li>Choose your font size and text color.</li>
+            <li>Click on the PDF preview to set the text position.</li>
+            <li>Select the current page or all pages.</li>
+            <li>Click Download Edited PDF to save your new document.</li>
+        </ol>
+    </section>
+
+    <section class="information-section faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+            <summary>Can I edit existing text in a PDF?</summary>
+            <p>This version adds new text over the PDF. It does not directly replace
+               existing text or edit existing images.</p>
+        </details>
+
+        <details>
+            <summary>Can I add text to multiple pages?</summary>
+            <p>Yes. Choose All Pages to place the same text at the selected
+               relative position on every page.</p>
+        </details>
+
+        <details>
+            <summary>Is my PDF uploaded to a server?</summary>
+            <p>This tool processes your PDF in your browser. The PDF itself is not
+               sent to a DigiiFox backend by this code. The external PDF libraries
+               are loaded from a CDN, so an internet connection is required.</p>
+        </details>
+
+        <details>
+            <summary>Will the original PDF be changed?</summary>
+            <p>No. The tool downloads a separate edited copy and leaves your original
+               file unchanged.</p>
+        </details>
+
+        <details>
+            <summary>Can I remove text that already exists in the PDF?</summary>
+            <p>No. This version adds text but does not erase existing content.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+            <p>Simple, useful online tools for your everyday digital tasks.</p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">All PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div>
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="compress-pdf.html">Compress PDF</a>
+            <a href="rotate-pdf.html">Rotate PDF</a>
+        </div>
+
+        <div>
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="pdf-tools.html">Browse Tools</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 DigiiFox. All rights reserved.</p>
+        <p>Useful tools. Simple solutions.</p>
+    </div>
+</footer>
+
+<script src="../js/edit-pdf.js"></script>
+</body>
+</html>

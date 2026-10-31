@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore free DigiiFox calculators for maths, finance, health, dates and unit conversions.">
+    <meta name="theme-color" content="#16a34a">
+
+    <title>Online Calculators | DigiiFox</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/calculators.css">
+    <script src="../js/calculators.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="calc-header">
+        <div class="calc-container calc-header-inner">
+
+            <a class="calc-brand" href="../index.html">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="calc-menu-toggle" type="button" aria-expanded="false" aria-controls="calc-navigation"
+                aria-label="Open navigation">
+                ☰
+            </button>
+
+            <nav class="calc-navigation" id="calc-navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html" class="active" aria-current="page">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="calc-hero">
+            <div class="calc-container">
+
+                <span class="calc-eyebrow">
+                    <span class="calc-eyebrow-dot"></span>
+                    Free online tools
+                </span>
+
+                <h1>Smart Calculators for <span>Everyday Life</span></h1>
+
+                <p>
+                    Quick answers for maths, finance, health, dates and everyday decisions,
+                    with clear results and helpful explanations.
+                </p>
+
+                <form class="calc-search" id="calculator-search-form" role="search">
+                    <label class="visually-hidden" for="calculator-search">
+                        Search calculators
+                    </label>
+
+                    <span class="calc-search-icon" aria-hidden="true">⌕</span>
+
+                    <input id="calculator-search" type="search"
+                        placeholder="Search calculators, e.g. EMI, percentage, BMI..." autocomplete="off">
+
+                    <button type="submit">Search</button>
+                </form>
+
+                <div class="calc-hero-meta">
+                    <span>✓ Easy to use</span>
+                    <span>✓ Clear formulas</span>
+                    <span>✓ Browser-based calculations</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- POPULAR CALCULATORS -->
+        <section class="calc-section calc-popular-section">
+            <div class="calc-container">
+
+                <div class="calc-section-heading">
+                    <div>
+                        <span class="calc-kicker">Get started</span>
+                        <h2>Popular Calculators</h2>
+                        <p>Jump straight into some of the most-used everyday tools.</p>
+                    </div>
+                </div>
+
+                <div class="calc-popular-grid">
+
+                    <a class="calc-popular-card" href="../calculator-html/percentage-calculator.html">
+                        <span class="calc-icon calc-icon-green">%</span>
+                        <span class="calc-popular-copy">
+                            <strong>Percentage Calculator</strong>
+                            <small>Find percentages and percentage change.</small>
+                        </span>
+                        <span class="calc-arrow">→</span>
+                    </a>
+
+                    <a class="calc-popular-card" href="../calculator-html/emi-calculator.html">
+                        <span class="calc-icon calc-icon-mint">₹</span>
+                        <span class="calc-popular-copy">
+                            <strong>EMI Calculator</strong>
+                            <small>Estimate monthly loan payments.</small>
+                        </span>
+                        <span class="calc-arrow">→</span>
+                    </a>
+
+                    <a class="calc-popular-card" href="../calculator-html/gst-calculator.html">
+                        <span class="calc-icon calc-icon-lime">GST</span>
+                        <span class="calc-popular-copy">
+                            <strong>GST Calculator</strong>
+                            <small>Calculate tax-inclusive or exclusive prices.</small>
+                        </span>
+                        <span class="calc-arrow">→</span>
+                    </a>
+
+                    <a class="calc-popular-card" href="../calculator-html/age-calculator.html">
+                        <span class="calc-icon calc-icon-sage">⌁</span>
+                        <span class="calc-popular-copy">
+                            <strong>Age Calculator</strong>
+                            <small>Calculate age from a date of birth.</small>
+                        </span>
+                        <span class="calc-arrow">→</span>
+                    </a>
+
+                    <a class="calc-popular-card" href="../calculator-html/bmi-calculator.html">
+                        <span class="calc-icon calc-icon-green">BMI</span>
+                        <span class="calc-popular-copy">
+                            <strong>BMI Calculator</strong>
+                            <small>Estimate body mass index.</small>
+                        </span>
+                        <span class="calc-arrow">→</span>
+                    </a>
+
+                    <a class="calc-popular-card" href="../calculator-html/standard-calculator.html">
+                        <span class="calc-icon calc-icon-mint">＋</span>
+                        <span class="calc-popular-copy">
+                            <strong>Standard Calculator</strong>
+                            <small>Handle everyday arithmetic quickly.</small>
+                        </span>
+                        <span class="calc-arrow">→</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ALL CALCULATORS -->
+        <section class="calc-section calc-directory-section" id="all-calculators">
+            <div class="calc-container">
+
+                <div class="calc-section-heading">
+                    <div>
+                        <span class="calc-kicker">Browse the collection</span>
+                        <h2>All Calculators</h2>
+                        <p>Choose a category or search for a specific tool.</p>
+                    </div>
+
+                    <span class="calc-result-count" id="calculator-result-count">
+                        40 calculators
+                    </span>
+                </div>
+
+                <!-- FILTER BUTTONS -->
+                <div class="calc-filter-row" aria-label="Filter calculators by category">
+
+                    <button class="calc-filter active" data-filter="all" aria-pressed="true">
+                        All tools <span>40</span>
+                    </button>
+
+                    <button class="calc-filter" data-filter="everyday" aria-pressed="false">
+                        Everyday
+                    </button>
+
+                    <button class="calc-filter" data-filter="math" aria-pressed="false">
+                        Mathematics
+                    </button>
+
+                    <button class="calc-filter" data-filter="finance" aria-pressed="false">
+                        Finance
+                    </button>
+
+                    <button class="calc-filter" data-filter="health" aria-pressed="false">
+                        Health &amp; Fitness
+                    </button>
+
+                    <button class="calc-filter" data-filter="date" aria-pressed="false">
+                        Date &amp; Time
+                    </button>
+
+                    <button class="calc-filter" data-filter="conversion" aria-pressed="false">
+                        Conversions
+                    </button>
+
+                    <button class="calc-filter" data-filter="business" aria-pressed="false">
+                        Business
+                    </button>
+
+                </div>
+
+                <div id="calculator-category-list">
+
+                    <!-- EVERYDAY -->
+                    <section class="calc-category" data-category="everyday">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">✓</span>
+                            <div>
+                                <h3>Basic &amp; Everyday</h3>
+                                <p>Quick answers for common daily calculations.</p>
+                            </div>
+                            <span class="calc-category-count">5 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card"
+                                data-name="standard calculator arithmetic addition subtraction multiplication division"
+                                href="../calculator-html/standard-calculator.html">
+                                <span class="calc-tool-icon">＋</span>
+                                <span class="calc-tool-title">Standard Calculator</span>
+                                <span class="calc-tool-description">Perform addition, subtraction, multiplication and
+                                    division.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="percentage calculator percent change increase decrease"
+                                href="../calculator-html/percentage-calculator.html">
+                                <span class="calc-tool-icon">%</span>
+                                <span class="calc-tool-title">Percentage Calculator</span>
+                                <span class="calc-tool-description">Calculate percentages, increases, decreases and
+                                    changes.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="discount calculator sale price savings"
+                                href="../calculator-html/discount-calculator.html">
+                                <span class="calc-tool-icon">%</span>
+                                <span class="calc-tool-title">Discount Calculator</span>
+                                <span class="calc-tool-description">Find the discount amount and final sale
+                                    price.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="average calculator mean numbers"
+                                href="../calculator-html/average-calculator.html">
+                                <span class="calc-tool-icon">x̄</span>
+                                <span class="calc-tool-title">Average Calculator</span>
+                                <span class="calc-tool-description">Calculate the average of a set of numbers.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="ratio calculator simplify compare proportion"
+                                href="../calculator-html/ratio-calculator.html">
+                                <span class="calc-tool-icon">a:b</span>
+                                <span class="calc-tool-title">Ratio Calculator</span>
+                                <span class="calc-tool-description">Simplify ratios and compare proportions.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                        </div>
+                    </section>
+
+                    <!-- MATHEMATICS -->
+                    <section class="calc-category" data-category="math">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">π</span>
+                            <div>
+                                <h3>Mathematics</h3>
+                                <p>Helpful tools for school, study and number work.</p>
+                            </div>
+                            <span class="calc-category-count">9 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card" data-name="scientific calculator trigonometry logarithms"
+                                href="../calculator-html/scientific-calculator.html">
+                                <span class="calc-tool-icon">ƒx</span>
+                                <span class="calc-tool-title">Scientific Calculator</span>
+                                <span class="calc-tool-description">Work with trigonometry, logarithms, powers and
+                                    more.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="fraction calculator add subtract multiply divide"
+                                href="../calculator-html/fraction-calculator.html">
+                                <span class="calc-tool-icon">½</span>
+                                <span class="calc-tool-title">Fraction Calculator</span>
+                                <span class="calc-tool-description">Calculate with fractions and simplify the
+                                    result.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="exponent calculator powers indices"
+                                href="../calculator-html/exponent-calculator.html">
+                                <span class="calc-tool-icon">xⁿ</span>
+                                <span class="calc-tool-title">Exponent Calculator</span>
+                                <span class="calc-tool-description">Calculate powers and exponents.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="square root calculator cube root"
+                                href="../calculator-html/square-root-calculator.html">
+                                <span class="calc-tool-icon">√x</span>
+                                <span class="calc-tool-title">Square Root Calculator</span>
+                                <span class="calc-tool-description">Find square roots and supported higher roots.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card"
+                                data-name="lcm hcf gcd least common multiple highest common factor"
+                                href="../calculator-html/lcm-hcf-calculator.html">
+                                <span class="calc-tool-icon">LCM</span>
+                                <span class="calc-tool-title">LCM &amp; HCF Calculator</span>
+                                <span class="calc-tool-description">Find the least common multiple and highest common
+                                    factor.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="prime number checker"
+                                href="../calculator-html/prime-number-calculator.html">
+                                <span class="calc-tool-icon">P</span>
+                                <span class="calc-tool-title">Prime Number Calculator</span>
+                                <span class="calc-tool-description">Check whether a whole number is prime.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="factorial calculator n factorial"
+                                href="../calculator-html/factorial-calculator.html">
+                                <span class="calc-tool-icon">n!</span>
+                                <span class="calc-tool-title">Factorial Calculator</span>
+                                <span class="calc-tool-description">Calculate factorials for non-negative
+                                    integers.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="probability calculator chance odds"
+                                href="../calculator-html/probability-calculator.html">
+                                <span class="calc-tool-icon">P(A)</span>
+                                <span class="calc-tool-title">Probability Calculator</span>
+                                <span class="calc-tool-description">Work out basic probability from supplied
+                                    values.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card"
+                                data-name="statistics calculator mean median mode standard deviation"
+                                href="../calculator-html/statistics-calculator.html">
+                                <span class="calc-tool-icon">σ</span>
+                                <span class="calc-tool-title">Statistics Calculator</span>
+                                <span class="calc-tool-description">Find mean, median, mode and standard
+                                    deviation.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                        </div>
+                    </section>
+
+                    <!-- FINANCE -->
+                    <section class="calc-category" data-category="finance">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">₹</span>
+                            <div>
+                                <h3>Finance</h3>
+                                <p>Explore loans, savings, investments and tax estimates.</p>
+                            </div>
+                            <span class="calc-category-count">10 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card" data-name="emi calculator loan monthly payment"
+                                href="../calculator-html/emi-calculator.html">
+                                <span class="calc-tool-icon">₹</span>
+                                <span class="calc-tool-title">EMI Calculator</span>
+                                <span class="calc-tool-description">Estimate monthly loan payments, interest and total
+                                    cost.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="simple interest calculator principal rate time"
+                                href="../calculator-html/simple-interest-calculator.html">
+                                <span class="calc-tool-icon">SI</span>
+                                <span class="calc-tool-title">Simple Interest Calculator</span>
+                                <span class="calc-tool-description">Calculate interest on a principal amount over
+                                    time.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="compound interest calculator compounding growth"
+                                href="../calculator-html/compound-interest-calculator.html">
+                                <span class="calc-tool-icon">CI</span>
+                                <span class="calc-tool-title">Compound Interest Calculator</span>
+                                <span class="calc-tool-description">Estimate growth with interest added over
+                                    time.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="sip calculator systematic investment plan mutual fund"
+                                href="../calculator-html/sip-calculator.html">
+                                <span class="calc-tool-icon">SIP</span>
+                                <span class="calc-tool-title">SIP Calculator</span>
+                                <span class="calc-tool-description">Estimate the future value of regular
+                                    investments.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="fd calculator fixed deposit maturity"
+                                href="../calculator-html/fd-calculator.html">
+                                <span class="calc-tool-icon">FD</span>
+                                <span class="calc-tool-title">FD Calculator</span>
+                                <span class="calc-tool-description">Estimate fixed-deposit maturity and interest.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="rd calculator recurring deposit maturity"
+                                href="../calculator-html/rd-calculator.html">
+                                <span class="calc-tool-icon">RD</span>
+                                <span class="calc-tool-title">RD Calculator</span>
+                                <span class="calc-tool-description">Estimate recurring-deposit maturity values.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="gst calculator goods services tax india"
+                                href="../calculator-html/gst-calculator.html">
+                                <span class="calc-tool-icon">GST</span>
+                                <span class="calc-tool-title">GST Calculator</span>
+                                <span class="calc-tool-description">Calculate GST amounts and tax-inclusive or exclusive
+                                    prices.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="income tax calculator india tax regime"
+                                href="../calculator-html/income-tax-calculator.html">
+                                <span class="calc-tool-icon">TAX</span>
+                                <span class="calc-tool-title">Income Tax Calculator</span>
+                                <span class="calc-tool-description">Estimate income tax for a specified tax year and
+                                    regime.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="salary calculator take home salary ctc deductions"
+                                href="../calculator-html/salary-calculator.html">
+                                <span class="calc-tool-icon">₹</span>
+                                <span class="calc-tool-title">Salary Calculator</span>
+                                <span class="calc-tool-description">Estimate take-home pay from salary components and
+                                    deductions.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="inflation calculator purchasing power price change"
+                                href="../calculator-html/inflation-calculator.html">
+                                <span class="calc-tool-icon">↗</span>
+                                <span class="calc-tool-title">Inflation Calculator</span>
+                                <span class="calc-tool-description">Estimate how prices and purchasing power change over
+                                    time.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                        </div>
+                    </section>
+
+                    <!-- HEALTH -->
+                    <section class="calc-category" data-category="health">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">♡</span>
+                            <div>
+                                <h3>Health &amp; Fitness</h3>
+                                <p>General wellness estimates with clear context.</p>
+                            </div>
+                            <span class="calc-category-count">5 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card" data-name="bmi calculator body mass index"
+                                href="../calculator-html/bmi-calculator.html">
+                                <span class="calc-tool-icon">BMI</span>
+                                <span class="calc-tool-title">BMI Calculator</span>
+                                <span class="calc-tool-description">Estimate body mass index from height and
+                                    weight.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="bmr calculator basal metabolic rate"
+                                href="../calculator-html/bmr-calculator.html">
+                                <span class="calc-tool-icon">BMR</span>
+                                <span class="calc-tool-title">BMR Calculator</span>
+                                <span class="calc-tool-description">Estimate resting energy needs using a selected
+                                    formula.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="tdee calculator daily energy expenditure calories"
+                                href="../calculator-html/tdee-calculator.html">
+                                <span class="calc-tool-icon">TDEE</span>
+                                <span class="calc-tool-title">TDEE Calculator</span>
+                                <span class="calc-tool-description">Estimate daily energy expenditure based on activity
+                                    inputs.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="ideal weight calculator height estimate"
+                                href="../calculator-html/ideal-weight-calculator.html">
+                                <span class="calc-tool-icon">↔</span>
+                                <span class="calc-tool-title">Ideal Weight Calculator</span>
+                                <span class="calc-tool-description">Compare estimates from selected weight
+                                    formulas.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="body fat calculator body fat percentage measurements"
+                                href="../calculator-html/body-fat-calculator.html">
+                                <span class="calc-tool-icon">%</span>
+                                <span class="calc-tool-title">Body Fat Calculator</span>
+                                <span class="calc-tool-description">Estimate body-fat percentage using supported
+                                    measurements.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                        </div>
+
+                        <p class="calc-disclaimer">
+                            Health calculators provide general estimates for informational use
+                            and are not a substitute for professional medical advice.
+                        </p>
+                    </section>
+
+                    <!-- DATE AND TIME -->
+                    <section class="calc-category" data-category="date">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">◷</span>
+                            <div>
+                                <h3>Date &amp; Time</h3>
+                                <p>Work out ages, date intervals and durations.</p>
+                            </div>
+                            <span class="calc-category-count">4 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card" data-name="age calculator date of birth years months days"
+                                href="../calculator-html/age-calculator.html">
+                                <span class="calc-tool-icon">AGE</span>
+                                <span class="calc-tool-title">Age Calculator</span>
+                                <span class="calc-tool-description">Calculate age from a date of birth.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="date difference calculator between dates"
+                                href="../calculator-html/date-difference-calculator.html">
+                                <span class="calc-tool-icon">↔</span>
+                                <span class="calc-tool-title">Date Difference Calculator</span>
+                                <span class="calc-tool-description">Find the calendar interval between two dates.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="days between dates day counter"
+                                href="../calculator-html/days-between-dates-calculator.html">
+                                <span class="calc-tool-icon">▦</span>
+                                <span class="calc-tool-title">Days Between Dates</span>
+                                <span class="calc-tool-description">Count the days between two selected dates.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="time duration calculator elapsed hours minutes"
+                                href="../calculator-html/time-duration-calculator.html">
+                                <span class="calc-tool-icon">◷</span>
+                                <span class="calc-tool-title">Time Duration Calculator</span>
+                                <span class="calc-tool-description">Calculate elapsed hours and minutes between
+                                    times.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                        </div>
+                    </section>
+
+                    <!-- CONVERSIONS -->
+                    <section class="calc-category" data-category="conversion">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">⇄</span>
+                            <div>
+                                <h3>Unit Conversions</h3>
+                                <p>Convert common measurements quickly.</p>
+                            </div>
+                            <span class="calc-category-count">5 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card" data-name="length converter metres kilometers feet inches miles"
+                                href="../calculator-html/length-converter.html">
+                                <span class="calc-tool-icon">↔</span>
+                                <span class="calc-tool-title">Length Converter</span>
+                                <span class="calc-tool-description">Convert between metric and imperial length
+                                    units.</span>
+                                <span class="calc-tool-link">Use converter <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="weight converter kilograms grams pounds ounces"
+                                href="../calculator-html/weight-converter.html">
+                                <span class="calc-tool-icon">kg</span>
+                                <span class="calc-tool-title">Weight Converter</span>
+                                <span class="calc-tool-description">Convert kilograms, grams, pounds, ounces and
+                                    more.</span>
+                                <span class="calc-tool-link">Use converter <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="temperature converter celsius fahrenheit kelvin"
+                                href="../calculator-html/temperature-converter.html">
+                                <span class="calc-tool-icon">°C</span>
+                                <span class="calc-tool-title">Temperature Converter</span>
+                                <span class="calc-tool-description">Convert Celsius, Fahrenheit and Kelvin.</span>
+                                <span class="calc-tool-link">Use converter <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="area converter square metres acres hectares"
+                                href="../calculator-html/area-converter.html">
+                                <span class="calc-tool-icon">m²</span>
+                                <span class="calc-tool-title">Area Converter</span>
+                                <span class="calc-tool-description">Convert square units, acres and hectares.</span>
+                                <span class="calc-tool-link">Use converter <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="volume converter litres millilitres gallons"
+                                href="../calculator-html/volume-converter.html">
+                                <span class="calc-tool-icon">L</span>
+                                <span class="calc-tool-title">Volume Converter</span>
+                                <span class="calc-tool-description">Convert litres, millilitres and common volume
+                                    units.</span>
+                                <span class="calc-tool-link">Use converter <b>→</b></span>
+                            </a>
+
+                        </div>
+                    </section>
+
+                    <!-- BUSINESS -->
+                    <section class="calc-category" data-category="business">
+                        <div class="calc-category-heading">
+                            <span class="calc-category-icon">▤</span>
+                            <div>
+                                <h3>Business</h3>
+                                <p>Useful calculations for pricing and planning.</p>
+                            </div>
+                            <span class="calc-category-count">2 tools</span>
+                        </div>
+
+                        <div class="calc-tool-grid">
+
+                            <a class="calc-tool-card" data-name="profit loss calculator margin cost revenue"
+                                href="../calculator-html/profit-loss-calculator.html">
+                                <span class="calc-tool-icon">↗</span>
+                                <span class="calc-tool-title">Profit &amp; Loss Calculator</span>
+                                <span class="calc-tool-description">Calculate profit, loss and profit margin from costs
+                                    and revenue.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                            <a class="calc-tool-card" data-name="markup calculator selling price cost markup percentage"
+                                href="../calculator-html/markup-calculator.html">
+                                <span class="calc-tool-icon">₹</span>
+                                <span class="calc-tool-title">Markup Calculator</span>
+                                <span class="calc-tool-description">Calculate a selling price from cost and markup
+                                    percentage.</span>
+                                <span class="calc-tool-link">Use calculator <b>→</b></span>
+                            </a>
+
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- NO RESULTS -->
+                <div class="calc-no-results" id="calculator-no-results" hidden>
+                    <span>⌕</span>
+                    <h3>No calculators found</h3>
+                    <p>Try another search term or select a different category.</p>
+                    <button class="calc-reset-search" type="button" id="reset-calculator-search">
+                        Show all calculators
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HOW TO USE -->
+        <section class="calc-section calc-how-section">
+            <div class="calc-container calc-info-grid">
+
+                <div class="calc-info-card">
+                    <span class="calc-kicker">Simple by design</span>
+                    <h2>How to Use DigiiFox Calculators</h2>
+
+                    <ol class="calc-steps">
+                        <li>
+                            <span>1</span>
+                            <div>
+                                <strong>Choose a calculator</strong>
+                                <p>Browse a category or search for the tool you need.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span>2</span>
+                            <div>
+                                <strong>Enter your values</strong>
+                                <p>Fill in the required fields using the units shown.</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span>3</span>
+                            <div>
+                                <strong>Calculate and review</strong>
+                                <p>Check your result, formula and any assumptions provided.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="calc-info-card calc-why-card">
+                    <span class="calc-kicker">Useful and transparent</span>
+                    <h2>Calculations with Clarity</h2>
+
+                    <p>
+                        DigiiFox calculators are designed to make common calculations easier
+                        to understand. Where appropriate, individual tools will explain
+                        their formulas, show examples and describe assumptions.
+                    </p>
+
+                    <div class="calc-trust-list">
+                        <span>✓ Clear input labels</span>
+                        <span>✓ Helpful result summaries</span>
+                        <span>✓ Formula explanations</span>
+                        <span>✓ Responsive on mobile</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="calc-section calc-faq-section">
+            <div class="calc-container calc-faq-wrap">
+
+                <div class="calc-section-heading">
+                    <div>
+                        <span class="calc-kicker">Need to know?</span>
+                        <h2>Frequently Asked Questions</h2>
+                        <p>Quick answers about using our calculators.</p>
+                    </div>
+                </div>
+
+                <div class="calc-faq-list">
+
+                    <details>
+                        <summary>Are DigiiFox calculators free to use?</summary>
+                        <p>Yes. The calculators in this collection are intended to be available for free in your
+                            browser.</p>
+                    </details>
+
+                    <details>
+                        <summary>Are the results always exact?</summary>
+                        <p>Results depend on the inputs, formula and assumptions used. Some financial and health
+                            calculators provide estimates. Review the explanation on each individual calculator.</p>
+                    </details>
+
+                    <details>
+                        <summary>Do I need to install anything?</summary>
+                        <p>No installation is required for browser-based calculators. Open the relevant page in a modern
+                            web browser.</p>
+                    </details>
+
+                    <details>
+                        <summary>Are my calculations uploaded to a server?</summary>
+                        <p>The initial calculators are designed to calculate in your browser. Avoid entering sensitive
+                            information into an online tool unless its data-handling practices are clear.</p>
+                    </details>
+
+                    <details>
+                        <summary>Can I use these calculators on my phone?</summary>
+                        <p>Yes. The page is designed to adapt to desktop, tablet and mobile screens.</p>
+                    </details>
+
+                    <details>
+                        <summary>Can I rely on a calculator for tax, investment or medical decisions?</summary>
+                        <p>Use such results as general information only. Check applicable official guidance and consult
+                            a qualified professional when personalized advice is needed.</p>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="calc-footer">
+        <div class="calc-container">
+
+            <div class="calc-footer-grid">
+
+                <div class="calc-footer-brand">
+                    <a class="calc-brand calc-brand-footer" href="../index.html">
+                        Digii<span>Fox</span>
+                    </a>
+                    <p>
+                        Simple online tools to help you get everyday tasks done with less effort.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="pdf-tools.html">PDF Tools</a></li>
+                        <li><a href="image-tools.html">Image Tools</a></li>
+                        <li><a href="calculators.html">Calculators</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Popular Calculators</h3>
+                    <ul>
+                        <li><a href="../calculator-html/percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="../calculator-html/emi-calculator.html">EMI Calculator</a></li>
+                        <li><a href="../calculator-html/gst-calculator.html">GST Calculator</a></li>
+                        <li><a href="../calculator-html/bmi-calculator.html">BMI Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Helpful Links</h3>
+                    <ul>
+                        <li><a href="#all-calculators">All Calculators</a></li>
+                        <li><a href="#faq-heading">FAQs</a></li>
+                        <li><a href="#all-calculators">Browse Tools</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="calc-footer-bottom">
+                <p>© <span id="calc-current-year">2026</span> DigiiFox. All rights reserved.</p>
+                <p>Built to make everyday calculations simpler.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Preview PDF pages, remove unwanted pages, and download a new PDF with DigiiFox.">
+    <title>Delete PDF Pages - DigiiFox</title>
+    <link rel="stylesheet" href="../css/delete-pdf-pages.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+    <a href="pdf-tools.html" class="back-link">← All PDF Tools</a>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="tool-label">PDF TOOL</span>
+        <h1>Delete PDF <span>Pages</span></h1>
+        <p>Remove unwanted pages from a PDF and download a clean, updated document.</p>
+    </section>
+
+    <section class="converter-card">
+        <div class="upload-area" id="dropArea">
+            <div class="upload-icon">PDF</div>
+            <h2>Choose your PDF file</h2>
+            <p>Drag and drop a PDF here, or browse your device.</p>
+
+            <label for="pdfInput" class="upload-button">Choose PDF</label>
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf">
+
+            <p class="file-note">PDF files only · Processed in your browser</p>
+        </div>
+
+        <div class="file-info hidden" id="fileInfo">
+            <div class="file-details">
+                <strong id="fileName">document.pdf</strong>
+                <span id="fileSize"></span>
+            </div>
+            <button type="button" id="removeFile" class="remove-button">Remove PDF</button>
+        </div>
+
+        <div class="editor hidden" id="editor">
+            <div class="editor-heading">
+                <div>
+                    <h2>PDF Page Preview</h2>
+                    <p>Select the pages you want to delete.</p>
+                </div>
+                <span class="page-count" id="pageCount">0 pages</span>
+            </div>
+
+            <div class="selection-toolbar">
+                <button type="button" id="selectAllButton" class="secondary-button">
+                    Select All
+                </button>
+
+                <button type="button" id="clearSelectionButton" class="secondary-button">
+                    Clear Selection
+                </button>
+
+                <span id="selectedCount" aria-live="polite">0 pages selected</span>
+            </div>
+
+            <div class="page-grid" id="pageGrid"></div>
+
+            <div class="selection-summary" id="selectionSummary">
+                Select pages to remove from your PDF.
+            </div>
+        </div>
+
+        <div class="progress-area hidden" id="progressArea">
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p id="statusText" role="status" aria-live="polite">Preparing...</p>
+        </div>
+
+        <button type="button" id="deleteButton" class="delete-button" disabled>
+            Delete Selected Pages & Download PDF
+        </button>
+
+        <div class="message hidden" id="message" role="alert"></div>
+    </section>
+
+    <section class="info-section">
+        <h2>How to Use Delete PDF Pages</h2>
+        <ol>
+            <li>Click <strong>Choose PDF</strong> and upload your document.</li>
+            <li>Wait for the page previews to appear.</li>
+            <li>Click the checkbox on each page you want to remove.</li>
+            <li>Review the selected-page count before proceeding.</li>
+            <li>Click <strong>Delete Selected Pages &amp; Download PDF</strong>.</li>
+            <li>Your updated PDF will be downloaded automatically.</li>
+        </ol>
+    </section>
+
+    <section class="info-section faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+
+        <details>
+            <summary>Can I delete multiple pages at once?</summary>
+            <p>Yes. Select any number of pages, or use Select All. You must leave at least one page in the PDF.</p>
+        </details>
+
+        <details>
+            <summary>Will the remaining pages stay in order?</summary>
+            <p>Yes. The remaining pages keep their original order.</p>
+        </details>
+
+        <details>
+            <summary>Will the original PDF be changed?</summary>
+            <p>No. This tool creates a separate PDF download. Your original file remains unchanged.</p>
+        </details>
+
+        <details>
+            <summary>Is my PDF uploaded to a server?</summary>
+            <p>No. This page processes your document locally in your browser. The PDF libraries are loaded from external CDNs, so an internet connection is required.</p>
+        </details>
+
+        <details>
+            <summary>Why can't I delete every page?</summary>
+            <p>A valid PDF document must contain at least one page. Select fewer pages if every page is currently selected.</p>
+        </details>
+
+        <details>
+            <summary>Can I use this tool with a scanned PDF?</summary>
+            <p>Yes. You can remove pages from scanned PDFs too, because this tool removes PDF pages rather than extracting their text.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+            <p>Simple online tools to help you get things done.</p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div>
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="compress-pdf.html">Compress PDF</a>
+            <a href="pdf-organizer.html">PDF Organizer</a>
+            <a href="delete-pdf-pages.html">Delete PDF Pages</a>
+        </div>
+
+        <div>
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="../index.html">Contact</a>
+            <a href="../index.html">Privacy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Tools for everyone.</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../js/delete-pdf-pages.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract searchable text from scanned PDF documents with the DigiiFox OCR PDF tool.">
+    <title>OCR PDF - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/ocr-pdf.css">
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+
+    <!-- Tesseract.js OCR -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.4/dist/tesseract.min.js" defer></script>
+
+    <script src="../js/ocr-pdf.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../index.html" class="brand" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-hero">
+            <span class="eyebrow">PDF TOOL</span>
+            <h1>OCR <span>PDF</span></h1>
+            <p>
+                Extract text from scanned PDFs and image-based documents.
+                Copy your recognized text or download it as a text file.
+            </p>
+        </section>
+
+        <section class="tool-container">
+            <div class="privacy-note">
+                <strong>Your files stay in your browser.</strong>
+                <span>PDF pages are processed locally. OCR language data and libraries
+                    may be downloaded from external services.</span>
+            </div>
+
+            <div class="upload-box" id="dropZone">
+                <div class="upload-icon" aria-hidden="true">PDF</div>
+                <h2>Upload your scanned PDF</h2>
+                <p>Drag and drop a PDF here, or select a file from your device.</p>
+
+                <label for="pdfInput" class="primary-button">Choose PDF</label>
+                <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+                <p class="file-limit">PDF files only · Maximum file size: 50 MB</p>
+                <p id="fileName" class="file-name" aria-live="polite"></p>
+            </div>
+
+            <div id="workspace" class="workspace hidden">
+                <div class="document-bar">
+                    <div>
+                        <h2 id="documentTitle">Your document</h2>
+                        <p id="documentInfo">Ready for OCR</p>
+                    </div>
+                    <button type="button" id="removeFileBtn" class="secondary-button">
+                        Remove PDF
+                    </button>
+                </div>
+
+                <div class="settings-panel">
+                    <div class="field-group">
+                        <label for="pageMode">Pages to process</label>
+                        <select id="pageMode">
+                            <option value="all">All pages</option>
+                            <option value="single">One page only</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group hidden" id="singlePageGroup">
+                        <label for="pageNumber">Page number</label>
+                        <input type="number" id="pageNumber" min="1" value="1">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="ocrLanguage">OCR language</label>
+                        <select id="ocrLanguage">
+                            <option value="eng">English</option>
+                            <option value="hin">Hindi</option>
+                            <option value="eng+hin">English + Hindi</option>
+                            <option value="fra">French</option>
+                            <option value="deu">German</option>
+                            <option value="spa">Spanish</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="preview-panel">
+                    <div class="section-heading">
+                        <div>
+                            <h2>PDF Preview</h2>
+                            <p>Preview the first page of your document.</p>
+                        </div>
+                        <span id="pageCountBadge" class="badge">0 pages</span>
+                    </div>
+
+                    <div class="preview-frame">
+                        <canvas id="pdfCanvas"></canvas>
+                    </div>
+                </div>
+
+                <div class="process-area">
+                    <button type="button" id="startOcrBtn" class="primary-button">
+                        Start OCR
+                    </button>
+
+                    <div id="progressSection" class="progress-section hidden">
+                        <div class="progress-labels">
+                            <span id="progressStatus" aria-live="polite">Preparing OCR...</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <progress id="ocrProgress" value="0" max="100">0%</progress>
+                        <p class="progress-hint">
+                            Large or high-resolution documents may take several minutes.
+                            Keep this tab open while OCR is running.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="resultsSection" class="results-section hidden">
+                    <div class="section-heading results-heading">
+                        <div>
+                            <h2>Recognized Text</h2>
+                            <p id="resultSummary">OCR results will appear here.</p>
+                        </div>
+                    </div>
+
+                    <textarea
+                        id="ocrOutput"
+                        rows="16"
+                        spellcheck="false"
+                        placeholder="Your recognized text will appear here..."
+                        aria-label="Recognized OCR text"
+                    ></textarea>
+
+                    <div class="result-actions">
+                        <button type="button" id="copyTextBtn" class="secondary-button">
+                            Copy Text
+                        </button>
+                        <button type="button" id="downloadTextBtn" class="primary-button">
+                            Download TXT
+                        </button>
+                    </div>
+                </div>
+
+                <div id="errorMessage" class="error-message hidden" role="alert"></div>
+            </div>
+        </section>
+
+        <section class="information-section">
+            <div class="information-card">
+                <h2>How to Use OCR PDF</h2>
+                <ol>
+                    <li>Upload your scanned PDF document.</li>
+                    <li>Choose whether to process all pages or a single page.</li>
+                    <li>Select the language used in the document.</li>
+                    <li>Click <strong>Start OCR</strong> and wait for recognition to finish.</li>
+                    <li>Review the recognized text, copy it, or download it as a TXT file.</li>
+                </ol>
+            </div>
+
+            <div class="information-card faq-card">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+
+                <details>
+                    <summary>What does OCR PDF do?</summary>
+                    <p>OCR means Optical Character Recognition. It attempts to identify text inside scanned PDF pages and images so that the text can be copied or saved.</p>
+                </details>
+
+                <details>
+                    <summary>Can I extract text from a scanned PDF?</summary>
+                    <p>Yes. This tool renders PDF pages as images and uses OCR to recognize visible text. Results depend on image quality, handwriting, language, and page layout.</p>
+                </details>
+
+                <details>
+                    <summary>Are my PDF files uploaded to a server?</summary>
+                    <p>This page processes PDF pages in your browser. OCR libraries and language data are loaded from external CDNs, but the document is not intentionally uploaded by this tool. Your browser and network environment may still affect privacy.</p>
+                </details>
+
+                <details>
+                    <summary>Why does OCR take so long?</summary>
+                    <p>OCR analyzes page images pixel by pixel. Large documents, high-resolution pages, and multiple languages can take longer to process.</p>
+                </details>
+
+                <details>
+                    <summary>Will the extracted text be perfectly accurate?</summary>
+                    <p>Not always. Blurry scans, unusual fonts, tables, columns, and handwritten text can cause recognition errors. Always review important results.</p>
+                </details>
+
+                <details>
+                    <summary>Which languages are supported?</summary>
+                    <p>The current version offers English, Hindi, English plus Hindi, French, German, and Spanish. Language data must be available online when needed.</p>
+                </details>
+
+                <details>
+                    <summary>Can I download the recognized text?</summary>
+                    <p>Yes. You can copy the results to your clipboard or download them as a plain-text TXT file.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="brand">
+                    Digii<span>Fox</span>
+                </a>
+                <p>Simple online tools to make everyday digital tasks easier.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="ocr-pdf.html">OCR PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html">About DigiiFox</a>
+                <a href="../index.html">Contact</a>
+                <a href="../index.html">Privacy</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enhance photos with free online image filters. Adjust brightness, contrast, saturation, grayscale, sepia, blur and more with DigiiFox.">
+  <title>Image Filters - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-filters.css">
+</head>
+<body>
+
+<header class="if-header">
+  <a href="../index.html" class="if-logo">Digii<span>Fox</span></a>
+  <nav class="if-nav" aria-label="Main navigation">
+    <a href="../index.html">Home</a>
+    <a href="../pages/image-tools.html" class="active">Image Tools</a>
+    <a href="../pages/pdf-tools.html">PDF Tools</a>
+    <a href="../pages/calculators.html">Calculators</a>
+  </nav>
+</header>
+
+<main class="if-main">
+  <section class="if-hero">
+    <span class="if-badge">IMAGE TOOLS</span>
+    <h1>Image <span>Filters</span></h1>
+    <p>Transform your photos with beautiful filters. Adjust colors, brightness, contrast and more, then preview and download your edited image.</p>
+  </section>
+
+  <section class="if-workspace">
+    <div class="if-upload-card" id="uploadCard">
+      <div class="if-upload-icon" aria-hidden="true">＋</div>
+      <h2>Choose an Image</h2>
+      <p>Select a photo from your device or drag and drop it here.</p>
+      <label for="imageInput" class="if-primary-button">Select Image</label>
+      <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+      <p class="if-file-note">JPG, PNG or WebP · Maximum 25 MB</p>
+    </div>
+
+    <div class="if-editor" id="editor" hidden>
+      <aside class="if-controls">
+        <div class="if-panel-heading">
+          <h2>Filter Settings</h2>
+          <button type="button" id="resetButton" class="if-text-button">Reset All</button>
+        </div>
+
+        <div class="if-field">
+          <label>Quick Filters</label>
+          <div class="if-preset-grid">
+            <button type="button" class="if-preset active" data-preset="original">
+              <span class="if-preset-icon if-original-icon">Aa</span>
+              <span>Original</span>
+            </button>
+            <button type="button" class="if-preset" data-preset="vivid">
+              <span class="if-preset-icon if-vivid-icon">✦</span>
+              <span>Vivid</span>
+            </button>
+            <button type="button" class="if-preset" data-preset="warm">
+              <span class="if-preset-icon if-warm-icon">☀</span>
+              <span>Warm</span>
+            </button>
+            <button type="button" class="if-preset" data-preset="cool">
+              <span class="if-preset-icon if-cool-icon">❄</span>
+              <span>Cool</span>
+            </button>
+            <button type="button" class="if-preset" data-preset="grayscale">
+              <span class="if-preset-icon if-gray-icon">◐</span>
+              <span>Grayscale</span>
+            </button>
+            <button type="button" class="if-preset" data-preset="sepia">
+              <span class="if-preset-icon if-sepia-icon">◒</span>
+              <span>Sepia</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="brightness">Brightness</label>
+            <output id="brightnessValue" for="brightness">100%</output>
+          </div>
+          <input type="range" id="brightness" min="0" max="200" value="100">
+          <div class="if-range-labels"><span>Darker</span><span>Brighter</span></div>
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="contrast">Contrast</label>
+            <output id="contrastValue" for="contrast">100%</output>
+          </div>
+          <input type="range" id="contrast" min="0" max="200" value="100">
+          <div class="if-range-labels"><span>Lower</span><span>Higher</span></div>
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="saturation">Saturation</label>
+            <output id="saturationValue" for="saturation">100%</output>
+          </div>
+          <input type="range" id="saturation" min="0" max="200" value="100">
+          <div class="if-range-labels"><span>Muted</span><span>Vibrant</span></div>
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="grayscale">Grayscale</label>
+            <output id="grayscaleValue" for="grayscale">0%</output>
+          </div>
+          <input type="range" id="grayscale" min="0" max="100" value="0">
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="sepia">Sepia</label>
+            <output id="sepiaValue" for="sepia">0%</output>
+          </div>
+          <input type="range" id="sepia" min="0" max="100" value="0">
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="blur">Blur</label>
+            <output id="blurValue" for="blur">0 px</output>
+          </div>
+          <input type="range" id="blur" min="0" max="10" step="0.5" value="0">
+          <div class="if-range-labels"><span>Sharp</span><span>Soft</span></div>
+        </div>
+
+        <div class="if-field">
+          <div class="if-label-row">
+            <label for="hue">Hue Rotation</label>
+            <output id="hueValue" for="hue">0°</output>
+          </div>
+          <input type="range" id="hue" min="0" max="360" value="0">
+        </div>
+
+        <div class="if-field">
+          <label class="if-checkbox-row" for="invert">
+            <input type="checkbox" id="invert">
+            <span>Invert Colors<small>Reverse the image's colors for a negative effect.</small></span>
+          </label>
+        </div>
+
+        <div class="if-field">
+          <label for="outputFormat">Download Format</label>
+          <select id="outputFormat">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+
+        <div class="if-field" id="qualityField" hidden>
+          <div class="if-label-row">
+            <label for="quality">Image Quality</label>
+            <output id="qualityValue" for="quality">92%</output>
+          </div>
+          <input type="range" id="quality" min="50" max="100" value="92">
+        </div>
+
+        <button type="button" id="downloadButton" class="if-primary-button if-full-button">
+          Download Image
+        </button>
+        <button type="button" id="changeImageButton" class="if-secondary-button">
+          Choose Another Image
+        </button>
+
+        <p class="if-privacy-note">🔒 Your image is processed locally in your browser.</p>
+      </aside>
+
+      <section class="if-preview-panel">
+        <div class="if-preview-heading">
+          <div>
+            <h2>Live Preview</h2>
+            <p>See your filters applied before downloading.</p>
+          </div>
+          <span class="if-preview-tag">PREVIEW</span>
+        </div>
+
+        <div class="if-canvas-wrap">
+          <canvas id="previewCanvas" aria-label="Filtered image preview"></canvas>
+          <p id="previewPlaceholder">Your filtered image will appear here.</p>
+        </div>
+
+        <div class="if-image-info" id="imageInfo"></div>
+        <p class="if-error" id="errorMessage" role="alert" aria-live="polite"></p>
+      </section>
+    </div>
+  </section>
+
+  <section class="if-info-section">
+    <h2>How to Use Image Filters</h2>
+    <div class="if-steps">
+      <article class="if-step">
+        <span>01</span>
+        <h3>Upload a Photo</h3>
+        <p>Choose a JPG, PNG or WebP image from your device.</p>
+      </article>
+      <article class="if-step">
+        <span>02</span>
+        <h3>Choose a Filter</h3>
+        <p>Try a preset or adjust brightness, contrast and other settings.</p>
+      </article>
+      <article class="if-step">
+        <span>03</span>
+        <h3>Preview Changes</h3>
+        <p>Fine-tune your settings until your photo looks right.</p>
+      </article>
+      <article class="if-step">
+        <span>04</span>
+        <h3>Download</h3>
+        <p>Choose an output format and save your edited image.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="if-info-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="if-faq-list">
+      <details>
+        <summary>What are image filters?</summary>
+        <p>Image filters adjust visual properties such as brightness, contrast, color intensity and hue to change the appearance of a photo.</p>
+      </details>
+      <details>
+        <summary>Can I use multiple filters together?</summary>
+        <p>Yes. You can combine brightness, contrast, saturation, grayscale, sepia, blur, hue rotation and color inversion.</p>
+      </details>
+      <details>
+        <summary>Can I restore my original image?</summary>
+        <p>Yes. Select the Original preset or click Reset All to remove your adjustments.</p>
+      </details>
+      <details>
+        <summary>Which image formats are supported?</summary>
+        <p>You can upload JPG, PNG and WebP images and export your edited result in any of those three formats.</p>
+      </details>
+      <details>
+        <summary>Will filters reduce image quality?</summary>
+        <p>Filters are rendered at the image's original dimensions. PNG is lossless, while JPG and WebP quality settings affect compression.</p>
+      </details>
+      <details>
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. This tool applies filters directly in your browser and does not upload your image to a DigiiFox server.</p>
+      </details>
+      <details>
+        <summary>Does this tool use AI?</summary>
+        <p>No. These are standard image-processing filters, not AI-based image enhancement.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="if-related">
+    <h2>Explore More Image Tools</h2>
+    <div class="if-related-links">
+      <a href="./image-border-maker.html">Image Border Maker</a>
+      <a href="./image-round-corners.html">Image Round Corners</a>
+      <a href="./image-compressor.html">Image Compressor</a>
+      <a href="./image-resizer.html">Image Resizer</a>
+      <a href="./image-format-converter.html">Image Format Converter</a>
+      <a href="./image-watermark.html">Image Watermark</a>
+    </div>
+  </section>
+</main>
+
+<footer class="if-footer">
+  <div class="if-footer-grid">
+    <div class="if-footer-brand">
+      <a href="../index.html" class="if-logo">Digii<span>Fox</span></a>
+      <p>Simple, useful online tools designed to make everyday tasks easier.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </div>
+    <div>
+      <h3>Image Tools</h3>
+      <a href="./image-filters.html">Image Filters</a>
+      <a href="./image-border-maker.html">Image Border Maker</a>
+      <a href="./image-round-corners.html">Image Round Corners</a>
+      <a href="./image-rotator.html">Image Rotator</a>
+    </div>
+    <div>
+      <h3>Helpful Links</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">All Image Tools</a>
+      <a href="../pages/pdf-tools.html">All PDF Tools</a>
+    </div>
+  </div>
+  <div class="if-footer-bottom">
+    <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+    <p>Tools that make digital work easier.</p>
+  </div>
+</footer>
+
+<script src="../image-js/image-filters.js"></script>
+</body>
+</html>

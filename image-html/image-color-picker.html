@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pick colors from any image with DigiiFox Image Color Picker. Get HEX, RGB and HSL color codes directly in your browser.">
+  <title>Image Color Picker | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-color-picker.css">
+  <script src="../image-js/image-color-picker.js" defer></script>
+</head>
+<body>
+
+<header class="icp-header">
+  <div class="icp-header-inner">
+    <a href="../index.html" class="icp-logo">Digii<span>Fox</span></a>
+    <nav class="icp-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </div>
+</header>
+
+<main class="icp-main">
+  <section class="icp-hero">
+    <span class="icp-eyebrow">FREE ONLINE IMAGE TOOL</span>
+    <h1>Image <span>Color Picker</span></h1>
+    <p>Pick any color from your image and instantly get its HEX, RGB and HSL values.</p>
+  </section>
+
+  <section class="icp-workspace" aria-label="Image color picker">
+    <div class="icp-upload-panel" id="icpDropZone">
+      <input type="file" id="icpFileInput" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp,image/avif" hidden>
+
+      <div class="icp-upload-empty" id="icpUploadEmpty">
+        <div class="icp-upload-icon" aria-hidden="true">↑</div>
+        <h2>Upload Your Image</h2>
+        <p>Choose an image or drag and drop it here.</p>
+        <button type="button" class="icp-btn icp-btn-primary" id="icpChooseBtn">Choose Image</button>
+        <small>PNG, JPG, WebP, GIF, BMP or AVIF · Maximum 20 MB</small>
+      </div>
+
+      <div class="icp-image-area" id="icpImageArea" hidden>
+        <div class="icp-image-toolbar">
+          <span>Click the image to pick a color</span>
+          <button type="button" class="icp-text-btn" id="icpChangeImageBtn">Change Image</button>
+        </div>
+        <div class="icp-canvas-wrap" id="icpCanvasWrap">
+          <canvas id="icpCanvas" aria-label="Uploaded image. Click or tap to pick a pixel color." tabindex="0"></canvas>
+          <div class="icp-picker-marker" id="icpPickerMarker" hidden></div>
+        </div>
+        <p class="icp-image-hint">Tip: Zoom in on the area you want to sample by using your image editor, or click the exact pixel here.</p>
+      </div>
+    </div>
+
+    <div class="icp-results-panel">
+      <div class="icp-section-heading">
+        <h2>Selected Color</h2>
+        <button type="button" class="icp-text-btn" id="icpResetBtn" disabled>Reset</button>
+      </div>
+
+      <div class="icp-selected-color">
+        <div class="icp-color-swatch" id="icpColorSwatch" aria-label="Selected color preview"></div>
+        <div class="icp-color-summary">
+          <strong id="icpColorName">No color selected</strong>
+          <span id="icpColorPosition">Upload an image to get started</span>
+        </div>
+      </div>
+
+      <div class="icp-color-values">
+        <div class="icp-value-row">
+          <label for="icpHex">HEX</label>
+          <input id="icpHex" type="text" value="—" readonly>
+          <button type="button" class="icp-copy-btn" data-copy="icpHex" disabled>Copy</button>
+        </div>
+        <div class="icp-value-row">
+          <label for="icpRgb">RGB</label>
+          <input id="icpRgb" type="text" value="—" readonly>
+          <button type="button" class="icp-copy-btn" data-copy="icpRgb" disabled>Copy</button>
+        </div>
+        <div class="icp-value-row">
+          <label for="icpHsl">HSL</label>
+          <input id="icpHsl" type="text" value="—" readonly>
+          <button type="button" class="icp-copy-btn" data-copy="icpHsl" disabled>Copy</button>
+        </div>
+      </div>
+
+      <button type="button" class="icp-btn icp-btn-primary icp-copy-all" id="icpCopyAllBtn" disabled>
+        Copy All Color Codes
+      </button>
+
+      <div class="icp-history-heading">
+        <h3>Recent Colors</h3>
+        <button type="button" class="icp-text-btn" id="icpClearHistoryBtn" disabled>Clear</button>
+      </div>
+      <div class="icp-history" id="icpHistory">
+        <p class="icp-empty-history">Your picked colors will appear here.</p>
+      </div>
+
+      <button type="button" class="icp-btn icp-btn-secondary icp-download-btn" id="icpDownloadBtn" disabled>
+        Download Color Palette (.txt)
+      </button>
+
+      <p class="icp-status" id="icpStatus" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="icp-info-section">
+    <h2>How to Use Image Color Picker</h2>
+    <div class="icp-info-grid">
+      <article class="icp-info-card">
+        <span>01</span>
+        <h3>Upload an Image</h3>
+        <p>Choose an image from your device or drag it into the upload area.</p>
+      </article>
+      <article class="icp-info-card">
+        <span>02</span>
+        <h3>Pick a Color</h3>
+        <p>Click or tap any point on the image to sample its pixel color.</p>
+      </article>
+      <article class="icp-info-card">
+        <span>03</span>
+        <h3>Copy Color Codes</h3>
+        <p>Copy HEX, RGB or HSL values, revisit recent colors, or download your palette.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="icp-info-section icp-faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details class="icp-faq">
+      <summary>What is an image color picker?</summary>
+      <p>An image color picker lets you select a pixel from an image and retrieve its color values, such as HEX, RGB and HSL.</p>
+    </details>
+
+    <details class="icp-faq">
+      <summary>What is the difference between HEX, RGB and HSL?</summary>
+      <p>HEX represents a color with a hexadecimal code. RGB describes its red, green and blue components. HSL describes hue, saturation and lightness.</p>
+    </details>
+
+    <details class="icp-faq">
+      <summary>Are my images uploaded to a server?</summary>
+      <p>No image upload to a DigiiFox server is required. The image is read and processed in your browser. The image itself is not intentionally sent to our server by this tool.</p>
+    </details>
+
+    <details class="icp-faq">
+      <summary>Which image formats are supported?</summary>
+      <p>The tool accepts common formats including PNG, JPEG, WebP, GIF, BMP and AVIF when supported by your browser. Animated images are sampled as they are decoded by the browser, typically using their displayed frame.</p>
+    </details>
+
+    <details class="icp-faq">
+      <summary>Can I save the colors I pick?</summary>
+      <p>Yes. Recent colors stay available while the page is open. You can also download the current palette as a text file.</p>
+    </details>
+
+    <details class="icp-faq">
+      <summary>Why might a color look different on another screen?</summary>
+      <p>Screen calibration, image color profiles, display settings and color management can affect how colors appear. The displayed values represent the sampled pixel values decoded by your browser.</p>
+    </details>
+  </section>
+
+  <section class="icp-related-section">
+    <h2>Explore More Image Tools</h2>
+    <div class="icp-related-grid">
+      <a href="image-format-converter.html" class="icp-related-card">
+        <h3>Image Format Converter</h3>
+        <p>Convert between popular image formats.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-filters.html" class="icp-related-card">
+        <h3>Image Filters</h3>
+        <p>Adjust colors and enhance your photos.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-watermark.html" class="icp-related-card">
+        <h3>Image Watermark</h3>
+        <p>Add text watermarks to your images.</p>
+        <span>Use Tool →</span>
+      </a>
+      <a href="image-to-base64.html" class="icp-related-card">
+        <h3>Image to Base64</h3>
+        <p>Convert an image into Base64 text.</p>
+        <span>Use Tool →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="icp-footer">
+  <div class="icp-footer-inner">
+    <div class="icp-footer-brand">
+      <a href="../index.html" class="icp-logo">Digii<span>Fox</span></a>
+      <p>Simple, useful tools for everyday digital tasks.</p>
+    </div>
+    <div class="icp-footer-column">
+      <h3>Explore</h3>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </div>
+    <div class="icp-footer-column">
+      <h3>Popular Image Tools</h3>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-cropper.html">Image Cropper</a>
+      <a href="image-rotator.html">Image Rotator</a>
+    </div>
+    <div class="icp-footer-column">
+      <h3>Helpful Links</h3>
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">All Image Tools</a>
+    </div>
+  </div>
+  <div class="icp-footer-bottom">
+    <p>© <span id="icpYear"></span> DigiiFox. All rights reserved.</p>
+    <p>Made for simple and productive digital work.</p>
+  </div>
+</footer>
+
+</body>
+</html>

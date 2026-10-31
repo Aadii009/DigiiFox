@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract selected pages from a PDF and save them as a new PDF with DigiiFox.">
+    <title>Extract PDF Pages - DigiiFox</title>
+    <link rel="stylesheet" href="../css/extract-pdf-pages.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+    <a href="pdf-tools.html" class="back-link">← All PDF Tools</a>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="tool-label">PDF TOOL</span>
+        <h1>Extract PDF <span>Pages</span></h1>
+        <p>Select the pages you need and save them as a separate PDF document.</p>
+    </section>
+
+    <section class="converter-card">
+        <div class="upload-area" id="dropArea">
+            <div class="upload-icon">PDF</div>
+            <h2>Choose your PDF file</h2>
+            <p>Drag and drop a PDF here, or browse your device.</p>
+
+            <label for="pdfInput" class="upload-button">Choose PDF</label>
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf">
+
+            <p class="file-note">PDF files only · Processed in your browser</p>
+        </div>
+
+        <div class="file-info hidden" id="fileInfo">
+            <div class="file-details">
+                <strong id="fileName">document.pdf</strong>
+                <span id="fileSize"></span>
+            </div>
+            <button type="button" id="removeFile" class="remove-button">Remove PDF</button>
+        </div>
+
+        <div class="editor hidden" id="editor">
+            <div class="editor-heading">
+                <div>
+                    <h2>Select PDF Pages</h2>
+                    <p>Choose which pages to include in your new PDF.</p>
+                </div>
+                <span class="page-count" id="pageCount">0 pages</span>
+            </div>
+
+            <div class="selection-toolbar">
+                <button type="button" id="selectAllButton" class="secondary-button">
+                    Select All
+                </button>
+
+                <button type="button" id="clearSelectionButton" class="secondary-button">
+                    Clear Selection
+                </button>
+
+                <span id="selectedCount" aria-live="polite">0 pages selected</span>
+            </div>
+
+            <div class="page-grid" id="pageGrid"></div>
+
+            <div class="selection-summary" id="selectionSummary">
+                Select the pages you want to extract.
+            </div>
+        </div>
+
+        <div class="progress-area hidden" id="progressArea">
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p id="statusText" role="status" aria-live="polite">Preparing...</p>
+        </div>
+
+        <button type="button" id="extractButton" class="extract-button" disabled>
+            Extract Selected Pages & Download PDF
+        </button>
+
+        <div class="message hidden" id="message" role="alert"></div>
+    </section>
+
+    <section class="info-section">
+        <h2>How to Use Extract PDF Pages</h2>
+        <ol>
+            <li>Click <strong>Choose PDF</strong> and select your document.</li>
+            <li>Wait for the PDF page previews to appear.</li>
+            <li>Select each page you want in the new PDF.</li>
+            <li>Use Select All if you want to extract every page.</li>
+            <li>Click <strong>Extract Selected Pages &amp; Download PDF</strong>.</li>
+            <li>Open the downloaded PDF to check the extracted pages.</li>
+        </ol>
+    </section>
+
+    <section class="info-section faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+
+        <details>
+            <summary>What does extracting PDF pages mean?</summary>
+            <p>Extracting pages creates a new PDF containing only the pages you select from the original document.</p>
+        </details>
+
+        <details>
+            <summary>Can I extract multiple pages?</summary>
+            <p>Yes. Select as many pages as you need. The extracted pages will follow their original document order.</p>
+        </details>
+
+        <details>
+            <summary>Will my original PDF change?</summary>
+            <p>No. The original document remains unchanged. The tool downloads a separate PDF containing your selected pages.</p>
+        </details>
+
+        <details>
+            <summary>Can I extract pages from a scanned PDF?</summary>
+            <p>Yes. This tool copies complete PDF pages, so text recognition is not required.</p>
+        </details>
+
+        <details>
+            <summary>Is my PDF uploaded to a server?</summary>
+            <p>No. The selected PDF is processed locally in your browser. The required JavaScript libraries load from external CDNs, so an internet connection is needed.</p>
+        </details>
+
+        <details>
+            <summary>Can I extract every page?</summary>
+            <p>Yes. Select All will include every page in the new PDF. You can also select only specific pages.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+            <p>Simple online tools to help you get things done.</p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div>
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="pdf-organizer.html">PDF Organizer</a>
+            <a href="delete-pdf-pages.html">Delete PDF Pages</a>
+            <a href="extract-pdf-pages.html">Extract PDF Pages</a>
+        </div>
+
+        <div>
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="../index.html">Contact</a>
+            <a href="../index.html">Privacy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Tools for everyone.</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../js/extract-pdf-pages.js"></script>
+
+</body>
+</html>

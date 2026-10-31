@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert Excel spreadsheets into PDF files with DigiiFox.">
+    <title>Excel to PDF - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/excel-to-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="../js/excel-to-pdf.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a class="logo" href="../index.html">Digii<span>Fox</span></a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">DIGIIFOX PDF TOOLS</span>
+                <h1>Excel to <span>PDF</span></h1>
+                <p>Convert Excel spreadsheets into clean, downloadable PDF documents directly in your browser.</p>
+            </div>
+        </section>
+
+        <section class="converter-section">
+            <div class="converter-card">
+                <div class="section-heading">
+                    <h2>Convert your Excel file</h2>
+                    <p>Upload a spreadsheet, choose a worksheet, and customize your PDF.</p>
+                </div>
+
+                <label class="upload-area" for="excelFile">
+                    <span class="upload-title">Choose an Excel file</span>
+                    <span class="upload-description">Supported formats: XLSX and XLS</span>
+                    <span class="upload-button">Browse Files</span>
+                    <input
+                        type="file"
+                        id="excelFile"
+                        accept=".xlsx,.xls"
+                        aria-label="Choose an Excel file"
+                    >
+                </label>
+
+                <p id="fileInfo" class="file-info" aria-live="polite">
+                    No file selected.
+                </p>
+
+                <div id="conversionPanel" class="conversion-panel" hidden>
+                    <div class="field-group">
+                        <label for="worksheetSelect">Worksheet</label>
+                        <select id="worksheetSelect"></select>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="field-group">
+                            <label for="pageSize">Paper size</label>
+                            <select id="pageSize">
+                                <option value="a4">A4</option>
+                                <option value="a3">A3</option>
+                                <option value="letter">Letter</option>
+                                <option value="legal">Legal</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="orientation">Orientation</label>
+                            <select id="orientation">
+                                <option value="landscape">Landscape</option>
+                                <option value="portrait">Portrait</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="fontSize">Text size</label>
+                            <select id="fontSize">
+                                <option value="7">Small</option>
+                                <option value="9" selected>Normal</option>
+                                <option value="11">Large</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="scaleMode">Table scaling</label>
+                            <select id="scaleMode">
+                                <option value="width">Fit to page width</option>
+                                <option value="normal">Normal sizing</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="preview-heading">
+                        <div>
+                            <h3>Worksheet preview</h3>
+                            <p id="previewInfo">Your spreadsheet data will appear here.</p>
+                        </div>
+                        <span class="preview-badge">Preview</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="previewTable">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <p id="statusMessage" class="status-message" aria-live="polite"></p>
+
+                    <button type="button" id="convertBtn" class="primary-button">
+                        Convert & Download PDF
+                    </button>
+
+                    <button type="button" id="resetBtn" class="secondary-button">
+                        Choose Another File
+                    </button>
+                </div>
+
+                <p class="privacy-note">
+                    Your spreadsheet is processed in your browser. Avoid using this tool on a shared computer for confidential files.
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="info-container">
+                <h2>How to Use Excel to PDF</h2>
+
+                <ol class="steps-list">
+                    <li><strong>Upload your Excel file:</strong> Select an XLS or XLSX spreadsheet from your device.</li>
+                    <li><strong>Choose a worksheet:</strong> Select the sheet you want to export.</li>
+                    <li><strong>Customize the PDF:</strong> Select paper size, orientation, text size, and scaling.</li>
+                    <li><strong>Download:</strong> Click Convert &amp; Download PDF to save your file.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="info-container">
+                <h2>Frequently Asked Questions</h2>
+
+                <details>
+                    <summary>Can I convert XLS and XLSX files?</summary>
+                    <p>Yes. This tool supports common Excel XLS and XLSX files.</p>
+                </details>
+
+                <details>
+                    <summary>Can I select a specific worksheet?</summary>
+                    <p>Yes. Upload your workbook and choose the worksheet you want to convert.</p>
+                </details>
+
+                <details>
+                    <summary>Will formulas and charts work in the PDF?</summary>
+                    <p>The converter exports the spreadsheet's available cell values. It does not recalculate formulas or reproduce Excel charts, macros, or all advanced formatting.</p>
+                </details>
+
+                <details>
+                    <summary>Can I convert the whole workbook into one PDF?</summary>
+                    <p>This version exports one selected worksheet at a time. Select another worksheet and convert it separately if needed.</p>
+                </details>
+
+                <details>
+                    <summary>Are my files uploaded to a server?</summary>
+                    <p>The spreadsheet is processed locally in your browser by this page. The conversion libraries are loaded from external CDNs, so an internet connection is required.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a class="logo footer-logo" href="../index.html">Digii<span>Fox</span></a>
+                <p>Simple, useful online tools for everyday tasks.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="pdf-organizer.html">PDF Organizer</a>
+                <a href="word-to-pdf.html">Word to PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html">About DigiiFox</a>
+                <a href="../index.html">Contact</a>
+                <a href="../index.html">Privacy</a>
+                <a href="../index.html">Terms</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+</body>
+</html>

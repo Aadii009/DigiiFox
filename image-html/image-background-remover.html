@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Remove image backgrounds in your browser and download transparent PNG images with DigiiFox.">
+  <title>Background Remover | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/background-remover.css">
+</head>
+<body>
+  <header class="br-header">
+    <a class="br-brand" href="../index.html">Digii<span>Fox</span></a>
+    <nav class="br-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </header>
+
+  <main class="br-page">
+    <section class="br-hero">
+      <span class="br-eyebrow">DIGIIFOX IMAGE TOOLS</span>
+      <h1>Image Background <span>Remover</span></h1>
+      <p>Remove image backgrounds and create clean transparent cutouts for product photos, portraits, and creative projects.</p>
+    </section>
+
+    <section class="br-workspace">
+      <div class="br-upload-panel">
+        <label class="br-upload-box" id="brDropZone" for="brFileInput">
+          <span class="br-upload-icon" aria-hidden="true">＋</span>
+          <strong>Upload your image</strong>
+          <span>or drag and drop it here</span>
+          <small>JPG, PNG, WebP and other supported image formats</small>
+          <span class="br-upload-button">Select Image</span>
+        </label>
+        <input type="file" id="brFileInput" accept="image/*" hidden>
+
+        <p class="br-privacy-note">🔒 Your image is processed in your browser. The AI model may need to download before processing.</p>
+        <p class="br-status" id="brStatus" role="status" aria-live="polite">Choose an image to get started.</p>
+
+        <div class="br-progress" id="brProgress" hidden>
+          <div class="br-progress-heading">
+            <span id="brProgressLabel">Preparing background removal...</span>
+            <span id="brProgressPercent">0%</span>
+          </div>
+          <div class="br-progress-track">
+            <div class="br-progress-bar" id="brProgressBar"></div>
+          </div>
+          <p id="brProgressHint">The first run may take longer while the AI model loads.</p>
+        </div>
+      </div>
+
+      <div class="br-editor" id="brEditor" hidden>
+        <div class="br-editor-heading">
+          <div>
+            <h2>Your Background-Free Image</h2>
+            <p id="brImageInfo">Preview your transparent image.</p>
+          </div>
+          <button type="button" class="br-button br-button-light" id="brReset">Start Over</button>
+        </div>
+
+        <div class="br-preview-grid">
+          <div class="br-preview-card">
+            <div class="br-preview-title">
+              <h3>Original Image</h3>
+              <span>Before</span>
+            </div>
+            <div class="br-preview-stage">
+              <img id="brOriginalPreview" alt="Original uploaded image">
+            </div>
+          </div>
+
+          <div class="br-preview-card">
+            <div class="br-preview-title">
+              <h3>Removed Background</h3>
+              <span>After</span>
+            </div>
+            <div class="br-preview-stage br-checkerboard" id="brResultStage">
+              <img id="brResultPreview" alt="Image with its background removed">
+            </div>
+          </div>
+        </div>
+
+        <section class="br-background-preview">
+          <div>
+            <h3>Preview Background</h3>
+            <p>Change the preview color to inspect the cutout edges. Your downloaded PNG remains transparent.</p>
+          </div>
+
+          <div class="br-background-options">
+            <button type="button" class="br-bg-option is-active" data-background="transparent">Transparent</button>
+            <button type="button" class="br-bg-option" data-background="#ffffff">White</button>
+            <button type="button" class="br-bg-option" data-background="#eaf4ff">Light Blue</button>
+            <button type="button" class="br-bg-option" data-background="#202b3c">Dark</button>
+            <label class="br-custom-color">
+              <span>Custom</span>
+              <input type="color" id="brPreviewColor" value="#f3f5f8" aria-label="Custom preview background color">
+            </label>
+          </div>
+        </section>
+
+        <div class="br-export">
+          <div>
+            <h2>Download Your Cutout</h2>
+            <p>Download a transparent PNG image to use in designs, documents, or websites.</p>
+          </div>
+          <div class="br-export-row">
+            <div class="br-format-field">
+              <label for="brFormat">Output format</label>
+              <select id="brFormat">
+                <option value="image/png">PNG — Transparent background</option>
+                <option value="image/webp">WebP — Transparent background</option>
+                <option value="image/jpeg">JPG — Solid background</option>
+              </select>
+            </div>
+            <div class="br-quality-field" id="brQualityField" hidden>
+              <label for="brQuality">Image quality: <output id="brQualityValue">92%</output></label>
+              <input type="range" id="brQuality" min="40" max="100" value="92">
+            </div>
+            <button type="button" class="br-button br-button-primary" id="brDownload">Download Image</button>
+          </div>
+          <p class="br-export-note" id="brExportNote">PNG preserves transparent areas and is recommended for most cutouts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="br-info-section">
+      <h2>How to Use Background Remover</h2>
+      <div class="br-steps">
+        <article class="br-info-card">
+          <span class="br-step-number">01</span>
+          <h3>Upload an Image</h3>
+          <p>Select a photo from your device or drag it into the upload area.</p>
+        </article>
+        <article class="br-info-card">
+          <span class="br-step-number">02</span>
+          <h3>Remove the Background</h3>
+          <p>The AI model identifies the main subject and separates it from the background.</p>
+        </article>
+        <article class="br-info-card">
+          <span class="br-step-number">03</span>
+          <h3>Check the Result</h3>
+          <p>Compare the original and processed images and inspect the edges against different preview colors.</p>
+        </article>
+        <article class="br-info-card">
+          <span class="br-step-number">04</span>
+          <h3>Download</h3>
+          <p>Save your cutout. Choose PNG to preserve transparency.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="br-info-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="br-faq-list">
+        <details>
+          <summary>How does background removal work?</summary>
+          <p>An AI model analyzes the image to estimate which pixels belong to the main subject and which belong to the background. It then creates an image with transparent background pixels.</p>
+        </details>
+        <details>
+          <summary>Are my photos uploaded to a server?</summary>
+          <p>This tool is designed to process images locally in your browser. It downloads the AI library and model files when needed, but it does not intentionally upload your selected photo to a DigiiFox processing server. The library and model are loaded from a third-party CDN, so their hosting provider may receive normal network metadata.</p>
+        </details>
+        <details>
+          <summary>Why does the first run take longer?</summary>
+          <p>The browser may need to download the AI library and model files before it can process your image. Later runs may be faster if those resources remain cached.</p>
+        </details>
+        <details>
+          <summary>Why are some edges imperfect?</summary>
+          <p>Fine hair, transparent objects, motion blur, low contrast, and busy backgrounds can be difficult for AI models. Results vary depending on the image and model.</p>
+        </details>
+        <details>
+          <summary>Which format should I download?</summary>
+          <p>PNG is recommended when you need transparency. WebP can also preserve transparency with a smaller file size in many cases. JPG cannot store transparency and requires a solid background.</p>
+        </details>
+        <details>
+          <summary>Can I use the cutout for product photos?</summary>
+          <p>Yes. You can use a transparent cutout in product listings, presentations, posters, thumbnails, and other designs. Check the result before publishing, especially for important commercial images.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="br-related-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="br-related-grid">
+        <a href="image-background-color-changer.html" class="br-related-card"><strong>Background Color Changer</strong><span>Replace a selected background color →</span></a>
+        <a href="image-cropper.html" class="br-related-card"><strong>Image Cropper</strong><span>Crop images to your needs →</span></a>
+        <a href="image-compressor.html" class="br-related-card"><strong>Image Compressor</strong><span>Reduce image file size →</span></a>
+        <a href="image-round-corners.html" class="br-related-card"><strong>Round Image Corners</strong><span>Create rounded image corners →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="br-footer">
+    <div class="br-footer-inner">
+      <div class="br-footer-brand">
+        <a class="br-brand" href="../index.html">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for everyday tasks.</p>
+      </div>
+      <div class="br-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div class="br-footer-column">
+        <h3>Image Tools</h3>
+        <a href="image-filters.html">Image Filters</a>
+        <a href="image-rotator.html">Image Rotator</a>
+        <a href="image-watermark.html">Image Watermark</a>
+        <a href="brightness-contrast.html">Brightness &amp; Contrast</a>
+      </div>
+      <div class="br-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../index.html">Contact</a>
+        <a href="../index.html">Privacy</a>
+      </div>
+    </div>
+    <div class="br-footer-bottom">
+      <p>© <span id="brYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Useful tools. Simple solutions.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../image-js/background-remover.js"></script>
+</body>
+</html>

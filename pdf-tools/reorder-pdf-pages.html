@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organize PDF pages online with DigiiFox. Reorder pages, remove unwanted pages, and download your updated PDF.">
+    <title>PDF Page Organizer - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/pdf-organizer.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="../js/pdf-organizer.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="../index.html" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+
+            <a href="pdf-tools.html" class="header-button">All PDF Tools</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>›</span>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <span>›</span>
+                <span>PDF Organizer</span>
+            </div>
+
+            <span class="eyebrow">DIGIIFOX PDF TOOL</span>
+            <h1>Organize Your <span>PDF Pages</span></h1>
+            <p>
+                Rearrange pages, remove unwanted ones, and create an organized
+                PDF in just a few steps.
+            </p>
+        </section>
+
+        <section class="tool-section">
+            <div class="tool-card">
+                <div class="tool-heading">
+                    <div>
+                        <span class="section-label">PDF PAGE ORGANIZER</span>
+                        <h2>Manage your pages</h2>
+                        <p>Upload a PDF to preview, reorder, or remove pages.</p>
+                    </div>
+                </div>
+
+                <label class="upload-zone" id="dropZone" for="pdfInput">
+                    <strong>Select a PDF file or drag it here</strong>
+                    <span>PDF files only · Maximum size: 50 MB</span>
+                    <span class="choose-button">Choose PDF</span>
+                </label>
+                <input type="file" id="pdfInput" accept="application/pdf,.pdf" hidden>
+
+                <div class="file-info" id="fileInfo" hidden>
+                    <div class="file-details">
+                        <strong id="fileName"></strong>
+                        <span id="fileSize"></span>
+                    </div>
+                    <button type="button" id="removeFile" class="text-button">Choose another file</button>
+                </div>
+
+                <div class="organizer-toolbar" id="organizerToolbar" hidden>
+                    <div class="page-summary">
+                        <strong id="pageCount">0 pages</strong>
+                        <span>Use the arrows to change page order.</span>
+                    </div>
+                    <button type="button" id="resetOrder" class="secondary-button">Reset changes</button>
+                </div>
+
+                <div class="page-grid" id="pageGrid" aria-live="polite"></div>
+
+                <div class="empty-state" id="emptyState">
+                    Your PDF page previews will appear here after you upload a file.
+                </div>
+
+                <div class="action-row">
+                    <button type="button" id="downloadBtn" class="process-button" disabled>
+                        Download Organized PDF
+                    </button>
+                </div>
+
+                <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
+
+                <div class="progress-track" id="progressTrack" hidden>
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <div class="privacy-note">
+                    <p>
+                        <strong>Privacy first:</strong> Your PDF is processed in your browser
+                        and is not uploaded to a DigiiFox server. PDF libraries are loaded
+                        from third-party CDNs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="how-to-use">
+            <div class="section-heading">
+                <span class="section-label">SIMPLE PROCESS</span>
+                <h2>How to Use the PDF Organizer</h2>
+                <p>Arrange your document without complicated software.</p>
+            </div>
+
+            <div class="steps-grid">
+                <article class="step-card">
+                    <span class="step-number">01</span>
+                    <h3>Upload your PDF</h3>
+                    <p>Select your PDF file to load page previews in the organizer.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">02</span>
+                    <h3>Reorder pages</h3>
+                    <p>Use the up and down buttons on a page to move it earlier or later in the document.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">03</span>
+                    <h3>Remove unwanted pages</h3>
+                    <p>Click Remove on any page you do not want in the final PDF. You must keep at least one page.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">04</span>
+                    <h3>Download your PDF</h3>
+                    <p>Click Download Organized PDF to save a new copy with your changes.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section benefits-section">
+            <div class="section-heading">
+                <span class="section-label">WHY DIGIIFOX?</span>
+                <h2>A Simpler Way to Organize PDFs</h2>
+            </div>
+
+            <div class="benefits-grid">
+                <article class="benefit-card">
+                    <h3>Easy page management</h3>
+                    <p>View page previews and change the document order using simple controls.</p>
+                </article>
+
+                <article class="benefit-card">
+                    <h3>Remove unwanted pages</h3>
+                    <p>Exclude unnecessary pages before creating your new PDF.</p>
+                </article>
+
+                <article class="benefit-card">
+                    <h3>Browser-based processing</h3>
+                    <p>Your document is processed locally in your browser rather than uploaded to DigiiFox.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section faq-section" id="faq">
+            <div class="section-heading">
+                <span class="section-label">NEED HELP?</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>What does a PDF page organizer do?</summary>
+                    <p>It lets you change the order of pages in a PDF and remove pages you no longer need. You can then download a new PDF with those changes.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do I move a page?</summary>
+                    <p>Use the up arrow to move a page earlier in the document and the down arrow to move it later. The first page cannot move up, and the last page cannot move down.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I delete multiple pages?</summary>
+                    <p>Yes. Click Remove on each page you want to exclude. You must keep at least one page in the final PDF.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will my original PDF be changed?</summary>
+                    <p>No. The organizer downloads a new PDF. Your original file remains unchanged on your device.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Is my PDF uploaded to a server?</summary>
+                    <p>No. The document is processed in your browser and is not uploaded to a DigiiFox server. The PDF processing libraries are loaded from third-party CDNs, so an internet connection is needed to load them.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Why can't I open my PDF?</summary>
+                    <p>The file may be damaged, encrypted, or not a valid PDF. Try opening it in a PDF reader and saving an accessible, unencrypted copy before uploading it again.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Does organizing a PDF reduce its file size?</summary>
+                    <p>This tool changes the page order and removes selected pages. It does not specifically compress the remaining pages or guarantee a smaller file.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Is the PDF Organizer free?</summary>
+                    <p>Yes. You can use this tool to organize PDF pages without paying for this feature.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <h2>Looking for another PDF tool?</h2>
+            <p>Explore more tools to help you work with PDF documents.</p>
+            <a href="pdf-tools.html" class="cta-button">Explore PDF Tools</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="footer-brand-column">
+                <a class="brand footer-brand" href="../index.html">Digii<span>Fox</span></a>
+                <p>
+                    Simple, useful online tools to help you get things done.
+                    Work with PDFs, images, and everyday calculations.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="rotate-pdf.html">Rotate PDF</a>
+                <a href="protect-pdf.html">Protect PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="#how-to-use">How to Use</a>
+                <a href="#faq">FAQs</a>
+                <a href="pdf-tools.html">All PDF Tools</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple experience.</p>
+        </div>
+    </footer>
+</body>
+</html>

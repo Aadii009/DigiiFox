@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and edit PDF document metadata, including title, author, subject, and keywords, directly in your browser with DigiiFox.">
+    <title>PDF Metadata Editor - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/pdf-metadata-editor.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+    <script src="../js/pdf-metadata-editor.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="brand" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle"
+                aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNavigation">
+                Menu
+            </button>
+
+            <nav class="main-navigation" id="mainNavigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-intro">
+            <div class="container">
+                <a href="pdf-tools.html" class="back-link">← All PDF Tools</a>
+                <p class="eyebrow">PDF TOOL</p>
+                <h1>PDF Metadata Editor</h1>
+                <p class="intro-description">
+                    View and update your PDF's document information, including
+                    its title, author, subject, and keywords.
+                </p>
+                <div class="privacy-badge">Files are processed in your browser</div>
+            </div>
+        </section>
+
+        <section class="tool-section">
+            <div class="container">
+                <div class="tool-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Edit PDF information</h2>
+                            <p>Choose a PDF to view and edit its metadata.</p>
+                        </div>
+                    </div>
+
+                    <div class="upload-area" id="uploadArea">
+                        <input
+                            type="file"
+                            id="pdfInput"
+                            accept=".pdf,application/pdf"
+                            hidden
+                        >
+
+                        <p class="upload-title">Choose a PDF file</p>
+                        <p class="upload-description">
+                            Select a PDF from your device to get started.
+                        </p>
+
+                        <button type="button" class="button button-primary" id="chooseFileBtn">
+                            Choose PDF
+                        </button>
+
+                        <p class="file-requirement">PDF files only</p>
+                    </div>
+
+                    <div class="file-summary" id="fileSummary" hidden>
+                        <div class="file-details">
+                            <span class="file-label">Selected document</span>
+                            <strong id="fileName">document.pdf</strong>
+                            <span id="fileSize" class="muted-text"></span>
+                        </div>
+
+                        <button type="button" class="button button-secondary" id="changeFileBtn">
+                            Change file
+                        </button>
+                    </div>
+
+                    <form id="metadataForm" class="metadata-form" hidden>
+                        <div class="form-heading">
+                            <h3>Document properties</h3>
+                            <p>Update any fields you need. Leave a field empty to clear that property.</p>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="title">Document title</label>
+                                <input type="text" id="title" name="title"
+                                    maxlength="500" placeholder="Enter document title">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="author">Author</label>
+                                <input type="text" id="author" name="author"
+                                    maxlength="500" placeholder="Enter author name">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject"
+                                    maxlength="1000" placeholder="Enter document subject">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="keywords">Keywords</label>
+                                <input type="text" id="keywords" name="keywords"
+                                    maxlength="2000" placeholder="e.g. report, business, 2026">
+                                <span class="field-hint">Separate keywords with commas.</span>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="creator">Created with</label>
+                                <input type="text" id="creator" name="creator"
+                                    maxlength="500" placeholder="Application or software">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="producer">PDF producer</label>
+                                <input type="text" id="producer" name="producer"
+                                    maxlength="500" placeholder="PDF creation software">
+                            </div>
+                        </div>
+
+                        <div class="metadata-actions">
+                            <button type="button" class="button button-secondary" id="resetBtn">
+                                Restore original values
+                            </button>
+
+                            <button type="submit" class="button button-primary" id="saveBtn">
+                                Save and Download PDF
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="status-message" id="statusMessage" role="status" aria-live="polite" hidden></div>
+
+                    <div class="privacy-note">
+                        <strong>Your privacy matters</strong>
+                        <p>
+                            Your selected PDF is processed locally in your browser.
+                            DigiiFox does not upload the document to its own server.
+                            The PDF-Lib library is loaded from a third-party CDN,
+                            so an internet connection is required to load the tool.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="information-section">
+            <div class="container information-grid">
+                <article class="information-card">
+                    <h2>How to Use the PDF Metadata Editor</h2>
+                    <ol>
+                        <li>Select a PDF file from your device.</li>
+                        <li>Review the document information displayed in the form.</li>
+                        <li>Edit the title, author, subject, keywords, or other available fields.</li>
+                        <li>Select “Save and Download PDF” to export the updated document.</li>
+                    </ol>
+                </article>
+
+                <article class="information-card">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="faq-item">
+                        <h3>What is PDF metadata?</h3>
+                        <p>
+                            Metadata is information stored in a PDF, such as its title,
+                            author, subject, and keywords.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Will editing metadata change the document's content?</h3>
+                        <p>
+                            This tool edits standard document information. It does not
+                            provide a way to edit the visible text or images on PDF pages.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Does this tool upload my PDF?</h3>
+                        <p>
+                            No. The PDF is processed in your browser. The library needed
+                            to run the tool is loaded from a CDN.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Why can't I edit my PDF?</h3>
+                        <p>
+                            Some PDFs are encrypted, damaged, or use unsupported features.
+                            Try an accessible, unencrypted PDF.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Will all PDF metadata be changed?</h3>
+                        <p>
+                            This tool updates the standard properties shown in the form.
+                            Other metadata, digital signatures, and specialized document
+                            features may not be preserved exactly.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="../index.html" class="brand footer-brand">
+                        Digii<span>Fox</span>
+                    </a>
+                    <p>
+                        Simple, useful online tools designed to help you get things done.
+                        Work with documents, images, and everyday calculations.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="pdf-tools.html">PDF Tools</a>
+                    <a href="image-tools.html">Image Tools</a>
+                    <a href="calculators.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>PDF Tools</h3>
+                    <a href="merge-pdf.html">Merge PDF</a>
+                    <a href="split-pdf.html">Split PDF</a>
+                    <a href="compress-pdf.html">Compress PDF</a>
+                    <a href="pdf-organizer.html">PDF Page Organizer</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Helpful Links</h3>
+                    <a href="pdf-tools.html">All PDF Tools</a>
+                    <a href="image-tools.html">All Image Tools</a>
+                    <a href="calculators.html">All Calculators</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple experiences.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

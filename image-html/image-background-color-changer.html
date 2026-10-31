@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Change an image's background color online. Select a background, replace its color, preview the result, and download your image.">
+  <title>Image Background Color Changer | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-background-color-changer.css">
+</head>
+<body>
+  <header class="ibc-header">
+    <a class="ibc-brand" href="../index.html">Digii<span>Fox</span></a>
+    <nav class="ibc-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </header>
+
+  <main class="ibc-page">
+    <section class="ibc-hero">
+      <span class="ibc-eyebrow">DIGIIFOX IMAGE TOOLS</span>
+      <h1>Image Background <span>Color Changer</span></h1>
+      <p>Select your image's existing background, replace it with a new color, and download the edited result.</p>
+    </section>
+
+    <section class="ibc-workspace">
+      <div class="ibc-upload-panel">
+        <label class="ibc-upload-box" id="ibcDropZone" for="ibcFileInput">
+          <span class="ibc-upload-icon" aria-hidden="true">＋</span>
+          <strong>Choose an image</strong>
+          <span>or drag and drop it here</span>
+          <small>Choose a clear image with a relatively uniform background for best results.</small>
+          <span class="ibc-upload-button">Select Image</span>
+        </label>
+        <input type="file" id="ibcFileInput" accept="image/*" hidden>
+        <p class="ibc-privacy-note">🔒 Images are processed locally in your browser.</p>
+        <p class="ibc-status" id="ibcStatus" role="status" aria-live="polite">Upload an image to get started.</p>
+      </div>
+
+      <div class="ibc-editor" id="ibcEditor" hidden>
+        <div class="ibc-editor-heading">
+          <div>
+            <h2>Edit Background</h2>
+            <p id="ibcImageInfo">Select the original background color, then choose a replacement.</p>
+          </div>
+          <button type="button" class="ibc-button ibc-button-light" id="ibcReset">Reset</button>
+        </div>
+
+        <div class="ibc-preview-stage">
+          <div class="ibc-preview-label">Live Preview</div>
+          <canvas id="ibcCanvas" aria-label="Image preview. Click the existing background to select its color."></canvas>
+          <p class="ibc-canvas-hint">Tip: Click a point on the original background to select the color you want to replace.</p>
+        </div>
+
+        <div class="ibc-selection-status" id="ibcSelectionStatus">
+          <span class="ibc-status-dot"></span>
+          <span>No background color selected yet. Click the image background to select it.</span>
+        </div>
+
+        <div class="ibc-controls">
+          <section class="ibc-control-card">
+            <h3>1. Select Original Background</h3>
+            <p class="ibc-control-description">Click directly on the background in the preview. Similar colors will be selected according to the tolerance setting.</p>
+            <div class="ibc-color-row">
+              <div class="ibc-color-field">
+                <label for="ibcSourceColor">Selected color</label>
+                <input type="color" id="ibcSourceColor" value="#ffffff">
+              </div>
+              <button type="button" class="ibc-button ibc-button-secondary" id="ibcReselect">Choose from Image</button>
+            </div>
+            <label class="ibc-check-row">
+              <input type="checkbox" id="ibcConnectedOnly" checked>
+              <span>Replace only connected background areas</span>
+            </label>
+            <p class="ibc-small-note">When enabled, only similar-colored pixels connected to the selected point are replaced. Turn it off to replace matching colors throughout the image.</p>
+          </section>
+
+          <section class="ibc-control-card">
+            <h3>2. Choose New Background</h3>
+            <p class="ibc-control-description">Choose a color for the areas you selected.</p>
+            <div class="ibc-color-row">
+              <div class="ibc-color-field">
+                <label for="ibcTargetColor">Background color</label>
+                <input type="color" id="ibcTargetColor" value="#2878d4">
+              </div>
+              <div class="ibc-hex-field">
+                <label for="ibcHexColor">Hex color</label>
+                <input type="text" id="ibcHexColor" value="#2878D4" maxlength="7" spellcheck="false" autocomplete="off">
+              </div>
+            </div>
+            <div class="ibc-swatches">
+              <span>Quick colors</span>
+              <button type="button" class="ibc-swatch" data-color="#ffffff" style="--swatch:#ffffff" aria-label="White" title="White"></button>
+              <button type="button" class="ibc-swatch" data-color="#000000" style="--swatch:#000000" aria-label="Black" title="Black"></button>
+              <button type="button" class="ibc-swatch" data-color="#2878d4" style="--swatch:#2878d4" aria-label="Blue" title="Blue"></button>
+              <button type="button" class="ibc-swatch" data-color="#20a464" style="--swatch:#20a464" aria-label="Green" title="Green"></button>
+              <button type="button" class="ibc-swatch" data-color="#e74c3c" style="--swatch:#e74c3c" aria-label="Red" title="Red"></button>
+              <button type="button" class="ibc-swatch" data-color="#f5c542" style="--swatch:#f5c542" aria-label="Yellow" title="Yellow"></button>
+              <button type="button" class="ibc-swatch" data-color="#e9e9ef" style="--swatch:#e9e9ef" aria-label="Light gray" title="Light gray"></button>
+              <button type="button" class="ibc-swatch" data-color="#f4a6c1" style="--swatch:#f4a6c1" aria-label="Pink" title="Pink"></button>
+            </div>
+          </section>
+
+          <section class="ibc-control-card ibc-tolerance-card">
+            <div class="ibc-range-heading">
+              <h3>3. Color Tolerance</h3>
+              <output id="ibcToleranceValue" for="ibcTolerance">35</output>
+            </div>
+            <p class="ibc-control-description">Increase tolerance to select more shades similar to the original background color.</p>
+            <input type="range" id="ibcTolerance" min="0" max="150" value="35">
+            <div class="ibc-range-labels"><span>Precise</span><span>More colors</span></div>
+            <label class="ibc-check-row ibc-edge-check">
+              <input type="checkbox" id="ibcSoftEdges" checked>
+              <span>Soften edges for a smoother transition</span>
+            </label>
+          </section>
+        </div>
+
+        <section class="ibc-export">
+          <div>
+            <h2>Download Your Image</h2>
+            <p>Choose the format you prefer for the finished image.</p>
+          </div>
+          <div class="ibc-export-row">
+            <div class="ibc-format-field">
+              <label for="ibcFormat">Output format</label>
+              <select id="ibcFormat">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/webp">WebP</option>
+              </select>
+            </div>
+            <div class="ibc-quality-field" id="ibcQualityField" hidden>
+              <label for="ibcQuality">Image quality: <output id="ibcQualityValue">92%</output></label>
+              <input type="range" id="ibcQuality" min="40" max="100" value="92">
+            </div>
+            <button type="button" class="ibc-button ibc-button-primary" id="ibcDownload">Download Image</button>
+          </div>
+          <p class="ibc-small-note">This tool replaces colors, not complex backgrounds automatically. Inspect the preview before downloading.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="ibc-info-section">
+      <h2>How to Use Background Color Changer</h2>
+      <div class="ibc-steps">
+        <article class="ibc-info-card">
+          <span class="ibc-step-number">01</span>
+          <h3>Upload an Image</h3>
+          <p>Select an image with a reasonably clear background from your device.</p>
+        </article>
+        <article class="ibc-info-card">
+          <span class="ibc-step-number">02</span>
+          <h3>Select the Background</h3>
+          <p>Click the existing background in the preview or fine-tune its selected color.</p>
+        </article>
+        <article class="ibc-info-card">
+          <span class="ibc-step-number">03</span>
+          <h3>Choose a New Color</h3>
+          <p>Pick a replacement color and adjust tolerance to improve the selection.</p>
+        </article>
+        <article class="ibc-info-card">
+          <span class="ibc-step-number">04</span>
+          <h3>Download</h3>
+          <p>Review the result, choose PNG, JPG, or WebP, and save your image.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ibc-info-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ibc-faq-list">
+        <details>
+          <summary>How does this background color changer work?</summary>
+          <p>You select an existing background color from your image. The tool identifies pixels with similar colors and replaces them with your chosen color. You can restrict replacement to connected areas or select matching colors throughout the image.</p>
+        </details>
+        <details>
+          <summary>Does it automatically remove any background?</summary>
+          <p>No. This is a color-based replacement tool, not AI background removal. It works best with plain or relatively uniform backgrounds. Complex backgrounds, hair, transparent objects, and similar-colored subjects may require specialized editing.</p>
+        </details>
+        <details>
+          <summary>What does color tolerance mean?</summary>
+          <p>Tolerance controls how different a pixel can be from the selected background color and still be selected. A low value is more precise; a higher value selects a wider range of shades.</p>
+        </details>
+        <details>
+          <summary>What does connected background mode do?</summary>
+          <p>It replaces matching pixels connected to the point you selected. This helps preserve similar-colored areas elsewhere in the image, such as a white shirt against a white wall.</p>
+        </details>
+        <details>
+          <summary>Which download formats are supported?</summary>
+          <p>You can export PNG, JPG, or WebP. PNG is generally a good choice for clean edges. JPG does not support transparency, although this tool exports the selected replacement color as part of the image.</p>
+        </details>
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>No. The image processing runs locally in your browser. The selected image is not uploaded to a DigiiFox server by this tool.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="ibc-related-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="ibc-related-grid">
+        <a href="image-filters.html" class="ibc-related-card"><strong>Image Filters</strong><span>Apply creative photo effects →</span></a>
+        <a href="image-background-color-changer.html" class="ibc-related-card"><strong>Background Color Changer</strong><span>Change an image's background color →</span></a>
+        <a href="image-cropper.html" class="ibc-related-card"><strong>Image Cropper</strong><span>Crop images to your needs →</span></a>
+        <a href="image-round-corners.html" class="ibc-related-card"><strong>Round Image Corners</strong><span>Create rounded image corners →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ibc-footer">
+    <div class="ibc-footer-inner">
+      <div class="ibc-footer-brand">
+        <a class="ibc-brand" href="../index.html">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for everyday tasks.</p>
+      </div>
+      <div class="ibc-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div class="ibc-footer-column">
+        <h3>Image Tools</h3>
+        <a href="image-filters.html">Image Filters</a>
+        <a href="image-rotator.html">Image Rotator</a>
+        <a href="image-watermark.html">Image Watermark</a>
+        <a href="brightness-contrast.html">Brightness &amp; Contrast</a>
+      </div>
+      <div class="ibc-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">About DigiiFox</a>
+        <a href="../index.html">Contact</a>
+        <a href="../index.html">Privacy</a>
+      </div>
+    </div>
+    <div class="ibc-footer-bottom">
+      <p>© <span id="ibcYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Useful tools. Simple solutions.</p>
+    </div>
+  </footer>
+
+  <script src="../image-js/image-background-color-changer.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Convert PDF pages to JPG images online for free with DigiiFox. Convert all pages or selected pages in your browser.">
+
+    <title>PDF to JPG Converter | DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/pdf-to-jpg.css">
+
+    <!-- PDF rendering library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- ZIP download library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <script src="../js/pdf-to-jpg.js" defer></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="pdf-tools.html">PDF Tools</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <span class="eyebrow">FREE ONLINE PDF TOOL</span>
+
+        <h1>PDF to <span>JPG Converter</span></h1>
+
+        <p>
+            Convert PDF pages into high-quality JPG images.
+            Convert the entire document or select the pages you need.
+        </p>
+    </section>
+
+    <section class="tool-container">
+
+        <div class="upload-box" id="dropZone">
+            <div class="upload-icon">📄</div>
+
+            <h2>Upload your PDF</h2>
+
+            <p>Drag and drop your PDF here or choose a file from your device.</p>
+
+            <input
+                type="file"
+                id="pdfInput"
+                accept=".pdf,application/pdf"
+                hidden
+            >
+
+            <button type="button" id="browseBtn" class="primary-btn">
+                Choose PDF
+            </button>
+
+            <p class="file-limit">PDF files only · Maximum 50 MB</p>
+        </div>
+
+        <div id="workspace" class="workspace hidden">
+
+            <div class="file-info">
+                <div class="file-icon">📕</div>
+
+                <div class="file-details">
+                    <h3 id="fileName">document.pdf</h3>
+                    <p id="fileDetails">0 pages</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="removeBtn"
+                    class="remove-btn"
+                    aria-label="Remove PDF"
+                >✕</button>
+            </div>
+
+            <div class="settings-card">
+                <h2>Conversion settings</h2>
+
+                <label for="pageMode">Pages to convert</label>
+
+                <select id="pageMode">
+                    <option value="all">All pages</option>
+                    <option value="selected">Selected pages</option>
+                </select>
+
+                <div id="selectedPagesBox" class="hidden">
+                    <label for="selectedPages">Page numbers</label>
+
+                    <input
+                        type="text"
+                        id="selectedPages"
+                        placeholder="Example: 1, 3, 5-7"
+                    >
+
+                    <small>Enter page numbers separated by commas or ranges.</small>
+                </div>
+
+                <label for="imageQuality">Image resolution</label>
+
+                <select id="imageQuality">
+                    <option value="1">Standard — smaller images</option>
+                    <option value="1.5" selected>High — recommended</option>
+                    <option value="2">Very high — larger images</option>
+                </select>
+
+                <div class="quality-note">
+                    Higher resolution can produce larger images and take longer to process.
+                </div>
+
+                <button type="button" id="convertBtn" class="primary-btn full-btn">
+                    🖼️ Convert to JPG
+                </button>
+
+                <div
+                    id="statusMessage"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+                <div id="progressContainer" class="progress-container hidden">
+                    <div class="progress-track">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+
+                    <p id="progressText">Preparing conversion...</p>
+                </div>
+            </div>
+
+        </div>
+
+        <section id="resultsSection" class="results-section hidden">
+
+            <div class="results-header">
+                <div>
+                    <h2>Your JPG images</h2>
+                    <p id="resultsSummary">Conversion completed.</p>
+                </div>
+
+                <button type="button" id="downloadZipBtn" class="primary-btn">
+                    ⬇ Download ZIP
+                </button>
+            </div>
+
+            <div id="imageGrid" class="image-grid"></div>
+
+        </section>
+
+    </section>
+
+    <section class="privacy-card">
+        <div class="privacy-icon">🔒</div>
+
+        <div>
+            <h3>Your files stay on your device</h3>
+
+            <p>
+                PDF pages are rendered and converted in your browser.
+                This tool does not upload your PDF or generated images to
+                the DigiiFox server. Conversion libraries are loaded from
+                third-party CDNs.
+            </p>
+        </div>
+    </section>
+
+    <section class="how-section">
+        <h2>How to convert PDF to JPG</h2>
+
+        <div class="steps-grid">
+
+            <article class="step-card">
+                <span>01</span>
+                <h3>Upload PDF</h3>
+                <p>Choose a PDF from your device.</p>
+            </article>
+
+            <article class="step-card">
+                <span>02</span>
+                <h3>Choose settings</h3>
+                <p>Select pages and image resolution.</p>
+            </article>
+
+            <article class="step-card">
+                <span>03</span>
+                <h3>Download images</h3>
+                <p>Save individual JPG images or download them together in a ZIP file.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>Frequently asked questions</h2>
+
+        <details>
+            <summary>Can I convert selected PDF pages?</summary>
+            <p>Yes. Select "Selected pages" and enter page numbers such as 1, 3, 5-7.</p>
+        </details>
+
+        <details>
+            <summary>Can I download all JPG images together?</summary>
+            <p>Yes. Use the Download ZIP button to download all converted images in one archive.</p>
+        </details>
+
+        <details>
+            <summary>Does converting PDF to JPG change the original PDF?</summary>
+            <p>No. The converter creates new JPG images and leaves your original PDF unchanged.</p>
+        </details>
+
+        <details>
+            <summary>Are my files uploaded to DigiiFox?</summary>
+            <p>No. PDF rendering and JPG creation happen locally in your browser. The libraries used by this page are loaded from third-party CDNs.</p>
+        </details>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <p>© 2026 DigiiFox. Simple tools, smarter work.</p>
+    <a href="../index.html">Back to Home</a>
+</footer>
+
+</body>
+</html>

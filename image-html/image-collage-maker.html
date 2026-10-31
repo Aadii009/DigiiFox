@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create beautiful photo collages online. Arrange multiple images, customize spacing and backgrounds, and export your collage.">
+  <title>Image Collage Maker - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-collage-maker.css">
+  <script src="../image-js/image-collage-maker.js" defer></script>
+</head>
+<body>
+  <header class="icm-header">
+    <a href="../index.html" class="icm-logo">Digii<span>Fox</span></a>
+    <nav class="icm-nav">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html" class="active">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </header>
+
+  <main class="icm-main">
+    <section class="icm-hero">
+      <span class="icm-eyebrow">IMAGE TOOL</span>
+      <h1>Image Collage <span>Maker</span></h1>
+      <p>Bring your favorite photos together. Build a collage, customize its look, and download it in your preferred format.</p>
+    </section>
+
+    <section class="icm-workspace">
+      <div class="icm-upload-card">
+        <div class="icm-upload-heading">
+          <div>
+            <h2>Add your photos</h2>
+            <p>Select multiple images to start creating your collage.</p>
+          </div>
+          <span class="icm-step">STEP 1</span>
+        </div>
+
+        <label for="icm-file-input" class="icm-dropzone" id="icm-dropzone">
+          <span class="icm-upload-icon" aria-hidden="true">＋</span>
+          <strong>Choose images or drag them here</strong>
+          <span>JPG, PNG, WebP and other browser-supported image formats</span>
+          <span class="icm-upload-button">Select Images</span>
+          <input type="file" id="icm-file-input" accept="image/*" multiple hidden>
+        </label>
+
+        <div class="icm-upload-note">Select up to 15 images. Each file must be 15 MB or smaller.</div>
+        <div class="icm-status" id="icm-status" role="status" aria-live="polite">Add at least two images to begin.</div>
+      </div>
+
+      <div class="icm-editor">
+        <section class="icm-settings-card">
+          <div class="icm-section-heading">
+            <div>
+              <h2>Collage settings</h2>
+              <p>Personalize your layout and appearance.</p>
+            </div>
+            <span class="icm-step">STEP 2</span>
+          </div>
+
+          <div class="icm-control-grid">
+            <div class="icm-field">
+              <label for="icm-columns">Layout columns</label>
+              <select id="icm-columns">
+                <option value="2">2 columns</option>
+                <option value="3" selected>3 columns</option>
+                <option value="4">4 columns</option>
+              </select>
+            </div>
+
+            <div class="icm-field">
+              <label for="icm-ratio">Canvas shape</label>
+              <select id="icm-ratio">
+                <option value="square">Square (1:1)</option>
+                <option value="landscape">Landscape (4:3)</option>
+                <option value="wide">Wide (16:9)</option>
+                <option value="portrait">Portrait (3:4)</option>
+              </select>
+            </div>
+
+            <div class="icm-field">
+              <label for="icm-spacing">Spacing <span id="icm-spacing-value">12 px</span></label>
+              <input type="range" id="icm-spacing" min="0" max="40" value="12">
+            </div>
+
+            <div class="icm-field">
+              <label for="icm-radius">Corner radius <span id="icm-radius-value">12 px</span></label>
+              <input type="range" id="icm-radius" min="0" max="50" value="12">
+            </div>
+
+            <div class="icm-field">
+              <label for="icm-background">Background color</label>
+              <div class="icm-color-control">
+                <input type="color" id="icm-background" value="#ffffff">
+                <span id="icm-background-value">#FFFFFF</span>
+              </div>
+            </div>
+
+            <div class="icm-field">
+              <label for="icm-format">Download format</label>
+              <select id="icm-format">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/webp">WebP</option>
+              </select>
+            </div>
+
+            <div class="icm-field icm-quality-field" id="icm-quality-field">
+              <label for="icm-quality">Image quality <span id="icm-quality-value">92%</span></label>
+              <input type="range" id="icm-quality" min="50" max="100" value="92">
+            </div>
+          </div>
+
+          <div class="icm-actions">
+            <button type="button" id="icm-create" class="icm-primary-btn" disabled>Create Collage</button>
+            <button type="button" id="icm-reset" class="icm-secondary-btn">Start Over</button>
+          </div>
+        </section>
+
+        <section class="icm-preview-card">
+          <div class="icm-section-heading">
+            <div>
+              <h2>Your collage</h2>
+              <p>Preview the result before downloading.</p>
+            </div>
+            <span class="icm-step">STEP 3</span>
+          </div>
+
+          <div class="icm-preview-stage" id="icm-preview-stage">
+            <div class="icm-empty-preview" id="icm-empty-preview">
+              <span aria-hidden="true">▧</span>
+              <strong>Your collage will appear here</strong>
+              <p>Add at least two photos, then select Create Collage.</p>
+            </div>
+            <canvas id="icm-canvas" hidden></canvas>
+          </div>
+
+          <div class="icm-preview-meta" id="icm-preview-meta">No collage created yet.</div>
+          <button type="button" id="icm-download" class="icm-download-btn" disabled>Download Collage</button>
+        </section>
+      </div>
+
+      <section class="icm-photos-card">
+        <div class="icm-section-heading">
+          <div>
+            <h2>Your photos</h2>
+            <p>Use the arrows to change the order or remove a photo.</p>
+          </div>
+          <span class="icm-photo-count" id="icm-photo-count">0 photos</span>
+        </div>
+        <div class="icm-photo-list" id="icm-photo-list">
+          <p class="icm-photo-empty">Your selected photos will appear here.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="icm-info-section">
+      <div class="icm-info-card">
+        <h2>How to Use Image Collage Maker</h2>
+        <ol>
+          <li>Click <strong>Select Images</strong> and choose at least two photos.</li>
+          <li>Arrange the photos using the up and down arrows. Remove any photo you don't need.</li>
+          <li>Choose the number of columns and your preferred canvas shape.</li>
+          <li>Adjust spacing, corner radius, and background color.</li>
+          <li>Click <strong>Create Collage</strong> to generate the preview.</li>
+          <li>Choose PNG, JPG, or WebP and click <strong>Download Collage</strong>.</li>
+        </ol>
+      </div>
+
+      <div class="icm-info-card">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+          <summary>Is this Image Collage Maker free?</summary>
+          <p>Yes. You can create and download collages without paying for this tool.</p>
+        </details>
+
+        <details>
+          <summary>Are my photos uploaded to a server?</summary>
+          <p>This tool processes selected photos locally in your browser. It does not intentionally upload your photos to a DigiiFox server. The page itself must still be loaded from wherever the website is hosted.</p>
+        </details>
+
+        <details>
+          <summary>How many photos can I add?</summary>
+          <p>You can add up to 15 photos, with a maximum file size of 15 MB per image. Very large images may use significant memory while processing.</p>
+        </details>
+
+        <details>
+          <summary>Which formats can I download?</summary>
+          <p>You can export the collage as PNG, JPG, or WebP. JPG does not support transparency, so the selected background color is used.</p>
+        </details>
+
+        <details>
+          <summary>Can I change the order of my photos?</summary>
+          <p>Yes. Use the up and down arrows in the Your Photos section to rearrange the images, then create the collage again.</p>
+        </details>
+
+        <details>
+          <summary>Does this tool use AI?</summary>
+          <p>No. It arranges your photos into a grid. It does not generate new images or use AI to edit the content of your photos.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="icm-related">
+      <h2>Explore More Image Tools</h2>
+      <div class="icm-related-grid">
+        <a href="image-cropper.html">Image Cropper <span>→</span></a>
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-filters.html">Image Filters <span>→</span></a>
+        <a href="image-watermark.html">Image Watermark <span>→</span></a>
+        <a href="background-remover.html">Background Remover <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="icm-footer">
+    <div class="icm-footer-main">
+      <div class="icm-footer-brand">
+        <a href="../index.html" class="icm-logo">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools designed to make everyday digital tasks easier.</p>
+      </div>
+      <div class="icm-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div class="icm-footer-column">
+        <h3>Popular Image Tools</h3>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-cropper.html">Image Cropper</a>
+        <a href="image-filters.html">Image Filters</a>
+      </div>
+      <div class="icm-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../index.html">All Tools</a>
+        <a href="../pages/image-tools.html">Browse Image Tools</a>
+      </div>
+    </div>
+    <div class="icm-footer-bottom">
+      <p>© <span id="icm-year"></span> DigiiFox. All rights reserved.</p>
+      <p>Made for simple, productive workflows.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Word to PDF Converter - DigiiFox</title>
+    <meta name="description" content="Convert Word DOCX documents to PDF online with DigiiFox. Preview your document and download a PDF copy.">
+
+    <link rel="stylesheet" href="../css/word-to-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../js/word-to-pdf.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="brand" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-intro">
+            <a href="pdf-tools.html" class="back-link">Back to PDF Tools</a>
+
+            <h1>Word to PDF Converter</h1>
+
+            <p>
+                Convert Word documents into PDF files.
+                Upload a DOCX document and download your PDF.
+            </p>
+        </section>
+
+        <section class="converter-section">
+            <div class="converter-card">
+                <div class="upload-area" id="uploadArea">
+                    <input
+                        type="file"
+                        id="wordInput"
+                        accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        hidden
+                    >
+
+                    <p class="upload-title">Choose a Word document</p>
+
+                    <p class="upload-description">
+                        Select a DOCX file from your device.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="chooseFileBtn"
+                        class="primary-btn"
+                    >
+                        Select Word File
+                    </button>
+
+                    <p class="file-types">DOCX files only</p>
+                </div>
+
+                <div id="fileDetails" class="file-details" hidden>
+                    <div class="file-information">
+                        <span class="file-label">Selected document</span>
+                        <p id="fileName" class="selected-file-name"></p>
+                        <p id="fileSize" class="file-size"></p>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="removeFileBtn"
+                        class="text-btn"
+                    >
+                        Remove
+                    </button>
+                </div>
+
+                <div class="conversion-options">
+                    <label for="outputName">PDF document name</label>
+
+                    <input
+                        type="text"
+                        id="outputName"
+                        value="converted-document"
+                        maxlength="100"
+                        placeholder="Enter document name"
+                    >
+
+                    <p class="option-note">
+                        Your downloaded file will use the .pdf extension.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="convertBtn"
+                    class="primary-btn convert-btn"
+                    disabled
+                >
+                    Convert to PDF
+                </button>
+
+                <div
+                    id="progressContainer"
+                    class="progress-container"
+                    hidden
+                    aria-live="polite"
+                >
+                    <div class="progress-track">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+
+                    <p id="progressText">Preparing your document...</p>
+                </div>
+
+                <div
+                    id="statusMessage"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
+
+                <p class="privacy-note">
+                    Your document is processed in your browser.
+                    Its contents are not uploaded to a DigiiFox server
+                    by this tool.
+                </p>
+            </div>
+        </section>
+
+        <section id="previewSection" class="preview-section" hidden>
+            <div class="preview-heading">
+                <div>
+                    <h2>Document Preview</h2>
+                    <p>Review the converted content before downloading.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="downloadBtn"
+                    class="primary-btn"
+                >
+                    Download PDF
+                </button>
+            </div>
+
+            <div class="preview-shell">
+                <div id="documentContent" class="document-content"></div>
+            </div>
+
+            <p class="preview-note">
+                Preview formatting may differ from the final PDF.
+                Check the downloaded document before sharing it.
+            </p>
+        </section>
+
+        <section class="information-section">
+            <h2>Convert Word to PDF Online</h2>
+
+            <p>
+                DigiiFox lets you convert supported Word DOCX documents
+                into PDF files directly in your browser. The resulting
+                PDF is convenient for sharing and viewing across devices.
+            </p>
+
+            <p>
+                This version supports ordinary paragraphs, headings,
+                lists, and some basic text formatting. Complex tables,
+                embedded images, page headers, footers, columns, and
+                advanced layouts may not be reproduced exactly.
+            </p>
+        </section>
+
+        <section class="how-section">
+            <h2>How to Use Word to PDF</h2>
+
+            <div class="steps-grid">
+                <article class="step-card">
+                    <span class="step-number">1</span>
+                    <h3>Select your document</h3>
+                    <p>
+                        Click Select Word File and choose a DOCX file
+                        from your device.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">2</span>
+                    <h3>Name your PDF</h3>
+                    <p>
+                        Enter the filename you want for your downloaded
+                        PDF document.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">3</span>
+                    <h3>Convert your file</h3>
+                    <p>
+                        Click Convert to PDF and wait for the document
+                        to be prepared.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">4</span>
+                    <h3>Download your PDF</h3>
+                    <p>
+                        Review the preview and click Download PDF to
+                        save your converted document.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <details class="faq-item">
+                <summary>Is this Word to PDF converter free?</summary>
+                <p>
+                    This browser-based tool can be used without a
+                    conversion subscription. Internet access is needed
+                    to load its conversion libraries.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Which Word files are supported?</summary>
+                <p>
+                    This version supports DOCX files. Older DOC files
+                    are not supported by this converter.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Will my original formatting be preserved?</summary>
+                <p>
+                    Some basic formatting can be retained, but complex
+                    layouts, tables, images, page headers, and footers
+                    may not look exactly like the original Word file.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Are my documents uploaded to a server?</summary>
+                <p>
+                    No. The document is processed in your browser.
+                    The conversion libraries are loaded from external
+                    CDNs, but the document contents are not sent to a
+                    DigiiFox conversion server by this tool.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I convert a DOC file?</summary>
+                <p>
+                    Not with this version. Open the older DOC file in
+                    Microsoft Word or another compatible application,
+                    save it as DOCX, and then upload the DOCX file.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Why does the PDF look different?</summary>
+                <p>
+                    Browser-based conversion does not reproduce every
+                    Microsoft Word layout feature. For documents that
+                    require precise formatting, export the PDF directly
+                    from Microsoft Word or LibreOffice.
+                </p>
+            </details>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="brand">
+                    Digii<span>Fox</span>
+                </a>
+
+                <p>
+                    Simple online tools designed to make everyday
+                    digital tasks easier.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="pdf-to-word.html">PDF to Word</a>
+                <a href="word-to-pdf.html">Word to PDF</a>
+                <a href="pdf-organizer.html">PDF Organizer</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html">About DigiiFox</a>
+                <a href="../index.html">Contact</a>
+                <a href="../index.html">Privacy</a>
+                <a href="../index.html">Terms of Use</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="currentYear"></span> DigiiFox.
+                All rights reserved.
+            </p>
+
+            <p>Useful tools. Simple experiences.</p>
+        </div>
+    </footer>
+</body>
+</html>

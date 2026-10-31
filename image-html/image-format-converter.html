@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert images between JPG, PNG and WebP online for free with DigiiFox. Choose an output format, preview your image and download it securely in your browser.">
+  <title>Image Format Converter Online Free | DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-format-converter.css">
+  <script src="../image-js/image-format-converter.js" defer></script>
+</head>
+<body>
+  <header class="ifc-header">
+    <div class="ifc-header-inner">
+      <a href="../index.html" class="ifc-logo">Digii<span>Fox</span></a>
+      <button class="ifc-menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="ifc-nav" id="mainNav">
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html" class="active">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="ifc-container">
+    <section class="ifc-hero">
+      <div class="ifc-breadcrumb">
+        <a href="../index.html">Home</a> /
+        <a href="../pages/image-tools.html">Image Tools</a> /
+        <span>Image Format Converter</span>
+      </div>
+      <span class="ifc-label">FREE IMAGE CONVERTER</span>
+      <h1>Image Format <span>Converter</span></h1>
+      <p>Convert images between JPG, PNG, and WebP in one place. Choose your output format, preview the result, and download your converted image.</p>
+    </section>
+
+    <section class="ifc-tool-card">
+      <div class="ifc-upload-area" id="uploadBox" tabindex="0" role="button" aria-label="Choose an image">
+        <div class="ifc-upload-icon">↑</div>
+        <h2>Upload your image</h2>
+        <p>Drag and drop your image here, or click to browse</p>
+        <button type="button" class="ifc-primary-btn" id="chooseImageButton">Choose Image</button>
+        <span class="ifc-upload-note">JPG · JPEG · PNG · WEBP · Maximum 25 MB</span>
+        <input type="file" id="imageInput" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" hidden>
+      </div>
+
+      <p class="ifc-status" id="statusMessage" role="status" aria-live="polite"></p>
+
+      <div class="ifc-editor" id="editor" hidden>
+        <div class="ifc-section-heading">
+          <div>
+            <h2>Conversion Settings</h2>
+            <p>Choose the format you want for your converted image.</p>
+          </div>
+          <button type="button" class="ifc-secondary-btn" id="changeImageButton">Change Image</button>
+        </div>
+
+        <div class="ifc-settings-grid">
+          <div class="ifc-setting">
+            <label for="formatSelect">Output format</label>
+            <select id="formatSelect">
+              <option value="image/jpeg">JPG — Best for photographs</option>
+              <option value="image/png">PNG — Supports transparency</option>
+              <option value="image/webp">WebP — Modern web images</option>
+            </select>
+            <small id="formatDescription">JPG is widely supported and suitable for photographs.</small>
+          </div>
+
+          <div class="ifc-setting ifc-quality-setting" id="qualitySetting">
+            <label for="qualitySlider">Output quality <strong id="qualityValue">92%</strong></label>
+            <input type="range" id="qualitySlider" min="10" max="100" value="92">
+            <div class="ifc-range-labels">
+              <span>Smaller file</span>
+              <span>Higher quality</span>
+            </div>
+            <small>Quality settings apply to JPG and WebP, not PNG.</small>
+          </div>
+        </div>
+
+        <div class="ifc-info-note" id="transparencyNote">
+          JPG does not support transparency. Transparent areas will be filled with white.
+        </div>
+
+        <div class="ifc-preview-grid">
+          <article class="ifc-preview-card">
+            <h3>Original Image</h3>
+            <div class="ifc-preview-frame">
+              <img id="originalPreview" alt="Original uploaded image">
+            </div>
+            <div class="ifc-image-info">
+              <span>File size</span><strong id="originalSize">—</strong>
+              <span>Dimensions</span><strong id="originalDimensions">—</strong>
+              <span>Format</span><strong id="originalFormat">—</strong>
+            </div>
+          </article>
+
+          <article class="ifc-preview-card">
+            <h3>Converted Image</h3>
+            <div class="ifc-preview-frame">
+              <div class="ifc-placeholder" id="previewPlaceholder">Your converted preview will appear here.</div>
+              <img id="convertedPreview" alt="Converted image preview" hidden>
+            </div>
+            <div class="ifc-image-info">
+              <span>File size</span><strong id="convertedSize">—</strong>
+              <span>Dimensions</span><strong id="convertedDimensions">—</strong>
+              <span>Format</span><strong id="convertedFormat">—</strong>
+            </div>
+          </article>
+        </div>
+
+        <div class="ifc-summary">
+          <strong id="summaryTitle">Ready to convert</strong>
+          <p id="summaryText">Choose an output format and click Convert Image.</p>
+        </div>
+
+        <div class="ifc-action-row">
+          <button type="button" class="ifc-primary-btn" id="convertButton">Convert Image</button>
+          <a class="ifc-primary-btn ifc-download-btn" id="downloadButton" href="#" download="digifox-converted.jpg" hidden>Download Image</a>
+          <button type="button" class="ifc-secondary-btn" id="resetButton">Start Over</button>
+        </div>
+      </div>
+
+      <div class="ifc-privacy-note">
+        <strong>Your privacy matters.</strong>
+        <span>Images are processed locally in your browser and are not sent to DigiiFox servers.</span>
+      </div>
+    </section>
+
+    <section class="ifc-content-section">
+      <h2>Which Image Format Should You Choose?</h2>
+      <div class="ifc-format-grid">
+        <article class="ifc-format-card">
+          <span class="ifc-format-badge">JPG</span>
+          <h3>JPEG / JPG</h3>
+          <p>Ideal for photographs and everyday images. Usually produces compact files, but does not support transparency.</p>
+        </article>
+        <article class="ifc-format-card">
+          <span class="ifc-format-badge">PNG</span>
+          <h3>Portable Network Graphics</h3>
+          <p>Ideal for logos, screenshots, graphics, and images that need transparent backgrounds.</p>
+        </article>
+        <article class="ifc-format-card">
+          <span class="ifc-format-badge">WEBP</span>
+          <h3>WebP</h3>
+          <p>A modern web image format that supports lossy and lossless compression and transparency.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ifc-content-section">
+      <h2>How to Convert an Image</h2>
+      <div class="ifc-steps-grid">
+        <article class="ifc-step">
+          <span>01</span>
+          <h3>Upload an image</h3>
+          <p>Select a JPG, PNG, or WebP image from your device.</p>
+        </article>
+        <article class="ifc-step">
+          <span>02</span>
+          <h3>Choose a format</h3>
+          <p>Select JPG, PNG, or WebP and adjust quality if available.</p>
+        </article>
+        <article class="ifc-step">
+          <span>03</span>
+          <h3>Convert and download</h3>
+          <p>Preview the converted image and download it to your device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ifc-content-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="ifc-faq-list">
+        <details>
+          <summary>Is this image format converter free?</summary>
+          <p>Yes. You can convert supported images between JPG, PNG, and WebP without paying for the conversion tool.</p>
+        </details>
+        <details>
+          <summary>Can I convert PNG to JPG?</summary>
+          <p>Yes. Upload a PNG and choose JPG as the output format. Transparent areas will be filled with white because JPG does not support transparency.</p>
+        </details>
+        <details>
+          <summary>Can I convert JPG to PNG?</summary>
+          <p>Yes. Choose PNG as the output format. Converting to PNG does not restore details or quality already lost in the original JPG.</p>
+        </details>
+        <details>
+          <summary>Will image transparency be preserved?</summary>
+          <p>PNG and WebP can preserve transparency. JPG cannot, so transparent pixels are filled with white when converting to JPG.</p>
+        </details>
+        <details>
+          <summary>Does converting an image improve its quality?</summary>
+          <p>Not necessarily. Converting formats does not restore lost image detail. JPG and WebP quality settings affect compression and file size.</p>
+        </details>
+        <details>
+          <summary>Are my images uploaded to a server?</summary>
+          <p>No. This tool uses your browser to process images. Your selected image is not uploaded to DigiiFox servers.</p>
+        </details>
+        <details>
+          <summary>Why is the converted image larger?</summary>
+          <p>Different formats use different compression methods. PNG files are often larger than JPG or WebP, especially for photographs.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="ifc-content-section">
+      <h2>Explore More Image Tools</h2>
+      <div class="ifc-related-grid">
+        <a href="jpg-to-png.html">JPG to PNG <span>→</span></a>
+        <a href="png-to-jpg.html">PNG to JPG <span>→</span></a>
+        <a href="image-to-webp.html">Image to WebP <span>→</span></a>
+        <a href="webp-to-jpg.html">WebP to JPG <span>→</span></a>
+        <a href="webp-to-png.html">WebP to PNG <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ifc-footer">
+    <div class="ifc-footer-grid">
+      <div class="ifc-footer-brand">
+        <a href="../index.html" class="ifc-logo">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools for your everyday digital tasks.</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+      <div>
+        <h3>Image Tools</h3>
+        <a href="jpg-to-png.html">JPG to PNG</a>
+        <a href="png-to-jpg.html">PNG to JPG</a>
+        <a href="image-to-webp.html">Image to WebP</a>
+        <a href="image-upscaler.html">Image Upscaler</a>
+      </div>
+      <div>
+        <h3>Helpful Links</h3>
+        <a href="../pages/image-tools.html">All Image Tools</a>
+        <a href="../pages/pdf-tools.html">All PDF Tools</a>
+        <a href="../pages/calculators.html">All Calculators</a>
+      </div>
+    </div>
+    <div class="ifc-footer-bottom">
+      <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+      <p>Fast tools. Simple solutions.</p>
+    </div>
+  </footer>
+</body>
+</html>

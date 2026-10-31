@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert text-based PDF documents into Excel spreadsheets with DigiiFox.">
+    <title>PDF to Excel - DigiiFox</title>
+    <link rel="stylesheet" href="../css/pdf-to-excel.css">
+</head>
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+    <a href="pdf-tools.html" class="back-link">← All PDF Tools</a>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="tool-label">PDF TOOL</span>
+        <h1>PDF to <span>Excel</span></h1>
+        <p>Extract text from PDF documents and export it to an Excel spreadsheet.</p>
+    </section>
+
+    <section class="converter-card">
+        <div class="upload-area" id="dropArea">
+            <div class="upload-icon">PDF</div>
+            <h2>Select your PDF file</h2>
+            <p>Drag and drop a PDF here, or choose a file from your device.</p>
+
+            <label for="pdfInput" class="upload-button">Choose PDF</label>
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf">
+
+            <p class="file-note">PDF files only · Processed in your browser</p>
+        </div>
+
+        <div class="file-info hidden" id="fileInfo">
+            <div>
+                <strong id="fileName">document.pdf</strong>
+                <span id="fileSize"></span>
+            </div>
+            <button type="button" id="removeFile" class="remove-button">Remove</button>
+        </div>
+
+        <div class="options">
+            <label for="sheetName">Worksheet name</label>
+            <input type="text" id="sheetName" value="PDF Data" maxlength="31"
+                   placeholder="Enter worksheet name">
+
+            <label for="pageRange">Pages to convert</label>
+            <select id="pageRange">
+                <option value="all">All pages</option>
+                <option value="first">First page only</option>
+            </select>
+
+            <p class="hint">
+                This tool extracts positioned text into spreadsheet rows.
+                Complex tables may not be reconstructed perfectly.
+            </p>
+        </div>
+
+        <div class="progress-area hidden" id="progressArea">
+            <div class="progress-track">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p id="statusText" role="status" aria-live="polite">Preparing...</p>
+        </div>
+
+        <button type="button" id="convertButton" class="convert-button" disabled>
+            Convert to Excel
+        </button>
+
+        <div class="message hidden" id="message" role="alert"></div>
+    </section>
+
+    <section class="info-section">
+        <h2>How to Use PDF to Excel</h2>
+        <ol>
+            <li>Click <strong>Choose PDF</strong> and select your PDF document.</li>
+            <li>Choose whether to process all pages or only the first page.</li>
+            <li>Enter a name for the Excel worksheet if needed.</li>
+            <li>Click <strong>Convert to Excel</strong>.</li>
+            <li>Download the generated XLSX spreadsheet.</li>
+            <li>Open the spreadsheet in Microsoft Excel or a compatible application and review the extracted data.</li>
+        </ol>
+    </section>
+
+    <section class="info-section faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+
+        <details>
+            <summary>Can I convert any PDF into Excel?</summary>
+            <p>This tool works best with PDFs containing selectable text. Complex tables, columns and layouts may require manual cleanup.</p>
+        </details>
+
+        <details>
+            <summary>Can I convert a scanned PDF?</summary>
+            <p>Not reliably with this version. Scanned pages are usually images, so OCR (optical character recognition) is needed to extract their text.</p>
+        </details>
+
+        <details>
+            <summary>Will the original PDF formatting be preserved?</summary>
+            <p>No. The tool extracts text and arranges it into spreadsheet rows. It does not reproduce the original PDF layout, colors, charts or formulas.</p>
+        </details>
+
+        <details>
+            <summary>Is my PDF uploaded to a server?</summary>
+            <p>The conversion is performed in your browser. This page does not upload the selected PDF to a DigiiFox server. Its JavaScript libraries are loaded from external CDNs, which require an internet connection.</p>
+        </details>
+
+        <details>
+            <summary>Which output format will I receive?</summary>
+            <p>The tool generates an XLSX file that can be opened in Microsoft Excel and other compatible spreadsheet applications.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+            <p>Simple online tools to help you get things done.</p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div>
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="compress-pdf.html">Compress PDF</a>
+            <a href="pdf-to-excel.html">PDF to Excel</a>
+        </div>
+
+        <div>
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="../index.html">Contact</a>
+            <a href="../index.html">Privacy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Tools for everyone.</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="../js/pdf-to-excel.js"></script>
+
+</body>
+</html>

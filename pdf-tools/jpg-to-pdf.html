@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Convert JPG and PNG images to PDF online with DigiiFox. Reorder images and create a PDF privately in your browser.">
+
+    <title>JPG to PDF Converter | DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/jpg-to-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+    <script src="../js/jpg-to-pdf.js" defer></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="pdf-tools.html">PDF Tools</a>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero">
+        <span class="eyebrow">FREE ONLINE PDF TOOL</span>
+        <h1>JPG to <span>PDF Converter</span></h1>
+        <p>Combine images into one PDF. Arrange your images, choose a page size, and download your document.</p>
+    </section>
+
+    <section class="tool-container">
+
+        <div class="upload-box" id="dropZone">
+            <div class="upload-icon">🖼️</div>
+
+            <h2>Select your images</h2>
+            <p>Choose JPG, JPEG, or PNG images from your device.</p>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/jpeg,image/png,.jpg,.jpeg,.png"
+                multiple
+                hidden
+            >
+
+            <button type="button" id="browseBtn" class="primary-btn">
+                + Choose Images
+            </button>
+
+            <p class="file-limit">JPG, JPEG and PNG · Up to 20 images · 15 MB each</p>
+        </div>
+
+        <section id="workspace" class="workspace hidden">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Your images</h2>
+                    <p id="imageCount">0 images selected</p>
+                </div>
+
+                <button type="button" id="addMoreBtn" class="secondary-btn">
+                    + Add More
+                </button>
+            </div>
+
+            <div id="imageList" class="image-list"></div>
+
+            <div class="settings-card">
+                <h2>PDF settings</h2>
+
+                <label for="pageSize">Page size</label>
+
+                <select id="pageSize">
+                    <option value="a4">A4</option>
+                    <option value="letter">US Letter</option>
+                    <option value="original">Fit to image</option>
+                </select>
+
+                <label for="pageOrientation">Page orientation</label>
+
+                <select id="pageOrientation">
+                    <option value="auto">Automatic</option>
+                    <option value="portrait">Portrait</option>
+                    <option value="landscape">Landscape</option>
+                </select>
+
+                <div class="settings-note">
+                    Images are fitted inside each page while preserving their proportions.
+                </div>
+
+                <button type="button" id="convertBtn" class="primary-btn full-btn">
+                    📄 Create PDF
+                </button>
+
+                <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
+            </div>
+
+        </section>
+
+        <section id="resultSection" class="result-card hidden">
+            <div class="success-icon">✓</div>
+            <h2>Your PDF is ready!</h2>
+            <p id="resultDetails">Your images have been converted.</p>
+
+            <a id="downloadBtn" class="primary-btn" href="#" download="images.pdf">
+                ⬇ Download PDF
+            </a>
+
+            <button type="button" id="startAgainBtn" class="secondary-btn">
+                Convert More Images
+            </button>
+        </section>
+
+    </section>
+
+    <section class="privacy-card">
+        <div class="privacy-icon">🔒</div>
+        <div>
+            <h3>Your files stay on your device</h3>
+            <p>Images are processed inside your browser. This tool does not upload your images to the DigiiFox server. The PDF library is loaded from a third-party CDN.</p>
+        </div>
+    </section>
+
+    <section class="how-section">
+        <h2>How to convert JPG to PDF</h2>
+
+        <div class="steps-grid">
+            <article class="step-card">
+                <span>01</span>
+                <h3>Choose images</h3>
+                <p>Select one or more JPG or PNG images.</p>
+            </article>
+
+            <article class="step-card">
+                <span>02</span>
+                <h3>Arrange and customize</h3>
+                <p>Change image order and select the PDF page settings.</p>
+            </article>
+
+            <article class="step-card">
+                <span>03</span>
+                <h3>Create your PDF</h3>
+                <p>Download all your images combined into one PDF file.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>Frequently asked questions</h2>
+
+        <details>
+            <summary>Can I combine multiple images into one PDF?</summary>
+            <p>Yes. Select multiple JPG or PNG images to place each image on a separate PDF page.</p>
+        </details>
+
+        <details>
+            <summary>Can I change the image order?</summary>
+            <p>Yes. Use the up and down buttons beside each image to change the order before creating the PDF.</p>
+        </details>
+
+        <details>
+            <summary>Will my images be uploaded?</summary>
+            <p>No. The conversion happens locally in your browser. The PDF library is downloaded from a third-party CDN.</p>
+        </details>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <p>© 2026 DigiiFox. Simple tools, smarter work.</p>
+    <a href="../index.html">Back to Home</a>
+</footer>
+
+</body>
+</html>

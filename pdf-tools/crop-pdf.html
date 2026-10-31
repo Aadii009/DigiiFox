@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crop PDF pages by adjusting page margins with DigiiFox.">
+    <title>Crop PDF Online - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/crop-pdf.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+    <script src="../js/crop-pdf.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+        <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+
+        <button class="menu-toggle" id="menuToggle"
+            aria-expanded="false" aria-controls="mainNavigation">
+            Menu
+        </button>
+
+        <nav class="main-navigation" id="mainNavigation">
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html" class="active">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="page-intro">
+        <div class="container">
+            <a href="pdf-tools.html" class="back-link">← All PDF Tools</a>
+            <p class="eyebrow">PDF TOOL</p>
+            <h1>Crop PDF</h1>
+            <p class="intro-description">
+                Crop unwanted margins from your PDF pages with simple,
+                adjustable controls.
+            </p>
+            <span class="privacy-badge">Processed in your browser</span>
+        </div>
+    </section>
+
+    <section class="tool-section">
+        <div class="container">
+            <div class="tool-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h2>Crop your PDF pages</h2>
+                        <p>Upload a PDF and adjust the crop margins.</p>
+                    </div>
+                </div>
+
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="pdfInput"
+                        accept=".pdf,application/pdf" hidden>
+
+                    <p class="upload-title">Select your PDF file</p>
+                    <p class="upload-description">
+                        Choose the document you want to crop.
+                    </p>
+                    <button type="button" class="button button-primary" id="chooseFileBtn">
+                        Choose PDF
+                    </button>
+                    <p class="file-requirement">PDF files only</p>
+                </div>
+
+                <div class="file-summary" id="fileSummary" hidden>
+                    <div class="file-details">
+                        <span class="file-label">Selected document</span>
+                        <strong id="fileName"></strong>
+                        <span id="fileSize" class="muted-text"></span>
+                    </div>
+                    <button type="button" class="button button-secondary" id="changeFileBtn">
+                        Change PDF
+                    </button>
+                </div>
+
+                <div class="crop-workspace" id="cropWorkspace" hidden>
+                    <div class="workspace-heading">
+                        <div>
+                            <h3>Crop settings</h3>
+                            <p>Set the margins to remove from each page.</p>
+                        </div>
+                        <span id="pageCount" class="page-count"></span>
+                    </div>
+
+                    <div class="crop-layout">
+                        <div class="preview-panel">
+                            <div class="preview-toolbar">
+                                <span>Page preview</span>
+                                <div class="page-navigation">
+                                    <button type="button" id="previousPageBtn"
+                                        class="page-nav-button" aria-label="Previous page">
+                                        Previous
+                                    </button>
+                                    <span id="currentPageLabel">Page 1</span>
+                                    <button type="button" id="nextPageBtn"
+                                        class="page-nav-button" aria-label="Next page">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="preview-canvas-area" id="previewCanvasArea">
+                                <canvas id="pdfCanvas"></canvas>
+                            </div>
+
+                            <p class="preview-hint">
+                                The red outline shows the area that will remain.
+                            </p>
+                        </div>
+
+                        <div class="settings-panel">
+                            <div class="form-field">
+                                <label for="applyTo">Apply crop to</label>
+                                <select id="applyTo">
+                                    <option value="all">All pages</option>
+                                    <option value="current">Current page only</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="topMargin">Top margin (points)</label>
+                                <input type="number" id="topMargin" min="0" max="10000" step="1" value="0">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="rightMargin">Right margin (points)</label>
+                                <input type="number" id="rightMargin" min="0" max="10000" step="1" value="0">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="bottomMargin">Bottom margin (points)</label>
+                                <input type="number" id="bottomMargin" min="0" max="10000" step="1" value="0">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="leftMargin">Left margin (points)</label>
+                                <input type="number" id="leftMargin" min="0" max="10000" step="1" value="0">
+                            </div>
+
+                            <p class="settings-hint">
+                                72 points equal 1 inch. Cropping changes the visible
+                                page area; it does not erase the hidden content.
+                            </p>
+
+                            <button type="button" class="button button-secondary button-full"
+                                id="resetMarginsBtn">
+                                Reset margins
+                            </button>
+
+                            <button type="button" class="button button-primary button-full"
+                                id="cropDownloadBtn">
+                                Crop and Download PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-message" id="statusMessage"
+                    role="status" aria-live="polite" hidden></div>
+
+                <div class="privacy-note">
+                    <strong>Your privacy matters</strong>
+                    <p>
+                        Your PDF is processed in your browser. DigiiFox does not upload
+                        the document to its own server. Required PDF libraries load from
+                        third-party CDNs, so an internet connection is needed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="information-section">
+        <div class="container information-grid">
+            <article class="information-card">
+                <h2>How to Use Crop PDF</h2>
+                <ol>
+                    <li>Choose a PDF file from your device.</li>
+                    <li>Preview your pages using the page navigation controls.</li>
+                    <li>Enter the margins you want to remove from the page edges.</li>
+                    <li>Choose whether to crop all pages or only the current page.</li>
+                    <li>Select Crop and Download PDF to save your result.</li>
+                </ol>
+            </article>
+
+            <article class="information-card">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>What does cropping a PDF do?</h3>
+                    <p>
+                        Cropping changes the visible page area to hide unwanted margins
+                        or surrounding content.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Does cropping permanently erase content?</h3>
+                    <p>
+                        No. Standard PDF cropping changes the visible page boundaries.
+                        Content outside those boundaries may remain in the file.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What measurement does this tool use?</h3>
+                    <p>
+                        Margins are measured in PDF points. There are 72 points in one inch.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Can I crop just one page?</h3>
+                    <p>
+                        Yes. Select Current page only to crop the page currently displayed
+                        in the preview.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Is my PDF uploaded?</h3>
+                    <p>
+                        No. Processing happens locally in your browser, although the
+                        required libraries load from external CDNs.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="../index.html" class="brand footer-brand">
+                    Digii<span>Fox</span>
+                </a>
+                <p>
+                    Simple, useful online tools for documents, images,
+                    and everyday tasks.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="pdf-organizer.html">PDF Page Organizer</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="image-tools.html">All Image Tools</a>
+                <a href="calculators.html">All Calculators</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple experiences.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

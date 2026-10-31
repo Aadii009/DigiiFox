@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDF to Word Converter - DigiiFox</title>
+    <meta name="description" content="Convert PDF documents into editable Word files online with DigiiFox. Extract text from your PDF and save it as a DOCX document.">
+
+    <link rel="stylesheet" href="../css/pdf-to-word.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
+    <script src="../js/pdf-to-word.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="brand" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-intro">
+            <a href="pdf-tools.html" class="back-link">Back to PDF Tools</a>
+
+            <h1>PDF to Word Converter</h1>
+
+            <p>
+                Convert PDF text into an editable Word document.
+                Upload your PDF and download it as a DOCX file.
+            </p>
+        </section>
+
+        <section class="converter-section">
+            <div class="converter-card">
+                <div class="upload-area" id="uploadArea">
+                    <input
+                        type="file"
+                        id="pdfInput"
+                        accept=".pdf,application/pdf"
+                        hidden
+                    >
+
+                    <p class="upload-title">Choose a PDF file</p>
+                    <p class="upload-description">
+                        Select a PDF from your device to get started.
+                    </p>
+
+                    <button type="button" id="chooseFileBtn" class="primary-btn">
+                        Select PDF
+                    </button>
+
+                    <p class="file-types">PDF files only</p>
+                </div>
+
+                <div id="fileDetails" class="file-details" hidden>
+                    <div class="file-information">
+                        <span class="file-label">Selected document</span>
+                        <p id="fileName" class="selected-file-name"></p>
+                        <p id="fileSize" class="file-size"></p>
+                    </div>
+
+                    <button type="button" id="removeFileBtn" class="text-btn">
+                        Remove
+                    </button>
+                </div>
+
+                <div class="conversion-options">
+                    <label for="outputName">Word document name</label>
+
+                    <input
+                        type="text"
+                        id="outputName"
+                        value="converted-document"
+                        maxlength="100"
+                        placeholder="Enter document name"
+                    >
+
+                    <p class="option-note">
+                        Your downloaded file will use the .docx extension.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="convertBtn"
+                    class="primary-btn convert-btn"
+                    disabled
+                >
+                    Convert to Word
+                </button>
+
+                <div
+                    id="progressContainer"
+                    class="progress-container"
+                    hidden
+                    aria-live="polite"
+                >
+                    <div class="progress-track">
+                        <div id="progressBar" class="progress-bar"></div>
+                    </div>
+
+                    <p id="progressText">Preparing your document...</p>
+                </div>
+
+                <div
+                    id="statusMessage"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
+
+                <p class="privacy-note">
+                    Your PDF is processed in your browser. The file contents
+                    are not uploaded to a DigiiFox server by this tool.
+                </p>
+            </div>
+        </section>
+
+        <section class="information-section">
+            <h2>Convert PDF to Word Online</h2>
+
+            <p>
+                DigiiFox helps you extract selectable text from a PDF and
+                save it in a Microsoft Word-compatible DOCX document.
+                You can then edit the text in Microsoft Word or another
+                compatible word processor.
+            </p>
+
+            <p>
+                The conversion focuses on text. Original images, complex
+                tables, exact spacing, columns, and detailed page layouts
+                may not be preserved. Scanned PDFs that contain images
+                instead of selectable text require OCR before their text
+                can be extracted.
+            </p>
+        </section>
+
+        <section class="how-section">
+            <h2>How to Use PDF to Word</h2>
+
+            <div class="steps-grid">
+                <article class="step-card">
+                    <span class="step-number">1</span>
+                    <h3>Select your PDF</h3>
+                    <p>
+                        Click Select PDF and choose the document you want
+                        to convert.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">2</span>
+                    <h3>Name your document</h3>
+                    <p>
+                        Enter a name for the Word file you want to download.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">3</span>
+                    <h3>Convert the file</h3>
+                    <p>
+                        Click Convert to Word and wait while the text is
+                        extracted from your PDF.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">4</span>
+                    <h3>Download your DOCX</h3>
+                    <p>
+                        Download your Word document and open it in a
+                        compatible word processor.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <details class="faq-item">
+                <summary>Is this PDF to Word converter free?</summary>
+                <p>
+                    This browser-based tool can be used without a conversion
+                    subscription. Internet access is needed to load its
+                    conversion libraries.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Will the original PDF layout be preserved?</summary>
+                <p>
+                    Not exactly. This version extracts text and creates a
+                    Word document. Complex formatting, images, columns, and
+                    tables may need to be corrected manually.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I convert a scanned PDF?</summary>
+                <p>
+                    Scanned PDFs generally contain page images rather than
+                    selectable text. This version does not include OCR,
+                    so scanned documents may produce little or no text.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Are my PDF files uploaded to a server?</summary>
+                <p>
+                    No. This tool reads the PDF in your browser and creates
+                    the DOCX file locally. The conversion code libraries
+                    are loaded from external CDNs.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Which file format will I download?</summary>
+                <p>
+                    The output is a DOCX document that can be opened and
+                    edited in Microsoft Word and other compatible
+                    word-processing applications.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Why is some text missing?</summary>
+                <p>
+                    The PDF might contain scanned images, unusual fonts,
+                    or text that cannot be extracted normally. A document
+                    with selectable text generally works better.
+                </p>
+            </details>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="../index.html" class="brand">
+                    Digii<span>Fox</span>
+                </a>
+
+                <p>
+                    Simple online tools designed to make everyday digital
+                    tasks easier.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="pdf-to-jpg.html">PDF to JPG</a>
+                <a href="jpg-to-pdf.html">JPG to PDF</a>
+                <a href="pdf-organizer.html">PDF Organizer</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html">About DigiiFox</a>
+                <a href="../index.html">Contact</a>
+                <a href="../index.html">Privacy</a>
+                <a href="../index.html">Terms of Use</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="currentYear"></span> DigiiFox.
+                All rights reserved.
+            </p>
+
+            <p>Useful tools. Simple experiences.</p>
+        </div>
+    </footer>
+</body>
+</html>

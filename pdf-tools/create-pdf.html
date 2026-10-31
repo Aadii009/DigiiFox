@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create and download PDF documents from your own text with DigiiFox.">
+    <title>Create PDF - DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/create-pdf.css">
+
+    <!-- HTML to PDF library -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        defer>
+    </script>
+
+    <script src="../js/create-pdf.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../index.html" class="brand" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html" class="active">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-hero">
+            <span class="eyebrow">PDF TOOL</span>
+            <h1>Create <span>PDF</span></h1>
+            <p>
+                Write a document, format your text, and turn it into a
+                downloadable PDF in just a few clicks.
+            </p>
+        </section>
+
+        <section class="tool-container">
+
+            <div class="privacy-note">
+                <strong>Browser-based PDF creation</strong>
+                <span>Your document is generated in your browser. The PDF library
+                    is loaded from an external CDN.</span>
+            </div>
+
+            <div class="editor-card">
+                <div class="editor-header">
+                    <div>
+                        <h2>Your Document</h2>
+                        <p>Write or paste the content you want in your PDF.</p>
+                    </div>
+                    <span class="editor-badge">PDF Editor</span>
+                </div>
+
+                <div class="document-settings">
+                    <div class="field-group title-field">
+                        <label for="documentTitle">Document title</label>
+                        <input
+                            type="text"
+                            id="documentTitle"
+                            maxlength="120"
+                            placeholder="Enter your document title"
+                            value="My Document"
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="paperSize">Paper size</label>
+                        <select id="paperSize">
+                            <option value="a4" selected>A4</option>
+                            <option value="letter">Letter</option>
+                            <option value="legal">Legal</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="orientation">Orientation</label>
+                        <select id="orientation">
+                            <option value="portrait" selected>Portrait</option>
+                            <option value="landscape">Landscape</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="formatting-toolbar" role="toolbar" aria-label="Text formatting">
+                    <button type="button" data-command="bold" title="Bold" aria-label="Bold">
+                        <strong>B</strong>
+                    </button>
+
+                    <button type="button" data-command="italic" title="Italic" aria-label="Italic">
+                        <em>I</em>
+                    </button>
+
+                    <button type="button" data-command="underline" title="Underline" aria-label="Underline">
+                        <u>U</u>
+                    </button>
+
+                    <span class="toolbar-divider"></span>
+
+                    <button type="button" data-block="p" title="Normal text">
+                        Normal
+                    </button>
+
+                    <button type="button" data-block="h2" title="Heading">
+                        Heading
+                    </button>
+
+                    <button type="button" data-block="h3" title="Subheading">
+                        Subheading
+                    </button>
+
+                    <span class="toolbar-divider"></span>
+
+                    <button type="button" data-command="insertUnorderedList" title="Bullet list">
+                        • List
+                    </button>
+
+                    <button type="button" data-command="insertOrderedList" title="Numbered list">
+                        1. List
+                    </button>
+
+                    <button type="button" id="clearFormattingBtn" title="Clear formatting">
+                        Clear format
+                    </button>
+                </div>
+
+                <div
+                    id="documentEditor"
+                    class="document-editor"
+                    contenteditable="true"
+                    role="textbox"
+                    aria-label="Document content"
+                    aria-multiline="true"
+                    spellcheck="true"
+                ><p>Start writing your document here...</p><p>You can paste text, add headings, and format your content using the toolbar above.</p></div>
+
+                <div class="editor-status">
+                    <span id="wordCount">0 words</span>
+                    <span id="characterCount">0 characters</span>
+                </div>
+
+                <div class="editor-actions">
+                    <button type="button" id="clearDocumentBtn" class="secondary-button">
+                        Clear Document
+                    </button>
+
+                    <button type="button" id="downloadPdfBtn" class="primary-button">
+                        Download PDF
+                    </button>
+                </div>
+
+                <div id="statusMessage" class="status-message hidden" role="status" aria-live="polite"></div>
+            </div>
+
+            <section class="preview-card">
+                <div class="preview-heading">
+                    <div>
+                        <h2>Document Preview</h2>
+                        <p>Preview updates as you edit your document.</p>
+                    </div>
+                    <span class="preview-badge">Live Preview</span>
+                </div>
+
+                <div class="preview-background">
+                    <article id="documentPreview" class="document-preview">
+                        <h1 id="previewTitle">My Document</h1>
+                        <div id="previewContent" class="preview-content"></div>
+                    </article>
+                </div>
+            </section>
+
+        </section>
+
+        <section class="information-section">
+            <div class="information-card">
+                <h2>How to Use Create PDF</h2>
+                <ol>
+                    <li>Enter a title for your document.</li>
+                    <li>Write or paste your text into the editor.</li>
+                    <li>Use the toolbar to add bold text, headings, or lists.</li>
+                    <li>Select your preferred paper size and orientation.</li>
+                    <li>Check the document preview.</li>
+                    <li>Click <strong>Download PDF</strong> to save your document.</li>
+                </ol>
+            </div>
+
+            <div class="information-card faq-card">
+                <h2>Frequently Asked Questions (FAQ)</h2>
+
+                <details>
+                    <summary>What does the Create PDF tool do?</summary>
+                    <p>It converts the text and basic formatting you enter into a downloadable PDF document.</p>
+                </details>
+
+                <details>
+                    <summary>Can I format my document?</summary>
+                    <p>Yes. You can use bold, italic, underline, headings, subheadings, and ordered or unordered lists.</p>
+                </details>
+
+                <details>
+                    <summary>Can I choose the PDF page size?</summary>
+                    <p>Yes. You can choose A4, Letter, or Legal paper and select portrait or landscape orientation.</p>
+                </details>
+
+                <details>
+                    <summary>Are my documents uploaded to a server?</summary>
+                    <p>This tool generates the PDF in your browser and does not intentionally upload your document. The PDF library is downloaded from an external CDN.</p>
+                </details>
+
+                <details>
+                    <summary>Can I create a multi-page PDF?</summary>
+                    <p>Yes. Longer documents can flow onto multiple pages. Page breaks and spacing may vary depending on the content and browser rendering.</p>
+                </details>
+
+                <details>
+                    <summary>Can I convert a Word file with this tool?</summary>
+                    <p>This version creates PDFs from text entered or pasted into the editor. It does not directly open Word documents.</p>
+                </details>
+
+                <details>
+                    <summary>Why is the downloaded PDF slightly different from the preview?</summary>
+                    <p>PDF generation uses browser-based HTML rendering. Fonts, page breaks, and spacing may differ slightly between the preview and the final PDF.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="../index.html" class="brand">
+                    Digii<span>Fox</span>
+                </a>
+                <p>Simple online tools to make everyday digital tasks easier.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="create-pdf.html">Create PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Helpful Links</h3>
+                <a href="../index.html">About DigiiFox</a>
+                <a href="../index.html">Contact</a>
+                <a href="../index.html">Privacy</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

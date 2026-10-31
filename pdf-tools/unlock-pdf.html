@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Unlock your PDF with its password and create a new downloadable PDF using DigiiFox.">
+    <title>Unlock PDF Online - DigiiFox</title>
+    <link rel="stylesheet" href="../css/unlock-pdf.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+
+        <nav class="navigation">
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="eyebrow">PDF TOOL</span>
+        <h1>Unlock <span>PDF</span></h1>
+        <p>
+            Use your PDF password to create a new, unprotected PDF file.
+            Your document is processed in your browser.
+        </p>
+    </section>
+
+    <section class="tool-container">
+        <div class="tool-card">
+
+            <div class="upload-area" id="dropArea">
+                <div class="upload-icon" aria-hidden="true">PDF</div>
+                <h2>Select your protected PDF</h2>
+                <p>Drag and drop a PDF here, or choose a file from your device.</p>
+
+                <label for="pdfInput" class="primary-button">Choose PDF File</label>
+                <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+                <p class="file-note">PDF files only · Maximum 50 MB</p>
+            </div>
+
+            <div id="fileDetails" class="file-details" hidden>
+                <div class="file-badge">PDF</div>
+                <div class="file-info">
+                    <strong id="fileName">document.pdf</strong>
+                    <span id="fileSize"></span>
+                </div>
+                <button type="button" id="removeFile" class="remove-button" aria-label="Remove selected PDF">×</button>
+            </div>
+
+            <div class="password-area" id="passwordArea" hidden>
+                <label for="pdfPassword">PDF password</label>
+                <div class="password-field">
+                    <input
+                        type="password"
+                        id="pdfPassword"
+                        placeholder="Enter the PDF password"
+                        autocomplete="off"
+                    >
+                    <button type="button" id="togglePassword" class="toggle-password">Show</button>
+                </div>
+                <p class="helper-text">
+                    Enter the password you are authorized to use for this document.
+                </p>
+            </div>
+
+            <div class="options-area">
+                <label class="checkbox-row">
+                    <input type="checkbox" id="confirmPermission">
+                    <span>I have permission to unlock and create a copy of this PDF.</span>
+                </label>
+            </div>
+
+            <button type="button" id="unlockButton" class="primary-button unlock-button" disabled>
+                Unlock PDF
+            </button>
+
+            <div id="progressArea" class="progress-area" hidden>
+                <div class="progress-track">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <p id="progressText" role="status">Preparing your PDF...</p>
+            </div>
+
+            <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+
+            <a id="downloadButton" class="primary-button download-button" hidden>
+                Download Unlocked PDF
+            </a>
+
+            <p class="privacy-note">
+                <strong>Privacy:</strong> Your selected PDF is processed in your browser.
+                This page does not upload your document to a DigiiFox server.
+            </p>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>How to Use Unlock PDF</h2>
+        <div class="steps-grid">
+            <article class="step-card">
+                <span class="step-number">01</span>
+                <h3>Choose a PDF</h3>
+                <p>Select the password-protected PDF you want to process.</p>
+            </article>
+            <article class="step-card">
+                <span class="step-number">02</span>
+                <h3>Enter the password</h3>
+                <p>Enter the correct password for your document and confirm you have permission.</p>
+            </article>
+            <article class="step-card">
+                <span class="step-number">03</span>
+                <h3>Unlock and download</h3>
+                <p>Create a new PDF copy and download it to your device.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="info-section faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+            <summary>Can I unlock a PDF without its password?</summary>
+            <p>No. This tool requires the correct password for password-protected PDFs. It does not crack or bypass unknown passwords.</p>
+        </details>
+
+        <details>
+            <summary>Will my PDF be uploaded to a server?</summary>
+            <p>No. The PDF is processed in your browser. The PDF.js and jsPDF libraries are loaded from a CDN, so an internet connection is needed to load them.</p>
+        </details>
+
+        <details>
+            <summary>Will the unlocked PDF look exactly like the original?</summary>
+            <p>The downloaded copy contains rendered page images. It generally preserves the visible appearance, but selectable text, links, forms, accessibility features, and other interactive elements will not be preserved.</p>
+        </details>
+
+        <details>
+            <summary>Can I unlock a very large PDF?</summary>
+            <p>This tool accepts files up to 50 MB. Large documents or documents with many pages may exceed your browser's available memory.</p>
+        </details>
+
+        <details>
+            <summary>Does this tool remove every type of PDF restriction?</summary>
+            <p>No. It supports PDFs that the browser library can open using the supplied password. Some encryption methods or damaged files may not work.</p>
+        </details>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="../index.html" class="brand">Digii<span>Fox</span></a>
+            <p>Simple online tools to help you get more done.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Explore</h3>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">All PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>PDF Tools</h3>
+            <a href="merge-pdf.html">Merge PDF</a>
+            <a href="split-pdf.html">Split PDF</a>
+            <a href="compress-pdf.html">Compress PDF</a>
+            <a href="protect-pdf.html">Protect PDF</a>
+            <a href="unlock-pdf.html">Unlock PDF</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Helpful Links</h3>
+            <a href="../index.html">About DigiiFox</a>
+            <a href="../index.html">Contact</a>
+            <a href="../index.html">Privacy</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+        <p>Tools for everyday productivity.</p>
+    </div>
+</footer>
+
+<script src="../js/unlock-pdf.js"></script>
+</body>
+</html>

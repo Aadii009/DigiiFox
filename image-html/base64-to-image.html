@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert Base64 strings and Data URLs back into images. Preview, decode, and download images directly in your browser.">
+  <title>Base64 to Image Converter - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/base64-to-image.css">
+  <script src="../image-js/base64-to-image.js" defer></script>
+</head>
+<body>
+  <header class="bti-header">
+    <a href="../index.html" class="bti-logo">Digii<span>Fox</span></a>
+    <nav class="bti-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/image-tools.html" class="active">Image Tools</a>
+      <a href="../pages/pdf-tools.html">PDF Tools</a>
+      <a href="../pages/calculators.html">Calculators</a>
+    </nav>
+  </header>
+
+  <main class="bti-main">
+    <section class="bti-hero">
+      <span class="bti-eyebrow">IMAGE TOOL</span>
+      <h1>Base64 to <span>Image</span></h1>
+      <p>Decode Base64 text or a Data URL into an image. Preview the result and download it in your preferred format.</p>
+    </section>
+
+    <section class="bti-workspace">
+      <section class="bti-card">
+        <div class="bti-section-heading">
+          <div>
+            <h2>Enter your Base64 data</h2>
+            <p>Paste an encoded image string or a complete Data URL.</p>
+          </div>
+          <span class="bti-step">STEP 1</span>
+        </div>
+
+        <label for="bti-input" class="bti-input-label">Base64 string or Data URL</label>
+        <textarea
+          id="bti-input"
+          class="bti-textarea"
+          placeholder="Paste your Base64 string here, for example: data:image/png;base64,iVBORw0KGgo..."
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off"
+        ></textarea>
+
+        <div class="bti-input-meta">
+          <span id="bti-character-count">0 characters</span>
+          <span>Maximum decoded image size: 20 MB</span>
+        </div>
+
+        <div class="bti-input-actions">
+          <button type="button" class="bti-primary-button" id="bti-decode">Decode Image</button>
+          <button type="button" class="bti-secondary-button" id="bti-clear">Clear</button>
+        </div>
+
+        <p class="bti-status" id="bti-status" role="status" aria-live="polite">
+          Paste your Base64 data to begin.
+        </p>
+      </section>
+
+      <section class="bti-card bti-preview-card" id="bti-preview-card" hidden>
+        <div class="bti-section-heading">
+          <div>
+            <h2>Decoded image</h2>
+            <p>Preview the image generated from your encoded data.</p>
+          </div>
+          <span class="bti-step">STEP 2</span>
+        </div>
+
+        <div class="bti-preview-stage">
+          <img id="bti-preview" alt="Decoded image preview">
+        </div>
+
+        <div class="bti-metadata">
+          <div class="bti-metadata-item">
+            <span>Image format</span>
+            <strong id="bti-format">—</strong>
+          </div>
+          <div class="bti-metadata-item">
+            <span>Dimensions</span>
+            <strong id="bti-dimensions">—</strong>
+          </div>
+          <div class="bti-metadata-item">
+            <span>Decoded size</span>
+            <strong id="bti-size">—</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="bti-card" id="bti-download-card" hidden>
+        <div class="bti-section-heading">
+          <div>
+            <h2>Download settings</h2>
+            <p>Keep the original image format or convert the image before saving.</p>
+          </div>
+          <span class="bti-step">STEP 3</span>
+        </div>
+
+        <div class="bti-settings">
+          <div class="bti-field">
+            <label for="bti-output-format">Download format</label>
+            <select id="bti-output-format">
+              <option value="original">Original format</option>
+              <option value="image/png">PNG</option>
+              <option value="image/jpeg">JPG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+
+          <div class="bti-field" id="bti-quality-field" hidden>
+            <label for="bti-quality">Image quality <span id="bti-quality-value">92%</span></label>
+            <input type="range" id="bti-quality" min="50" max="100" value="92">
+          </div>
+        </div>
+
+        <p class="bti-note" id="bti-format-note">
+          Original format preserves the decoded image without re-encoding.
+        </p>
+
+        <div class="bti-download-actions">
+          <button type="button" class="bti-primary-button" id="bti-download">Download Image</button>
+          <button type="button" class="bti-secondary-button" id="bti-copy-data">Copy Data URL</button>
+        </div>
+
+        <p class="bti-copy-status" id="bti-copy-status" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+
+    <section class="bti-info-section">
+      <article class="bti-info-card">
+        <h2>How to Use Base64 to Image</h2>
+        <ol>
+          <li>Copy your Base64 string or complete Data URL.</li>
+          <li>Paste it into the input box.</li>
+          <li>Click <strong>Decode Image</strong> and wait for the preview.</li>
+          <li>Review the image format, dimensions, and decoded size.</li>
+          <li>Choose the original format, PNG, JPG, or WebP.</li>
+          <li>Click <strong>Download Image</strong> to save the result.</li>
+        </ol>
+      </article>
+
+      <article class="bti-info-card">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+          <summary>What is Base64 to Image conversion?</summary>
+          <p>It decodes text that represents binary image data and turns it back into image content that your browser can display.</p>
+        </details>
+
+        <details>
+          <summary>Can I paste a complete Data URL?</summary>
+          <p>Yes. A Data URL such as data:image/png;base64,... includes the image MIME type and encoded data. You can also paste a raw Base64 string.</p>
+        </details>
+
+        <details>
+          <summary>Which image formats are supported?</summary>
+          <p>The tool supports common browser-decodable image formats. PNG, JPEG, and WebP are the main download options. Support for other formats depends on your browser.</p>
+        </details>
+
+        <details>
+          <summary>Are my Base64 data and images uploaded?</summary>
+          <p>The decoding and image conversion happen in your browser. The tool does not intentionally upload your pasted data or decoded image to a DigiiFox server.</p>
+        </details>
+
+        <details>
+          <summary>Why does my Base64 string fail?</summary>
+          <p>The text may be incomplete, contain invalid characters, use an unsupported format, or exceed the size limit. Make sure you copy the entire encoded string.</p>
+        </details>
+
+        <details>
+          <summary>Will converting to JPG preserve transparency?</summary>
+          <p>No. JPG does not support transparency. Transparent areas are filled with white when exporting as JPG.</p>
+        </details>
+      </article>
+    </section>
+
+    <section class="bti-related">
+      <h2>Explore More Image Tools</h2>
+      <div class="bti-related-grid">
+        <a href="image-to-base64.html">Image to Base64 <span>→</span></a>
+        <a href="image-format-converter.html">Image Format Converter <span>→</span></a>
+        <a href="image-compressor.html">Image Compressor <span>→</span></a>
+        <a href="image-resizer.html">Image Resizer <span>→</span></a>
+        <a href="image-collage-maker.html">Image Collage Maker <span>→</span></a>
+        <a href="image-to-webp.html">Image to WebP <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bti-footer">
+    <div class="bti-footer-main">
+      <div class="bti-footer-brand">
+        <a href="../index.html" class="bti-logo">Digii<span>Fox</span></a>
+        <p>Simple, useful online tools designed to make everyday digital tasks easier.</p>
+      </div>
+
+      <div class="bti-footer-column">
+        <h3>Explore</h3>
+        <a href="../index.html">Home</a>
+        <a href="../pages/image-tools.html">Image Tools</a>
+        <a href="../pages/pdf-tools.html">PDF Tools</a>
+        <a href="../pages/calculators.html">Calculators</a>
+      </div>
+
+      <div class="bti-footer-column">
+        <h3>Popular Image Tools</h3>
+        <a href="image-to-base64.html">Image to Base64</a>
+        <a href="image-compressor.html">Image Compressor</a>
+        <a href="image-resizer.html">Image Resizer</a>
+        <a href="image-collage-maker.html">Image Collage Maker</a>
+      </div>
+
+      <div class="bti-footer-column">
+        <h3>Helpful Links</h3>
+        <a href="../pages/image-tools.html">Browse Image Tools</a>
+        <a href="../index.html">All Tools</a>
+      </div>
+    </div>
+
+    <div class="bti-footer-bottom">
+      <p>© <span id="bti-year"></span> DigiiFox. All rights reserved.</p>
+      <p>Made for simple, productive workflows.</p>
+    </div>
+  </footer>
+</body>
+</html>

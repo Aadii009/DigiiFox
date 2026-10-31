@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Merge multiple PDF files into one PDF for free using DigiiFox. Files are processed locally in your browser.">
+
+    <title>Merge PDF Online Free | DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/merge-pdf.css">
+
+    <!-- PDF processing library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">
+            Digii<span>Fox</span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html" class="active">PDF Tools</a>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <a href="../index.html#calculators">Calculators</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">FREE PDF TOOL</div>
+
+        <h1>Merge PDF Files</h1>
+
+        <p>
+            Combine multiple PDF files into one document.
+            Simple, fast, and designed with your privacy in mind.
+        </p>
+    </section>
+
+    <!-- Main Tool -->
+    <main class="tool-container">
+
+        <section class="merge-card">
+
+            <div class="section-heading">
+                <h2>Combine your PDF files</h2>
+                <p>Select at least two PDF files to get started.</p>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="upload-area" id="dropArea" tabindex="0" role="button" aria-label="Choose PDF files or drop them here">
+
+                <div class="upload-icon">📄</div>
+
+                <h3>Drop your PDF files here</h3>
+
+                <p>or click the button below to browse files</p>
+
+                <button type="button" class="browse-btn" id="browseBtn">
+                    Select PDF Files
+                </button>
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept=".pdf,application/pdf"
+                    multiple
+                    hidden
+                >
+
+                <small>PDF files only · Processed in your browser</small>
+
+            </div>
+
+            <!-- File List -->
+            <div class="file-section" id="fileSection" hidden>
+
+                <div class="file-heading">
+                    <div>
+                        <h3>Your PDF files</h3>
+                        <p id="fileCount">0 files selected</p>
+                    </div>
+
+                    <button type="button" class="clear-btn" id="clearBtn">
+                        Clear all
+                    </button>
+                </div>
+
+                <div id="fileList" class="file-list"></div>
+
+                <p class="order-note">
+                    Files will be merged in the order shown below.
+                    Use the arrows to change their order.
+                </p>
+
+                <button
+                    type="button"
+                    id="mergeBtn"
+                    class="merge-btn"
+                    disabled
+                >
+                    Merge PDF Files
+                </button>
+
+                <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+
+            </div>
+
+            <!-- Privacy -->
+            <div class="privacy-box">
+                <span>🔒</span>
+
+                <div>
+                    <h4>Your files stay on your device</h4>
+
+                    <p>
+                        This tool processes PDFs in your browser.
+                        The code does not upload your selected files to a DigiiFox server.
+                        Avoid using the tool if your browser or device is not trusted.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Instructions -->
+        <section class="instructions">
+            <h2>How to merge PDF files</h2>
+
+            <div class="steps-grid">
+
+                <article class="step-card">
+                    <span>01</span>
+                    <h3>Select PDFs</h3>
+                    <p>Choose two or more PDF files from your device.</p>
+                </article>
+
+                <article class="step-card">
+                    <span>02</span>
+                    <h3>Arrange files</h3>
+                    <p>Use the arrow buttons to arrange the files in the correct order.</p>
+                </article>
+
+                <article class="step-card">
+                    <span>03</span>
+                    <h3>Merge and download</h3>
+                    <p>Click Merge PDF Files and download your combined document.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <details>
+                <summary>Is DigiiFox Merge PDF free?</summary>
+                <p>Yes. This version of the tool is free to use.</p>
+            </details>
+
+            <details>
+                <summary>Are my PDF files uploaded?</summary>
+                <p>
+                    The merging code runs in your browser and does not send
+                    selected PDF contents to a DigiiFox server. The page does
+                    load a PDF library from a CDN, so the browser makes a
+                    network request to load that library.
+                </p>
+            </details>
+
+            <details>
+                <summary>Can I change the order of the PDFs?</summary>
+                <p>Yes. Use the up and down arrow buttons next to each file.</p>
+            </details>
+
+            <details>
+                <summary>Will my original files change?</summary>
+                <p>No. The tool creates a new merged PDF and leaves your original files unchanged.</p>
+            </details>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="../index.html" class="logo">
+            Digii<span>Fox</span>
+        </a>
+
+        <p>Simple tools. Better productivity. Privacy first.</p>
+
+        <p>© <span id="year"></span> DigiiFox. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/merge-pdf.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Explore DigiiFox PDF tools to merge, split, compress, convert, edit, and organize PDF documents.">
+
+    <meta name="theme-color" content="#fff5f5">
+
+    <title>PDF Tools — DigiiFox</title>
+
+    <!-- Reuse the main stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- PDF page styles -->
+    <link rel="stylesheet" href="../css/pdf-tools.css">
+
+    <!-- PDF page functionality -->
+    <script src="../js/pdf-tools.js" defer></script>
+
+</head>
+
+<body class="pdf-page">
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="../index.html" class="logo" aria-label="DigiiFox Home">
+                <span class="logo-icon">🦊</span>
+                <span>Digii<span class="logo-highlight">Fox</span></span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="navLinks">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="../index.html">Home</a>
+
+                <a href="pdf-tools.html" class="active">
+                    PDF Tools
+                </a>
+
+                <a href="image-tools.html">
+                    Image Tools
+                </a>
+
+                <a href="calculators.html">
+                    Calculators
+                </a>
+
+            </nav>
+
+            <a href="../index.html#all-tools" class="nav-button">
+                All Tools
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- Hero -->
+        <section class="pdf-hero">
+
+            <div class="container pdf-hero-content">
+
+                <div class="pdf-badge">
+                    <span class="pdf-badge-dot"></span>
+                    Simple PDF Solutions
+                </div>
+
+                <h1>
+                    All Your PDF Tools.
+                    <span>One Simple Place.</span>
+                </h1>
+
+                <p>
+                    Merge, split, compress, convert, and manage your
+                    PDF documents with easy-to-use tools.
+                </p>
+
+                <form class="pdf-search" id="pdfSearchForm" role="search">
+
+                    <span aria-hidden="true">⌕</span>
+
+                    <input type="search" id="pdfSearch" placeholder="Search PDF tools..." aria-label="Search PDF tools"
+                        autocomplete="off">
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <p class="pdf-search-note" id="pdfSearchNote" aria-live="polite">
+                    Explore all 25 PDF tools below.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Privacy Banner -->
+        <section class="pdf-privacy-section">
+
+            <div class="container">
+
+                <div class="pdf-privacy-banner">
+
+                    <div class="pdf-privacy-icon" aria-hidden="true">
+                        🔒
+                    </div>
+
+                    <div>
+
+                        <h2>Designed With Your Privacy in Mind</h2>
+
+                        <p>
+                            Our goal is to process your documents directly
+                            in your browser, without uploading them to
+                            DigiiFox servers. Individual tools will be
+                            tested before being advertised as fully
+                            local-processing tools.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Category Filters -->
+        <section class="pdf-tools-section">
+
+            <div class="container">
+
+                <div class="pdf-section-heading">
+
+                    <div>
+
+                        <span class="pdf-eyebrow">
+                            PDF TOOLBOX
+                        </span>
+
+                        <h2>Explore PDF Tools</h2>
+
+                        <p>
+                            Choose a tool to get started.
+                        </p>
+
+                    </div>
+
+                    <span class="pdf-tool-count" id="pdfToolCount">
+                        25 Tools
+                    </span>
+
+                </div>
+
+
+                <div class="pdf-filters" aria-label="Filter PDF tools">
+
+                    <button type="button" class="pdf-filter active" data-category="all" aria-pressed="true">
+                        All Tools
+                    </button>
+
+                    <button type="button" class="pdf-filter" data-category="convert" aria-pressed="false">
+                        Convert
+                    </button>
+
+                    <button type="button" class="pdf-filter" data-category="organize" aria-pressed="false">
+                        Organize
+                    </button>
+
+                    <button type="button" class="pdf-filter" data-category="edit" aria-pressed="false">
+                        Edit
+                    </button>
+
+                    <button type="button" class="pdf-filter" data-category="security" aria-pressed="false">
+                        Security
+                    </button>
+
+                </div>
+
+
+                <!-- PDF Tools Grid -->
+                <div class="pdf-tool-grid" id="pdfToolGrid">
+
+                    <!-- 1 -->
+                    <a href="../pdf-tools/pdf-to-word.html" class="pdf-tool-card" data-category="convert"
+                        data-name="PDF to Word" data-keywords="doc docx editable document conversion">
+
+                        <div class="pdf-tool-icon">📝</div>
+
+                        <h3>PDF to Word</h3>
+
+                        <p>
+                            Convert PDF content into an editable
+                            Word document.
+                        </p>
+
+                        <span class="pdf-card-link">
+                            Open Tool →
+                        </span>
+
+                    </a>
+
+
+                    <!-- 2 -->
+                    <a href="../pdf-tools/word-to-pdf.html" class="pdf-tool-card" data-category="convert"
+                        data-name="Word to PDF" data-keywords="doc docx document conversion">
+
+                        <div class="pdf-tool-icon">📄</div>
+
+                        <h3>Word to PDF</h3>
+
+                        <p>
+                            Convert Word documents into PDF files.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 3 -->
+                    <a href="../pdf-tools/merge-pdf.html" class="tool-card">
+                        <div class="tool-icon">📑</div>
+                        <h3>Merge PDF</h3>
+                        <p>Combine multiple PDF files into one document.</p>
+                        <span class="pdf-card-link">Open Tool →</span>
+                    </a>
+
+
+                    <!-- 4 -->
+                    <a href="../pdf-tools/split-pdf.html" class="pdf-tool-card" data-category="organize"
+                        data-name="Split PDF" data-keywords="separate pages ranges">
+
+                        <div class="pdf-tool-icon">✂️</div>
+
+                        <h3>Split PDF</h3>
+
+                        <p>
+                            Separate a PDF into smaller documents
+                            or page ranges.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 5 -->
+                    <a href="../pdf-tools/compress-pdf.html" class="pdf-tool-card" data-category="organize"
+                        data-name="Compress PDF" data-keywords="reduce file size optimize">
+
+                        <div class="pdf-tool-icon">🗜️</div>
+
+                        <h3>Compress PDF</h3>
+
+                        <p>
+                            Reduce PDF file size where supported.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 6 -->
+                    <a href="../pdf-tools/pdf-to-jpg.html" class="pdf-tool-card" data-category="convert"
+                        data-name="PDF to JPG" data-keywords="image photo export">
+
+                        <div class="pdf-tool-icon">🌄</div>
+
+                        <h3>PDF to JPG</h3>
+
+                        <p>
+                            Convert PDF pages into JPG images.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 7 -->
+                    <a href="../pdf-tools/jpg-to-pdf.html" class="pdf-tool-card" data-category="convert"
+                        data-name="JPG to PDF" data-keywords="image photo create document">
+
+                        <div class="pdf-tool-icon">🖼️</div>
+
+                        <h3>JPG to PDF</h3>
+
+                        <p>
+                            Turn JPG images into a PDF document.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 8 -->
+                    <a href="../pdf-tools/pdf-to-png.html" class="pdf-tool-card" data-category="convert"
+                        data-name="PDF to PNG" data-keywords="image transparent export">
+
+                        <div class="pdf-tool-icon">🎨</div>
+
+                        <h3>PDF to PNG</h3>
+
+                        <p>
+                            Export PDF pages as PNG images.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 9 -->
+                    <a href="../pdf-tools/excel-to-pdf.html" class="pdf-tool-card" data-category="convert"
+                        data-name="Excel to PDF" data-keywords="xlsx spreadsheet worksheet">
+
+                        <div class="pdf-tool-icon">📊</div>
+
+                        <h3>Excel to PDF</h3>
+
+                        <p>
+                            Convert supported spreadsheets to PDF.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 10 -->
+                    <a href="../pdf-tools/powerpoint-to-pdf.html" class="pdf-tool-card" data-category="convert"
+                        data-name="PowerPoint to PDF" data-keywords="ppt pptx presentation slides">
+
+                        <div class="pdf-tool-icon">📽️</div>
+
+                        <h3>PowerPoint to PDF</h3>
+
+                        <p>
+                            Convert presentations into PDF files.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 11 -->
+                    <a href="../pdf-tools/pdf-to-excel.html" class="pdf-tool-card" data-category="convert"
+                        data-name="PDF to Excel" data-keywords="xlsx spreadsheet extract tables">
+
+                        <div class="pdf-tool-icon">📈</div>
+
+                        <h3>PDF to Excel</h3>
+
+                        <p>
+                            Extract supported table data into spreadsheets.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 12 -->
+                    <a href="../pdf-tools/pdf-to-powerpoint.html" class="pdf-tool-card" data-category="convert"
+                        data-name="PDF to PowerPoint" data-keywords="ppt pptx presentation slides">
+
+                        <div class="pdf-tool-icon">🖥️</div>
+
+                        <h3>PDF to PowerPoint</h3>
+
+                        <p>
+                            Turn PDF pages into presentation slides.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 13 -->
+                    <a href="../pdf-tools/edit-pdf.html" class="pdf-tool-card" data-category="edit" data-name="Edit PDF"
+                        data-keywords="annotate text shapes">
+
+                        <div class="pdf-tool-icon">✏️</div>
+
+                        <h3>Edit PDF</h3>
+
+                        <p>
+                            Add supported text, shapes, and annotations.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 14 -->
+                    <a href="../pdf-tools/rotate-pdf.html" class="pdf-tool-card" data-category="organize"
+                        data-name="Rotate PDF" data-keywords="turn pages orientation">
+
+                        <div class="pdf-tool-icon">🔄</div>
+
+                        <h3>Rotate PDF</h3>
+
+                        <p>
+                            Rotate individual pages or entire documents.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 15 -->
+                    <a href="../pdf-tools/delete-pdf-pages.html" class="pdf-tool-card" data-category="organize"
+                        data-name="Delete PDF Pages" data-keywords="remove unwanted pages">
+
+                        <div class="pdf-tool-icon">🗑️</div>
+
+                        <h3>Delete PDF Pages</h3>
+
+                        <p>
+                            Remove unwanted pages from a PDF.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 16 -->
+                    <a href="../pdf-tools/extract-pdf-pages.html" class="pdf-tool-card" data-category="organize"
+                        data-name="Extract PDF Pages" data-keywords="select save specific pages">
+
+                        <div class="pdf-tool-icon">📃</div>
+
+                        <h3>Extract PDF Pages</h3>
+
+                        <p>
+                            Save selected pages as a new PDF.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 17 -->
+                    <a href="../pdf-tools/reorder-pdf-pages.html" class="pdf-tool-card" data-category="organize"
+                        data-name="Reorder PDF Pages" data-keywords="rearrange move page order">
+
+                        <div class="pdf-tool-icon">↕️</div>
+
+                        <h3>Reorder PDF Pages</h3>
+
+                        <p>
+                            Rearrange pages into your preferred order.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 18 -->
+                    <a href="../pdf-tools/add-page-numbers.html" class="pdf-tool-card" data-category="edit"
+                        data-name="Add Page Numbers" data-keywords="number footer header">
+
+                        <div class="pdf-tool-icon">🔢</div>
+
+                        <h3>Add Page Numbers</h3>
+
+                        <p>
+                            Add page numbers to your PDF documents.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 19 -->
+                    <a href="../pdf-tools/add-watermark.html" class="pdf-tool-card" data-category="edit"
+                        data-name="Add Watermark" data-keywords="stamp text image mark">
+
+                        <div class="pdf-tool-icon">💧</div>
+
+                        <h3>Add Watermark</h3>
+
+                        <p>
+                            Apply text or image watermarks to PDFs.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 20 -->
+                    <a href="../pdf-tools/protect-pdf.html" class="pdf-tool-card" data-category="security"
+                        data-name="Protect PDF" data-keywords="password encrypt security">
+
+                        <div class="pdf-tool-icon">🔐</div>
+
+                        <h3>Protect PDF</h3>
+
+                        <p>
+                            Encrypt supported PDFs with a password.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 21 -->
+                    <a href="../pdf-tools/unlock-pdf.html" class="pdf-tool-card" data-category="security"
+                        data-name="Unlock PDF" data-keywords="password authorized access">
+
+                        <div class="pdf-tool-icon">🔓</div>
+
+                        <h3>Unlock PDF</h3>
+
+                        <p>
+                            Remove supported restrictions when authorized.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 22 -->
+                    <a href="../pdf-tools/sign-pdf.html" class="pdf-tool-card" data-category="edit" data-name="Sign PDF"
+                        data-keywords="signature signing">
+
+                        <div class="pdf-tool-icon">✍️</div>
+
+                        <h3>Sign PDF</h3>
+
+                        <p>
+                            Add a visual signature to a PDF.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 23 -->
+                    <a href="../pdf-tools/pdf-metadata-editor.html" class="pdf-tool-card" data-category="edit"
+                        data-name="PDF Metadata Editor" data-keywords="author title subject properties">
+
+                        <div class="pdf-tool-icon">ℹ️</div>
+
+                        <h3>PDF Metadata Editor</h3>
+
+                        <p>
+                            Edit supported document information fields.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+
+                    <!-- 24 -->
+                    <a href="../pdf-tools/ocr-pdf.html" class="pdf-tool-card" data-category="convert"
+                        data-name="OCR PDF" data-keywords="scanned documents recognize text">
+
+                        <div class="pdf-tool-icon">🔍</div>
+
+                        <h3>OCR PDF</h3>
+
+                        <p>
+                            Extract text from supported scanned documents.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+                    <!-- 25 -->
+                    <a href="../pdf-tools/create-pdf.html" class="pdf-tool-card" data-category="convert"
+                        data-name="Create PDF" data-keywords="generate document text images">
+
+                        <div class="pdf-tool-icon">➕</div>
+
+                        <h3>Create PDF</h3>
+
+                        <p>
+                            Create a PDF from supported content and images.
+                        </p>
+
+                        <span class="pdf-card-link">Open Tool →</span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- No Results -->
+                <div class="pdf-empty-state" id="pdfEmptyState" hidden>
+
+                    <div>🔎</div>
+
+                    <h3>No PDF tools found</h3>
+
+                    <p>
+                        Try another search term or choose a different category.
+                    </p>
+
+                    <button type="button" id="resetPdfFilters">
+                        Show All Tools
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- How It Works -->
+        <section class="pdf-how-section">
+
+            <div class="container">
+
+                <div class="pdf-section-heading">
+
+                    <div>
+
+                        <span class="pdf-eyebrow">
+                            EASY WORKFLOW
+                        </span>
+
+                        <h2>How to Use DigiiFox PDF Tools</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pdf-steps-grid">
+
+                    <article class="pdf-step">
+
+                        <span class="pdf-step-number">01</span>
+
+                        <h3>Choose a Tool</h3>
+
+                        <p>
+                            Find the PDF utility that matches your task.
+                        </p>
+
+                    </article>
+
+
+                    <article class="pdf-step">
+
+                        <span class="pdf-step-number">02</span>
+
+                        <h3>Select Your File</h3>
+
+                        <p>
+                            Choose a supported document from your device.
+                        </p>
+
+                    </article>
+
+
+                    <article class="pdf-step">
+
+                        <span class="pdf-step-number">03</span>
+
+                        <h3>Process and Download</h3>
+
+                        <p>
+                            Use the available options and save the result.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <a href="../index.html" class="logo footer-logo">
+                <span class="logo-icon">🦊</span>
+                <span>Digii<span class="logo-highlight">Fox</span></span>
+            </a>
+
+            <p>Smart Tools. Simple Solutions.</p>
+
+            <div class="footer-links">
+
+                <a href="../index.html">Home</a>
+
+                <a href="pdf-tools.html">PDF Tools</a>
+
+                <a href="image-tools.html">Image Tools</a>
+
+                <a href="calculators.html">Calculators</a>
+
+                <a href="privacy.html">Privacy Policy</a>
+
+            </div>
+
+            <p class="copyright">
+                © <span id="currentYear"></span> DigiiFox.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+</body>
+
+</html>

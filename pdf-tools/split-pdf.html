@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Split PDF files, extract selected pages, and divide PDFs into page ranges using DigiiFox."
+    >
+
+    <title>Split PDF Online Free | DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/split-pdf.css">
+
+    <!-- PDF processing library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <!-- ZIP library for multiple PDF downloads -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">
+            Digii<span>Fox</span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html" class="active">PDF Tools</a>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <a href="../index.html#calculators">Calculators</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="hero-badge">FREE PDF TOOL</span>
+
+        <h1>Split PDF Files</h1>
+
+        <p>
+            Extract specific pages, divide your PDF into ranges,
+            or create a separate PDF for every page.
+        </p>
+    </section>
+
+    <main class="tool-container">
+
+        <section class="split-card">
+
+            <div class="section-heading">
+                <h2>Split your PDF</h2>
+                <p>Choose a PDF file to get started.</p>
+            </div>
+
+            <!-- Upload -->
+            <div class="upload-area" id="dropArea" tabindex="0" role="button" aria-label="Choose a PDF file or drop it here">
+
+                <div class="upload-icon">📄</div>
+
+                <h3>Drop your PDF here</h3>
+
+                <p>or browse files on your device</p>
+
+                <button type="button" class="primary-btn" id="browseBtn">
+                    Select PDF File
+                </button>
+
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept=".pdf,application/pdf"
+                    hidden
+                >
+
+                <small>PDF files only · Local browser processing</small>
+            </div>
+
+            <!-- Selected file information -->
+            <div id="fileInfo" class="file-info" hidden>
+                <div class="pdf-icon">PDF</div>
+
+                <div class="file-details">
+                    <h3 id="fileName">document.pdf</h3>
+                    <p id="fileMeta">Loading PDF information...</p>
+                </div>
+
+                <button type="button" id="changeFileBtn" class="secondary-btn">
+                    Change
+                </button>
+            </div>
+
+            <!-- Split options -->
+            <section id="splitOptions" hidden>
+
+                <h2 class="options-title">Choose a splitting method</h2>
+
+                <div class="mode-grid">
+
+                    <label class="mode-card">
+                        <input type="radio" name="splitMode" value="extract" checked>
+
+                        <span class="mode-icon">📑</span>
+                        <strong>Extract Pages</strong>
+
+                        <small>
+                            Combine selected pages into one PDF.
+                        </small>
+                    </label>
+
+                    <label class="mode-card">
+                        <input type="radio" name="splitMode" value="ranges">
+
+                        <span class="mode-icon">✂️</span>
+                        <strong>Split by Ranges</strong>
+
+                        <small>
+                            Create separate PDFs from page ranges.
+                        </small>
+                    </label>
+
+                    <label class="mode-card">
+                        <input type="radio" name="splitMode" value="individual">
+
+                        <span class="mode-icon">📃</span>
+                        <strong>Individual Pages</strong>
+
+                        <small>
+                            Create one PDF for every page.
+                        </small>
+                    </label>
+
+                </div>
+
+                <!-- Extract controls -->
+                <div id="extractControls" class="mode-controls">
+
+                    <label for="pageInput">Pages to extract</label>
+
+                    <input
+                        type="text"
+                        id="pageInput"
+                        placeholder="Example: 1, 3, 5-8"
+                        autocomplete="off"
+                    >
+
+                    <p class="field-help">
+                        Enter page numbers separated by commas.
+                        Use hyphens for ranges. Page numbers start at 1.
+                    </p>
+
+                </div>
+
+                <!-- Range controls -->
+                <div id="rangeControls" class="mode-controls" hidden>
+
+                    <label for="rangeInput">Page ranges</label>
+
+                    <input
+                        type="text"
+                        id="rangeInput"
+                        placeholder="Example: 1-3, 4-6, 7-10"
+                        autocomplete="off"
+                    >
+
+                    <p class="field-help">
+                        Each range creates a separate PDF.
+                        Ranges must not overlap.
+                    </p>
+
+                </div>
+
+                <!-- Individual page information -->
+                <div id="individualControls" class="mode-controls" hidden>
+
+                    <p>
+                        Every page will become a separate PDF.
+                        The PDFs will be packaged into one ZIP file.
+                    </p>
+
+                    <p class="field-help">
+                        Large documents may take time and memory to process.
+                    </p>
+
+                </div>
+
+                <button type="button" id="splitBtn" class="primary-btn split-btn">
+                    Split PDF
+                </button>
+
+                <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+
+                <div id="downloadArea" class="download-area" hidden></div>
+
+            </section>
+
+            <!-- Privacy -->
+            <div class="privacy-box">
+                <span>🔒</span>
+
+                <div>
+                    <h4>Your files stay on your device</h4>
+
+                    <p>
+                        The splitting operation runs in your browser.
+                        This page does not upload your selected PDF to a DigiiFox server.
+                        The PDF and ZIP libraries are loaded from a CDN.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- How it works -->
+        <section class="instructions">
+            <h2>How to split a PDF</h2>
+
+            <div class="steps-grid">
+
+                <article class="step-card">
+                    <span>01</span>
+                    <h3>Upload your PDF</h3>
+                    <p>Select a PDF from your device.</p>
+                </article>
+
+                <article class="step-card">
+                    <span>02</span>
+                    <h3>Choose your pages</h3>
+                    <p>Select pages, define ranges, or split every page.</p>
+                </article>
+
+                <article class="step-card">
+                    <span>03</span>
+                    <h3>Download results</h3>
+                    <p>Save your new PDF or ZIP file to your device.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <details>
+                <summary>Can I extract specific PDF pages?</summary>
+                <p>
+                    Yes. Enter page numbers such as 1, 3, 5-8 to
+                    create a new PDF containing those pages in the requested order.
+                </p>
+            </details>
+
+            <details>
+                <summary>Can I split every page into its own PDF?</summary>
+                <p>
+                    Yes. Choose Individual Pages to create one PDF per page,
+                    packaged into a ZIP archive.
+                </p>
+            </details>
+
+            <details>
+                <summary>Are my PDFs uploaded to a server?</summary>
+                <p>
+                    The code processes your PDF locally and does not transmit
+                    its contents to a DigiiFox backend. The page does download
+                    its processing libraries from a CDN.
+                </p>
+            </details>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="../index.html" class="logo">
+            Digii<span>Fox</span>
+        </a>
+
+        <p>Simple tools. Better productivity. Privacy first.</p>
+
+        <p>© <span id="year"></span> DigiiFox. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/split-pdf.js"></script>
+
+</body>
+</html>

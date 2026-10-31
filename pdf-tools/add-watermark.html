@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Add a custom text watermark to your PDF online with DigiiFox.">
+    <title>Watermark PDF | DigiiFox</title>
+    <link rel="stylesheet" href="../css/watermark-pdf.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html">PDF Tools</a>
+            <a href="image-tools.html">Image Tools</a>
+            <a href="calculators.html">Calculators</a>
+        </nav>
+    </header>
+
+    <!-- Compact Hero -->
+    <section class="hero">
+        <a href="pdf-tools.html" class="back-link">← Back to PDF Tools</a>
+        <div class="tool-badge">PDF TOOL</div>
+        <h1>Watermark PDF</h1>
+        <p>Add custom text to your PDF pages for branding, identification, or document protection.</p>
+    </section>
+
+    <!-- Main Tool -->
+    <main class="tool-container">
+
+        <section class="upload-box" id="uploadBox">
+            <div class="upload-icon">💧</div>
+            <h2>Select your PDF file</h2>
+            <p>Drag and drop your PDF here, or choose it from your device.</p>
+
+            <input type="file" id="pdfInput" accept=".pdf,application/pdf" hidden>
+
+            <button type="button" class="primary-btn" id="chooseFileBtn">
+                Choose PDF File
+            </button>
+
+            <p class="file-limit">PDF files only · Maximum size: 50 MB</p>
+        </section>
+
+        <!-- Selected File -->
+        <section class="file-panel hidden" id="filePanel">
+            <div class="file-details">
+                <div class="file-icon">📄</div>
+                <div class="file-info">
+                    <h3 id="fileName">document.pdf</h3>
+                    <p id="fileSize">0 MB</p>
+                    <p id="pageCount">PDF details</p>
+                </div>
+            </div>
+
+            <button type="button" class="text-btn" id="removeFileBtn">
+                Remove file
+            </button>
+        </section>
+
+        <!-- Watermark Settings -->
+        <section class="settings-panel hidden" id="settingsPanel">
+            <h2>Watermark Settings</h2>
+
+            <div class="form-group">
+                <label for="watermarkText">Watermark text</label>
+                <input
+                    type="text"
+                    id="watermarkText"
+                    maxlength="100"
+                    placeholder="e.g. CONFIDENTIAL"
+                    value="CONFIDENTIAL"
+                >
+                <small>Enter the text you want to place on your PDF.</small>
+            </div>
+
+            <div class="settings-grid">
+                <div class="form-group">
+                    <label for="fontSize">Font size</label>
+                    <input type="number" id="fontSize" min="10" max="120" value="42">
+                    <small>10–120 points</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="watermarkColor">Text color</label>
+                    <input type="color" id="watermarkColor" value="#777777">
+                </div>
+
+                <div class="form-group">
+                    <label for="opacity">Opacity</label>
+                    <select id="opacity">
+                        <option value="0.15">Very light — 15%</option>
+                        <option value="0.25">Light — 25%</option>
+                        <option value="0.40" selected>Medium — 40%</option>
+                        <option value="0.60">Strong — 60%</option>
+                        <option value="0.80">Very strong — 80%</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="rotation">Rotation</label>
+                    <select id="rotation">
+                        <option value="0">Horizontal — 0°</option>
+                        <option value="45" selected>Diagonal — 45°</option>
+                        <option value="-45">Diagonal — -45°</option>
+                        <option value="90">Vertical — 90°</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pageMode">Apply watermark to</label>
+                <select id="pageMode">
+                    <option value="all">All pages</option>
+                    <option value="selected">Selected pages only</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="selectedPagesGroup">
+                <label for="selectedPages">Page numbers</label>
+                <input
+                    type="text"
+                    id="selectedPages"
+                    placeholder="Example: 1, 3, 5-7"
+                    autocomplete="off"
+                >
+                <small>Use commas to separate pages and hyphens for ranges.</small>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="preview-section">
+                <h3>Watermark Preview</h3>
+                <div class="watermark-preview" id="watermarkPreview">
+                    <span id="previewText">CONFIDENTIAL</span>
+                </div>
+                <p>This is an approximate preview. The final placement is centered on each selected page.</p>
+            </div>
+
+            <button type="button" class="primary-btn action-btn" id="applyBtn">
+                Add Watermark & Download PDF
+            </button>
+
+            <div class="progress-area hidden" id="progressArea">
+                <div class="progress-track">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p id="progressText">Preparing PDF...</p>
+            </div>
+        </section>
+
+        <!-- Status -->
+        <div class="status-message hidden" id="statusMessage" role="status" aria-live="polite"></div>
+
+        <!-- Privacy -->
+        <section class="privacy-note">
+            <span class="privacy-icon">🔒</span>
+            <div>
+                <h3>Your privacy matters</h3>
+                <p>
+                    Your PDF is processed in your browser and is not uploaded to
+                    the DigiiFox server. The PDF processing library is loaded
+                    from a third-party CDN.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Full-Sized Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <a href="../index.html" class="logo footer-logo">Digii<span>Fox</span></a>
+                <p>
+                    Simple online tools to help you work smarter.
+                    Convert files, manage images, and calculate with ease.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>PDF Tools</h3>
+                <a href="pdf-tools.html">All PDF Tools</a>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="split-pdf.html">Split PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="rotate-pdf.html">Rotate PDF</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html">Calculators</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Our Promise</h3>
+                <p>Easy-to-use tools</p>
+                <p>Browser-based processing</p>
+                <p>Privacy-focused design</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+            <p>Useful tools. Simple solutions.</p>
+        </div>
+    </footer>
+
+    <script src="../js/watermark-pdf.js"></script>
+</body>
+</html>

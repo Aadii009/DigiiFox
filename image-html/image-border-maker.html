@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Add customizable borders to your images online with DigiiFox Image Border Maker. Adjust thickness, colors, corners and styles directly in your browser.">
+  <title>Image Border Maker - DigiiFox</title>
+  <link rel="stylesheet" href="../image-css/image-border-maker.css">
+</head>
+<body>
+
+<header class="ibm-header">
+  <a href="../index.html" class="ibm-logo">Digii<span>Fox</span></a>
+  <nav class="ibm-nav">
+    <a href="../index.html">Home</a>
+    <a href="../pages/image-tools.html" class="active">Image Tools</a>
+    <a href="../pages/pdf-tools.html">PDF Tools</a>
+    <a href="../pages/calculators.html">Calculators</a>
+  </nav>
+</header>
+
+<main class="ibm-main">
+  <section class="ibm-hero">
+    <span class="ibm-badge">IMAGE TOOLS</span>
+    <h1>Image <span>Border Maker</span></h1>
+    <p>Add beautiful borders to your photos. Customize thickness, color, corners and border style, then download your finished image.</p>
+  </section>
+
+  <section class="ibm-workspace">
+    <div class="ibm-upload-card" id="uploadCard">
+      <div class="ibm-upload-icon" aria-hidden="true">＋</div>
+      <h2>Choose an Image</h2>
+      <p>Upload an image from your device or drag and drop it here.</p>
+      <label for="imageInput" class="ibm-primary-button">Select Image</label>
+      <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+      <p class="ibm-file-note">JPG, PNG or WebP · Maximum 25 MB</p>
+    </div>
+
+    <div class="ibm-editor" id="editor" hidden>
+      <div class="ibm-controls">
+        <div class="ibm-panel-heading">
+          <h2>Border Settings</h2>
+          <button type="button" id="resetButton" class="ibm-text-button">Reset</button>
+        </div>
+
+        <div class="ibm-field">
+          <div class="ibm-label-row">
+            <label for="thickness">Border Thickness</label>
+            <output id="thicknessValue" for="thickness">20 px</output>
+          </div>
+          <input type="range" id="thickness" min="0" max="100" value="20">
+          <div class="ibm-range-labels"><span>None</span><span>100 px</span></div>
+        </div>
+
+        <div class="ibm-field">
+          <label for="borderColor">Border Color</label>
+          <div class="ibm-color-row">
+            <input type="color" id="borderColor" value="#2878d0">
+            <input type="text" id="borderColorText" value="#2878d0" maxlength="7" aria-label="Border color hex code">
+          </div>
+        </div>
+
+        <div class="ibm-field">
+          <label for="backgroundColor">Background Color</label>
+          <div class="ibm-color-row">
+            <input type="color" id="backgroundColor" value="#ffffff">
+            <input type="text" id="backgroundColorText" value="#ffffff" maxlength="7" aria-label="Background color hex code">
+          </div>
+          <small>Used behind transparent images and in rounded corners.</small>
+        </div>
+
+        <div class="ibm-field">
+          <div class="ibm-label-row">
+            <label for="cornerRadius">Corner Roundness</label>
+            <output id="cornerValue" for="cornerRadius">0 px</output>
+          </div>
+          <input type="range" id="cornerRadius" min="0" max="100" value="0">
+          <div class="ibm-range-labels"><span>Square</span><span>Rounded</span></div>
+        </div>
+
+        <div class="ibm-field">
+          <label for="borderStyle">Border Style</label>
+          <select id="borderStyle">
+            <option value="solid">Solid</option>
+            <option value="dashed">Dashed</option>
+            <option value="dotted">Dotted</option>
+          </select>
+        </div>
+
+        <div class="ibm-field">
+          <label for="outputFormat">Download Format</label>
+          <select id="outputFormat">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+
+        <div class="ibm-field" id="qualityField" hidden>
+          <div class="ibm-label-row">
+            <label for="quality">Image Quality</label>
+            <output id="qualityValue" for="quality">92%</output>
+          </div>
+          <input type="range" id="quality" min="50" max="100" value="92">
+        </div>
+
+        <button type="button" id="downloadButton" class="ibm-primary-button ibm-download-button">
+          Download Image
+        </button>
+        <button type="button" id="changeImageButton" class="ibm-secondary-button">
+          Choose Another Image
+        </button>
+        <p class="ibm-privacy-note">🔒 Your image is processed locally in your browser.</p>
+      </div>
+
+      <div class="ibm-preview-panel">
+        <div class="ibm-preview-heading">
+          <div>
+            <h2>Live Preview</h2>
+            <p>Your border updates as you change the settings.</p>
+          </div>
+          <span class="ibm-preview-tag">PREVIEW</span>
+        </div>
+
+        <div class="ibm-canvas-wrap" id="canvasWrap">
+          <canvas id="previewCanvas" aria-label="Image with your selected border"></canvas>
+          <p id="previewPlaceholder">Your image preview will appear here.</p>
+        </div>
+
+        <div class="ibm-image-info" id="imageInfo"></div>
+        <p class="ibm-error" id="errorMessage" role="alert" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ibm-info-section">
+    <h2>How to Use Image Border Maker</h2>
+    <div class="ibm-steps">
+      <article class="ibm-step"><span>01</span><h3>Upload an Image</h3><p>Select a JPG, PNG or WebP image from your device.</p></article>
+      <article class="ibm-step"><span>02</span><h3>Customize the Border</h3><p>Adjust thickness, colors, corner roundness and border style.</p></article>
+      <article class="ibm-step"><span>03</span><h3>Preview Your Image</h3><p>Check the live preview and choose your preferred download format.</p></article>
+      <article class="ibm-step"><span>04</span><h3>Download</h3><p>Save your bordered image directly to your device.</p></article>
+    </div>
+  </section>
+
+  <section class="ibm-info-section ibm-faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="ibm-faq-list">
+      <details><summary>How do I add a border to an image?</summary><p>Upload your image, choose the border thickness and color, select a style, and download the result.</p></details>
+      <details><summary>Can I change the border color?</summary><p>Yes. Use the color picker or enter a valid hexadecimal color code to customize the border and background.</p></details>
+      <details><summary>Can I create rounded corners?</summary><p>Yes. Adjust the Corner Roundness slider to create rounded corners around your image.</p></details>
+      <details><summary>Which image formats are supported?</summary><p>You can upload JPG, PNG and WebP images. You can export your finished image as PNG, JPG or WebP.</p></details>
+      <details><summary>Are my images uploaded to a server?</summary><p>No. Image processing takes place locally in your browser. This tool does not upload your image to a DigiiFox server.</p></details>
+      <details><summary>Will transparency be preserved?</summary><p>PNG and WebP can preserve transparent areas of the original image, except where the selected background or border is drawn. JPG does not support transparency and uses the selected background color.</p></details>
+      <details><summary>Will the border reduce image quality?</summary><p>The border itself is drawn at the output resolution. PNG is lossless, while JPG and WebP quality settings affect compression.</p></details>
+    </div>
+  </section>
+
+  <section class="ibm-related">
+    <h2>Explore More Image Tools</h2>
+    <div class="ibm-related-links">
+      <a href="./image-rotator.html">Image Rotator</a>
+      <a href="./image-cropper.html">Image Cropper</a>
+      <a href="./image-resizer.html">Image Resizer</a>
+      <a href="./image-compressor.html">Image Compressor</a>
+      <a href="./image-format-converter.html">Image Format Converter</a>
+      <a href="./image-watermark.html">Image Watermark</a>
+    </div>
+  </section>
+</main>
+
+<footer class="ibm-footer">
+  <div class="ibm-footer-grid">
+    <div class="ibm-footer-brand">
+      <a href="../index.html" class="ibm-logo">Digii<span>Fox</span></a>
+      <p>Simple, useful online tools designed to make everyday tasks easier.</p>
+    </div>
+    <div><h3>Explore</h3><a href="../pages/image-tools.html">Image Tools</a><a href="../pages/pdf-tools.html">PDF Tools</a><a href="../pages/calculators.html">Calculators</a></div>
+    <div><h3>Image Tools</h3><a href="./image-border-maker.html">Image Border Maker</a><a href="./image-rotator.html">Image Rotator</a><a href="./image-watermark.html">Image Watermark</a><a href="./image-cropper.html">Image Cropper</a></div>
+    <div><h3>Helpful Links</h3><a href="../index.html">Home</a><a href="../pages/image-tools.html">All Image Tools</a><a href="../pages/pdf-tools.html">All PDF Tools</a></div>
+  </div>
+  <div class="ibm-footer-bottom"><p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p><p>Tools that make digital work easier.</p></div>
+</footer>
+
+<script src="../image-js/image-border-maker.js"></script>
+</body>
+</html>

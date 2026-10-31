@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Optimize PDF files in your browser with DigiiFox. Compare the resulting file size and download your optimized document.">
+
+    <title>Compress PDF Online | DigiiFox</title>
+
+    <link rel="stylesheet" href="../css/compress-pdf.css">
+
+    <!-- PDF processing library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">
+            Digii<span>Fox</span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="pdf-tools.html" class="active">PDF Tools</a>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <a href="../index.html#calculators">Calculators</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="hero-badge">FREE PDF TOOL</span>
+
+        <h1>Compress PDF Files</h1>
+
+        <p>
+            Optimize your PDF documents, compare file sizes,
+            and download the result directly to your device.
+        </p>
+    </section>
+
+    <main class="tool-container">
+
+        <section class="compress-card">
+
+            <div class="section-heading">
+                <h2>Reduce your PDF size</h2>
+                <p>Select a PDF file to begin.</p>
+            </div>
+
+            <!-- Upload -->
+            <div class="upload-area" id="dropArea" tabindex="0" role="button"
+                aria-label="Choose a PDF file or drop it here">
+
+                <div class="upload-icon">📄</div>
+
+                <h3>Drop your PDF here</h3>
+
+                <p>or browse files on your device</p>
+
+                <button type="button" id="browseBtn" class="primary-btn">
+                    Select PDF File
+                </button>
+
+                <input type="file" id="fileInput" accept=".pdf,application/pdf" hidden>
+
+                <small>PDF files only · Processed in your browser</small>
+            </div>
+
+            <!-- File details -->
+            <div id="fileInfo" class="file-info" hidden>
+
+                <div class="pdf-icon">PDF</div>
+
+                <div class="file-details">
+                    <h3 id="fileName">document.pdf</h3>
+                    <p id="fileMeta">File details</p>
+                </div>
+
+                <button type="button" id="changeFileBtn" class="secondary-btn">
+                    Change
+                </button>
+
+            </div>
+
+            <!-- Compression options -->
+            <section id="compressionOptions" hidden>
+
+                <h2 class="options-title">Choose an optimization mode</h2>
+
+                <div class="mode-grid">
+
+                    <label class="mode-card">
+                        <input type="radio" name="compressionMode" value="balanced" checked>
+
+                        <span class="mode-icon">⚖️</span>
+
+                        <strong>Balanced</strong>
+
+                        <small>
+                            Rewrite the PDF while preserving its pages and
+                            standard document content where supported.
+                        </small>
+                    </label>
+
+                    <label class="mode-card">
+                        <input type="radio" name="compressionMode" value="quality">
+
+                        <span class="mode-icon">✨</span>
+
+                        <strong>Quality First</strong>
+
+                        <small>
+                            Preserve the document content and use the
+                            standard PDF serialization settings.
+                        </small>
+                    </label>
+
+                    <label class="mode-card">
+                        <input type="radio" name="compressionMode" value="compact">
+
+                        <span class="mode-icon">📦</span>
+
+                        <strong>Compact</strong>
+
+                        <small>
+                            Use object streams where supported. Some PDF
+                            readers or workflows may require compatibility testing.
+                        </small>
+                    </label>
+
+                </div>
+
+                <div class="size-panel">
+
+                    <div class="size-item">
+                        <span>Original size</span>
+                        <strong id="originalSize">—</strong>
+                    </div>
+
+                    <div class="size-item">
+                        <span>New size</span>
+                        <strong id="newSize">—</strong>
+                    </div>
+
+                    <div class="size-item">
+                        <span>Size difference</span>
+                        <strong id="sizeDifference">—</strong>
+                    </div>
+
+                </div>
+
+                <p class="compression-note">
+                    These modes use different PDF save settings.
+                    They do not currently recompress embedded images or
+                    guarantee a reduction in file size.
+                </p>
+
+                <button type="button" id="compressBtn" class="primary-btn compress-btn">
+                    Optimize PDF
+                </button>
+
+                <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+
+                <div id="downloadArea" hidden></div>
+
+            </section>
+
+            <!-- Privacy -->
+            <div class="privacy-box">
+                <span>🔒</span>
+
+                <div>
+                    <h4>Your files stay on your device</h4>
+
+                    <p>
+                        This tool processes selected PDFs in your browser
+                        and does not upload their contents to a DigiiFox server.
+                        The PDF library is loaded from a CDN.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- How to use -->
+        <section class="instructions">
+
+            <h2>How to optimize a PDF</h2>
+
+            <div class="steps-grid">
+
+                <article class="step-card">
+                    <span>01</span>
+                    <h3>Select your PDF</h3>
+                    <p>Choose the document you want to optimize.</p>
+                </article>
+
+                <article class="step-card">
+                    <span>02</span>
+                    <h3>Choose a mode</h3>
+                    <p>Select the optimization settings that suit your needs.</p>
+                </article>
+
+                <article class="step-card">
+                    <span>03</span>
+                    <h3>Compare and download</h3>
+                    <p>Check the actual resulting file size before downloading.</p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+
+            <h2>Frequently Asked Questions</h2>
+
+            <details>
+                <summary>Will every PDF become smaller?</summary>
+
+                <p>
+                    No. The result depends on the document's existing structure.
+                    Some files may become smaller, while others may remain
+                    similar in size or become larger.
+                </p>
+            </details>
+
+            <details>
+                <summary>Does this version reduce image quality?</summary>
+
+                <p>
+                    This initial version does not intentionally recompress
+                    embedded images. Image-based PDFs may therefore see little
+                    or no reduction in size.
+                </p>
+            </details>
+
+            <details>
+                <summary>Are my files uploaded?</summary>
+
+                <p>
+                    The processing code works in your browser and does not
+                    send PDF contents to a DigiiFox backend. The browser does
+                    load the PDF library from a CDN.
+                </p>
+            </details>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <a href="../index.html" class="logo">
+            Digii<span>Fox</span>
+        </a>
+
+        <p>Simple tools. Better productivity. Privacy first.</p>
+
+        <p>© <span id="year"></span> DigiiFox. All rights reserved.</p>
+
+    </footer>
+
+    <script src="../js/compress-pdf.js"></script>
+
+</body>
+
+</html>
