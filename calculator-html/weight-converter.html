@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Free online weight converter by DigiiFox. Convert kilograms, grams, milligrams, pounds, ounces, stones, and metric tonnes instantly.">
+
+    <title>Weight Converter - DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/weight-converter.css">
+</head>
+
+<body class="weight-page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="weight-main">
+
+        <!-- HERO -->
+        <section class="weight-hero">
+            <div class="container">
+
+                <div class="weight-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Unit Conversion</span>
+                    <span>/</span>
+                    <span>Weight Converter</span>
+                </div>
+
+                <div class="weight-hero-content">
+
+                    <div class="weight-icon" aria-hidden="true">⚖</div>
+
+                    <span class="weight-eyebrow">UNIT CONVERSION</span>
+
+                    <h1>Weight Converter</h1>
+
+                    <p>
+                        Convert weight and mass measurements instantly.
+                        Switch between metric and imperial units with
+                        accurate results and simple formulas.
+                    </p>
+
+                    <div class="weight-badges">
+                        <span>✓ Instant conversion</span>
+                        <span>✓ Free to use</span>
+                        <span>✓ Browser-based</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CONVERTER SECTION -->
+        <section class="weight-tool-section">
+            <div class="container">
+
+                <div class="weight-layout">
+
+                    <!-- MAIN CONVERTER -->
+                    <section class="weight-card">
+
+                        <div class="weight-card-heading">
+                            <div>
+                                <span class="weight-small-label">
+                                    WEIGHT & MASS
+                                </span>
+
+                                <h2>Convert Measurements</h2>
+
+                                <p>
+                                    Enter a value and choose your source
+                                    and target units.
+                                </p>
+                            </div>
+
+                            <div class="weight-card-symbol" aria-hidden="true">
+                                ⇄
+                            </div>
+                        </div>
+
+
+                        <form id="weightForm" novalidate>
+
+                            <!-- VALUE -->
+                            <div class="weight-field">
+                                <label for="weightValue">
+                                    Value to convert
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="weightValue"
+                                    name="weightValue"
+                                    value="1"
+                                    min="0"
+                                    max="1e100"
+                                    step="any"
+                                    placeholder="Enter a value"
+                                    inputmode="decimal"
+                                    required
+                                >
+
+                                <small>
+                                    Enter zero or a positive number.
+                                </small>
+                            </div>
+
+
+                            <!-- UNIT SELECTORS -->
+                            <div class="weight-unit-row">
+
+                                <div class="weight-field">
+                                    <label for="weightFromUnit">From</label>
+
+                                    <select id="weightFromUnit" name="fromUnit">
+
+                                        <optgroup label="Metric">
+                                            <option value="mg">Milligram (mg)</option>
+                                            <option value="g">Gram (g)</option>
+                                            <option value="kg" selected>Kilogram (kg)</option>
+                                            <option value="tonne">Metric tonne (t)</option>
+                                        </optgroup>
+
+                                        <optgroup label="Imperial">
+                                            <option value="oz">Ounce (oz)</option>
+                                            <option value="lb">Pound (lb)</option>
+                                            <option value="stone">Stone (st)</option>
+                                        </optgroup>
+
+                                    </select>
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="weight-swap-button"
+                                    id="weightSwap"
+                                    aria-label="Swap units"
+                                    title="Swap units">
+                                    ⇄
+                                </button>
+
+
+                                <div class="weight-field">
+                                    <label for="weightToUnit">To</label>
+
+                                    <select id="weightToUnit" name="toUnit">
+
+                                        <optgroup label="Metric">
+                                            <option value="mg">Milligram (mg)</option>
+                                            <option value="g">Gram (g)</option>
+                                            <option value="kg">Kilogram (kg)</option>
+                                            <option value="tonne">Metric tonne (t)</option>
+                                        </optgroup>
+
+                                        <optgroup label="Imperial">
+                                            <option value="oz">Ounce (oz)</option>
+                                            <option value="lb" selected>Pound (lb)</option>
+                                            <option value="stone">Stone (st)</option>
+                                        </optgroup>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <!-- ERROR -->
+                            <div
+                                class="weight-error"
+                                id="weightError"
+                                role="alert"
+                                aria-live="polite"
+                                hidden>
+                            </div>
+
+
+                            <!-- ACTIONS -->
+                            <div class="weight-actions">
+                                <button type="submit" class="weight-primary-button">
+                                    Convert Weight <span aria-hidden="true">→</span>
+                                </button>
+
+                                <button type="button"
+                                        id="weightReset"
+                                        class="weight-secondary-button">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                        <!-- RESULT -->
+                        <section
+                            class="weight-result"
+                            id="weightResult"
+                            aria-live="polite"
+                            hidden>
+
+                            <div class="weight-result-top">
+                                <span class="weight-result-label">
+                                    CONVERSION RESULT
+                                </span>
+
+                                <span class="weight-success-icon" aria-hidden="true">
+                                    ✓
+                                </span>
+                            </div>
+
+                            <div class="weight-result-equation">
+                                <span id="weightResultInput">1 kg</span>
+                                <span class="weight-equals">=</span>
+                            </div>
+
+                            <div class="weight-result-value" id="weightResultValue">
+                                2.20462
+                            </div>
+
+                            <div class="weight-result-unit" id="weightResultUnit">
+                                Pounds (lb)
+                            </div>
+
+                            <div class="weight-result-details">
+                                <p id="weightResultSummary">
+                                    1 kilogram is approximately equal to
+                                    2.20462 pounds.
+                                </p>
+
+                                <div class="weight-formula-box">
+                                    <span>Conversion formula</span>
+                                    <strong id="weightResultFormula">
+                                        Result = Value × Source factor ÷ Target factor
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="weight-copy-button"
+                                id="weightCopy">
+                                Copy Result
+                            </button>
+
+                            <span
+                                class="weight-copy-message"
+                                id="weightCopyMessage"
+                                role="status"
+                                aria-live="polite">
+                            </span>
+
+                        </section>
+
+                    </section>
+
+
+                    <!-- QUICK REFERENCE -->
+                    <aside class="weight-info-card">
+
+                        <div class="weight-info-icon" aria-hidden="true">
+                            ⚖️
+                        </div>
+
+                        <h3>Quick Reference</h3>
+
+                        <p>
+                            Common weight and mass conversion values.
+                        </p>
+
+                        <div class="weight-reference-list">
+
+                            <div>
+                                <span>1 kilogram</span>
+                                <strong>1,000 grams</strong>
+                            </div>
+
+                            <div>
+                                <span>1 gram</span>
+                                <strong>1,000 milligrams</strong>
+                            </div>
+
+                            <div>
+                                <span>1 metric tonne</span>
+                                <strong>1,000 kilograms</strong>
+                            </div>
+
+                            <div>
+                                <span>1 kilogram</span>
+                                <strong>2.20462 pounds</strong>
+                            </div>
+
+                            <div>
+                                <span>1 pound</span>
+                                <strong>16 ounces</strong>
+                            </div>
+
+                            <div>
+                                <span>1 stone</span>
+                                <strong>14 pounds</strong>
+                            </div>
+
+                            <div>
+                                <span>1 ounce</span>
+                                <strong>28.3495 grams</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="weight-info-note">
+                            <strong>Remember</strong>
+
+                            <p>
+                                Weight and mass are related but different
+                                physical quantities. This converter uses
+                                standard mass-unit conversion factors.
+                            </p>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- EDUCATIONAL CONTENT -->
+        <section class="weight-content-section">
+            <div class="container">
+
+                <!-- DEFINITION -->
+                <article class="weight-content-card">
+
+                    <span class="weight-section-label">OVERVIEW</span>
+
+                    <h2>What Is a Weight Converter?</h2>
+
+                    <p>
+                        A weight converter changes a measurement from one
+                        mass unit to another. For example, you can convert
+                        kilograms to pounds, grams to ounces, or metric
+                        tonnes to kilograms.
+                    </p>
+
+                    <p>
+                        These conversions are useful for cooking, shipping,
+                        shopping, science, education, fitness, and many
+                        everyday activities. Although people commonly say
+                        "weight converter", most everyday conversions
+                        between kilograms, grams, pounds, and ounces are
+                        technically conversions of mass.
+                    </p>
+
+                </article>
+
+
+                <!-- FORMULA -->
+                <article class="weight-content-card">
+
+                    <span class="weight-section-label">THE MATHEMATICS</span>
+
+                    <h2>Weight Conversion Formula</h2>
+
+                    <p>
+                        This converter uses kilograms as its common base unit.
+                        First, convert the original value to kilograms.
+                        Then divide by the target unit's kilogram factor.
+                    </p>
+
+                    <div class="weight-formula-grid">
+
+                        <div class="weight-formula-card">
+                            <span>Step 1</span>
+                            <h3>Convert to kilograms</h3>
+
+                            <code>
+                                Kilograms = Value × Source factor
+                            </code>
+                        </div>
+
+                        <div class="weight-formula-card">
+                            <span>Step 2</span>
+                            <h3>Convert to target unit</h3>
+
+                            <code>
+                                Result = Kilograms ÷ Target factor
+                            </code>
+                        </div>
+
+                    </div>
+
+
+                    <div class="weight-example-box">
+
+                        <h3>Example: Convert 5 kilograms to grams</h3>
+
+                        <p>1 kilogram = 1,000 grams</p>
+
+                        <div class="weight-example-equation">
+                            5 × 1,000 = 5,000 g
+                        </div>
+
+                        <p>
+                            Therefore, 5 kilograms equals 5,000 grams.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- HOW TO USE -->
+                <article class="weight-content-card">
+
+                    <span class="weight-section-label">QUICK GUIDE</span>
+
+                    <h2>How to Use the Weight Converter</h2>
+
+                    <div class="weight-steps">
+
+                        <div class="weight-step">
+                            <span>01</span>
+
+                            <div>
+                                <h3>Enter your value</h3>
+
+                                <p>
+                                    Type the mass or weight measurement
+                                    you want to convert.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="weight-step">
+                            <span>02</span>
+
+                            <div>
+                                <h3>Choose the original unit</h3>
+
+                                <p>
+                                    Select the unit of your existing
+                                    measurement.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="weight-step">
+                            <span>03</span>
+
+                            <div>
+                                <h3>Select the target unit</h3>
+
+                                <p>
+                                    Choose the unit into which you
+                                    want to convert.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="weight-step">
+                            <span>04</span>
+
+                            <div>
+                                <h3>View and copy the result</h3>
+
+                                <p>
+                                    Read the converted value or copy it
+                                    for use elsewhere.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FAQ -->
+                <article class="weight-content-card">
+
+                    <span class="weight-section-label">HELP CENTER</span>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="weight-faq-list">
+
+                        <details class="weight-faq">
+                            <summary>Is the Weight Converter free?</summary>
+
+                            <p>
+                                Yes. The DigiiFox Weight Converter is free
+                                to use and does not require an account.
+                            </p>
+                        </details>
+
+                        <details class="weight-faq">
+                            <summary>Which units does it support?</summary>
+
+                            <p>
+                                It supports milligrams, grams, kilograms,
+                                metric tonnes, ounces, pounds, and stones.
+                            </p>
+                        </details>
+
+                        <details class="weight-faq">
+                            <summary>How many grams are in a kilogram?</summary>
+
+                            <p>
+                                One kilogram equals exactly 1,000 grams.
+                            </p>
+                        </details>
+
+                        <details class="weight-faq">
+                            <summary>How many pounds are in a kilogram?</summary>
+
+                            <p>
+                                One kilogram is approximately equal to
+                                2.2046226218 pounds.
+                            </p>
+                        </details>
+
+                        <details class="weight-faq">
+                            <summary>Can I convert decimal values?</summary>
+
+                            <p>
+                                Yes. You can convert decimal measurements,
+                                such as 2.5 kilograms or 3.75 pounds.
+                            </p>
+                        </details>
+
+                        <details class="weight-faq">
+                            <summary>Are my values uploaded to a server?</summary>
+
+                            <p>
+                                No. Calculations run locally in your browser.
+                                This tool does not need to upload your
+                                measurements to a server.
+                            </p>
+                        </details>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RELATED TOOLS -->
+                <article class="weight-content-card">
+
+                    <span class="weight-section-label">EXPLORE MORE</span>
+
+                    <h2>Related Conversion Tools</h2>
+
+                    <p>
+                        Explore more DigiiFox tools for everyday calculations
+                        and unit conversions.
+                    </p>
+
+                    <div class="weight-related-grid">
+
+                        <a href="length-converter.html"
+                           class="weight-related-card">
+                            <span>📏</span>
+                            <strong>Length Converter</strong>
+                            <small>Convert length and distance</small>
+                        </a>
+
+                        <a href="../calculator.html"
+                           class="weight-related-card">
+                            <span>🧮</span>
+                            <strong>All Calculators</strong>
+                            <small>Explore DigiiFox tools</small>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FULL FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                        Making everyday digital tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Unit Conversion</h3>
+
+                    <a href="length-converter.html">Length Converter</a>
+                    <a href="weight-converter.html">Weight Converter</a>
+                    <a href="../calculator.html">All Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+
+                    <p>
+                        Simple, accessible, and useful online tools
+                        designed for everyday needs.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/weight-converter.js"></script>
+
+</body>
+</html>

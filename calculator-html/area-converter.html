@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Convert area measurements between square metres, acres, hectares, square feet, and more with the free DigiiFox Area Converter.">
+
+    <title>Area Converter | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/area-converter.css">
+</head>
+
+<body>
+    <div class="area-page">
+
+        <!-- HEADER -->
+        <header class="site-header">
+            <div class="container header-content">
+                <a href="../index.html" class="logo" aria-label="DigiiFox Home">
+                    Digii<span>Fox</span>
+                </a>
+
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                    aria-controls="mainNav">☰</button>
+
+                <nav class="main-nav" id="mainNav">
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html" class="active">Calculators</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO -->
+            <section class="area-hero">
+                <div class="container">
+                    <div class="area-breadcrumb">
+                        <a href="../calculator.html">Calculators</a>
+                        <span>/</span>
+                        <span>Unit Conversion</span>
+                        <span>/</span>
+                        <span>Area Converter</span>
+                    </div>
+
+                    <span class="area-eyebrow">DIGIIFOX UNIT CONVERTER</span>
+
+                    <h1>Area Converter</h1>
+
+                    <p>
+                        Convert land areas, room measurements, and surface areas
+                        between metric and imperial units in seconds.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CONVERTER -->
+            <section class="area-main-section">
+                <div class="container">
+                    <div class="area-layout">
+
+                        <div class="area-card">
+                            <div class="area-card-heading">
+                                <div>
+                                    <span class="area-section-label">CONVERSION TOOL</span>
+                                    <h2>Convert Area</h2>
+                                    <p>Enter an area and select your units.</p>
+                                </div>
+
+                                <div class="area-icon" aria-hidden="true">m²</div>
+                            </div>
+
+                            <form id="areaForm" novalidate>
+                                <div class="area-fields">
+
+                                    <div class="area-field">
+                                        <label for="areaValue">Area value</label>
+                                        <input type="number" id="areaValue" value="1" min="0" step="any"
+                                            placeholder="Enter area" required>
+                                        <small>Enter zero or a positive number.</small>
+                                    </div>
+
+                                    <div class="area-field">
+                                        <label for="areaFromUnit">Convert from</label>
+                                        <select id="areaFromUnit">
+                                            <option value="mm2">Square millimetres (mm²)</option>
+                                            <option value="cm2">Square centimetres (cm²)</option>
+                                            <option value="m2" selected>Square metres (m²)</option>
+                                            <option value="km2">Square kilometres (km²)</option>
+                                            <option value="hectare">Hectares (ha)</option>
+                                            <option value="acre">Acres (ac)</option>
+                                            <option value="in2">Square inches (in²)</option>
+                                            <option value="ft2">Square feet (ft²)</option>
+                                            <option value="yd2">Square yards (yd²)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="area-swap-wrap">
+                                        <button type="button" id="areaSwap" class="area-swap-btn"
+                                            aria-label="Swap area units" title="Swap units">⇅</button>
+                                    </div>
+
+                                    <div class="area-field">
+                                        <label for="areaToUnit">Convert to</label>
+                                        <select id="areaToUnit">
+                                            <option value="mm2">Square millimetres (mm²)</option>
+                                            <option value="cm2">Square centimetres (cm²)</option>
+                                            <option value="m2">Square metres (m²)</option>
+                                            <option value="km2">Square kilometres (km²)</option>
+                                            <option value="hectare">Hectares (ha)</option>
+                                            <option value="acre">Acres (ac)</option>
+                                            <option value="in2">Square inches (in²)</option>
+                                            <option value="ft2" selected>Square feet (ft²)</option>
+                                            <option value="yd2">Square yards (yd²)</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <p id="areaError" class="area-error" role="alert" hidden></p>
+
+                                <div class="area-actions">
+                                    <button type="submit" class="area-btn area-btn-primary">
+                                        Convert Area
+                                    </button>
+
+                                    <button type="button" id="areaReset" class="area-btn area-btn-secondary">
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- RESULT -->
+                            <div class="area-result" aria-live="polite">
+                                <div class="area-result-top">
+                                    <span>CONVERSION RESULT</span>
+
+                                    <button type="button" id="areaCopy" class="area-copy-btn">Copy result</button>
+                                </div>
+
+                                <div class="area-result-input" id="areaResultInput">
+                                    1 m²
+                                </div>
+
+                                <div class="area-result-value">
+                                    <strong id="areaResultValue">10.76391</strong>
+                                    <span id="areaResultUnit">ft²</span>
+                                </div>
+
+                                <p id="areaResultSummary">
+                                    1 square metre equals approximately 10.76391 square feet.
+                                </p>
+
+                                <div class="area-formula-box">
+                                    <span>CONVERSION FORMULA</span>
+                                    <p id="areaResultFormula">Result = Input × Source factor ÷ Target factor</p>
+                                </div>
+
+                                <div class="area-steps-box">
+                                    <h3>Calculation steps</h3>
+                                    <p id="areaResultSteps">1 × 1 ÷ 0.09290304 = 10.76391 ft²</p>
+                                </div>
+
+                                <p id="areaCopyMessage" class="area-copy-message" role="status"></p>
+                            </div>
+                        </div>
+
+                        <!-- SIDE GUIDE -->
+                        <aside class="area-side-card">
+                            <span class="area-section-label">QUICK GUIDE</span>
+                            <h2>Area measurement units</h2>
+
+                            <div class="area-unit-item">
+                                <span class="area-unit-symbol">m²</span>
+                                <div>
+                                    <h3>Square metre</h3>
+                                    <p>A standard metric unit for rooms, floors, and building spaces.</p>
+                                </div>
+                            </div>
+
+                            <div class="area-unit-item">
+                                <span class="area-unit-symbol">ha</span>
+                                <div>
+                                    <h3>Hectare</h3>
+                                    <p>Commonly used for agricultural land and large plots.</p>
+                                </div>
+                            </div>
+
+                            <div class="area-unit-item">
+                                <span class="area-unit-symbol">ac</span>
+                                <div>
+                                    <h3>Acre</h3>
+                                    <p>Used to measure land, farms, and property areas.</p>
+                                </div>
+                            </div>
+
+                            <div class="area-unit-item">
+                                <span class="area-unit-symbol">ft²</span>
+                                <div>
+                                    <h3>Square foot</h3>
+                                    <p>Often used for houses, apartments, and interior spaces.</p>
+                                </div>
+                            </div>
+
+                            <div class="area-tip">
+                                <strong>Quick fact</strong>
+                                <p>1 hectare = 10,000 m², while 1 acre = 4,046.8564224 m².</p>
+                            </div>
+                        </aside>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUICK REFERENCES -->
+            <section class="area-content-section">
+                <div class="container">
+                    <div class="area-section-heading">
+                        <span class="area-section-label">QUICK REFERENCE</span>
+                        <h2>Common Area Conversions</h2>
+                        <p>Keep these frequently used area measurements handy.</p>
+                    </div>
+
+                    <div class="area-reference-grid">
+                        <article class="area-reference-card">
+                            <span>Small surface</span>
+                            <strong>1 cm²</strong>
+                            <p>100 mm²</p>
+                        </article>
+
+                        <article class="area-reference-card">
+                            <span>Room area reference</span>
+                            <strong>1 m²</strong>
+                            <p>10.7639 ft²</p>
+                        </article>
+
+                        <article class="area-reference-card">
+                            <span>Large land unit</span>
+                            <strong>1 hectare</strong>
+                            <p>10,000 m²</p>
+                        </article>
+
+                        <article class="area-reference-card">
+                            <span>Land measurement</span>
+                            <strong>1 acre</strong>
+                            <p>4,046.8564 m²</p>
+                        </article>
+
+                        <article class="area-reference-card">
+                            <span>Large geographical area</span>
+                            <strong>1 km²</strong>
+                            <p>100 hectares</p>
+                        </article>
+
+                        <article class="area-reference-card">
+                            <span>Imperial area</span>
+                            <strong>1 yd²</strong>
+                            <p>9 ft²</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMULAS -->
+            <section class="area-content-section area-soft-section">
+                <div class="container">
+                    <div class="area-section-heading">
+                        <span class="area-section-label">FORMULAS</span>
+                        <h2>Area Conversion Formulas</h2>
+                        <p>Understand the basic relationships between area units.</p>
+                    </div>
+
+                    <div class="area-formula-grid">
+                        <article class="area-info-card">
+                            <h3>Square metres to square feet</h3>
+                            <div class="area-equation">ft² = m² × 10.7639104167</div>
+                            <p>Multiply square metres by approximately 10.76391.</p>
+                        </article>
+
+                        <article class="area-info-card">
+                            <h3>Square feet to square metres</h3>
+                            <div class="area-equation">m² = ft² × 0.09290304</div>
+                            <p>Multiply square feet by 0.09290304.</p>
+                        </article>
+
+                        <article class="area-info-card">
+                            <h3>Hectares to square metres</h3>
+                            <div class="area-equation">m² = ha × 10,000</div>
+                            <p>One hectare contains exactly 10,000 square metres.</p>
+                        </article>
+
+                        <article class="area-info-card">
+                            <h3>Acres to square metres</h3>
+                            <div class="area-equation">m² = acres × 4,046.8564224</div>
+                            <p>Multiply acres by the standard international acre conversion factor.</p>
+                        </article>
+
+                        <article class="area-info-card">
+                            <h3>Square kilometres to hectares</h3>
+                            <div class="area-equation">ha = km² × 100</div>
+                            <p>One square kilometre equals 100 hectares.</p>
+                        </article>
+
+                        <article class="area-info-card">
+                            <h3>Square yards to square feet</h3>
+                            <div class="area-equation">ft² = yd² × 9</div>
+                            <p>One square yard equals nine square feet.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW TO USE -->
+            <section class="area-content-section">
+                <div class="container">
+                    <div class="area-section-heading">
+                        <span class="area-section-label">HOW IT WORKS</span>
+                        <h2>How to Use the Area Converter</h2>
+                    </div>
+
+                    <div class="area-steps-grid">
+                        <article>
+                            <span class="area-step-number">01</span>
+                            <h3>Enter the area</h3>
+                            <p>Type the area measurement you want to convert.</p>
+                        </article>
+
+                        <article>
+                            <span class="area-step-number">02</span>
+                            <h3>Choose the units</h3>
+                            <p>Select your original and target units from the lists.</p>
+                        </article>
+
+                        <article>
+                            <span class="area-step-number">03</span>
+                            <h3>Get the result</h3>
+                            <p>View the converted area, formula, and calculation steps.</p>
+                        </article>
+
+                        <article>
+                            <span class="area-step-number">04</span>
+                            <h3>Copy your answer</h3>
+                            <p>Copy the result to use in your calculations or documents.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="area-content-section area-soft-section">
+                <div class="container">
+                    <div class="area-section-heading">
+                        <span class="area-section-label">FAQ</span>
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+
+                    <div class="area-faq-list">
+                        <details>
+                            <summary>What is an area converter?</summary>
+                            <p>
+                                An area converter changes a surface measurement from one unit
+                                to another, such as square metres to square feet or acres to hectares.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>How many square feet are in one square metre?</summary>
+                            <p>
+                                One square metre equals approximately 10.76391 square feet.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>How many square metres are in one hectare?</summary>
+                            <p>One hectare equals exactly 10,000 square metres.</p>
+                        </details>
+
+                        <details>
+                            <summary>What is the difference between an acre and a hectare?</summary>
+                            <p>
+                                A hectare is 10,000 square metres. An international acre is
+                                approximately 4,046.8564 square metres. One hectare is about
+                                2.47105 acres.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>Can I convert land measurements with this tool?</summary>
+                            <p>
+                                Yes. You can convert between acres, hectares, square metres,
+                                and square kilometres. For legal land transactions, verify the
+                                local measurement conventions and official records.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>Does the converter upload my values?</summary>
+                            <p>
+                                No. The conversion is calculated directly in your browser.
+                                Your entered area value does not need to be uploaded to a server.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RELATED TOOLS -->
+            <section class="area-content-section">
+                <div class="container">
+                    <div class="area-section-heading">
+                        <span class="area-section-label">EXPLORE MORE</span>
+                        <h2>Related Conversion Tools</h2>
+                    </div>
+
+                    <div class="area-related-grid">
+                        <a href="length-converter.html" class="area-related-card">
+                            <span>📏</span>
+                            <div>
+                                <h3>Length Converter</h3>
+                                <p>Convert metres, kilometres, feet, and inches.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="weight-converter.html" class="area-related-card">
+                            <span>⚖️</span>
+                            <div>
+                                <h3>Weight Converter</h3>
+                                <p>Convert kilograms, grams, pounds, and ounces.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="temperature-converter.html" class="area-related-card">
+                            <span>🌡️</span>
+                            <div>
+                                <h3>Temperature Converter</h3>
+                                <p>Convert Celsius, Fahrenheit, and Kelvin.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="../calculator.html" class="area-related-card">
+                            <span>🧮</span>
+                            <div>
+                                <h3>All Calculators</h3>
+                                <p>Explore more free DigiiFox calculators.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FULL FOOTER -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+
+                    <div class="footer-brand">
+                        <a href="../index.html" class="logo">
+                            Digii<span>Fox</span>
+                        </a>
+                        <p>
+                            Useful tools. Simple solutions.
+                            Make everyday digital tasks easier with DigiiFox.
+                        </p>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Explore</h3>
+                        <a href="../index.html">Home</a>
+                        <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                        <a href="../image-html/image-tools.html">Image Tools</a>
+                        <a href="../calculator.html">Calculators</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Unit Converters</h3>
+                        <a href="length-converter.html">Length Converter</a>
+                        <a href="weight-converter.html">Weight Converter</a>
+                        <a href="temperature-converter.html">Temperature Converter</a>
+                        <a href="area-converter.html">Area Converter</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>DigiiFox</h3>
+                        <a href="../index.html">About DigiiFox</a>
+                        <a href="../calculator.html">Explore Tools</a>
+                    </div>
+
+                </div>
+
+                <div class="footer-bottom">
+                    <p>
+                        &copy; <span id="currentYear"></span> DigiiFox.
+                        All rights reserved.
+                    </p>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="../calculator-js/area-converter.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Square Root Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate square roots online with the free DigiiFox Square Root Calculator. See formulas, examples, and calculation steps.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/square-root-calculator.css">
+</head>
+
+<body>
+
+    <!-- Shared DigiiFox Navbar -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="sqrt-page">
+
+        <!-- Hero Section -->
+        <section class="sqrt-hero">
+            <div class="container">
+
+                <div class="sqrt-breadcrumb">
+                    <a href="calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Square Root Calculator</span>
+                </div>
+
+                <div class="sqrt-hero-content">
+                    <span class="sqrt-badge">Math Calculator</span>
+
+                    <h1>Square Root Calculator</h1>
+
+                    <p>
+                        Find the square root of a number instantly. Enter a
+                        number to calculate its square root, explore the
+                        formula, and understand the calculation steps.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator Section -->
+        <section class="sqrt-main-section" id="calculator">
+            <div class="container">
+
+                <div class="sqrt-layout">
+
+                    <div class="sqrt-main-column">
+
+                        <!-- Main Calculator -->
+                        <div class="sqrt-card sqrt-calculator-card">
+
+                            <div class="sqrt-card-heading">
+                                <div>
+                                    <span class="sqrt-section-label">ROOT CALCULATOR</span>
+                                    <h2>Calculate a Square Root</h2>
+                                    <p>Enter a non-negative number below.</p>
+                                </div>
+
+                                <div class="sqrt-heading-icon" aria-hidden="true">
+                                    √x
+                                </div>
+                            </div>
+
+
+                            <form id="sqrtForm" novalidate>
+
+                                <div class="sqrt-field">
+                                    <label for="sqrtNumber">Enter a Number</label>
+
+                                    <input type="number" id="sqrtNumber" name="number" step="any" min="0"
+                                        placeholder="e.g. 144" value="144" required>
+
+                                    <small>
+                                        Use a number greater than or equal to zero.
+                                    </small>
+                                </div>
+
+
+                                <div class="sqrt-expression">
+                                    <span>Expression</span>
+
+                                    <div class="sqrt-expression-value">
+                                        √<span id="sqrtExpressionNumber">144</span>
+                                    </div>
+                                </div>
+
+
+                                <div class="sqrt-error" id="sqrtError" role="alert" hidden></div>
+
+
+                                <div class="sqrt-actions">
+                                    <button type="submit" class="sqrt-btn sqrt-btn-primary">
+                                        Calculate Square Root
+                                    </button>
+
+                                    <button type="button" class="sqrt-btn sqrt-btn-secondary" id="sqrtResetButton">
+                                        Reset
+                                    </button>
+                                </div>
+
+                            </form>
+
+
+                            <!-- Result Panel -->
+                            <div class="sqrt-result-panel" id="sqrtResultPanel" hidden>
+
+                                <div class="sqrt-result-top">
+                                    <span class="sqrt-result-label">CALCULATED RESULT</span>
+                                    <span class="sqrt-result-check" aria-hidden="true">✓</span>
+                                </div>
+
+                                <div class="sqrt-result-expression" id="sqrtResultExpression">
+                                    √144 = 12
+                                </div>
+
+                                <div class="sqrt-result-number" id="sqrtResultNumber">
+                                    12
+                                </div>
+
+                                <div class="sqrt-result-status" id="sqrtResultStatus"></div>
+
+                                <div class="sqrt-result-actions">
+                                    <button type="button" class="sqrt-btn sqrt-btn-secondary" id="sqrtCopyButton">
+                                        Copy Result
+                                    </button>
+
+                                    <span id="sqrtCopyFeedback" role="status" aria-live="polite"></span>
+                                </div>
+
+                                <div class="sqrt-steps">
+                                    <h3>Calculation Steps</h3>
+                                    <ol id="sqrtSteps"></ol>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Examples -->
+                        <div class="sqrt-card sqrt-examples-card">
+
+                            <div class="sqrt-section-heading">
+                                <span class="sqrt-section-label">TRY AN EXAMPLE</span>
+                                <h2>Common Square Roots</h2>
+                                <p>Select an example to calculate its square root.</p>
+                            </div>
+
+                            <div class="sqrt-example-grid">
+
+                                <button type="button" class="sqrt-example-button" data-number="4">
+                                    <span class="sqrt-example-expression">√4</span>
+                                    <span class="sqrt-example-result">Result: 2</span>
+                                </button>
+
+                                <button type="button" class="sqrt-example-button" data-number="9">
+                                    <span class="sqrt-example-expression">√9</span>
+                                    <span class="sqrt-example-result">Result: 3</span>
+                                </button>
+
+                                <button type="button" class="sqrt-example-button" data-number="25">
+                                    <span class="sqrt-example-expression">√25</span>
+                                    <span class="sqrt-example-result">Result: 5</span>
+                                </button>
+
+                                <button type="button" class="sqrt-example-button" data-number="64">
+                                    <span class="sqrt-example-expression">√64</span>
+                                    <span class="sqrt-example-result">Result: 8</span>
+                                </button>
+
+                                <button type="button" class="sqrt-example-button" data-number="144">
+                                    <span class="sqrt-example-expression">√144</span>
+                                    <span class="sqrt-example-result">Result: 12</span>
+                                </button>
+
+                                <button type="button" class="sqrt-example-button" data-number="2">
+                                    <span class="sqrt-example-expression">√2</span>
+                                    <span class="sqrt-example-result">≈ 1.4142</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Definition -->
+                        <section class="sqrt-card sqrt-information-card" id="definition">
+
+                            <span class="sqrt-section-label">UNDERSTANDING SQUARE ROOTS</span>
+                            <h2>What Is a Square Root?</h2>
+
+                            <p>
+                                A square root of a number is a value that,
+                                when multiplied by itself, produces the
+                                original number. The principal square root
+                                is the non-negative root.
+                            </p>
+
+                            <div class="sqrt-formula-box">
+                                <span class="sqrt-formula-title">Square Root Formula</span>
+
+                                <div class="sqrt-formula">
+                                    √x = y
+                                </div>
+
+                                <p>
+                                    This means y × y = x, where x is
+                                    non-negative and y is the principal square root.
+                                </p>
+                            </div>
+
+                            <h3>Example: Square Root of 144</h3>
+
+                            <p>
+                                We want to find a number that gives 144 when
+                                multiplied by itself.
+                            </p>
+
+                            <div class="sqrt-math-example">
+                                12 × 12 = 144
+                                <br>
+                                √144 = 12
+                            </div>
+
+                            <h3>Important Square Root Rules</h3>
+
+                            <div class="sqrt-rule-list">
+
+                                <div class="sqrt-rule-item">
+                                    <strong>Perfect square</strong>
+                                    <span>√81 = 9 because 9 × 9 = 81.</span>
+                                </div>
+
+                                <div class="sqrt-rule-item">
+                                    <strong>Square root of zero</strong>
+                                    <span>√0 = 0.</span>
+                                </div>
+
+                                <div class="sqrt-rule-item">
+                                    <strong>Non-perfect square</strong>
+                                    <span>√2 ≈ 1.41421356.</span>
+                                </div>
+
+                                <div class="sqrt-rule-item">
+                                    <strong>Squaring and square roots</strong>
+                                    <span>√(x²) = |x| for real numbers.</span>
+                                </div>
+
+                            </div>
+
+                            <p class="sqrt-note">
+                                Note: The real square root of a negative number
+                                is undefined. This calculator accepts only
+                                non-negative real numbers.
+                            </p>
+
+                        </section>
+
+
+                        <!-- How to Use -->
+                        <section class="sqrt-card sqrt-information-card" id="how-to-use">
+
+                            <span class="sqrt-section-label">QUICK GUIDE</span>
+                            <h2>How to Use the Square Root Calculator</h2>
+
+                            <ol class="sqrt-how-list">
+                                <li>
+                                    <strong>Enter your number.</strong>
+                                    <p>Type a non-negative whole number or decimal.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Calculate the square root.</strong>
+                                    <p>Click the Calculate Square Root button.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Check the result.</strong>
+                                    <p>View the square root and whether the input is a perfect square.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Review the steps.</strong>
+                                    <p>See the formula and a verification of the result.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Copy or reset.</strong>
+                                    <p>Copy your answer or reset the calculator for another calculation.</p>
+                                </li>
+                            </ol>
+
+                        </section>
+
+
+                        <!-- FAQ -->
+                        <section class="sqrt-card sqrt-information-card" id="faq">
+
+                            <span class="sqrt-section-label">COMMON QUESTIONS</span>
+                            <h2>Frequently Asked Questions</h2>
+
+                            <div class="sqrt-faq-list">
+
+                                <details class="sqrt-faq-item">
+                                    <summary>What is a square root?</summary>
+                                    <p>
+                                        A square root is a value that, when
+                                        multiplied by itself, produces the
+                                        original number. For example, 5 is the
+                                        principal square root of 25.
+                                    </p>
+                                </details>
+
+                                <details class="sqrt-faq-item">
+                                    <summary>What is the square root of 144?</summary>
+                                    <p>
+                                        The principal square root of 144 is 12,
+                                        because 12 × 12 = 144.
+                                    </p>
+                                </details>
+
+                                <details class="sqrt-faq-item">
+                                    <summary>Can I calculate the square root of a decimal?</summary>
+                                    <p>
+                                        Yes. For example, √2.25 = 1.5 because
+                                        1.5 × 1.5 = 2.25.
+                                    </p>
+                                </details>
+
+                                <details class="sqrt-faq-item">
+                                    <summary>What is a perfect square?</summary>
+                                    <p>
+                                        A perfect square is a number that can
+                                        be written as an integer multiplied by
+                                        itself, such as 16 = 4 × 4.
+                                    </p>
+                                </details>
+
+                                <details class="sqrt-faq-item">
+                                    <summary>Can I calculate the square root of a negative number?</summary>
+                                    <p>
+                                        Not as a real number. The square of any
+                                        real number is non-negative. Negative
+                                        inputs require complex numbers, which
+                                        this calculator does not calculate.
+                                    </p>
+                                </details>
+
+                                <details class="sqrt-faq-item">
+                                    <summary>Is the square root calculator free?</summary>
+                                    <p>
+                                        Yes. You can use this DigiiFox calculator
+                                        in your browser without installing software.
+                                    </p>
+                                </details>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- Sidebar -->
+                    <aside class="sqrt-sidebar">
+
+                        <div class="sqrt-card sqrt-sidebar-card">
+                            <h3>Square Root Basics</h3>
+
+                            <div class="sqrt-sidebar-item">
+                                <span>Symbol</span>
+                                <strong>√</strong>
+                                <p>The radical symbol represents a root.</p>
+                            </div>
+
+                            <div class="sqrt-sidebar-item">
+                                <span>Formula</span>
+                                <strong>√x = y</strong>
+                                <p>When y × y = x and y is non-negative.</p>
+                            </div>
+
+                            <div class="sqrt-sidebar-item">
+                                <span>Example</span>
+                                <strong>√49 = 7</strong>
+                                <p>Because 7 × 7 = 49.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="sqrt-card sqrt-sidebar-card">
+                            <h3>Perfect Squares</h3>
+
+                            <div class="sqrt-mini-formula">
+                                <span>Square of 2</span>
+                                <strong>√4 = 2</strong>
+                            </div>
+
+                            <div class="sqrt-mini-formula">
+                                <span>Square of 5</span>
+                                <strong>√25 = 5</strong>
+                            </div>
+
+                            <div class="sqrt-mini-formula">
+                                <span>Square of 10</span>
+                                <strong>√100 = 10</strong>
+                            </div>
+
+                            <div class="sqrt-mini-formula">
+                                <span>Square of 15</span>
+                                <strong>√225 = 15</strong>
+                            </div>
+                        </div>
+
+
+                        <div class="sqrt-card sqrt-sidebar-card sqrt-sidebar-tip">
+                            <span class="sqrt-tip-icon" aria-hidden="true">✦</span>
+                            <h3>Quick Tip</h3>
+
+                            <p>
+                                To check a square root, multiply the answer
+                                by itself. For example, 13 × 13 = 169, so
+                                √169 = 13.
+                            </p>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Shared Full DigiiFox Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Smart online tools designed to make everyday digital
+                        tasks simpler, faster, and more convenient.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Math Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                    <a href="exponent-calculator.html">Exponent Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Square Root Calculator</h3>
+                    <a href="#calculator">Calculate a Square Root</a>
+                    <a href="#definition">Formula &amp; Definition</a>
+                    <a href="#how-to-use">How to Use</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Simple tools. Smarter work.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/square-root-calculator.js"></script>
+
+</body>
+
+</html>

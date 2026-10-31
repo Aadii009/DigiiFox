@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate your monthly EMI, total loan interest, repayment amount, and loan amortization schedule with the free DigiiFox EMI Calculator.">
+
+    <meta name="keywords"
+        content="EMI calculator, home loan EMI calculator, personal loan calculator, car loan calculator, loan interest calculator">
+
+    <meta name="author" content="DigiiFox">
+
+    <title>EMI Calculator - DigiiFox</title>
+
+    <!-- Shared Calculator Styles -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- EMI Calculator Styles -->
+    <link rel="stylesheet" href="../calculator-css/emi-calculator.css">
+</head>
+
+<body class="emi-page">
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="emi-main">
+
+        <!-- HERO -->
+
+        <section class="emi-hero">
+            <div class="container">
+
+                <span class="emi-badge">Free Online Finance Calculator</span>
+
+                <h1>EMI Calculator</h1>
+
+                <p>
+                    Calculate your monthly loan installment, total interest,
+                    and total repayment amount. Plan your home, car, or
+                    personal loan with a clear repayment breakdown.
+                </p>
+
+                <div class="emi-hero-tags">
+                    <span>✓ Instant Calculation</span>
+                    <span>✓ Repayment Schedule</span>
+                    <span>✓ Private &amp; Browser-Based</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- CALCULATOR -->
+
+        <section class="emi-section">
+            <div class="container">
+
+                <div class="emi-layout">
+
+                    <!-- INPUT CARD -->
+
+                    <div class="emi-card emi-input-card">
+
+                        <div class="emi-card-heading">
+                            <div>
+                                <span class="emi-eyebrow">LOAN DETAILS</span>
+                                <h2>Calculate Your EMI</h2>
+                                <p>Enter your loan details below.</p>
+                            </div>
+
+                            <div class="emi-icon">₹</div>
+                        </div>
+
+
+                        <form id="emiForm" novalidate>
+
+                            <!-- Loan Amount -->
+
+                            <div class="emi-field">
+
+                                <label for="loanAmount">
+                                    Loan Amount
+                                </label>
+
+                                <div class="emi-input-wrapper">
+                                    <span class="emi-input-prefix">₹</span>
+
+                                    <input type="number" id="loanAmount" min="1" max="1000000000000" step="any"
+                                        value="1000000" placeholder="Enter loan amount" inputmode="decimal" required>
+                                </div>
+
+                                <small>
+                                    Enter the principal amount you want to borrow.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Interest Rate -->
+
+                            <div class="emi-field">
+
+                                <label for="interestRate">
+                                    Annual Interest Rate (%)
+                                </label>
+
+                                <div class="emi-input-wrapper">
+                                    <input type="number" id="interestRate" min="0" max="100" step="any" value="8.5"
+                                        placeholder="For example, 8.5" inputmode="decimal" required>
+
+                                    <span class="emi-input-suffix">%</span>
+                                </div>
+
+                                <small>
+                                    Use the annual interest rate offered by your lender.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Loan Tenure -->
+
+                            <div class="emi-field">
+
+                                <label for="loanTenure">
+                                    Loan Tenure
+                                </label>
+
+                                <div class="emi-tenure-row">
+
+                                    <input type="number" id="loanTenure" min="1" max="600" step="1" value="20"
+                                        placeholder="Enter tenure" inputmode="numeric" required>
+
+                                    <select id="tenureUnit" aria-label="Loan tenure unit">
+                                        <option value="years" selected>
+                                            Years
+                                        </option>
+
+                                        <option value="months">
+                                            Months
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                                <small id="tenureHelp">
+                                    Maximum supported tenure: 50 years.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Quick Examples -->
+
+                            <div class="emi-examples">
+
+                                <span class="emi-label">QUICK EXAMPLES</span>
+
+                                <div class="emi-example-buttons">
+
+                                    <button type="button" class="emi-example-btn" data-amount="500000" data-rate="9"
+                                        data-tenure="5" data-unit="years">
+                                        Personal Loan
+                                    </button>
+
+                                    <button type="button" class="emi-example-btn" data-amount="800000" data-rate="9.5"
+                                        data-tenure="7" data-unit="years">
+                                        Car Loan
+                                    </button>
+
+                                    <button type="button" class="emi-example-btn" data-amount="3000000" data-rate="8.5"
+                                        data-tenure="20" data-unit="years">
+                                        Home Loan
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Error -->
+
+                            <div class="emi-error" id="emiError" role="alert" aria-live="polite"></div>
+
+
+                            <!-- Actions -->
+
+                            <div class="emi-actions">
+
+                                <button type="submit" class="emi-btn emi-primary-btn">
+                                    Calculate EMI
+                                    <span aria-hidden="true">→</span>
+                                </button>
+
+                                <button type="button" class="emi-btn emi-reset-btn" id="emiReset">
+                                    Reset
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- RESULTS CARD -->
+
+                    <div class="emi-card emi-results-card" id="emiResults" aria-live="polite" aria-atomic="false">
+
+                        <div class="emi-card-heading">
+
+                            <div>
+                                <span class="emi-eyebrow">YOUR RESULTS</span>
+                                <h2>Loan Summary</h2>
+                                <p>
+                                    Review your estimated monthly payment
+                                    and total repayment.
+                                </p>
+                            </div>
+
+                            <div class="emi-icon">📊</div>
+
+                        </div>
+
+
+                        <!-- Empty State -->
+
+                        <div class="emi-empty-state" id="emiEmpty">
+
+                            <div class="emi-empty-icon">₹</div>
+
+                            <h3>Your EMI summary will appear here</h3>
+
+                            <p>
+                                Enter your loan details and select
+                                Calculate EMI to view your repayment estimate.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Result Output -->
+
+                        <div id="emiOutput" hidden>
+
+                            <div class="emi-monthly-highlight">
+
+                                <span>Estimated Monthly EMI</span>
+
+                                <strong id="monthlyEMI">₹0</strong>
+
+                                <small id="monthlyEMIDetail">
+                                    Monthly installment
+                                </small>
+
+                            </div>
+
+
+                            <!-- Repayment Breakdown -->
+
+                            <div class="emi-breakdown">
+
+                                <div class="emi-breakdown-heading">
+                                    <h3>Repayment Breakdown</h3>
+                                    <span id="repaymentCount">—</span>
+                                </div>
+
+
+                                <div class="emi-breakdown-bar" role="img" aria-label="Principal and interest breakdown">
+                                    <div class="emi-principal-bar" id="principalBar"></div>
+
+                                    <div class="emi-interest-bar" id="interestBar"></div>
+                                </div>
+
+
+                                <div class="emi-legend">
+
+                                    <div class="emi-legend-item">
+                                        <span class="emi-legend-dot emi-principal-dot"></span>
+
+                                        <div>
+                                            <span>Loan Principal</span>
+                                            <strong id="principalAmount">₹0</strong>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="emi-legend-item">
+                                        <span class="emi-legend-dot emi-interest-dot"></span>
+
+                                        <div>
+                                            <span>Total Interest</span>
+                                            <strong id="totalInterest">₹0</strong>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Summary Metrics -->
+
+                            <div class="emi-summary-grid">
+
+                                <div class="emi-summary-item">
+                                    <span>Total Repayment</span>
+                                    <strong id="totalPayment">₹0</strong>
+                                </div>
+
+                                <div class="emi-summary-item">
+                                    <span>Loan Tenure</span>
+                                    <strong id="displayTenure">—</strong>
+                                </div>
+
+                                <div class="emi-summary-item">
+                                    <span>Annual Interest Rate</span>
+                                    <strong id="displayRate">—</strong>
+                                </div>
+
+                                <div class="emi-summary-item">
+                                    <span>Interest / Principal</span>
+                                    <strong id="interestRatio">—</strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="emi-result-note">
+                                <strong>Note:</strong>
+                                This is an estimate based on a fixed interest
+                                rate and monthly reducing balance. Actual lender
+                                charges, fees, taxes, rounding, and repayment
+                                terms may affect your final EMI.
+                            </div>
+
+
+                            <div class="emi-copy-action">
+
+                                <button type="button" class="emi-btn emi-primary-btn" id="copyEMIResults">
+                                    Copy Loan Summary
+                                </button>
+
+                            </div>
+
+                            <p class="emi-copy-status" id="emiCopyStatus" role="status"></p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AMORTIZATION SCHEDULE -->
+
+                <div class="emi-card emi-schedule-card" id="scheduleCard" hidden>
+
+                    <div class="emi-card-heading">
+
+                        <div>
+                            <span class="emi-eyebrow">
+                                PAYMENT-BY-PAYMENT VIEW
+                            </span>
+
+                            <h2>Loan Amortization Schedule</h2>
+
+                            <p>
+                                See how each monthly payment is divided
+                                between interest and principal.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="emi-schedule-controls">
+
+                        <label for="scheduleFilter">
+                            Show schedule
+                        </label>
+
+                        <select id="scheduleFilter">
+                            <option value="12">First 12 months</option>
+                            <option value="24">First 24 months</option>
+                            <option value="60">First 60 months</option>
+                            <option value="all">All months</option>
+                        </select>
+
+                        <span id="scheduleInfo"></span>
+
+                    </div>
+
+
+                    <div class="emi-table-wrapper">
+
+                        <table class="emi-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Opening Balance</th>
+                                    <th>EMI</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Closing Balance</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="scheduleBody"></tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <p class="emi-schedule-note">
+                        Values are estimates rounded to two decimal places
+                        for display. The final installment may differ slightly
+                        to settle the outstanding balance.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- DEFINITION AND FORMULA -->
+
+        <section class="emi-info-section">
+            <div class="container">
+
+                <div class="emi-section-heading">
+
+                    <span class="emi-eyebrow">UNDERSTAND THE BASICS</span>
+
+                    <h2>What Is an EMI Calculator?</h2>
+
+                    <p>
+                        EMI stands for Equated Monthly Installment.
+                        It is the regular monthly payment a borrower makes
+                        to repay a loan over an agreed period. For a
+                        fixed-rate loan, the EMI generally includes both
+                        principal repayment and interest.
+                    </p>
+
+                </div>
+
+
+                <div class="emi-formula-card">
+
+                    <div class="emi-formula-symbol">ƒ(x)</div>
+
+                    <div>
+                        <h3>EMI Formula</h3>
+
+                        <div class="emi-formula">
+                            EMI = P × r × (1 + r)<sup>n</sup>
+                            ÷ [(1 + r)<sup>n</sup> − 1]
+                        </div>
+
+                        <p>
+                            When the monthly interest rate is zero,
+                            EMI = P ÷ n.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="emi-info-grid">
+
+                    <article class="emi-info-card">
+                        <div class="emi-info-icon">P</div>
+
+                        <h3>Principal (P)</h3>
+
+                        <p>
+                            The amount borrowed before interest and
+                            additional charges.
+                        </p>
+                    </article>
+
+
+                    <article class="emi-info-card">
+                        <div class="emi-info-icon">r</div>
+
+                        <h3>Monthly Interest Rate</h3>
+
+                        <p>
+                            The annual interest rate divided by 12 and
+                            converted into a decimal.
+                        </p>
+
+                        <div class="emi-mini-formula">
+                            r = Annual Rate ÷ 1200
+                        </div>
+                    </article>
+
+
+                    <article class="emi-info-card">
+                        <div class="emi-info-icon">n</div>
+
+                        <h3>Number of Payments</h3>
+
+                        <p>
+                            The total number of monthly installments over
+                            the loan tenure.
+                        </p>
+
+                        <div class="emi-mini-formula">
+                            n = Years × 12
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- HOW TO USE -->
+
+        <section class="emi-info-section emi-how-section">
+            <div class="container">
+
+                <div class="emi-section-heading">
+
+                    <span class="emi-eyebrow">SIMPLE STEPS</span>
+
+                    <h2>How to Use the EMI Calculator</h2>
+
+                    <p>
+                        Estimate your monthly loan payments in four steps.
+                    </p>
+
+                </div>
+
+
+                <div class="emi-how-grid">
+
+                    <article class="emi-how-card">
+                        <span class="emi-step-number">01</span>
+
+                        <h3>Enter Loan Amount</h3>
+
+                        <p>
+                            Enter the amount you intend to borrow.
+                        </p>
+                    </article>
+
+
+                    <article class="emi-how-card">
+                        <span class="emi-step-number">02</span>
+
+                        <h3>Add Interest Rate</h3>
+
+                        <p>
+                            Enter the annual interest rate as a percentage.
+                        </p>
+                    </article>
+
+
+                    <article class="emi-how-card">
+                        <span class="emi-step-number">03</span>
+
+                        <h3>Select Tenure</h3>
+
+                        <p>
+                            Enter the loan duration in years or months.
+                        </p>
+                    </article>
+
+
+                    <article class="emi-how-card">
+                        <span class="emi-step-number">04</span>
+
+                        <h3>Review Repayment</h3>
+
+                        <p>
+                            Calculate the EMI and review the repayment
+                            schedule.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+
+        <section class="emi-info-section emi-faq-section">
+            <div class="container">
+
+                <div class="emi-section-heading">
+
+                    <span class="emi-eyebrow">COMMON QUESTIONS</span>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <p>
+                        Understand how monthly loan repayments work.
+                    </p>
+
+                </div>
+
+
+                <div class="emi-faq-list">
+
+                    <details class="emi-faq-item">
+                        <summary>What does EMI stand for?</summary>
+
+                        <p>
+                            EMI stands for Equated Monthly Installment.
+                            It is the regular monthly payment made toward
+                            a loan, generally covering both principal and
+                            interest.
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>How is monthly EMI calculated?</summary>
+
+                        <p>
+                            EMI is calculated using the principal amount,
+                            monthly interest rate, and total number of
+                            monthly installments. For a positive fixed
+                            interest rate, the standard formula is
+                            P × r × (1 + r)^n ÷ ((1 + r)^n − 1).
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>Does a longer loan tenure reduce EMI?</summary>
+
+                        <p>
+                            Generally, yes. A longer tenure spreads the
+                            repayment over more months, reducing the
+                            monthly installment. However, it usually
+                            increases the total interest paid over the
+                            life of the loan.
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>Does a lower interest rate reduce EMI?</summary>
+
+                        <p>
+                            Generally, yes. For the same principal and
+                            tenure, a lower fixed interest rate results
+                            in a lower EMI and usually less total interest.
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>Can I calculate EMI for a zero-interest loan?</summary>
+
+                        <p>
+                            Yes. When the interest rate is zero, the
+                            calculator divides the principal equally
+                            across the number of monthly payments.
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>Does the calculator include processing fees?</summary>
+
+                        <p>
+                            No. This calculator estimates principal and
+                            interest repayments. Processing fees, insurance,
+                            taxes, late-payment charges, and other lender
+                            costs are not included.
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>Is the EMI result guaranteed by my lender?</summary>
+
+                        <p>
+                            No. This is an estimate based on the details
+                            you enter. Your lender may use different
+                            rounding rules, dates, fees, or repayment
+                            conditions.
+                        </p>
+                    </details>
+
+
+                    <details class="emi-faq-item">
+                        <summary>Is my loan information uploaded?</summary>
+
+                        <p>
+                            No. Calculations are performed in your browser.
+                            The calculator does not send your loan details
+                            to a server.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>Useful tools. Simple solutions.</p>
+
+                    <p class="footer-description">
+                        Simple online tools designed to make everyday
+                        tasks faster, easier, and more convenient.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+
+                    <a href="./standard-calculator.html">
+                        Standard Calculator
+                    </a>
+
+                    <a href="./percentage-calculator.html">
+                        Percentage Calculator
+                    </a>
+
+                    <a href="./average-calculator.html">
+                        Average Calculator
+                    </a>
+
+                    <a href="./statistics-calculator.html">
+                        Statistics Calculator
+                    </a>
+
+                    <a href="./emi-calculator.html">
+                        EMI Calculator
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>More Tools</h3>
+
+                    <a href="./discount-calculator.html">
+                        Discount Calculator
+                    </a>
+
+                    <a href="./fraction-calculator.html">
+                        Fraction Calculator
+                    </a>
+
+                    <a href="./probability-calculator.html">
+                        Probability Calculator
+                    </a>
+
+                    <a href="./prime-number-calculator.html">
+                        Prime Number Calculator
+                    </a>
+
+                    <a href="./factorial-calculator.html">
+                        Factorial Calculator
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../calculator-js/emi-calculator.js"></script>
+
+</body>
+
+</html>

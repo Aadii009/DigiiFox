@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exponent Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate exponents and powers instantly with the DigiiFox Exponent Calculator. Explore formulas, calculation steps, and examples.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/exponent-calculator.css">
+</head>
+
+<body>
+
+    <!-- Header: Keep consistent across all DigiiFox tools -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="exp-page">
+
+        <!-- Hero Section -->
+        <section class="exp-hero">
+            <div class="container">
+
+                <div class="exp-breadcrumb">
+                    <a href="calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Exponent Calculator</span>
+                </div>
+
+                <div class="exp-hero-content">
+                    <span class="exp-badge">Math Calculator</span>
+
+                    <h1>Exponent Calculator</h1>
+
+                    <p>
+                        Calculate powers quickly and accurately. Enter a base
+                        and an exponent to find the result, understand the
+                        formula, and follow the calculation steps.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Main Calculator -->
+        <section class="exp-main-section" id="calculator">
+            <div class="container">
+
+                <div class="exp-layout">
+
+                    <div class="exp-main-column">
+
+                        <div class="exp-card exp-calculator-card">
+
+                            <div class="exp-card-heading">
+                                <div>
+                                    <span class="exp-section-label">POWER CALCULATOR</span>
+                                    <h2>Calculate an Exponent</h2>
+                                    <p>Enter the base and power below.</p>
+                                </div>
+
+                                <div class="exp-heading-icon" aria-hidden="true">
+                                    xʸ
+                                </div>
+                            </div>
+
+
+                            <form id="exponentForm" novalidate>
+
+                                <div class="exp-input-grid">
+
+                                    <div class="exp-field">
+                                        <label for="expBase">Base (x)</label>
+
+                                        <input type="number" id="expBase" name="base" step="any" placeholder="e.g. 2"
+                                            value="2" required>
+
+                                        <small>The number being multiplied.</small>
+                                    </div>
+
+                                    <div class="exp-field">
+                                        <label for="expPower">Exponent (y)</label>
+
+                                        <input type="number" id="expPower" name="power" step="any" placeholder="e.g. 3"
+                                            value="3" required>
+
+                                        <small>The power applied to the base.</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="exp-expression">
+                                    <span>Expression</span>
+
+                                    <div class="exp-expression-value" aria-live="polite">
+                                        <span id="expExpressionBase">2</span>
+                                        <sup id="expExpressionPower">3</sup>
+                                    </div>
+                                </div>
+
+
+                                <div class="exp-error" id="expError" role="alert" hidden></div>
+
+
+                                <div class="exp-actions">
+                                    <button type="submit" class="exp-btn exp-btn-primary">
+                                        Calculate Power
+                                    </button>
+
+                                    <button type="button" class="exp-btn exp-btn-secondary" id="expResetButton">
+                                        Reset
+                                    </button>
+                                </div>
+
+                            </form>
+
+
+                            <!-- Result -->
+                            <div class="exp-result-panel" id="expResultPanel" hidden>
+
+                                <div class="exp-result-top">
+                                    <span class="exp-result-label">CALCULATED RESULT</span>
+                                    <span class="exp-result-check" aria-hidden="true">✓</span>
+                                </div>
+
+                                <div class="exp-result-expression" id="expResultExpression">
+                                    2³ = 8
+                                </div>
+
+                                <div class="exp-result-number" id="expResultNumber">
+                                    8
+                                </div>
+
+                                <div class="exp-result-actions">
+                                    <button type="button" class="exp-btn exp-btn-secondary" id="expCopyButton">
+                                        Copy Result
+                                    </button>
+
+                                    <span id="expCopyFeedback" role="status" aria-live="polite"></span>
+                                </div>
+
+                                <div class="exp-steps">
+                                    <h3>Calculation Steps</h3>
+                                    <ol id="expSteps"></ol>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Examples -->
+                        <div class="exp-card exp-examples-card">
+                            <div class="exp-section-heading">
+                                <span class="exp-section-label">TRY AN EXAMPLE</span>
+                                <h2>Common Exponent Calculations</h2>
+                                <p>Select an example to fill in the calculator.</p>
+                            </div>
+
+                            <div class="exp-example-grid">
+
+                                <button type="button" class="exp-example-button" data-base="2" data-power="3">
+                                    <span class="exp-example-expression">2³</span>
+                                    <span class="exp-example-result">Result: 8</span>
+                                </button>
+
+                                <button type="button" class="exp-example-button" data-base="5" data-power="2">
+                                    <span class="exp-example-expression">5²</span>
+                                    <span class="exp-example-result">Result: 25</span>
+                                </button>
+
+                                <button type="button" class="exp-example-button" data-base="10" data-power="0">
+                                    <span class="exp-example-expression">10⁰</span>
+                                    <span class="exp-example-result">Result: 1</span>
+                                </button>
+
+                                <button type="button" class="exp-example-button" data-base="2" data-power="-3">
+                                    <span class="exp-example-expression">2⁻³</span>
+                                    <span class="exp-example-result">Result: 0.125</span>
+                                </button>
+
+                                <button type="button" class="exp-example-button" data-base="9" data-power="0.5">
+                                    <span class="exp-example-expression">9⁰·⁵</span>
+                                    <span class="exp-example-result">Result: 3</span>
+                                </button>
+
+                                <button type="button" class="exp-example-button" data-base="-2" data-power="3">
+                                    <span class="exp-example-expression">(-2)³</span>
+                                    <span class="exp-example-result">Result: -8</span>
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Definition -->
+                        <section class="exp-card exp-information-card" id="definition">
+                            <span class="exp-section-label">UNDERSTANDING EXPONENTS</span>
+                            <h2>What Is an Exponent?</h2>
+
+                            <p>
+                                An exponent tells you how many times a base is
+                                multiplied by itself when the exponent is a
+                                positive whole number.
+                            </p>
+
+                            <div class="exp-formula-box">
+                                <span class="exp-formula-title">Basic Formula</span>
+                                <div class="exp-formula">x<sup>y</sup></div>
+                                <p>
+                                    x = base, y = exponent, and x<sup>y</sup> = power or result.
+                                </p>
+                            </div>
+
+                            <h3>Example: 2³</h3>
+
+                            <p>
+                                In this expression, 2 is the base and 3 is the
+                                exponent. Multiply 2 by itself three times:
+                            </p>
+
+                            <div class="exp-math-example">
+                                2³ = 2 × 2 × 2 = 8
+                            </div>
+
+                            <h3>Important Exponent Rules</h3>
+
+                            <div class="exp-rule-list">
+
+                                <div class="exp-rule-item">
+                                    <strong>Positive exponent</strong>
+                                    <span>2³ = 2 × 2 × 2 = 8</span>
+                                </div>
+
+                                <div class="exp-rule-item">
+                                    <strong>Zero exponent</strong>
+                                    <span>x⁰ = 1, when x ≠ 0</span>
+                                </div>
+
+                                <div class="exp-rule-item">
+                                    <strong>Negative exponent</strong>
+                                    <span>x⁻ⁿ = 1 / xⁿ, when x ≠ 0</span>
+                                </div>
+
+                                <div class="exp-rule-item">
+                                    <strong>Fractional exponent</strong>
+                                    <span>x¹ᐟ² = √x for x ≥ 0</span>
+                                </div>
+
+                            </div>
+
+                            <p class="exp-note">
+                                Note: 0⁰ is undefined. A negative base raised
+                                to a non-integer exponent may not have a real
+                                result. This calculator reports an error when
+                                the requested result is not a real number.
+                            </p>
+                        </section>
+
+
+                        <!-- How to Use -->
+                        <section class="exp-card exp-information-card" id="how-to-use">
+                            <span class="exp-section-label">QUICK GUIDE</span>
+                            <h2>How to Use the Exponent Calculator</h2>
+
+                            <ol class="exp-how-list">
+                                <li>
+                                    <strong>Enter the base.</strong>
+                                    <p>Type the number you want to raise to a power.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Enter the exponent.</strong>
+                                    <p>Enter a positive, negative, zero, decimal, or fractional exponent.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Calculate the power.</strong>
+                                    <p>Press the Calculate Power button to see the result.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Review the steps.</strong>
+                                    <p>Read the displayed formula and calculation explanation.</p>
+                                </li>
+
+                                <li>
+                                    <strong>Copy or reset.</strong>
+                                    <p>Copy the result or reset the inputs to start another calculation.</p>
+                                </li>
+                            </ol>
+                        </section>
+
+
+                        <!-- FAQ -->
+                        <section class="exp-card exp-information-card" id="faq">
+                            <span class="exp-section-label">COMMON QUESTIONS</span>
+                            <h2>Frequently Asked Questions</h2>
+
+                            <div class="exp-faq-list">
+
+                                <details class="exp-faq-item">
+                                    <summary>What does an exponent mean?</summary>
+                                    <p>
+                                        An exponent indicates a power. For a positive
+                                        whole-number exponent, it tells you how many
+                                        times to multiply the base by itself.
+                                    </p>
+                                </details>
+
+                                <details class="exp-faq-item">
+                                    <summary>What is 2 raised to the power of 3?</summary>
+                                    <p>
+                                        2³ = 2 × 2 × 2 = 8.
+                                    </p>
+                                </details>
+
+                                <details class="exp-faq-item">
+                                    <summary>What happens when the exponent is zero?</summary>
+                                    <p>
+                                        Any nonzero base raised to the power of zero
+                                        equals 1. The expression 0⁰ is undefined.
+                                    </p>
+                                </details>
+
+                                <details class="exp-faq-item">
+                                    <summary>Can I calculate a negative exponent?</summary>
+                                    <p>
+                                        Yes. For example, 2⁻³ = 1 / 2³ = 1 / 8 = 0.125.
+                                        The base cannot be zero when the exponent is negative.
+                                    </p>
+                                </details>
+
+                                <details class="exp-faq-item">
+                                    <summary>Can I use decimal exponents?</summary>
+                                    <p>
+                                        Yes. For example, 9⁰·⁵ = √9 = 3. Some
+                                        combinations of negative bases and
+                                        non-integer exponents do not produce real numbers.
+                                    </p>
+                                </details>
+
+                                <details class="exp-faq-item">
+                                    <summary>Is this exponent calculator free?</summary>
+                                    <p>
+                                        Yes. You can use this DigiiFox calculator
+                                        in your browser without installing software.
+                                    </p>
+                                </details>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+
+                    <!-- Sidebar -->
+                    <aside class="exp-sidebar">
+
+                        <div class="exp-card exp-sidebar-card">
+                            <h3>Exponent Basics</h3>
+
+                            <div class="exp-sidebar-item">
+                                <span>Base</span>
+                                <strong>x</strong>
+                                <p>The number being raised to a power.</p>
+                            </div>
+
+                            <div class="exp-sidebar-item">
+                                <span>Exponent</span>
+                                <strong>y</strong>
+                                <p>Indicates the power applied to the base.</p>
+                            </div>
+
+                            <div class="exp-sidebar-item">
+                                <span>Power</span>
+                                <strong>xʸ</strong>
+                                <p>The result of evaluating the expression.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="exp-card exp-sidebar-card">
+                            <h3>Useful Formulas</h3>
+
+                            <div class="exp-mini-formula">
+                                <span>Multiply powers</span>
+                                <strong>xᵃ × xᵇ = xᵃ⁺ᵇ</strong>
+                            </div>
+
+                            <div class="exp-mini-formula">
+                                <span>Divide powers</span>
+                                <strong>xᵃ / xᵇ = xᵃ⁻ᵇ</strong>
+                            </div>
+
+                            <div class="exp-mini-formula">
+                                <span>Power of a power</span>
+                                <strong>(xᵃ)ᵇ = xᵃᵇ</strong>
+                            </div>
+
+                            <div class="exp-mini-formula">
+                                <span>Negative power</span>
+                                <strong>x⁻ᵃ = 1 / xᵃ</strong>
+                            </div>
+                        </div>
+
+
+                        <div class="exp-card exp-sidebar-card exp-sidebar-tip">
+                            <span class="exp-tip-icon" aria-hidden="true">✦</span>
+                            <h3>Quick Tip</h3>
+                            <p>
+                                A negative exponent does not make the result
+                                negative. For example, 2⁻² = 1/4 = 0.25.
+                            </p>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Full Footer: Keep consistent across all DigiiFox tools -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Smart online tools designed to make everyday digital
+                        tasks simpler, faster, and more convenient.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Math Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                    <a href="exponent-calculator.html">Exponent Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Exponent Calculator</h3>
+                    <a href="#calculator">Calculate a Power</a>
+                    <a href="#definition">Formula & Definition</a>
+                    <a href="#how-to-use">How to Use</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Simple tools. Smarter work.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/exponent-calculator.js"></script>
+
+</body>
+
+</html>

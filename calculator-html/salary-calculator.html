@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculate your gross salary, monthly take-home pay, annual salary, and deductions with the DigiiFox Salary Calculator.">
+
+    <title>Salary Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/salary-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-controls="mainNav" aria-expanded="false">☰</button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="sal-page">
+
+        <!-- HERO -->
+        <section class="container sal-hero">
+
+            <div class="sal-breadcrumb">
+                <a href="../calculator.html">Calculators</a>
+                <span>/</span>
+                <span>Salary Calculator</span>
+            </div>
+
+            <span class="sal-eyebrow">PERSONAL FINANCE</span>
+
+            <h1>Salary Calculator</h1>
+
+            <p>
+                Calculate your gross salary, estimated monthly take-home pay,
+                annual earnings, and salary deductions from your CTC.
+            </p>
+
+            <div class="sal-hero-note">
+                <span aria-hidden="true">₹</span>
+                <span>Understand your salary beyond CTC.</span>
+            </div>
+
+        </section>
+
+
+        <!-- CALCULATOR -->
+        <section class="container sal-main-section">
+
+            <div class="sal-calculator-card">
+
+                <div class="sal-card-heading">
+                    <div>
+                        <span class="sal-small-label">SALARY ESTIMATOR</span>
+                        <h2>Enter Your Salary Details</h2>
+                        <p>
+                            Enter annual CTC and the components included in it.
+                            All amounts are in Indian rupees.
+                        </p>
+                    </div>
+
+                    <div class="sal-icon" aria-hidden="true">₹</div>
+                </div>
+
+
+                <form id="salForm" novalidate>
+
+                    <!-- CTC -->
+                    <div class="sal-section-label">
+                        <span>01</span>
+                        <div>
+                            <h3>Annual Salary Structure</h3>
+                            <p>Enter your cost to company and employer components.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salCTC">Annual CTC (₹)</label>
+                        <input type="number" id="salCTC" min="0" max="100000000000" step="any" value="1200000"
+                            inputmode="decimal" required>
+                        <small>
+                            CTC means the total annual cost your employer
+                            associates with your employment.
+                        </small>
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salVariable">Annual variable pay / bonus included in CTC (₹)</label>
+                        <input type="number" id="salVariable" min="0" max="100000000000" step="any" value="100000"
+                            inputmode="decimal">
+                        <small>
+                            This is included in CTC. It is shown separately
+                            to estimate fixed salary excluding variable pay.
+                        </small>
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salEmployerPF">Annual employer PF contribution included in CTC (₹)</label>
+                        <input type="number" id="salEmployerPF" min="0" max="100000000000" step="any" value="21600"
+                            inputmode="decimal">
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salGratuity">Annual gratuity provision included in CTC (₹)</label>
+                        <input type="number" id="salGratuity" min="0" max="100000000000" step="any" value="0"
+                            inputmode="decimal">
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salBenefits">Other annual employer benefits included in CTC (₹)</label>
+                        <input type="number" id="salBenefits" min="0" max="100000000000" step="any" value="0"
+                            inputmode="decimal">
+                        <small>
+                            For example, employer-paid benefits that are part
+                            of CTC but are not paid as monthly cash salary.
+                        </small>
+                    </div>
+
+
+                    <!-- Deductions -->
+                    <div class="sal-section-label">
+                        <span>02</span>
+                        <div>
+                            <h3>Employee Deductions</h3>
+                            <p>Enter your estimated annual deductions.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salEmployeePF">Annual employee PF contribution (₹)</label>
+                        <input type="number" id="salEmployeePF" min="0" max="100000000000" step="any" value="21600"
+                            inputmode="decimal">
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salProfessionalTax">Annual professional tax (₹)</label>
+                        <input type="number" id="salProfessionalTax" min="0" max="100000000000" step="any" value="2400"
+                            inputmode="decimal">
+                        <small>
+                            Enter the amount applicable to you. Professional
+                            tax rules and limits vary by state.
+                        </small>
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salOtherDeductions">Other annual payroll deductions (₹)</label>
+                        <input type="number" id="salOtherDeductions" min="0" max="100000000000" step="any" value="0"
+                            inputmode="decimal">
+                    </div>
+
+
+                    <div class="sal-field">
+                        <label for="salIncomeTax">Estimated annual income tax / TDS (₹)</label>
+                        <input type="number" id="salIncomeTax" min="0" max="100000000000" step="any" value="0"
+                            inputmode="decimal">
+                        <small>
+                            Enter your estimated annual income tax or expected
+                            TDS. This is not calculated automatically.
+                        </small>
+                    </div>
+
+
+                    <div class="sal-info-box">
+                        <strong>How this estimate works</strong>
+                        <p>
+                            Employer PF, gratuity provision, and other employer
+                            benefits are deducted from CTC to estimate gross
+                            cash salary. Employee deductions and entered income
+                            tax are then subtracted to estimate take-home pay.
+                            Only enter components that are actually included
+                            in your CTC.
+                        </p>
+                    </div>
+
+
+                    <div class="sal-actions">
+                        <button type="submit" class="sal-btn sal-btn-primary">
+                            Calculate Salary
+                        </button>
+
+                        <button type="button" id="salReset" class="sal-btn sal-btn-secondary">
+                            Reset
+                        </button>
+                    </div>
+
+                    <p class="sal-error" id="salError" role="alert" aria-live="polite"></p>
+
+                </form>
+
+
+                <!-- RESULTS -->
+                <section class="sal-results" id="salResults" hidden>
+
+                    <div class="sal-results-heading">
+                        <div>
+                            <span class="sal-small-label">YOUR SALARY SUMMARY</span>
+                            <h2>Salary Breakdown</h2>
+                        </div>
+
+                        <span class="sal-result-badge">Annual + Monthly</span>
+                    </div>
+
+
+                    <div class="sal-summary-grid">
+
+                        <div class="sal-summary-card sal-summary-primary">
+                            <span>Estimated monthly take-home</span>
+                            <strong id="salMonthlyTakeHome">₹0</strong>
+                            <small>After entered deductions and tax</small>
+                        </div>
+
+                        <div class="sal-summary-card">
+                            <span>Annual CTC</span>
+                            <strong id="salAnnualCTC">₹0</strong>
+                            <small>Total employer cost entered</small>
+                        </div>
+
+                        <div class="sal-summary-card">
+                            <span>Annual gross cash salary</span>
+                            <strong id="salGrossAnnual">₹0</strong>
+                            <small>After non-cash CTC components</small>
+                        </div>
+
+                        <div class="sal-summary-card">
+                            <span>Annual take-home</span>
+                            <strong id="salAnnualTakeHome">₹0</strong>
+                            <small>After entered deductions and tax</small>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Breakdown -->
+                    <div class="sal-breakdown">
+
+                        <div class="sal-subheading">
+                            <h3>Annual Salary Breakdown</h3>
+                            <p>How your CTC is distributed in this estimate.</p>
+                        </div>
+
+                        <div class="sal-breakdown-list">
+
+                            <div class="sal-breakdown-row">
+                                <span>Annual CTC</span>
+                                <strong id="salBreakCTC">₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Employer PF contribution</span>
+                                <strong id="salBreakEmployerPF">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Gratuity provision</span>
+                                <strong id="salBreakGratuity">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Other employer benefits</span>
+                                <strong id="salBreakBenefits">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row sal-breakdown-highlight">
+                                <span>Gross cash salary</span>
+                                <strong id="salBreakGross">₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Employee PF</span>
+                                <strong id="salBreakEmployeePF">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Professional tax</span>
+                                <strong id="salBreakProfessionalTax">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Other payroll deductions</span>
+                                <strong id="salBreakOtherDeductions">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row">
+                                <span>Income tax / TDS entered</span>
+                                <strong id="salBreakIncomeTax">− ₹0</strong>
+                            </div>
+
+                            <div class="sal-breakdown-row sal-breakdown-total">
+                                <span>Estimated annual take-home</span>
+                                <strong id="salBreakTakeHome">₹0</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Monthly view -->
+                    <div class="sal-monthly-card">
+
+                        <div class="sal-subheading">
+                            <h3>Monthly Salary Estimate</h3>
+                            <p>Annual figures divided by 12 for comparison.</p>
+                        </div>
+
+                        <div class="sal-monthly-grid">
+
+                            <div>
+                                <span>Monthly gross cash salary</span>
+                                <strong id="salMonthlyGross">₹0</strong>
+                            </div>
+
+                            <div>
+                                <span>Monthly deductions + tax</span>
+                                <strong id="salMonthlyDeductions">₹0</strong>
+                            </div>
+
+                            <div>
+                                <span>Monthly take-home</span>
+                                <strong id="salMonthlyNet">₹0</strong>
+                            </div>
+
+                            <div>
+                                <span>Fixed monthly take-home estimate</span>
+                                <strong id="salFixedMonthlyNet">₹0</strong>
+                            </div>
+
+                        </div>
+
+                        <p class="sal-monthly-note">
+                            Monthly take-home is an annual average. Actual
+                            payslips can differ due to bonus timing, payroll
+                            rounding, unpaid leave, and changing deductions.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Visual -->
+                    <div class="sal-visual">
+
+                        <div class="sal-visual-heading">
+                            <span>Gross salary distribution</span>
+                            <span id="salVisualCaption"></span>
+                        </div>
+
+                        <div class="sal-visual-bar" id="salVisualBar">
+                            <div class="sal-visual-net" id="salVisualNet"></div>
+                            <div class="sal-visual-deductions" id="salVisualDeductions"></div>
+                        </div>
+
+                        <div class="sal-visual-legend">
+                            <span><i class="sal-legend-net"></i>Take-home</span>
+                            <span><i class="sal-legend-deductions"></i>Deductions and tax</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Formula -->
+                    <div class="sal-calculation-steps">
+                        <h3>Calculation Steps</h3>
+
+                        <p id="salStepOne"></p>
+                        <p id="salStepTwo"></p>
+                        <p id="salStepThree"></p>
+                        <p id="salStepFour" class="sal-step-final"></p>
+                    </div>
+
+
+                    <button type="button" id="salCopy" class="sal-btn sal-btn-copy">
+                        Copy Salary Summary
+                    </button>
+
+                    <p class="sal-copy-message" id="salCopyMessage" aria-live="polite"></p>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEFINITION -->
+        <section class="container sal-info-section">
+
+            <article class="sal-info-card">
+                <span class="sal-small-label">UNDERSTANDING SALARY</span>
+
+                <h2>What is a Salary Calculator?</h2>
+
+                <p>
+                    A salary calculator estimates how much of your annual
+                    compensation may reach you after employer-side CTC
+                    components, employee payroll deductions, and income tax
+                    are accounted for.
+                </p>
+
+                <p>
+                    Your actual take-home pay depends on your salary structure,
+                    benefits, provident fund arrangements, state-specific
+                    professional tax, tax regime, and employer payroll policies.
+                </p>
+            </article>
+
+
+            <article class="sal-info-card">
+                <span class="sal-small-label">SALARY FORMULA</span>
+
+                <h2>How is take-home salary calculated?</h2>
+
+                <div class="sal-formula-box">
+                    <h3>Step 1: Gross cash salary</h3>
+                    <p>
+                        Gross cash salary = CTC − employer PF − gratuity
+                        − other employer benefits
+                    </p>
+                </div>
+
+                <div class="sal-formula-box">
+                    <h3>Step 2: Total deductions</h3>
+                    <p>
+                        Total deductions = employee PF + professional tax
+                        + other payroll deductions + entered income tax
+                    </p>
+                </div>
+
+                <div class="sal-formula-box">
+                    <h3>Step 3: Annual take-home</h3>
+                    <p>
+                        Annual take-home = gross cash salary − total deductions
+                    </p>
+                </div>
+
+                <div class="sal-formula-box">
+                    <h3>Step 4: Monthly estimate</h3>
+                    <p>
+                        Average monthly take-home = annual take-home ÷ 12
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- HOW TO USE -->
+        <section class="container sal-info-section">
+
+            <article class="sal-info-card">
+                <span class="sal-small-label">QUICK GUIDE</span>
+
+                <h2>How to use this calculator</h2>
+
+                <ol class="sal-how-to">
+                    <li>Enter your annual CTC.</li>
+                    <li>Enter any variable pay included in CTC.</li>
+                    <li>Enter employer PF, gratuity, and other employer benefits included in CTC.</li>
+                    <li>Enter annual employee PF, professional tax, and other payroll deductions.</li>
+                    <li>Enter your estimated annual income tax or TDS.</li>
+                    <li>Click Calculate Salary to view the annual and monthly breakdown.</li>
+                </ol>
+            </article>
+
+
+            <article class="sal-info-card">
+                <span class="sal-small-label">IMPORTANT DISTINCTIONS</span>
+
+                <h2>CTC vs Gross Salary vs Take-Home</h2>
+
+                <div class="sal-definition-item">
+                    <h3>CTC</h3>
+                    <p>
+                        The total annual cost of employment, which may include
+                        cash salary, employer contributions, benefits, and
+                        other components.
+                    </p>
+                </div>
+
+                <div class="sal-definition-item">
+                    <h3>Gross cash salary</h3>
+                    <p>
+                        The cash salary estimate after removing the employer
+                        contributions and benefits entered as part of CTC.
+                    </p>
+                </div>
+
+                <div class="sal-definition-item">
+                    <h3>Take-home salary</h3>
+                    <p>
+                        The estimated amount remaining after the payroll
+                        deductions and income tax entered in the calculator.
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="container sal-faq-section">
+
+            <div class="sal-section-heading">
+                <span class="sal-small-label">COMMON QUESTIONS</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Learn more about salary, CTC, and take-home pay.</p>
+            </div>
+
+
+            <div class="sal-faq-list">
+
+                <details class="sal-faq-item">
+                    <summary>Is CTC the same as take-home salary?</summary>
+                    <p>
+                        No. CTC can include employer contributions and benefits
+                        that are not paid directly as monthly cash. Employee
+                        deductions and income tax can reduce take-home pay further.
+                    </p>
+                </details>
+
+                <details class="sal-faq-item">
+                    <summary>Does this calculator automatically calculate income tax?</summary>
+                    <p>
+                        No. Enter your estimated annual income tax or TDS in the
+                        provided field. For a separate tax estimate, use the
+                        DigiiFox Income Tax Calculator and enter the result here.
+                    </p>
+                </details>
+
+                <details class="sal-faq-item">
+                    <summary>Is variable pay included in the monthly estimate?</summary>
+                    <p>
+                        Variable pay is included in the annual gross cash salary
+                        when you enter it as part of CTC. The calculator also
+                        shows a fixed monthly take-home estimate that excludes
+                        the variable pay from fixed salary while allocating
+                        the entered annual deductions and tax across the year.
+                    </p>
+                </details>
+
+                <details class="sal-faq-item">
+                    <summary>Does the calculator include employer PF?</summary>
+                    <p>
+                        Yes. Enter the employer PF contribution if it is included
+                        in your CTC. The calculator removes that amount from CTC
+                        to estimate gross cash salary. Employee PF is entered
+                        separately as a payroll deduction.
+                    </p>
+                </details>
+
+                <details class="sal-faq-item">
+                    <summary>Why can my actual payslip be different?</summary>
+                    <p>
+                        Actual payroll may use a different salary structure,
+                        variable-pay schedule, tax withholding, PF calculation,
+                        professional tax, benefit valuation, or rounding method.
+                    </p>
+                </details>
+
+                <details class="sal-faq-item">
+                    <summary>Can I use this calculator outside India?</summary>
+                    <p>
+                        The calculator uses rupees and an Indian-style salary
+                        structure. For another country, adapt the currency,
+                        deductions, payroll rules, and tax calculations to
+                        that jurisdiction.
+                    </p>
+                </details>
+
+            </div>
+
+        </section>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="container sal-related-section">
+
+            <div class="sal-section-heading">
+                <span class="sal-small-label">MORE FINANCE TOOLS</span>
+                <h2>Related Calculators</h2>
+                <p>Explore other useful DigiiFox financial tools.</p>
+            </div>
+
+            <div class="sal-related-grid">
+
+                <a href="income-tax-calculator.html" class="sal-related-card">
+                    <span class="sal-related-icon">₹</span>
+                    <h3>Income Tax Calculator</h3>
+                    <p>Estimate tax under the old and new regimes.</p>
+                    <span class="sal-related-link">Calculate Income Tax →</span>
+                </a>
+
+                <a href="gst-calculator.html" class="sal-related-card">
+                    <span class="sal-related-icon">%</span>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate GST and the tax-inclusive price.</p>
+                    <span class="sal-related-link">Calculate GST →</span>
+                </a>
+
+                <a href="simple-interest-calculator.html" class="sal-related-card">
+                    <span class="sal-related-icon">📈</span>
+                    <h3>Simple Interest</h3>
+                    <p>Calculate interest and total returns.</p>
+                    <span class="sal-related-link">Calculate Interest →</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- DISCLAIMER -->
+        <section class="container sal-disclaimer">
+            <strong>Disclaimer:</strong>
+            This calculator provides an estimate based on the amounts you enter.
+            It does not determine your official taxable salary or automatically
+            calculate income tax. Check your employment agreement, payslip,
+            applicable payroll rules, and tax liability before making financial
+            decisions.
+        </section>
+
+    </main>
+
+
+    <!-- FULL SHARED FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful online tools designed to make everyday tasks
+                        faster, easier, and simpler.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+                    <a href="salary-calculator.html">Salary Calculator</a>
+                    <a href="income-tax-calculator.html">Income Tax</a>
+                    <a href="fd-calculator.html">FD Calculator</a>
+                    <a href="rd-calculator.html">RD Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Promise</h3>
+                    <p>Simple to use</p>
+                    <p>Responsive design</p>
+                    <p>Useful everyday tools</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="../calculator-js/salary-calculator.js"></script>
+
+</body>
+
+</html>

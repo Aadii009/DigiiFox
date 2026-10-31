@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate GST quickly with the DigiiFox GST Calculator. Add or remove GST, choose a tax rate, and view CGST, SGST, or IGST breakdowns.">
+
+    <title>GST Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/gst-calculator.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav" type="button">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="gst-page">
+
+        <!-- Page Introduction -->
+        <section class="gst-hero container">
+            <div class="gst-breadcrumb">
+                <a href="../calculator.html">Calculators</a>
+                <span>/</span>
+                <span>GST Calculator</span>
+            </div>
+
+            <span class="gst-eyebrow">FINANCE CALCULATOR</span>
+
+            <h1>GST Calculator</h1>
+
+            <p>
+                Calculate Goods and Services Tax in seconds. Add GST to an
+                amount or extract GST from an inclusive price, with a clear
+                breakdown of the tax and final amount.
+            </p>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="container gst-main-section">
+
+            <div class="gst-calculator-card">
+
+                <div class="gst-card-heading">
+                    <div>
+                        <span class="gst-small-label">QUICK CALCULATION</span>
+                        <h2>Calculate Your GST</h2>
+                        <p>Enter an amount, choose a tax rate, and calculate.</p>
+                    </div>
+
+                    <div class="gst-icon" aria-hidden="true">%</div>
+                </div>
+
+
+                <form id="gstForm" novalidate>
+
+                    <!-- Calculation Mode -->
+                    <div class="gst-field">
+                        <label for="gstMode">Calculation type</label>
+
+                        <select id="gstMode">
+                            <option value="add">Add GST to an amount</option>
+                            <option value="remove">Remove GST from an amount</option>
+                        </select>
+
+                        <small id="gstModeHelp">
+                            Enter the original amount before GST.
+                        </small>
+                    </div>
+
+
+                    <!-- Amount and Currency -->
+                    <div class="gst-input-grid">
+
+                        <div class="gst-field">
+                            <label for="gstAmount" id="gstAmountLabel">
+                                Original amount
+                            </label>
+
+                            <input type="number" id="gstAmount" min="0" max="1000000000000" step="any"
+                                placeholder="e.g. 10000" inputmode="decimal" required>
+                        </div>
+
+                        <div class="gst-field">
+                            <label for="gstCurrency">Currency</label>
+
+                            <select id="gstCurrency">
+                                <option value="INR">INR (₹)</option>
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="CAD">CAD (C$)</option>
+                                <option value="AUD">AUD (A$)</option>
+                                <option value="SGD">SGD (S$)</option>
+                                <option value="AED">AED (د.إ)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <!-- GST Rate -->
+                    <div class="gst-field">
+                        <label for="gstRate">GST rate</label>
+
+                        <select id="gstRate">
+                            <option value="0">0%</option>
+                            <option value="5">5%</option>
+                            <option value="12">12%</option>
+                            <option value="18" selected>18%</option>
+                            <option value="28">28%</option>
+                            <option value="custom">Custom rate</option>
+                        </select>
+                    </div>
+
+
+                    <div class="gst-field gst-custom-rate-field" id="gstCustomRateField" hidden>
+                        <label for="gstCustomRate">Custom GST rate (%)</label>
+
+                        <input type="number" id="gstCustomRate" min="0" max="1000" step="any" placeholder="Enter a rate"
+                            inputmode="decimal">
+
+                        <small>Enter a rate between 0% and 1000%.</small>
+                    </div>
+
+
+                    <!-- Tax Type -->
+                    <div class="gst-field">
+                        <label for="gstTaxType">Transaction type</label>
+
+                        <select id="gstTaxType">
+                            <option value="intra">Intra-state — CGST + SGST</option>
+                            <option value="inter">Inter-state — IGST</option>
+                        </select>
+
+                        <small>
+                            Choose the transaction type to display the
+                            corresponding tax breakdown.
+                        </small>
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="gst-actions">
+                        <button type="submit" class="gst-btn gst-btn-primary">
+                            Calculate GST
+                        </button>
+
+                        <button type="button" id="gstReset" class="gst-btn gst-btn-secondary">
+                            Reset
+                        </button>
+                    </div>
+
+                    <p class="gst-error" id="gstError" role="alert" aria-live="polite"></p>
+
+                </form>
+
+
+                <!-- Results -->
+                <div class="gst-results" id="gstResults" hidden>
+
+                    <div class="gst-results-heading">
+                        <div>
+                            <span class="gst-small-label">YOUR RESULTS</span>
+                            <h3>GST Breakdown</h3>
+                        </div>
+
+                        <span class="gst-result-badge" id="gstResultBadge">
+                            18% GST
+                        </span>
+                    </div>
+
+
+                    <div class="gst-total-result">
+                        <span id="gstFinalAmountLabel">Final amount including GST</span>
+
+                        <strong id="gstFinalAmount">₹11,800.00</strong>
+
+                        <span id="gstTotalCaption">
+                            Includes the original amount and GST.
+                        </span>
+                    </div>
+
+
+                    <div class="gst-result-list">
+
+                        <div class="gst-result-row">
+                            <span id="gstBaseLabel">Original amount</span>
+                            <strong id="gstBaseAmount">₹10,000.00</strong>
+                        </div>
+
+                        <div class="gst-result-row">
+                            <span>Total GST</span>
+                            <strong id="gstTaxAmount">₹1,800.00</strong>
+                        </div>
+
+                        <div class="gst-result-row" id="gstCgstRow">
+                            <span>CGST</span>
+                            <strong id="gstCgstAmount">₹900.00</strong>
+                        </div>
+
+                        <div class="gst-result-row" id="gstSgstRow">
+                            <span>SGST</span>
+                            <strong id="gstSgstAmount">₹900.00</strong>
+                        </div>
+
+                        <div class="gst-result-row" id="gstIgstRow" hidden>
+                            <span>IGST</span>
+                            <strong id="gstIgstAmount">₹1,800.00</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Visual Breakdown -->
+                    <div class="gst-breakdown">
+                        <div class="gst-breakdown-heading">
+                            <span>Amount composition</span>
+                            <span id="gstBreakdownCaption">Tax breakdown</span>
+                        </div>
+
+                        <div class="gst-breakdown-bar" role="img"
+                            aria-label="Visual breakdown of the base amount and GST" id="gstBreakdownBar">
+                            <div class="gst-base-segment" id="gstBaseSegment"></div>
+                            <div class="gst-tax-segment" id="gstTaxSegment"></div>
+                        </div>
+
+                        <div class="gst-legend">
+                            <span>
+                                <i class="gst-legend-base"></i>
+                                Base amount
+                            </span>
+
+                            <span>
+                                <i class="gst-legend-tax"></i>
+                                GST amount
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <!-- Calculation Steps -->
+                    <div class="gst-steps">
+                        <h4>Calculation steps</h4>
+
+                        <p id="gstFormulaStep"></p>
+                        <p id="gstSubstitutionStep"></p>
+                        <p id="gstFinalStep" class="gst-final-step"></p>
+                    </div>
+
+
+                    <button type="button" id="gstCopy" class="gst-btn gst-btn-copy">
+                        Copy Results
+                    </button>
+
+                    <p class="gst-copy-message" id="gstCopyMessage" aria-live="polite"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Definition -->
+        <section class="container gst-info-section">
+
+            <div class="gst-info-card">
+                <span class="gst-small-label">UNDERSTANDING GST</span>
+
+                <h2>What is GST?</h2>
+
+                <p>
+                    GST stands for Goods and Services Tax. In India, it is an
+                    indirect tax applied to many goods and services. The
+                    applicable rate depends on the product or service and
+                    relevant tax rules.
+                </p>
+
+                <p>
+                    This calculator helps you estimate the tax on an amount.
+                    It is intended for quick calculations and does not determine
+                    the legally applicable GST rate for a particular transaction.
+                </p>
+            </div>
+
+
+            <!-- Formula -->
+            <div class="gst-info-card">
+                <span class="gst-small-label">GST FORMULA</span>
+
+                <h2>How is GST calculated?</h2>
+
+                <div class="gst-formula-box">
+                    <h3>When adding GST</h3>
+                    <p>GST Amount = Original Amount × GST Rate ÷ 100</p>
+                    <p>Final Amount = Original Amount + GST Amount</p>
+                </div>
+
+                <div class="gst-formula-box">
+                    <h3>When removing GST</h3>
+                    <p>Original Amount = Inclusive Amount × 100 ÷ (100 + GST Rate)</p>
+                    <p>GST Amount = Inclusive Amount − Original Amount</p>
+                </div>
+
+                <div class="gst-formula-box">
+                    <h3>Tax distribution</h3>
+                    <p>Intra-state: CGST = SGST = Total GST ÷ 2</p>
+                    <p>Inter-state: IGST = Total GST</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- How to Use -->
+        <section class="container gst-info-section">
+
+            <div class="gst-info-card">
+                <span class="gst-small-label">QUICK GUIDE</span>
+
+                <h2>How to use the GST Calculator</h2>
+
+                <ol class="gst-how-to-list">
+                    <li>
+                        <strong>Choose the calculation type.</strong>
+                        Select whether you want to add GST or remove GST from
+                        an inclusive amount.
+                    </li>
+
+                    <li>
+                        <strong>Enter the amount.</strong>
+                        Enter the original amount before tax or the amount
+                        that already includes GST, depending on your selection.
+                    </li>
+
+                    <li>
+                        <strong>Select the GST rate.</strong>
+                        Choose a listed rate or enter a custom rate.
+                    </li>
+
+                    <li>
+                        <strong>Select the transaction type.</strong>
+                        Choose intra-state for the CGST/SGST split or inter-state
+                        to display IGST.
+                    </li>
+
+                    <li>
+                        <strong>Calculate and review.</strong>
+                        Check the base amount, tax amount, final amount, and
+                        calculation steps.
+                    </li>
+                </ol>
+            </div>
+
+
+            <!-- Example -->
+            <div class="gst-info-card">
+                <span class="gst-small-label">WORKED EXAMPLE</span>
+
+                <h2>GST calculation example</h2>
+
+                <p>
+                    Suppose the original amount is ₹10,000 and the selected
+                    GST rate is 18%.
+                </p>
+
+                <div class="gst-example-table">
+                    <div>
+                        <span>Original amount</span>
+                        <strong>₹10,000.00</strong>
+                    </div>
+
+                    <div>
+                        <span>GST at 18%</span>
+                        <strong>₹1,800.00</strong>
+                    </div>
+
+                    <div>
+                        <span>CGST at 9%</span>
+                        <strong>₹900.00</strong>
+                    </div>
+
+                    <div>
+                        <span>SGST at 9%</span>
+                        <strong>₹900.00</strong>
+                    </div>
+
+                    <div class="gst-example-total">
+                        <span>Final amount</span>
+                        <strong>₹11,800.00</strong>
+                    </div>
+                </div>
+
+                <p class="gst-example-note">
+                    This example assumes an 18% rate applies to the transaction.
+                    The actual rate should be verified for the relevant goods
+                    or services.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- FAQs -->
+        <section class="container gst-faq-section">
+
+            <div class="gst-section-heading">
+                <span class="gst-small-label">COMMON QUESTIONS</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Learn more about calculating GST.</p>
+            </div>
+
+
+            <div class="gst-faq-list">
+
+                <details class="gst-faq-item">
+                    <summary>What does a GST Calculator do?</summary>
+                    <p>
+                        It calculates the GST amount on a base price or extracts
+                        the tax component from a GST-inclusive price. It also
+                        shows the resulting amount and a tax breakdown.
+                    </p>
+                </details>
+
+                <details class="gst-faq-item">
+                    <summary>How do I add GST to a price?</summary>
+                    <p>
+                        Multiply the original amount by the GST rate and divide
+                        by 100. Add that tax amount to the original price to
+                        obtain the final amount.
+                    </p>
+                </details>
+
+                <details class="gst-faq-item">
+                    <summary>How do I remove GST from an inclusive price?</summary>
+                    <p>
+                        Divide the inclusive price by 1 plus the GST rate
+                        expressed as a decimal. Subtract the resulting base
+                        amount from the inclusive price to find the GST component.
+                    </p>
+                </details>
+
+                <details class="gst-faq-item">
+                    <summary>What is the difference between CGST, SGST, and IGST?</summary>
+                    <p>
+                        For an intra-state supply, CGST and SGST generally
+                        represent the central and state components of GST.
+                        For an inter-state supply, IGST generally applies.
+                        The applicable treatment depends on the transaction
+                        and current tax rules.
+                    </p>
+                </details>
+
+                <details class="gst-faq-item">
+                    <summary>Does this calculator identify the correct GST rate?</summary>
+                    <p>
+                        No. You must select the rate yourself. The correct
+                        rate depends on the relevant goods or services and
+                        applicable rules. Verify it using official tax guidance
+                        or with a qualified tax professional.
+                    </p>
+                </details>
+
+                <details class="gst-faq-item">
+                    <summary>Does changing the currency convert the amount?</summary>
+                    <p>
+                        No. The currency selector only changes how the result
+                        is displayed. It does not perform currency conversion.
+                    </p>
+                </details>
+
+            </div>
+
+        </section>
+
+
+        <!-- Related Calculators -->
+        <section class="container gst-related-section">
+
+            <div class="gst-section-heading">
+                <span class="gst-small-label">KEEP CALCULATING</span>
+                <h2>Related Calculators</h2>
+                <p>Explore more finance tools from DigiiFox.</p>
+            </div>
+
+            <div class="gst-related-grid">
+
+                <a href="simple-interest-calculator.html" class="gst-related-card">
+                    <span class="gst-related-icon">%</span>
+                    <h3>Simple Interest</h3>
+                    <p>Calculate interest earned and the total amount.</p>
+                    <span class="gst-related-link">Calculate Interest →</span>
+                </a>
+
+                <a href="compound-interest-calculator.html" class="gst-related-card">
+                    <span class="gst-related-icon">📈</span>
+                    <h3>Compound Interest</h3>
+                    <p>Estimate investment growth with compounding.</p>
+                    <span class="gst-related-link">Calculate Growth →</span>
+                </a>
+
+                <a href="fd-calculator.html" class="gst-related-card">
+                    <span class="gst-related-icon">🏦</span>
+                    <h3>FD Calculator</h3>
+                    <p>Estimate fixed deposit maturity and interest.</p>
+                    <span class="gst-related-link">Calculate FD →</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Disclaimer -->
+        <section class="container gst-disclaimer">
+            <strong>Disclaimer:</strong>
+            This calculator provides mathematical estimates for general
+            information. It does not provide tax, accounting, or legal advice.
+            Verify the applicable GST rate and tax treatment before using
+            the result for invoices, filings, or business decisions.
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful online tools designed to make everyday tasks
+                        faster, easier, and simpler.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="fd-calculator.html">FD Calculator</a>
+                    <a href="rd-calculator.html">RD Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Our Promise</h3>
+                    <p>Simple to use</p>
+                    <p>Responsive design</p>
+                    <p>Useful everyday tools</p>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="../calculator-js/gst-calculator.js"></script>
+
+</body>
+
+</html>

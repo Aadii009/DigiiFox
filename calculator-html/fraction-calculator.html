@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fraction Calculator - DigiiFox</title>
+    <meta name="description"
+        content="Calculate, simplify, add, subtract, multiply, and divide fractions with the free DigiiFox Fraction Calculator.">
+
+    <!-- Shared calculator stylesheet -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Fraction calculator stylesheet -->
+    <link rel="stylesheet" href="../calculator-css/fraction-calculator.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+    <main>
+
+        <section class="fraction-hero">
+            <div class="container">
+
+                <div class="fraction-breadcrumb">
+                    <a href="calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Fraction Calculator</span>
+                </div>
+
+                <div class="fraction-hero-content">
+                    <span class="fraction-badge">FREE ONLINE TOOL</span>
+
+                    <h1>Fraction Calculator</h1>
+
+                    <p>
+                        Simplify fractions, perform arithmetic operations,
+                        convert improper fractions into mixed numbers,
+                        and turn fractions into decimals in seconds.
+                    </p>
+
+                    <div class="fraction-hero-tags">
+                        <span>✓ Accurate calculations</span>
+                        <span>✓ Step-by-step solutions</span>
+                        <span>✓ Free to use</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CALCULATOR ================= -->
+        <section class="fraction-main-section" id="calculator">
+            <div class="container">
+
+                <div class="fraction-layout">
+
+                    <div class="fraction-calculator-card">
+
+                        <div class="fraction-card-heading">
+                            <div>
+                                <span class="fraction-eyebrow">FRACTION TOOL</span>
+                                <h2>Calculate fractions</h2>
+                            </div>
+
+                            <span class="fraction-status">
+                                <span></span> Ready
+                            </span>
+                        </div>
+
+
+                        <!-- Operation selection -->
+                        <div class="fraction-operation-section">
+                            <label for="fractionOperation">Choose operation</label>
+
+                            <select id="fractionOperation">
+                                <option value="simplify">Simplify a fraction</option>
+                                <option value="add">Add fractions (+)</option>
+                                <option value="subtract">Subtract fractions (−)</option>
+                                <option value="multiply">Multiply fractions (×)</option>
+                                <option value="divide">Divide fractions (÷)</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Fraction inputs -->
+                        <form id="fractionForm" novalidate>
+
+                            <div class="fraction-inputs-layout">
+
+                                <!-- First fraction -->
+                                <div class="fraction-input-group">
+                                    <h3 id="firstFractionHeading">Fraction</h3>
+
+                                    <div class="fraction-input-stack">
+
+                                        <label class="sr-only" for="numerator1">
+                                            First numerator
+                                        </label>
+
+                                        <input type="number" id="numerator1" placeholder="Numerator" step="1" required>
+
+                                        <span class="fraction-line"></span>
+
+                                        <label class="sr-only" for="denominator1">
+                                            First denominator
+                                        </label>
+
+                                        <input type="number" id="denominator1" placeholder="Denominator" step="1"
+                                            required>
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Operator -->
+                                <div class="fraction-operator" id="fractionOperator">=</div>
+
+
+                                <!-- Second fraction -->
+                                <div class="fraction-input-group" id="secondFractionGroup">
+                                    <h3>Second fraction</h3>
+
+                                    <div class="fraction-input-stack">
+
+                                        <label class="sr-only" for="numerator2">
+                                            Second numerator
+                                        </label>
+
+                                        <input type="number" id="numerator2" placeholder="Numerator" step="1">
+
+                                        <span class="fraction-line"></span>
+
+                                        <label class="sr-only" for="denominator2">
+                                            Second denominator
+                                        </label>
+
+                                        <input type="number" id="denominator2" placeholder="Denominator" step="1">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="fraction-example-row">
+                                <span>Try an example:</span>
+                                <button type="button" id="fractionExampleButton">
+                                    Load 3/4 + 1/2
+                                </button>
+                            </div>
+
+
+                            <p class="fraction-error" id="fractionError" role="alert" hidden></p>
+
+
+                            <div class="fraction-action-buttons">
+                                <button type="submit" class="fraction-primary-button">
+                                    Calculate Fraction
+                                </button>
+
+                                <button type="button" class="fraction-secondary-button" id="fractionResetButton">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                        <!-- Result -->
+                        <section class="fraction-result-panel" id="fractionResultPanel" aria-live="polite" hidden>
+                            <div class="fraction-result-heading">
+                                <span class="fraction-eyebrow">YOUR RESULT</span>
+                                <button type="button" id="fractionCopyButton">
+                                    Copy result
+                                </button>
+                            </div>
+
+                            <div class="fraction-result-content">
+
+                                <div class="fraction-result-visual">
+                                    <span class="fraction-result-label">Simplified fraction</span>
+
+                                    <div class="fraction-display">
+                                        <span id="fractionResultNumerator">5</span>
+                                        <span class="fraction-result-line"></span>
+                                        <span id="fractionResultDenominator">4</span>
+                                    </div>
+                                </div>
+
+                                <div class="fraction-result-details">
+                                    <div class="fraction-detail-item">
+                                        <span>Mixed number</span>
+                                        <strong id="fractionMixedResult">1 1/4</strong>
+                                    </div>
+
+                                    <div class="fraction-detail-item">
+                                        <span>Decimal</span>
+                                        <strong id="fractionDecimalResult">1.25</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="fraction-steps-box">
+                                <h3>Calculation steps</h3>
+                                <ol id="fractionSteps"></ol>
+                            </div>
+
+                            <p class="fraction-copy-feedback" id="fractionCopyFeedback" aria-live="polite"></p>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- ================= SIDEBAR ================= -->
+                    <aside class="fraction-sidebar">
+
+                        <div class="fraction-info-card">
+                            <div class="fraction-info-icon">½</div>
+
+                            <h3>What can you calculate?</h3>
+
+                            <p>
+                                Work with common fractions and get simplified
+                                answers with clear calculation steps.
+                            </p>
+
+                            <ul class="fraction-feature-list">
+                                <li>Simplify fractions</li>
+                                <li>Add and subtract fractions</li>
+                                <li>Multiply and divide fractions</li>
+                                <li>Convert to mixed numbers</li>
+                                <li>View decimal equivalents</li>
+                            </ul>
+                        </div>
+
+
+                        <div class="fraction-info-card fraction-quick-card">
+                            <h3>Fraction basics</h3>
+
+                            <div class="fraction-quick-example">
+                                <div class="fraction-mini">
+                                    <span>3</span>
+                                    <span></span>
+                                    <span>4</span>
+                                </div>
+
+                                <div>
+                                    <strong>Numerator</strong>
+                                    <p>The number above the line.</p>
+                                </div>
+                            </div>
+
+                            <div class="fraction-quick-example">
+                                <div class="fraction-mini">
+                                    <span>3</span>
+                                    <span></span>
+                                    <span>4</span>
+                                </div>
+
+                                <div>
+                                    <strong>Denominator</strong>
+                                    <p>The non-zero number below the line.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= DEFINITION ================= -->
+        <section class="fraction-content-section" id="definition">
+            <div class="container fraction-content-container">
+
+                <span class="fraction-eyebrow">UNDERSTANDING FRACTIONS</span>
+
+                <h2>What is a fraction?</h2>
+
+                <p>
+                    A fraction represents a part of a whole and is written
+                    as one integer over another, such as 3/4. The top number
+                    is called the numerator, while the bottom number is
+                    called the denominator. The denominator cannot be zero.
+                </p>
+
+                <p>
+                    Fractions are used in mathematics, measurements, cooking,
+                    financial calculations, and everyday situations. A fraction
+                    can often be simplified by dividing its numerator and
+                    denominator by their greatest common divisor.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FORMULAS ================= -->
+        <section class="fraction-content-section fraction-formulas-section">
+            <div class="container">
+
+                <div class="fraction-section-heading">
+                    <span class="fraction-eyebrow">QUICK REFERENCE</span>
+                    <h2>Fraction formulas</h2>
+                    <p>Learn the basic rules used when calculating fractions.</p>
+                </div>
+
+                <div class="fraction-formula-grid">
+
+                    <article class="fraction-formula-card">
+                        <h3>Addition</h3>
+                        <div class="fraction-formula">a/b + c/d = (ad + bc)/bd</div>
+                        <p>Find a common denominator, add the numerators, and simplify.</p>
+                    </article>
+
+                    <article class="fraction-formula-card">
+                        <h3>Subtraction</h3>
+                        <div class="fraction-formula">a/b − c/d = (ad − bc)/bd</div>
+                        <p>Find a common denominator, subtract the numerators, and simplify.</p>
+                    </article>
+
+                    <article class="fraction-formula-card">
+                        <h3>Multiplication</h3>
+                        <div class="fraction-formula">a/b × c/d = ac/bd</div>
+                        <p>Multiply the numerators and multiply the denominators.</p>
+                    </article>
+
+                    <article class="fraction-formula-card">
+                        <h3>Division</h3>
+                        <div class="fraction-formula">a/b ÷ c/d = ad/bc</div>
+                        <p>Multiply the first fraction by the reciprocal of the second.</p>
+                    </article>
+
+                    <article class="fraction-formula-card">
+                        <h3>Simplification</h3>
+                        <div class="fraction-formula">(a ÷ g)/(b ÷ g)</div>
+                        <p>Divide both numbers by their greatest common divisor, g.</p>
+                    </article>
+
+                    <article class="fraction-formula-card">
+                        <h3>Decimal conversion</h3>
+                        <div class="fraction-formula">Decimal = a ÷ b</div>
+                        <p>Divide the numerator by the denominator to obtain a decimal.</p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= HOW TO USE ================= -->
+        <section class="fraction-content-section" id="how-to-use">
+            <div class="container fraction-content-container">
+
+                <span class="fraction-eyebrow">SIMPLE STEPS</span>
+
+                <h2>How to use the fraction calculator</h2>
+
+                <div class="fraction-steps">
+
+                    <div class="fraction-step">
+                        <span>01</span>
+                        <div>
+                            <h3>Select an operation</h3>
+                            <p>Choose simplification, addition, subtraction, multiplication, or division.</p>
+                        </div>
+                    </div>
+
+                    <div class="fraction-step">
+                        <span>02</span>
+                        <div>
+                            <h3>Enter your fraction values</h3>
+                            <p>Fill in the numerator and denominator for each fraction required by the operation.</p>
+                        </div>
+                    </div>
+
+                    <div class="fraction-step">
+                        <span>03</span>
+                        <div>
+                            <h3>Calculate the answer</h3>
+                            <p>Select Calculate Fraction to find the simplified result.</p>
+                        </div>
+                    </div>
+
+                    <div class="fraction-step">
+                        <span>04</span>
+                        <div>
+                            <h3>Review your solution</h3>
+                            <p>Check the simplified fraction, mixed number, decimal equivalent, and calculation steps.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="fraction-content-section fraction-faq-section" id="faq">
+            <div class="container fraction-content-container">
+
+                <span class="fraction-eyebrow">COMMON QUESTIONS</span>
+
+                <h2>Frequently asked questions</h2>
+
+                <div class="fraction-faq-list">
+
+                    <details class="fraction-faq-item">
+                        <summary>How do I simplify a fraction?</summary>
+                        <p>Divide the numerator and denominator by their greatest common divisor. For example, 6/8
+                            simplifies to 3/4.</p>
+                    </details>
+
+                    <details class="fraction-faq-item">
+                        <summary>How do I add fractions with different denominators?</summary>
+                        <p>Find a common denominator, convert both fractions to equivalent fractions, add their
+                            numerators, and simplify the result.</p>
+                    </details>
+
+                    <details class="fraction-faq-item">
+                        <summary>What is an improper fraction?</summary>
+                        <p>An improper fraction has a numerator whose absolute value is greater than or equal to its
+                            positive denominator. For example, 7/4 is an improper fraction.</p>
+                    </details>
+
+                    <details class="fraction-faq-item">
+                        <summary>Can a fraction have a denominator of zero?</summary>
+                        <p>No. Division by zero is undefined, so the calculator does not accept a zero denominator.</p>
+                    </details>
+
+                    <details class="fraction-faq-item">
+                        <summary>How do I convert a fraction into a decimal?</summary>
+                        <p>Divide the numerator by the denominator. For example, 3/4 equals 0.75.</p>
+                    </details>
+
+                    <details class="fraction-faq-item">
+                        <summary>Is this fraction calculator free?</summary>
+                        <p>Yes. The DigiiFox Fraction Calculator runs in your browser and can be used without an
+                            account.</p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Smart online tools designed to make everyday digital
+                        tasks simpler, faster, and more convenient.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="calculator.html">All Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculator Tools</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="average-calculator.html">Average Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="#calculator">Use Calculator</a>
+                    <a href="#definition">About This Tool</a>
+                    <a href="#how-to-use">How to Use</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/fraction-calculator.js"></script>
+
+</body>
+
+</html>

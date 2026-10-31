@@ -1,0 +1,862 @@
+/* =========================================
+   DIGIIFOX GST CALCULATOR
+   Green Finance Theme
+   ========================================= */
+
+.gst-page {
+    --gst-primary: #16803d;
+    --gst-primary-dark: #11632f;
+    --gst-primary-light: #eaf7ee;
+    --gst-text: #1f2937;
+    --gst-muted: #6b7280;
+    --gst-border: #e5e7eb;
+    --gst-surface: #ffffff;
+
+    color: var(--gst-text);
+    padding-bottom: 48px;
+}
+
+.gst-page *,
+.gst-page *::before,
+.gst-page *::after {
+    box-sizing: border-box;
+}
+
+.gst-page .container {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.gst-page input,
+.gst-page select,
+.gst-page button {
+    font: inherit;
+}
+
+.gst-page a {
+    color: inherit;
+}
+
+
+/* Hero */
+
+.gst-hero {
+    padding-top: 34px;
+    padding-bottom: 28px;
+}
+
+.gst-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--gst-muted);
+}
+
+.gst-breadcrumb a {
+    color: var(--gst-primary);
+    text-decoration: none;
+}
+
+.gst-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.gst-eyebrow,
+.gst-small-label {
+    display: inline-block;
+    color: var(--gst-primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.gst-hero h1 {
+    margin: 12px 0;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.gst-hero>p {
+    max-width: 720px;
+    margin: 0;
+    color: var(--gst-muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* Main Calculator Layout */
+
+.gst-main-section {
+    padding-bottom: 34px;
+}
+
+.gst-calculator-card {
+    max-width: 780px;
+    margin-inline: auto;
+    padding: 32px;
+    background: var(--gst-surface);
+    border: 1px solid var(--gst-border);
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.055);
+}
+
+.gst-card-heading,
+.gst-results-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.gst-card-heading {
+    margin-bottom: 28px;
+}
+
+.gst-card-heading h2,
+.gst-results-heading h3 {
+    margin: 8px 0;
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.gst-card-heading p {
+    margin: 0;
+    color: var(--gst-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.gst-icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 17px;
+    background: var(--gst-primary-light);
+    color: var(--gst-primary);
+    font-size: 29px;
+    font-weight: 800;
+}
+
+
+/* Form */
+
+.gst-input-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 18px;
+}
+
+.gst-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.gst-field label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gst-text);
+}
+
+.gst-field input,
+.gst-field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--gst-text);
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.gst-field input:focus,
+.gst-field select:focus {
+    border-color: var(--gst-primary);
+    box-shadow: 0 0 0 3px rgba(22, 128, 61, 0.12);
+}
+
+.gst-field small {
+    color: var(--gst-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.gst-custom-rate-field[hidden],
+.gst-results[hidden],
+.gst-result-row[hidden] {
+    display: none !important;
+}
+
+
+/* Buttons */
+
+.gst-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.gst-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 46px;
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.gst-btn:active {
+    transform: translateY(1px);
+}
+
+.gst-btn-primary {
+    flex: 1;
+    background: var(--gst-primary);
+    color: #fff;
+}
+
+.gst-btn-primary:hover {
+    background: var(--gst-primary-dark);
+}
+
+.gst-btn-secondary {
+    background: #fff;
+    color: var(--gst-text);
+    border-color: var(--gst-border);
+}
+
+.gst-btn-secondary:hover {
+    background: #f9fafb;
+    border-color: #cbd5e1;
+}
+
+.gst-btn-copy {
+    width: 100%;
+    margin-top: 20px;
+    color: var(--gst-primary);
+    background: var(--gst-primary-light);
+    border-color: #ccebd5;
+}
+
+.gst-btn-copy:hover {
+    background: #dff3e5;
+}
+
+.gst-error {
+    min-height: 0;
+    margin: 0;
+    color: #b91c1c;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.gst-error:not(:empty) {
+    margin-top: 14px;
+}
+
+
+/* Results */
+
+.gst-results {
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid var(--gst-border);
+}
+
+.gst-results-heading {
+    margin-bottom: 20px;
+}
+
+.gst-results-heading h3 {
+    margin-bottom: 0;
+}
+
+.gst-result-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--gst-primary-light);
+    color: var(--gst-primary-dark);
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.gst-total-result {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    border: 1px solid #cfe9d7;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #f0faf3, #e7f7ed);
+}
+
+.gst-total-result>span:first-child {
+    color: #356448;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.gst-total-result strong {
+    color: var(--gst-primary-dark);
+    font-size: clamp(27px, 5vw, 36px);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.gst-total-result>span:last-child {
+    color: #587261;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.gst-result-list {
+    margin-top: 20px;
+    border: 1px solid var(--gst-border);
+    border-radius: 13px;
+    overflow: hidden;
+}
+
+.gst-result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 15px 17px;
+    border-bottom: 1px solid var(--gst-border);
+    font-size: 13px;
+}
+
+.gst-result-row:last-child {
+    border-bottom: none;
+}
+
+.gst-result-row span {
+    color: var(--gst-muted);
+}
+
+.gst-result-row strong {
+    color: var(--gst-text);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+
+/* Composition Bar */
+
+.gst-breakdown {
+    margin-top: 24px;
+}
+
+.gst-breakdown-heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.gst-breakdown-heading span:last-child {
+    color: var(--gst-muted);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.gst-breakdown-bar {
+    display: flex;
+    width: 100%;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e5e7eb;
+}
+
+.gst-base-segment {
+    width: 84.7458%;
+    background: #16803d;
+    transition: width 0.25s ease;
+}
+
+.gst-tax-segment {
+    width: 15.2542%;
+    background: #a7e2b7;
+    transition: width 0.25s ease;
+}
+
+.gst-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.gst-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gst-muted);
+    font-size: 12px;
+}
+
+.gst-legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.gst-legend-base {
+    background: #16803d;
+}
+
+.gst-legend-tax {
+    background: #a7e2b7;
+}
+
+
+/* Calculation Steps */
+
+.gst-steps {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 13px;
+    background: #f8faf9;
+    border: 1px solid #e5eee7;
+}
+
+.gst-steps h4 {
+    margin: 0 0 14px;
+    font-size: 15px;
+}
+
+.gst-steps p {
+    margin: 9px 0;
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.gst-steps .gst-final-step {
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px dashed #cbd5d1;
+    color: var(--gst-primary-dark);
+    font-weight: 800;
+}
+
+.gst-copy-message {
+    margin: 10px 0 0;
+    color: var(--gst-primary-dark);
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* Information Sections */
+
+.gst-info-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.gst-info-card {
+    min-width: 0;
+    padding: 27px;
+    background: #fff;
+    border: 1px solid var(--gst-border);
+    border-radius: 17px;
+}
+
+.gst-info-card h2,
+.gst-section-heading h2 {
+    margin: 12px 0;
+    font-size: 23px;
+    line-height: 1.35;
+}
+
+.gst-info-card>p,
+.gst-section-heading>p {
+    color: var(--gst-muted);
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.gst-formula-box {
+    padding: 16px;
+    margin-top: 14px;
+    border-radius: 11px;
+    border: 1px solid #e1eee5;
+    background: #f7fbf8;
+}
+
+.gst-formula-box h3 {
+    margin: 0 0 10px;
+    color: var(--gst-primary-dark);
+    font-size: 14px;
+}
+
+.gst-formula-box p {
+    margin: 7px 0;
+    color: #4b5563;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.gst-how-to-list {
+    display: grid;
+    gap: 17px;
+    padding-left: 21px;
+    margin: 20px 0 0;
+}
+
+.gst-how-to-list li {
+    padding-left: 4px;
+    color: var(--gst-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.gst-how-to-list strong {
+    color: var(--gst-text);
+}
+
+
+/* Worked Example */
+
+.gst-example-table {
+    margin-top: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gst-border);
+    border-radius: 12px;
+}
+
+.gst-example-table>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 14px;
+    border-bottom: 1px solid var(--gst-border);
+    font-size: 13px;
+}
+
+.gst-example-table>div:last-child {
+    border-bottom: none;
+}
+
+.gst-example-table span {
+    color: var(--gst-muted);
+}
+
+.gst-example-table strong {
+    text-align: right;
+}
+
+.gst-example-table .gst-example-total {
+    background: var(--gst-primary-light);
+}
+
+.gst-example-total strong {
+    color: var(--gst-primary-dark);
+}
+
+.gst-info-card .gst-example-note {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+
+/* FAQs */
+
+.gst-faq-section,
+.gst-related-section {
+    padding-top: 34px;
+    padding-bottom: 28px;
+}
+
+.gst-section-heading {
+    margin-bottom: 24px;
+}
+
+.gst-section-heading h2 {
+    margin-bottom: 8px;
+}
+
+.gst-section-heading>p {
+    margin: 0;
+}
+
+.gst-faq-list {
+    display: grid;
+    gap: 12px;
+}
+
+.gst-faq-item {
+    padding: 0 20px;
+    border: 1px solid var(--gst-border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.gst-faq-item summary {
+    position: relative;
+    padding: 18px 26px 18px 0;
+    cursor: pointer;
+    color: var(--gst-text);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    list-style: none;
+}
+
+.gst-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.gst-faq-item summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    color: var(--gst-primary);
+    font-size: 22px;
+    font-weight: 500;
+    transform: translateY(-50%);
+}
+
+.gst-faq-item[open] summary::after {
+    content: "−";
+}
+
+.gst-faq-item p {
+    margin: 0;
+    padding: 0 0 18px;
+    color: var(--gst-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* Related Cards */
+
+.gst-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.gst-related-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--gst-border);
+    border-radius: 15px;
+    background: #fff;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.gst-related-card:hover {
+    transform: translateY(-3px);
+    border-color: #a8dcb7;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.gst-related-icon {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    background: var(--gst-primary-light);
+    color: var(--gst-primary);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.gst-related-card h3 {
+    margin: 0 0 9px;
+    font-size: 16px;
+}
+
+.gst-related-card p {
+    flex: 1;
+    margin: 0 0 17px;
+    color: var(--gst-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.gst-related-link {
+    color: var(--gst-primary);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* Disclaimer */
+
+.gst-disclaimer {
+    padding-top: 18px;
+    padding-bottom: 20px;
+    color: var(--gst-muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.gst-disclaimer strong {
+    color: var(--gst-text);
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .gst-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gst-info-section {
+        gap: 16px;
+    }
+
+    .gst-info-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 650px) {
+    .gst-page .container {
+        width: min(100% - 30px, 1120px);
+    }
+
+    .gst-hero {
+        padding-top: 25px;
+    }
+
+    .gst-hero h1 {
+        font-size: 31px;
+    }
+
+    .gst-calculator-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+    }
+
+    .gst-card-heading h2,
+    .gst-results-heading h3 {
+        font-size: 21px;
+    }
+
+    .gst-input-grid,
+    .gst-info-section,
+    .gst-related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gst-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+    }
+
+    .gst-info-card {
+        padding: 22px 18px;
+    }
+
+    .gst-total-result {
+        padding: 20px 16px;
+    }
+
+    .gst-result-row {
+        padding: 14px 12px;
+    }
+
+    .gst-steps {
+        padding: 16px;
+    }
+
+    .gst-section-heading h2 {
+        font-size: 22px;
+    }
+
+    .gst-related-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .gst-card-heading,
+    .gst-results-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .gst-result-badge {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .gst-actions {
+        flex-direction: column;
+    }
+
+    .gst-actions .gst-btn {
+        width: 100%;
+    }
+
+    .gst-example-table>div {
+        padding: 12px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gst-page *,
+    .gst-page *::before,
+    .gst-page *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}

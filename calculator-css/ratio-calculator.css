@@ -1,0 +1,1131 @@
+/* =========================================
+   DIGIIFOX RATIO CALCULATOR
+   Tool-specific styles only.
+   Shared navbar/footer remain in
+   standard-calculator.css.
+========================================= */
+
+:root {
+    --ratio-green: #238653;
+    --ratio-green-dark: #17683e;
+    --ratio-green-light: #eaf7ef;
+    --ratio-green-border: #c8e8d3;
+
+    --ratio-page-bg: #f7faf8;
+    --ratio-white: #ffffff;
+    --ratio-text: #202b24;
+    --ratio-muted: #69776e;
+    --ratio-border: #e1e9e3;
+
+    --ratio-danger: #c0392b;
+    --ratio-danger-bg: #fff0ee;
+
+    --ratio-radius-small: 10px;
+    --ratio-radius-medium: 16px;
+    --ratio-radius-large: 20px;
+
+    --ratio-shadow: 0 8px 28px rgba(28, 74, 46, 0.06);
+}
+
+/* Shared container is provided by standard-calculator.css.
+   Do not redefine the navbar or footer here. */
+
+/* =========================================
+   HERO
+========================================= */
+
+.ratio-hero {
+    padding: 24px 0 60px;
+    background:
+        radial-gradient(circle at 85% 15%,
+            rgba(183, 229, 197, 0.35),
+            transparent 32%),
+        linear-gradient(135deg, #f1faf4, #ffffff 75%);
+}
+
+.ratio-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 42px;
+
+    color: var(--ratio-muted);
+    font-size: 12px;
+}
+
+.ratio-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ratio-breadcrumb a:hover {
+    color: var(--ratio-green);
+}
+
+.ratio-breadcrumb span:last-child {
+    color: var(--ratio-text);
+    font-weight: 700;
+}
+
+.ratio-hero-content {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ratio-eyebrow,
+.ratio-section-label {
+    display: inline-block;
+    color: var(--ratio-green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.ratio-eyebrow {
+    padding: 7px 13px;
+    background: var(--ratio-green-light);
+    border: 1px solid var(--ratio-green-border);
+    border-radius: 30px;
+    letter-spacing: 0.8px;
+}
+
+.ratio-hero-content h1 {
+    margin-top: 18px;
+    color: var(--ratio-text);
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+}
+
+.ratio-hero-content h1 span {
+    color: var(--ratio-green);
+}
+
+.ratio-hero-content>p {
+    max-width: 650px;
+    margin: 17px auto 0;
+    color: var(--ratio-muted);
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+.ratio-hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 22px;
+    margin-top: 23px;
+}
+
+.ratio-hero-features span {
+    color: var(--ratio-muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.ratio-section-heading {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.ratio-section-heading h2,
+.ratio-content-section h2 {
+    margin-top: 8px;
+    color: var(--ratio-text);
+    font-size: clamp(25px, 3vw, 32px);
+    line-height: 1.35;
+    letter-spacing: -0.7px;
+}
+
+.ratio-section-heading>p {
+    margin-top: 10px;
+    color: var(--ratio-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   CALCULATOR LAYOUT
+========================================= */
+
+.ratio-calculator-section {
+    padding: 65px 0 75px;
+    background: var(--ratio-page-bg);
+}
+
+.ratio-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.85fr);
+    align-items: start;
+    gap: 24px;
+}
+
+.ratio-calculator-card,
+.ratio-sidebar-card {
+    min-width: 0;
+    background: var(--ratio-white);
+    border: 1px solid var(--ratio-border);
+    border-radius: var(--ratio-radius-large);
+    box-shadow: var(--ratio-shadow);
+}
+
+.ratio-calculator-card {
+    padding: 28px;
+}
+
+.ratio-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--ratio-border);
+}
+
+.ratio-heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    color: var(--ratio-green);
+    background: var(--ratio-green-light);
+    border-radius: 13px;
+
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.ratio-card-heading h3 {
+    color: var(--ratio-text);
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.ratio-card-heading p {
+    margin-top: 4px;
+    color: var(--ratio-muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   MODE TABS
+========================================= */
+
+.ratio-mode-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+
+    margin-top: 24px;
+    padding: 5px;
+
+    background: #f1f6f2;
+    border-radius: 12px;
+}
+
+.ratio-mode-tab {
+    min-width: 0;
+    min-height: 43px;
+    padding: 8px 5px;
+
+    color: var(--ratio-muted);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ratio-mode-tab:hover {
+    color: var(--ratio-green-dark);
+}
+
+.ratio-mode-tab.active {
+    color: var(--ratio-green-dark);
+    background: white;
+    border-color: var(--ratio-green-border);
+    box-shadow: 0 2px 6px rgba(28, 74, 46, 0.04);
+}
+
+.ratio-mode-tab:focus-visible,
+.ratio-primary-button:focus-visible,
+.ratio-secondary-button:focus-visible,
+.ratio-copy-button:focus-visible,
+.ratio-example-button:focus-visible {
+    outline: 3px solid rgba(35, 134, 83, 0.25);
+    outline-offset: 3px;
+}
+
+.ratio-mode-description {
+    margin: 20px 0;
+    color: var(--ratio-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.ratio-input-group {
+    margin-bottom: 19px;
+}
+
+.ratio-input-group label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--ratio-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.ratio-input-group input {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+
+    color: var(--ratio-text);
+    background: white;
+    border: 1px solid #d9e3db;
+    border-radius: var(--ratio-radius-small);
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ratio-input-group input::placeholder {
+    color: #9aa79e;
+}
+
+.ratio-input-group input:hover {
+    border-color: #b7cfc0;
+}
+
+.ratio-input-group input:focus {
+    outline: none;
+    border-color: var(--ratio-green);
+    box-shadow: 0 0 0 3px rgba(35, 134, 83, 0.1);
+}
+
+.ratio-input-group[hidden],
+#thirdInputGroup[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   ERRORS
+========================================= */
+
+.ratio-error {
+    margin: 12px 0;
+    padding: 12px 14px;
+
+    color: var(--ratio-danger);
+    background: var(--ratio-danger-bg);
+    border: 1px solid #f0cfca;
+    border-radius: var(--ratio-radius-small);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.ratio-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin-top: 25px;
+}
+
+.ratio-primary-button,
+.ratio-secondary-button,
+.ratio-copy-button {
+    min-height: 46px;
+    padding: 11px 17px;
+
+    border-radius: var(--ratio-radius-small);
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.ratio-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 12px;
+
+    color: white;
+    background: var(--ratio-green);
+    border: 1px solid var(--ratio-green);
+}
+
+.ratio-primary-button:hover {
+    background: var(--ratio-green-dark);
+    border-color: var(--ratio-green-dark);
+    transform: translateY(-1px);
+}
+
+.ratio-primary-button span {
+    font-size: 17px;
+}
+
+.ratio-secondary-button {
+    color: var(--ratio-text);
+    background: white;
+    border: 1px solid var(--ratio-border);
+}
+
+.ratio-secondary-button:hover {
+    background: #f5f9f6;
+    border-color: var(--ratio-green-border);
+}
+
+/* =========================================
+   RESULTS
+========================================= */
+
+.ratio-result {
+    margin-top: 26px;
+    padding: 22px;
+
+    background: linear-gradient(135deg, #eff9f2, #fbfefc);
+    border: 1px solid var(--ratio-green-border);
+    border-radius: var(--ratio-radius-medium);
+
+    animation: ratio-result-appear 0.22s ease;
+}
+
+@keyframes ratio-result-appear {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ratio-result-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    color: var(--ratio-muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ratio-result-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    color: var(--ratio-green-dark);
+    background: #d9f2e2;
+    border-radius: 50%;
+
+    font-size: 13px;
+}
+
+.ratio-result-value {
+    margin-top: 9px;
+    overflow-wrap: anywhere;
+
+    color: var(--ratio-green-dark);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: -0.7px;
+}
+
+.ratio-result-description {
+    margin-top: 9px;
+    color: var(--ratio-muted);
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.ratio-result-details {
+    display: grid;
+    gap: 10px;
+
+    margin-top: 17px;
+    padding-top: 16px;
+
+    border-top: 1px solid var(--ratio-green-border);
+}
+
+.ratio-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.ratio-detail-row span {
+    color: var(--ratio-muted);
+}
+
+.ratio-detail-row strong {
+    color: var(--ratio-text);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.ratio-copy-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.ratio-copy-button {
+    color: var(--ratio-green-dark);
+    background: white;
+    border: 1px solid var(--ratio-green-border);
+}
+
+.ratio-copy-button:hover {
+    background: var(--ratio-green-light);
+}
+
+.ratio-copy-feedback {
+    color: var(--ratio-green-dark);
+    font-size: 11px;
+}
+
+.ratio-privacy-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+
+    color: var(--ratio-muted);
+    font-size: 11px;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.ratio-sidebar {
+    display: grid;
+    gap: 17px;
+}
+
+.ratio-sidebar-card {
+    padding: 23px;
+}
+
+.ratio-sidebar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 41px;
+    height: 41px;
+
+    background: var(--ratio-green-light);
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+.ratio-sidebar-card h3 {
+    margin-top: 12px;
+    color: var(--ratio-text);
+    font-size: 15px;
+}
+
+.ratio-sidebar-card p {
+    margin-top: 9px;
+    color: var(--ratio-muted);
+    font-size: 12px;
+    line-height: 1.85;
+}
+
+.ratio-example-equation {
+    margin-top: 12px;
+    color: var(--ratio-text);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.ratio-example-line {
+    height: 1px;
+    margin-top: 13px;
+    background: var(--ratio-border);
+}
+
+.ratio-example-answer {
+    color: var(--ratio-green);
+}
+
+.ratio-example-button {
+    margin-top: 15px;
+    padding: 0;
+
+    color: var(--ratio-green);
+    background: transparent;
+    border: 0;
+
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.ratio-example-button:hover {
+    color: var(--ratio-green-dark);
+}
+
+.ratio-benefit-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 13px;
+    padding-left: 18px;
+
+    color: var(--ratio-muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   INFORMATION SECTIONS
+========================================= */
+
+.ratio-content-section {
+    padding: 70px 0;
+    background: white;
+}
+
+.ratio-alternate-section {
+    background: #f4f8f5;
+}
+
+.ratio-content-narrow {
+    max-width: 850px;
+}
+
+.ratio-content-section p {
+    color: var(--ratio-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.ratio-content-section h2+p {
+    margin-top: 17px;
+}
+
+.ratio-content-section p+p {
+    margin-top: 14px;
+}
+
+.ratio-information-box {
+    margin-top: 22px;
+    padding: 17px 19px;
+
+    color: var(--ratio-muted);
+    background: var(--ratio-green-light);
+    border-left: 4px solid var(--ratio-green);
+    border-radius: 0 var(--ratio-radius-small) var(--ratio-radius-small) 0;
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.ratio-information-box strong {
+    color: var(--ratio-green-dark);
+}
+
+/* =========================================
+   FORMULA CARDS
+========================================= */
+
+.ratio-formula-card {
+    margin-top: 17px;
+    padding: 22px;
+
+    background: white;
+    border: 1px solid var(--ratio-border);
+    border-radius: var(--ratio-radius-medium);
+}
+
+.ratio-formula-card h3 {
+    margin-bottom: 13px;
+    color: var(--ratio-text);
+    font-size: 14px;
+}
+
+.ratio-formula {
+    margin-top: 8px;
+    padding: 12px 14px;
+
+    color: var(--ratio-green-dark);
+    background: var(--ratio-green-light);
+    border: 1px solid #d8eee0;
+    border-radius: var(--ratio-radius-small);
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.ratio-formula-card>p {
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+/* =========================================
+   EXAMPLE CARDS
+========================================= */
+
+.ratio-example-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+}
+
+.ratio-example-card {
+    min-width: 0;
+    padding: 23px;
+
+    background: white;
+    border: 1px solid var(--ratio-border);
+    border-radius: var(--ratio-radius-medium);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ratio-example-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ratio-shadow);
+}
+
+.ratio-example-number {
+    color: var(--ratio-green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.ratio-example-card h3 {
+    margin: 10px 0 13px;
+    color: var(--ratio-text);
+    font-size: 15px;
+}
+
+.ratio-example-card p {
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.ratio-example-card p strong {
+    color: var(--ratio-text);
+}
+
+.ratio-example-answer-box {
+    margin-top: 17px;
+    padding: 12px;
+
+    color: var(--ratio-green-dark);
+    background: var(--ratio-green-light);
+    border-radius: var(--ratio-radius-small);
+
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* =========================================
+   HOW TO USE
+========================================= */
+
+.ratio-steps {
+    display: grid;
+    gap: 23px;
+    margin-top: 27px;
+}
+
+.ratio-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.ratio-step>span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    color: var(--ratio-green-dark);
+    background: var(--ratio-green-light);
+    border: 1px solid var(--ratio-green-border);
+    border-radius: 11px;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.ratio-step h3 {
+    margin-bottom: 4px;
+    color: var(--ratio-text);
+    font-size: 14px;
+}
+
+.ratio-step p {
+    font-size: 12px;
+}
+
+/* =========================================
+   FAQ
+========================================= */
+
+.ratio-faq-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.ratio-faq-item {
+    padding: 18px 20px;
+
+    background: white;
+    border: 1px solid var(--ratio-border);
+    border-radius: var(--ratio-radius-small);
+}
+
+.ratio-faq-item summary {
+    position: relative;
+    padding-right: 30px;
+
+    color: var(--ratio-text);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.7;
+
+    cursor: pointer;
+    list-style: none;
+}
+
+.ratio-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ratio-faq-item summary::after {
+    content: "+";
+    position: absolute;
+    top: -3px;
+    right: 0;
+
+    color: var(--ratio-green);
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.ratio-faq-item[open] summary::after {
+    content: "−";
+}
+
+.ratio-faq-item p {
+    padding-top: 12px;
+    font-size: 12px;
+}
+
+/* =========================================
+   RELATED CALCULATORS
+========================================= */
+
+.ratio-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.ratio-related-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+    padding: 18px;
+
+    background: white;
+    border: 1px solid var(--ratio-border);
+    border-radius: var(--ratio-radius-medium);
+
+    text-decoration: none;
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.ratio-related-card:hover {
+    border-color: var(--ratio-green-border);
+    transform: translateY(-2px);
+}
+
+.ratio-related-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    color: var(--ratio-green);
+    background: var(--ratio-green-light);
+    border-radius: 11px;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.ratio-related-text {
+    min-width: 0;
+}
+
+.ratio-related-text strong,
+.ratio-related-text small {
+    display: block;
+}
+
+.ratio-related-text strong {
+    color: var(--ratio-text);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.ratio-related-text small {
+    margin-top: 4px;
+    color: var(--ratio-muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.ratio-related-arrow {
+    margin-left: auto;
+    color: var(--ratio-green);
+    font-size: 17px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1024px) {
+    .ratio-layout {
+        grid-template-columns: minmax(0, 1.4fr) minmax(230px, 0.8fr);
+        gap: 18px;
+    }
+
+    .ratio-calculator-card {
+        padding: 23px;
+    }
+
+    .ratio-sidebar-card {
+        padding: 19px;
+    }
+
+    .ratio-example-grid,
+    .ratio-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .ratio-hero {
+        padding: 20px 0 48px;
+    }
+
+    .ratio-breadcrumb {
+        margin-bottom: 32px;
+        gap: 7px;
+    }
+
+    .ratio-hero-content h1 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+
+    .ratio-hero-content>p {
+        font-size: 13px;
+    }
+
+    .ratio-calculator-section {
+        padding: 48px 0 54px;
+    }
+
+    .ratio-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .ratio-calculator-card {
+        padding: 22px;
+    }
+
+    .ratio-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+    }
+
+    .ratio-sidebar-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .ratio-content-section {
+        padding: 54px 0;
+    }
+
+    .ratio-example-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ratio-related-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .ratio-hero-content h1 {
+        font-size: 32px;
+    }
+
+    .ratio-hero-features {
+        gap: 9px 13px;
+    }
+
+    .ratio-hero-features span {
+        font-size: 10px;
+    }
+
+    .ratio-calculator-card {
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .ratio-card-heading {
+        gap: 11px;
+    }
+
+    .ratio-heading-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .ratio-card-heading h3 {
+        font-size: 16px;
+    }
+
+    .ratio-mode-tabs {
+        gap: 3px;
+        padding: 4px;
+    }
+
+    .ratio-mode-tab {
+        min-height: 43px;
+        padding: 7px 3px;
+        font-size: 9px;
+    }
+
+    .ratio-button-row {
+        flex-direction: column;
+    }
+
+    .ratio-primary-button,
+    .ratio-secondary-button {
+        width: 100%;
+    }
+
+    .ratio-result {
+        padding: 17px;
+    }
+
+    .ratio-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .ratio-sidebar-card:last-child {
+        grid-column: auto;
+    }
+
+    .ratio-formula-card,
+    .ratio-example-card {
+        padding: 18px;
+    }
+
+    .ratio-formula {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .ratio-detail-row {
+        gap: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ratio-result,
+    .ratio-example-card,
+    .ratio-related-card,
+    .ratio-primary-button,
+    .ratio-secondary-button,
+    .ratio-copy-button {
+        animation: none !important;
+        transition: none !important;
+    }
+}

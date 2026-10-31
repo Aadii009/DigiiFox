@@ -1,0 +1,965 @@
+/* =========================================
+   DIGIIFOX PROBABILITY CALCULATOR
+   Shared navbar and footer remain untouched
+========================================= */
+
+.prob-page {
+    --prob-green: #198754;
+    --prob-green-dark: #126c42;
+    --prob-green-light: #eaf7ef;
+    --prob-green-border: #cdebd8;
+    --prob-text: #24332b;
+    --prob-muted: #718078;
+    --prob-border: #e1e9e3;
+    --prob-background: #f7faf8;
+
+    color: var(--prob-text);
+    background: var(--prob-background);
+    font-family: inherit;
+}
+
+.prob-page *,
+.prob-page *::before,
+.prob-page *::after {
+    box-sizing: border-box;
+}
+
+.prob-page [hidden] {
+    display: none !important;
+}
+
+.prob-page .container {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.prob-page button,
+.prob-page input,
+.prob-page select {
+    font: inherit;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.prob-hero {
+    padding: 30px 0 52px;
+    background: linear-gradient(
+        135deg,
+        #eff9f2 0%,
+        #f8fcf9 65%,
+        #e8f6ed 100%
+    );
+    border-bottom: 1px solid var(--prob-green-border);
+}
+
+.prob-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    color: var(--prob-muted);
+    font-size: 13px;
+}
+
+.prob-breadcrumb a {
+    color: var(--prob-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.prob-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.prob-hero-content {
+    max-width: 760px;
+}
+
+.prob-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 13px;
+    border: 1px solid var(--prob-green-border);
+    border-radius: 30px;
+    background: #ffffff;
+    color: var(--prob-green-dark);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.prob-hero h1 {
+    margin: 18px 0 13px;
+    color: #183a28;
+    font-size: clamp(30px, 4vw, 43px);
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.prob-hero-content > p {
+    max-width: 690px;
+    margin: 0;
+    color: #5d6e63;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.prob-main-section {
+    padding: 40px 0 65px;
+}
+
+.prob-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    align-items: start;
+    gap: 25px;
+}
+
+.prob-main-column {
+    display: grid;
+    min-width: 0;
+    gap: 24px;
+}
+
+.prob-card {
+    min-width: 0;
+    padding: 28px;
+    border: 1px solid var(--prob-border);
+    border-radius: 17px;
+    background: #ffffff;
+    box-shadow: 0 5px 22px rgb(26 62 39 / 4%);
+}
+
+.prob-card h2 {
+    margin: 0;
+    color: #20372a;
+    font-size: 23px;
+    font-weight: 750;
+    line-height: 1.35;
+}
+
+.prob-card h3 {
+    color: #263c2e;
+}
+
+.prob-section-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--prob-green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.prob-section-heading {
+    margin-bottom: 22px;
+}
+
+.prob-section-heading > p {
+    margin: 9px 0 0;
+    color: var(--prob-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CALCULATOR HEADER
+========================================= */
+
+.prob-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.prob-card-heading p {
+    margin: 8px 0 0;
+    color: var(--prob-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.prob-heading-icon {
+    display: grid;
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    place-items: center;
+    border-radius: 16px;
+    background: var(--prob-green-light);
+    color: var(--prob-green-dark);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   FORM FIELDS
+========================================= */
+
+.prob-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.prob-field label {
+    color: #304238;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.prob-field input,
+.prob-field select {
+    width: 100%;
+    min-height: 49px;
+    padding: 12px 14px;
+    border: 1px solid #d8e3db;
+    border-radius: 9px;
+    outline: none;
+    background: #ffffff;
+    color: #20372a;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prob-field input::placeholder {
+    color: #a1ada5;
+}
+
+.prob-field input:focus,
+.prob-field select:focus {
+    border-color: var(--prob-green);
+    box-shadow: 0 0 0 3px rgb(25 135 84 / 12%);
+}
+
+.prob-field small {
+    color: var(--prob-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+#probMode {
+    margin-bottom: 22px;
+}
+
+.prob-input-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.prob-input-group:not([hidden]) {
+    margin-bottom: 20px;
+}
+
+#probComplementFields {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.prob-mode-note {
+    padding: 15px 16px;
+    border: 1px solid var(--prob-green-border);
+    border-radius: 10px;
+    background: #f4fbf6;
+    color: #53685a;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.prob-mode-note strong {
+    color: var(--prob-green-dark);
+}
+
+
+/* =========================================
+   BUTTONS AND ERRORS
+========================================= */
+
+.prob-error {
+    margin-top: 17px;
+    padding: 12px 14px;
+    border: 1px solid #f1c7c7;
+    border-radius: 9px;
+    background: #fff5f5;
+    color: #a52828;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.prob-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.prob-btn {
+    display: inline-flex;
+    min-height: 45px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 19px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.prob-btn:focus-visible,
+.prob-example-button:focus-visible {
+    outline: 3px solid rgb(25 135 84 / 28%);
+    outline-offset: 3px;
+}
+
+.prob-btn:active {
+    transform: translateY(1px);
+}
+
+.prob-btn-primary {
+    background: var(--prob-green);
+    color: #ffffff;
+}
+
+.prob-btn-primary:hover {
+    background: var(--prob-green-dark);
+}
+
+.prob-btn-secondary {
+    border-color: #dbe5de;
+    background: #ffffff;
+    color: #34493b;
+}
+
+.prob-btn-secondary:hover {
+    border-color: var(--prob-green);
+    background: #f3faf5;
+}
+
+
+/* =========================================
+   RESULT PANEL
+========================================= */
+
+.prob-result-panel {
+    margin-top: 28px;
+    padding: 24px;
+    border: 1px solid var(--prob-green-border);
+    border-radius: 14px;
+    background: linear-gradient(145deg, #f3fbf5, #ffffff);
+}
+
+.prob-result-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.prob-result-label {
+    color: var(--prob-green-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.prob-result-check {
+    display: grid;
+    width: 29px;
+    height: 29px;
+    place-items: center;
+    border-radius: 50%;
+    background: #d9f2e2;
+    color: #146c3c;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.prob-result-expression {
+    margin-top: 18px;
+    color: #405548;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.prob-result-number {
+    margin-top: 5px;
+    color: #176b40;
+    font-size: clamp(32px, 5vw, 45px);
+    font-weight: 800;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.prob-result-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.prob-metric {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 12px;
+    border: 1px solid var(--prob-border);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.prob-metric span {
+    color: var(--prob-muted);
+    font-size: 11px;
+}
+
+.prob-metric strong {
+    color: var(--prob-green-dark);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.prob-result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+#probCopyFeedback {
+    color: var(--prob-green-dark);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.prob-steps {
+    margin-top: 24px;
+    padding-top: 21px;
+    border-top: 1px solid var(--prob-green-border);
+}
+
+.prob-steps h3 {
+    margin: 0 0 14px;
+    font-size: 16px;
+}
+
+.prob-steps ol {
+    display: grid;
+    gap: 11px;
+    margin: 0;
+    padding-left: 22px;
+    color: #596b60;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.prob-steps li {
+    padding-left: 3px;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   EXAMPLES
+========================================= */
+
+.prob-example-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.prob-example-button {
+    display: flex;
+    min-width: 0;
+    min-height: 105px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 9px;
+    padding: 16px;
+    border: 1px solid var(--prob-border);
+    border-radius: 11px;
+    background: #ffffff;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s ease, background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.prob-example-button:hover {
+    transform: translateY(-2px);
+    border-color: var(--prob-green);
+    background: #f6fbf7;
+}
+
+.prob-example-expression {
+    color: var(--prob-green-dark);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.prob-example-result {
+    color: var(--prob-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   DEFINITION AND FORMULAS
+========================================= */
+
+.prob-information-card > p {
+    margin: 15px 0;
+    color: #5b6b61;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.prob-information-card h3 {
+    margin: 25px 0 10px;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.prob-formula-box {
+    margin: 22px 0;
+    padding: 23px;
+    border: 1px solid var(--prob-green-border);
+    border-radius: 12px;
+    background: #f4fbf6;
+    text-align: center;
+}
+
+.prob-formula-title {
+    display: block;
+    color: var(--prob-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.prob-formula {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    color: var(--prob-green-dark);
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.prob-formula span {
+    display: inline-block;
+    padding: 3px 10px;
+    border-bottom: 2px solid var(--prob-green-dark);
+}
+
+.prob-formula-box p {
+    margin: 0;
+    color: #607065;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.prob-math-example {
+    margin: 15px 0 20px;
+    padding: 17px;
+    border-radius: 10px;
+    background: #f3f7f4;
+    color: #176b40;
+    font-size: 17px;
+    font-weight: 750;
+    line-height: 1.9;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.prob-rule-list {
+    display: grid;
+    gap: 11px;
+    margin-top: 17px;
+}
+
+.prob-rule-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 15px;
+    border: 1px solid var(--prob-border);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.prob-rule-item strong {
+    color: #304638;
+    font-size: 13px;
+}
+
+.prob-rule-item span {
+    color: #627268;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.prob-information-card .prob-note {
+    margin-top: 22px;
+    padding: 14px;
+    border-left: 3px solid var(--prob-green);
+    border-radius: 0 8px 8px 0;
+    background: #f2f8f4;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   HOW TO USE
+========================================= */
+
+.prob-how-list {
+    display: grid;
+    gap: 21px;
+    margin: 23px 0 0;
+    padding-left: 22px;
+}
+
+.prob-how-list li {
+    padding-left: 5px;
+    color: var(--prob-green);
+}
+
+.prob-how-list strong {
+    color: #304638;
+    font-size: 14px;
+}
+
+.prob-how-list p {
+    margin: 6px 0 0;
+    color: #627268;
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+
+/* =========================================
+   FAQ
+========================================= */
+
+.prob-faq-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.prob-faq-item {
+    border: 1px solid var(--prob-border);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.prob-faq-item summary {
+    position: relative;
+    padding: 17px 42px 17px 16px;
+    color: #304638;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    list-style: none;
+}
+
+.prob-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.prob-faq-item summary::after {
+    position: absolute;
+    top: 50%;
+    right: 17px;
+    color: var(--prob-green);
+    content: "+";
+    font-size: 22px;
+    font-weight: 500;
+    transform: translateY(-50%);
+}
+
+.prob-faq-item[open] summary::after {
+    content: "−";
+}
+
+.prob-faq-item p {
+    margin: 0;
+    padding: 0 16px 17px;
+    color: #627268;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.prob-sidebar {
+    display: grid;
+    gap: 20px;
+}
+
+.prob-sidebar-card h3 {
+    margin: 0 0 20px;
+    font-size: 17px;
+}
+
+.prob-sidebar-item {
+    padding: 16px 0;
+    border-top: 1px solid var(--prob-border);
+}
+
+.prob-sidebar-item:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.prob-sidebar-item > span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--prob-muted);
+    font-size: 12px;
+}
+
+.prob-sidebar-item > strong {
+    color: var(--prob-green-dark);
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.prob-sidebar-item p {
+    margin: 7px 0 0;
+    color: #68786e;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.prob-mini-formula {
+    display: grid;
+    gap: 8px;
+    padding: 15px 0;
+    border-top: 1px solid var(--prob-border);
+}
+
+.prob-mini-formula:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.prob-mini-formula span {
+    color: var(--prob-muted);
+    font-size: 12px;
+}
+
+.prob-mini-formula strong {
+    color: var(--prob-green-dark);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.prob-sidebar-tip {
+    border-color: var(--prob-green-border);
+    background: linear-gradient(145deg, #f0faf3, #ffffff);
+}
+
+.prob-tip-icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 15px;
+    place-items: center;
+    border-radius: 10px;
+    background: #dff3e5;
+    color: var(--prob-green-dark);
+    font-size: 19px;
+}
+
+.prob-sidebar-tip h3 {
+    margin-bottom: 9px;
+}
+
+.prob-sidebar-tip p {
+    margin: 0;
+    color: #5e7064;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1000px) {
+    .prob-layout {
+        grid-template-columns: minmax(0, 1fr) 255px;
+        gap: 18px;
+    }
+
+    .prob-card {
+        padding: 23px;
+    }
+
+    .prob-example-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .prob-page .container {
+        width: min(100% - 30px, 620px);
+    }
+
+    .prob-hero {
+        padding: 24px 0 35px;
+    }
+
+    .prob-breadcrumb {
+        margin-bottom: 22px;
+    }
+
+    .prob-hero h1 {
+        letter-spacing: -0.5px;
+    }
+
+    .prob-main-section {
+        padding: 25px 0 42px;
+    }
+
+    .prob-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .prob-sidebar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .prob-sidebar-tip {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .prob-page .container {
+        width: calc(100% - 24px);
+    }
+
+    .prob-card {
+        padding: 18px;
+        border-radius: 13px;
+    }
+
+    .prob-card h2 {
+        font-size: 20px;
+    }
+
+    .prob-card-heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .prob-heading-icon {
+        flex-basis: 45px;
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+
+    .prob-input-group {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+    }
+
+    .prob-actions {
+        flex-direction: column;
+    }
+
+    .prob-actions .prob-btn {
+        width: 100%;
+    }
+
+    .prob-example-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .prob-example-button {
+        min-height: 95px;
+        padding: 12px;
+    }
+
+    .prob-example-expression {
+        font-size: 14px;
+    }
+
+    .prob-result-panel {
+        padding: 17px;
+    }
+
+    .prob-result-number {
+        font-size: 32px;
+    }
+
+    .prob-result-metrics {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .prob-metric {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .prob-sidebar {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .prob-sidebar-tip {
+        grid-column: auto;
+    }
+
+    .prob-formula {
+        font-size: 25px;
+    }
+}

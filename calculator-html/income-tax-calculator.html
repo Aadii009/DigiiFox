@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Estimate Indian income tax under the old and new tax regimes with the DigiiFox Income Tax Calculator.">
+
+    <title>Income Tax Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/income-tax-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-controls="mainNav" aria-expanded="false">☰</button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="it-page">
+
+        <!-- HERO -->
+        <section class="container it-hero">
+
+            <div class="it-breadcrumb">
+                <a href="../calculator.html">Calculators</a>
+                <span>/</span>
+                <span>Income Tax Calculator</span>
+            </div>
+
+            <span class="it-eyebrow">PERSONAL FINANCE</span>
+
+            <h1>Income Tax Calculator</h1>
+
+            <p>
+                Estimate your Indian income tax, compare the old and new tax
+                regimes, and see your estimated tax liability and annual
+                take-home income.
+            </p>
+
+            <div class="it-year-note">
+                <strong>Tax year:</strong>
+                2026–27
+                <span>·</span>
+                <span>Resident individual estimate</span>
+            </div>
+
+        </section>
+
+
+        <!-- CALCULATOR -->
+        <section class="container it-main-section">
+
+            <div class="it-calculator-card">
+
+                <div class="it-card-heading">
+                    <div>
+                        <span class="it-small-label">TAX ESTIMATOR</span>
+                        <h2>Enter Your Income Details</h2>
+                        <p>
+                            Use annual amounts in Indian rupees. Enter zero
+                            wherever a field does not apply.
+                        </p>
+                    </div>
+
+                    <div class="it-icon" aria-hidden="true">₹</div>
+                </div>
+
+
+                <form id="itForm" novalidate>
+
+                    <!-- Regime -->
+                    <div class="it-field">
+                        <label for="itRegime">Tax regime</label>
+
+                        <select id="itRegime">
+                            <option value="compare">Compare both regimes</option>
+                            <option value="new">New tax regime</option>
+                            <option value="old">Old tax regime</option>
+                        </select>
+
+                        <small>
+                            Compare estimated tax under both regimes or calculate
+                            using one selected regime.
+                        </small>
+                    </div>
+
+
+                    <!-- Age -->
+                    <div class="it-field">
+                        <label for="itAge">Age category</label>
+
+                        <select id="itAge">
+                            <option value="below60">Below 60 years</option>
+                            <option value="60to79">60–79 years</option>
+                            <option value="80plus">80 years or above</option>
+                        </select>
+
+                        <small>
+                            Age-based exemption limits affect the old-regime
+                            estimate. The new-regime slabs do not vary by age.
+                        </small>
+                    </div>
+
+
+                    <!-- Income -->
+                    <div class="it-section-label">
+                        <span>01</span>
+                        <div>
+                            <h3>Annual Income</h3>
+                            <p>Enter income before standard deduction.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="it-field">
+                        <label for="itSalary">Annual salary / pension income (₹)</label>
+
+                        <input type="number" id="itSalary" min="0" max="100000000000" step="any" value="1200000"
+                            inputmode="decimal" required>
+                    </div>
+
+
+                    <div class="it-field">
+                        <label for="itOtherIncome">Other taxable income (₹)</label>
+
+                        <input type="number" id="itOtherIncome" min="0" max="100000000000" step="any" value="0"
+                            inputmode="decimal">
+
+                        <small>
+                            For example, interest or other income taxed at
+                            normal slab rates. Do not include income taxed
+                            separately at special rates.
+                        </small>
+                    </div>
+
+
+                    <!-- Deductions -->
+                    <div class="it-section-label">
+                        <span>02</span>
+                        <div>
+                            <h3>Deductions & Exemptions</h3>
+                            <p>Enter eligible old-regime deductions.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="it-field">
+                        <label for="itDeductions">
+                            Eligible old-regime deductions and exemptions (₹)
+                        </label>
+
+                        <input type="number" id="itDeductions" min="0" max="100000000000" step="any" value="150000"
+                            inputmode="decimal">
+
+                        <small>
+                            Enter your total eligible deductions and exemptions,
+                            such as applicable Section 80C/80D deductions and
+                            eligible exemptions. Apply relevant legal limits
+                            yourself.
+                        </small>
+                    </div>
+
+
+                    <div class="it-info-box">
+                        <strong>Standard deduction is handled automatically.</strong>
+                        <p>
+                            This estimator uses ₹75,000 for the new regime and
+                            ₹50,000 for the old regime for the selected estimate.
+                            The old-regime deductions field is not applied to
+                            the new regime.
+                        </p>
+                    </div>
+
+
+                    <!-- Actions -->
+                    <div class="it-actions">
+                        <button type="submit" class="it-btn it-btn-primary">
+                            Calculate Income Tax
+                        </button>
+
+                        <button type="button" id="itReset" class="it-btn it-btn-secondary">
+                            Reset
+                        </button>
+                    </div>
+
+                    <p class="it-error" id="itError" role="alert" aria-live="polite"></p>
+
+                </form>
+
+
+                <!-- RESULTS -->
+                <div class="it-results" id="itResults" hidden>
+
+                    <div class="it-results-heading">
+                        <div>
+                            <span class="it-small-label">YOUR ESTIMATE</span>
+                            <h2>Income Tax Summary</h2>
+                        </div>
+
+                        <span class="it-result-badge" id="itRegimeBadge">
+                            New Regime
+                        </span>
+                    </div>
+
+
+                    <div class="it-summary-grid">
+
+                        <div class="it-summary-card it-summary-primary">
+                            <span>Estimated annual tax</span>
+                            <strong id="itTax">₹0</strong>
+                            <small>Includes estimated cess</small>
+                        </div>
+
+                        <div class="it-summary-card">
+                            <span>Taxable income</span>
+                            <strong id="itTaxableIncome">₹0</strong>
+                            <small>After applicable deductions</small>
+                        </div>
+
+                        <div class="it-summary-card">
+                            <span>Annual income after tax</span>
+                            <strong id="itTakeHome">₹0</strong>
+                            <small>Before other payroll deductions</small>
+                        </div>
+
+                        <div class="it-summary-card">
+                            <span>Monthly income after tax</span>
+                            <strong id="itMonthlyTakeHome">₹0</strong>
+                            <small>Annual amount divided by 12</small>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Comparison -->
+                    <div class="it-comparison" id="itComparison" hidden>
+
+                        <div class="it-subheading">
+                            <h3>Old vs New Regime</h3>
+                            <p>Compare the estimated liability under each regime.</p>
+                        </div>
+
+                        <div class="it-comparison-grid">
+
+                            <div class="it-comparison-card">
+                                <span>Old regime</span>
+                                <strong id="itOldTax">₹0</strong>
+                                <small id="itOldTaxable">Taxable income: ₹0</small>
+                            </div>
+
+                            <div class="it-comparison-card">
+                                <span>New regime</span>
+                                <strong id="itNewTax">₹0</strong>
+                                <small id="itNewTaxable">Taxable income: ₹0</small>
+                            </div>
+
+                        </div>
+
+                        <div class="it-savings-note" id="itSavingsNote"></div>
+
+                    </div>
+
+
+                    <!-- Breakdown -->
+                    <div class="it-breakdown">
+
+                        <div class="it-subheading">
+                            <h3>Tax Breakdown</h3>
+                            <p>See how your estimated tax is calculated.</p>
+                        </div>
+
+                        <div class="it-breakdown-list">
+
+                            <div class="it-breakdown-row">
+                                <span>Gross income entered</span>
+                                <strong id="itGross">₹0</strong>
+                            </div>
+
+                            <div class="it-breakdown-row">
+                                <span>Standard deduction</span>
+                                <strong id="itStandardDeduction">₹0</strong>
+                            </div>
+
+                            <div class="it-breakdown-row">
+                                <span>Other eligible deductions</span>
+                                <strong id="itOtherDeductions">₹0</strong>
+                            </div>
+
+                            <div class="it-breakdown-row">
+                                <span>Tax before rebate and cess</span>
+                                <strong id="itTaxBeforeRebate">₹0</strong>
+                            </div>
+
+                            <div class="it-breakdown-row">
+                                <span>Estimated rebate</span>
+                                <strong id="itRebate">₹0</strong>
+                            </div>
+
+                            <div class="it-breakdown-row">
+                                <span>Health and education cess</span>
+                                <strong id="itCess">₹0</strong>
+                            </div>
+
+                            <div class="it-breakdown-row it-breakdown-total">
+                                <span>Estimated total tax</span>
+                                <strong id="itTotalTax">₹0</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Taxable income bar -->
+                    <div class="it-income-visual">
+                        <div class="it-visual-heading">
+                            <span>Income composition</span>
+                            <span id="itVisualCaption"></span>
+                        </div>
+
+                        <div class="it-visual-bar" id="itVisualBar">
+                            <div class="it-visual-taxable" id="itVisualTax"></div>
+                            <div class="it-visual-net" id="itVisualNet"></div>
+                        </div>
+
+                        <div class="it-visual-legend">
+                            <span><i class="it-legend-tax"></i>Estimated tax</span>
+                            <span><i class="it-legend-net"></i>Income after tax</span>
+                        </div>
+                    </div>
+
+
+                    <!-- Calculation steps -->
+                    <div class="it-calculation-steps">
+                        <h3>Calculation Steps</h3>
+                        <p id="itStepOne"></p>
+                        <p id="itStepTwo"></p>
+                        <p id="itStepThree"></p>
+                        <p id="itStepFour" class="it-step-final"></p>
+                    </div>
+
+
+                    <button type="button" id="itCopy" class="it-btn it-btn-copy">
+                        Copy Tax Summary
+                    </button>
+
+                    <p class="it-copy-message" id="itCopyMessage" aria-live="polite"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEFINITION -->
+        <section class="container it-info-section">
+
+            <article class="it-info-card">
+                <span class="it-small-label">UNDERSTANDING TAX</span>
+
+                <h2>What is an Income Tax Calculator?</h2>
+
+                <p>
+                    An income tax calculator estimates the income tax payable
+                    on taxable income after considering applicable deductions,
+                    tax slabs, rebates, and cess.
+                </p>
+
+                <p>
+                    India offers old and new tax regimes with different rates
+                    and deduction rules. The most suitable regime depends on
+                    your income, eligible deductions, and individual circumstances.
+                </p>
+            </article>
+
+
+            <article class="it-info-card">
+                <span class="it-small-label">TAX FORMULA</span>
+
+                <h2>How is income tax calculated?</h2>
+
+                <div class="it-formula-box">
+                    <h3>Step 1: Calculate gross income</h3>
+                    <p>Gross income = Salary / pension + other income entered</p>
+                </div>
+
+                <div class="it-formula-box">
+                    <h3>Step 2: Calculate taxable income</h3>
+                    <p>
+                        Taxable income = Gross income − standard deduction
+                        − eligible deductions
+                    </p>
+                </div>
+
+                <div class="it-formula-box">
+                    <h3>Step 3: Apply the tax slabs</h3>
+                    <p>Calculate tax separately for each applicable income band.</p>
+                </div>
+
+                <div class="it-formula-box">
+                    <h3>Step 4: Apply rebate and cess</h3>
+                    <p>
+                        Estimated tax = Tax after rebate + applicable cess.
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+
+        <!-- HOW TO USE -->
+        <section class="container it-info-section">
+
+            <article class="it-info-card">
+                <span class="it-small-label">QUICK GUIDE</span>
+
+                <h2>How to use the calculator</h2>
+
+                <ol class="it-how-to">
+                    <li>Select the old regime, new regime, or comparison mode.</li>
+                    <li>Choose your age category for the old-regime calculation.</li>
+                    <li>Enter annual salary or pension income.</li>
+                    <li>Enter other taxable income, if applicable.</li>
+                    <li>Enter eligible old-regime deductions and exemptions.</li>
+                    <li>Click Calculate Income Tax to review the estimate.</li>
+                </ol>
+            </article>
+
+
+            <article class="it-info-card">
+                <span class="it-small-label">IMPORTANT DIFFERENCES</span>
+
+                <h2>Old vs New Tax Regime</h2>
+
+                <div class="it-regime-note">
+                    <h3>New tax regime</h3>
+                    <p>
+                        Uses its own slab rates and generally permits fewer
+                        exemptions and deductions. Eligible deductions and
+                        benefits depend on the applicable law.
+                    </p>
+                </div>
+
+                <div class="it-regime-note">
+                    <h3>Old tax regime</h3>
+                    <p>
+                        Allows eligible deductions and exemptions, subject to
+                        the applicable limits and conditions. Age-based
+                        exemption thresholds may apply to resident individuals.
+                    </p>
+                </div>
+
+                <p class="it-muted-note">
+                    This is a simplified estimator. It does not calculate every
+                    deduction, surcharge, special-rate income, or individual
+                    tax adjustment.
+                </p>
+            </article>
+
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="container it-faq-section">
+
+            <div class="it-section-heading">
+                <span class="it-small-label">COMMON QUESTIONS</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Answers to common questions about income tax.</p>
+            </div>
+
+
+            <div class="it-faq-list">
+
+                <details class="it-faq-item">
+                    <summary>Which tax year does this calculator use?</summary>
+                    <p>
+                        The estimate is configured for tax year 2026–27 using
+                        the simplified assumptions described on this page.
+                        Always verify the rules applicable to your tax year
+                        using the official Income Tax Department calculator.
+                    </p>
+                </details>
+
+                <details class="it-faq-item">
+                    <summary>What is the difference between the old and new regimes?</summary>
+                    <p>
+                        The regimes have different slab rates and rules for
+                        deductions and exemptions. Your best option depends
+                        on your income and eligible deductions.
+                    </p>
+                </details>
+
+                <details class="it-faq-item">
+                    <summary>Is standard deduction included?</summary>
+                    <p>
+                        Yes. This estimator applies a configured standard
+                        deduction for the selected regime. Verify the amount
+                        and eligibility under the rules applicable to you.
+                    </p>
+                </details>
+
+                <details class="it-faq-item">
+                    <summary>Does this calculator include every deduction?</summary>
+                    <p>
+                        No. The old-regime deductions field accepts a single
+                        combined amount. You must ensure that the amount
+                        represents eligible deductions and exemptions within
+                        the applicable legal limits.
+                    </p>
+                </details>
+
+                <details class="it-faq-item">
+                    <summary>Does the result include cess?</summary>
+                    <p>
+                        Yes. The estimate includes a 4% health and education
+                        cess on the calculated tax after rebate. Other
+                        adjustments may affect the final liability.
+                    </p>
+                </details>
+
+                <details class="it-faq-item">
+                    <summary>Is this the final amount I must pay?</summary>
+                    <p>
+                        No. This is an estimate, not an official tax computation.
+                        Your actual liability may differ because of surcharge,
+                        special-rate income, additional deductions, TDS,
+                        advance tax, marginal relief, and other applicable rules.
+                    </p>
+                </details>
+
+            </div>
+
+        </section>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="container it-related-section">
+
+            <div class="it-section-heading">
+                <span class="it-small-label">MORE FINANCE TOOLS</span>
+                <h2>Related Calculators</h2>
+                <p>Explore more DigiiFox financial calculators.</p>
+            </div>
+
+            <div class="it-related-grid">
+
+                <a href="gst-calculator.html" class="it-related-card">
+                    <span class="it-related-icon">%</span>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate GST and view the tax breakdown.</p>
+                    <span class="it-related-link">Calculate GST →</span>
+                </a>
+
+                <a href="simple-interest-calculator.html" class="it-related-card">
+                    <span class="it-related-icon">₹</span>
+                    <h3>Simple Interest</h3>
+                    <p>Calculate interest and total returns.</p>
+                    <span class="it-related-link">Calculate Interest →</span>
+                </a>
+
+                <a href="fd-calculator.html" class="it-related-card">
+                    <span class="it-related-icon">🏦</span>
+                    <h3>FD Calculator</h3>
+                    <p>Estimate fixed deposit maturity and interest.</p>
+                    <span class="it-related-link">Calculate FD →</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- DISCLAIMER -->
+        <section class="container it-disclaimer">
+            <strong>Disclaimer:</strong>
+            This tool provides an approximate calculation for educational and
+            planning purposes. It is not tax, legal, or financial advice.
+            It does not cover every tax provision or taxpayer circumstance.
+            Verify the applicable tax year, deductions, rebates, surcharge,
+            special-rate income, and final liability using the official
+            Income Tax Department calculator or a qualified tax professional.
+        </section>
+
+    </main>
+
+
+    <!-- FULL SHARED FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful online tools designed to make everyday tasks
+                        faster, easier, and simpler.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+                    <a href="gst-calculator.html">GST Calculator</a>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="fd-calculator.html">FD Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Promise</h3>
+                    <p>Simple to use</p>
+                    <p>Responsive design</p>
+                    <p>Useful everyday tools</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="../calculator-js/income-tax-calculator.js"></script>
+
+</body>
+
+</html>

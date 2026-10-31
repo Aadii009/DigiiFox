@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly with the free DigiiFox Temperature Converter.">
+
+    <title>Temperature Converter | DigiiFox</title>
+
+    <!-- Shared calculator design -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Temperature converter styles -->
+    <link rel="stylesheet" href="../calculator-css/temperature-converter.css">
+</head>
+
+<body>
+<div class="temperature-page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="temperature-hero">
+            <div class="container">
+                <div class="temperature-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Unit Conversion</span>
+                    <span>/</span>
+                    <span>Temperature Converter</span>
+                </div>
+
+                <span class="temperature-eyebrow">
+                    DIGIIFOX UNIT CONVERTER
+                </span>
+
+                <h1>Temperature Converter</h1>
+
+                <p>
+                    Convert Celsius, Fahrenheit, and Kelvin in seconds
+                    with accurate results and easy-to-understand formulas.
+                </p>
+            </div>
+        </section>
+
+        <!-- CONVERTER -->
+        <section class="temperature-main-section">
+            <div class="container">
+
+                <div class="temperature-layout">
+
+                    <div class="temperature-card">
+                        <div class="temperature-card-heading">
+                            <div>
+                                <span class="temperature-section-label">
+                                    CONVERSION TOOL
+                                </span>
+                                <h2>Convert Temperature</h2>
+                                <p>Enter a temperature and select your units.</p>
+                            </div>
+
+                            <div class="temperature-icon" aria-hidden="true">
+                                °C
+                            </div>
+                        </div>
+
+                        <form id="temperatureForm" novalidate>
+                            <div class="temperature-fields">
+
+                                <div class="temperature-field">
+                                    <label for="temperatureValue">
+                                        Temperature value
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="temperatureValue"
+                                        value="25"
+                                        step="any"
+                                        placeholder="Enter temperature"
+                                        required
+                                    >
+
+                                    <small>Negative values are allowed when valid.</small>
+                                </div>
+
+                                <div class="temperature-field">
+                                    <label for="temperatureFromUnit">
+                                        Convert from
+                                    </label>
+
+                                    <select id="temperatureFromUnit">
+                                        <option value="celsius" selected>
+                                            Celsius (°C)
+                                        </option>
+                                        <option value="fahrenheit">
+                                            Fahrenheit (°F)
+                                        </option>
+                                        <option value="kelvin">
+                                            Kelvin (K)
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="temperature-swap-wrap">
+                                    <button
+                                        type="button"
+                                        id="temperatureSwap"
+                                        class="temperature-swap-btn"
+                                        aria-label="Swap temperature units"
+                                        title="Swap units">
+                                        ⇅
+                                    </button>
+                                </div>
+
+                                <div class="temperature-field">
+                                    <label for="temperatureToUnit">
+                                        Convert to
+                                    </label>
+
+                                    <select id="temperatureToUnit">
+                                        <option value="celsius">
+                                            Celsius (°C)
+                                        </option>
+                                        <option value="fahrenheit" selected>
+                                            Fahrenheit (°F)
+                                        </option>
+                                        <option value="kelvin">
+                                            Kelvin (K)
+                                        </option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <p id="temperatureError"
+                               class="temperature-error"
+                               role="alert"
+                               hidden></p>
+
+                            <div class="temperature-actions">
+                                <button type="submit"
+                                        class="temperature-btn temperature-btn-primary">
+                                    Convert Temperature
+                                </button>
+
+                                <button type="button"
+                                        id="temperatureReset"
+                                        class="temperature-btn temperature-btn-secondary">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- RESULT -->
+                        <div class="temperature-result"
+                             id="temperatureResult"
+                             aria-live="polite">
+
+                            <div class="temperature-result-top">
+                                <span>CONVERSION RESULT</span>
+
+                                <button type="button"
+                                        id="temperatureCopy"
+                                        class="temperature-copy-btn">
+                                    Copy result
+                                </button>
+                            </div>
+
+                            <div class="temperature-result-input"
+                                 id="temperatureResultInput">
+                                25 °C
+                            </div>
+
+                            <div class="temperature-result-value">
+                                <strong id="temperatureResultValue">
+                                    77
+                                </strong>
+
+                                <span id="temperatureResultUnit">°F</span>
+                            </div>
+
+                            <p id="temperatureResultSummary">
+                                25 degrees Celsius equals 77 degrees Fahrenheit.
+                            </p>
+
+                            <div class="temperature-formula-box">
+                                <span>FORMULA</span>
+                                <p id="temperatureResultFormula">
+                                    °F = (°C × 9/5) + 32
+                                </p>
+                            </div>
+
+                            <div class="temperature-steps-box">
+                                <h3>Calculation steps</h3>
+                                <p id="temperatureResultSteps">
+                                    (25 × 9/5) + 32 = 77 °F
+                                </p>
+                            </div>
+
+                            <p id="temperatureCopyMessage"
+                               class="temperature-copy-message"
+                               role="status"></p>
+                        </div>
+                    </div>
+
+                    <!-- SIDE INFORMATION -->
+                    <aside class="temperature-side-card">
+                        <span class="temperature-section-label">
+                            QUICK GUIDE
+                        </span>
+
+                        <h2>Temperature scales</h2>
+
+                        <div class="temperature-scale-item">
+                            <span class="temperature-scale-symbol">°C</span>
+                            <div>
+                                <h3>Celsius</h3>
+                                <p>Commonly used for weather and everyday temperatures.</p>
+                            </div>
+                        </div>
+
+                        <div class="temperature-scale-item">
+                            <span class="temperature-scale-symbol">°F</span>
+                            <div>
+                                <h3>Fahrenheit</h3>
+                                <p>Used for everyday temperatures in the United States.</p>
+                            </div>
+                        </div>
+
+                        <div class="temperature-scale-item">
+                            <span class="temperature-scale-symbol">K</span>
+                            <div>
+                                <h3>Kelvin</h3>
+                                <p>Used in scientific measurements. Kelvin has no degree symbol.</p>
+                            </div>
+                        </div>
+
+                        <div class="temperature-tip">
+                            <strong>Remember</strong>
+                            <p>
+                                Absolute zero is 0 K, −273.15 °C,
+                                or −459.67 °F. Temperatures below this
+                                are not valid on these scales.
+                            </p>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="temperature-content-section">
+            <div class="container">
+                <div class="temperature-section-heading">
+                    <span class="temperature-section-label">
+                        QUICK REFERENCE
+                    </span>
+                    <h2>Common Temperature Conversions</h2>
+                    <p>Use these familiar temperatures as a reference.</p>
+                </div>
+
+                <div class="temperature-reference-grid">
+                    <article class="temperature-reference-card">
+                        <span>Water freezes</span>
+                        <strong>0 °C</strong>
+                        <p>32 °F · 273.15 K</p>
+                    </article>
+
+                    <article class="temperature-reference-card">
+                        <span>Room temperature</span>
+                        <strong>20 °C</strong>
+                        <p>68 °F · 293.15 K</p>
+                    </article>
+
+                    <article class="temperature-reference-card">
+                        <span>Warm day</span>
+                        <strong>30 °C</strong>
+                        <p>86 °F · 303.15 K</p>
+                    </article>
+
+                    <article class="temperature-reference-card">
+                        <span>Water boils at sea level</span>
+                        <strong>100 °C</strong>
+                        <p>212 °F · 373.15 K</p>
+                    </article>
+
+                    <article class="temperature-reference-card">
+                        <span>Absolute zero</span>
+                        <strong>0 K</strong>
+                        <p>−273.15 °C · −459.67 °F</p>
+                    </article>
+
+                    <article class="temperature-reference-card">
+                        <span>Human body temperature</span>
+                        <strong>About 37 °C</strong>
+                        <p>98.6 °F · 310.15 K</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULAS -->
+        <section class="temperature-content-section temperature-soft-section">
+            <div class="container">
+                <div class="temperature-section-heading">
+                    <span class="temperature-section-label">
+                        CONVERSION FORMULAS
+                    </span>
+                    <h2>Temperature Conversion Formulas</h2>
+                    <p>Learn how each temperature scale is converted.</p>
+                </div>
+
+                <div class="temperature-formula-grid">
+                    <article class="temperature-info-card">
+                        <h3>Celsius to Fahrenheit</h3>
+                        <div class="temperature-equation">
+                            °F = (°C × 9/5) + 32
+                        </div>
+                        <p>Multiply Celsius by 1.8, then add 32.</p>
+                    </article>
+
+                    <article class="temperature-info-card">
+                        <h3>Fahrenheit to Celsius</h3>
+                        <div class="temperature-equation">
+                            °C = (°F − 32) × 5/9
+                        </div>
+                        <p>Subtract 32 from Fahrenheit, then multiply by 5/9.</p>
+                    </article>
+
+                    <article class="temperature-info-card">
+                        <h3>Celsius to Kelvin</h3>
+                        <div class="temperature-equation">
+                            K = °C + 273.15
+                        </div>
+                        <p>Add 273.15 to the Celsius temperature.</p>
+                    </article>
+
+                    <article class="temperature-info-card">
+                        <h3>Kelvin to Celsius</h3>
+                        <div class="temperature-equation">
+                            °C = K − 273.15
+                        </div>
+                        <p>Subtract 273.15 from Kelvin.</p>
+                    </article>
+
+                    <article class="temperature-info-card">
+                        <h3>Fahrenheit to Kelvin</h3>
+                        <div class="temperature-equation">
+                            K = (°F − 32) × 5/9 + 273.15
+                        </div>
+                        <p>Convert Fahrenheit to Celsius, then add 273.15.</p>
+                    </article>
+
+                    <article class="temperature-info-card">
+                        <h3>Kelvin to Fahrenheit</h3>
+                        <div class="temperature-equation">
+                            °F = (K − 273.15) × 9/5 + 32
+                        </div>
+                        <p>Convert Kelvin to Celsius, then to Fahrenheit.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW TO USE -->
+        <section class="temperature-content-section">
+            <div class="container temperature-howto">
+                <div class="temperature-section-heading">
+                    <span class="temperature-section-label">HOW IT WORKS</span>
+                    <h2>How to Use the Temperature Converter</h2>
+                </div>
+
+                <div class="temperature-steps-grid">
+                    <article>
+                        <span class="temperature-step-number">01</span>
+                        <h3>Enter a value</h3>
+                        <p>Type the temperature you want to convert.</p>
+                    </article>
+
+                    <article>
+                        <span class="temperature-step-number">02</span>
+                        <h3>Select your units</h3>
+                        <p>Choose the original and target temperature scales.</p>
+                    </article>
+
+                    <article>
+                        <span class="temperature-step-number">03</span>
+                        <h3>View your result</h3>
+                        <p>The answer updates automatically when you change the inputs.</p>
+                    </article>
+
+                    <article>
+                        <span class="temperature-step-number">04</span>
+                        <h3>Copy the answer</h3>
+                        <p>Use the copy button to reuse your conversion elsewhere.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="temperature-content-section temperature-soft-section">
+            <div class="container">
+                <div class="temperature-section-heading">
+                    <span class="temperature-section-label">FAQ</span>
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+
+                <div class="temperature-faq-list">
+                    <details>
+                        <summary>What is a temperature converter?</summary>
+                        <p>
+                            A temperature converter changes a temperature
+                            between scales such as Celsius, Fahrenheit, and Kelvin.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>What is the difference between Celsius and Fahrenheit?</summary>
+                        <p>
+                            They are different temperature scales with different
+                            reference points and interval sizes. Water freezes
+                            at 0 °C or 32 °F under standard atmospheric pressure.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Why does Kelvin not use a degree symbol?</summary>
+                        <p>
+                            Kelvin is an absolute thermodynamic temperature scale.
+                            Its unit is written as K, not °K.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Can I enter negative temperatures?</summary>
+                        <p>
+                            Yes. Negative Celsius and Fahrenheit values are valid
+                            as long as the temperature is not below absolute zero.
+                            Kelvin values cannot be negative.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Does the converter upload my data?</summary>
+                        <p>
+                            No. This converter performs calculations directly
+                            in your browser and does not need to upload your values.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED TOOLS -->
+        <section class="temperature-content-section">
+            <div class="container">
+                <div class="temperature-section-heading">
+                    <span class="temperature-section-label">EXPLORE MORE</span>
+                    <h2>Related Conversion Tools</h2>
+                </div>
+
+                <div class="temperature-related-grid">
+                    <a href="length-converter.html"
+                       class="temperature-related-card">
+                        <span>📏</span>
+                        <div>
+                            <h3>Length Converter</h3>
+                            <p>Convert metres, kilometres, feet, inches, and more.</p>
+                        </div>
+                        <b aria-hidden="true">→</b>
+                    </a>
+
+                    <a href="weight-converter.html"
+                       class="temperature-related-card">
+                        <span>⚖️</span>
+                        <div>
+                            <h3>Weight Converter</h3>
+                            <p>Convert kilograms, grams, pounds, and ounces.</p>
+                        </div>
+                        <b aria-hidden="true">→</b>
+                    </a>
+
+                    <a href="../calculator.html"
+                       class="temperature-related-card">
+                        <span>🧮</span>
+                        <div>
+                            <h3>All Calculators</h3>
+                            <p>Explore more free DigiiFox calculators.</p>
+                        </div>
+                        <b aria-hidden="true">→</b>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FULL FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                        Make everyday digital tasks easier with DigiiFox.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Unit Converters</h3>
+                    <a href="length-converter.html">Length Converter</a>
+                    <a href="weight-converter.html">Weight Converter</a>
+                    <a href="temperature-converter.html">Temperature Converter</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>DigiiFox</h3>
+                    <a href="../index.html">About DigiiFox</a>
+                    <a href="../index.html">Explore Tools</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="../calculator-js/temperature-converter.js"></script>
+</body>
+</html>

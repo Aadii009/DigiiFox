@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Use the DigiiFox Inflation Calculator to estimate future prices, the impact of inflation on purchasing power, and year-by-year cost increases.">
+
+    <meta name="theme-color" content="#16a34a">
+
+    <title>Inflation Calculator - DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/inflation-calculator.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="container inf-page">
+
+        <!-- Hero -->
+        <section class="inf-hero">
+            <div class="inf-hero-icon">📈</div>
+
+            <span class="inf-eyebrow">Finance Calculator</span>
+
+            <h1>Inflation Calculator</h1>
+
+            <p>
+                Discover how inflation can affect prices and purchasing power
+                over time. Estimate future costs using your amount, annual
+                inflation rate, and time period.
+            </p>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="inf-calculator-section">
+
+            <div class="inf-calculator-card">
+
+                <div class="inf-section-heading">
+                    <div>
+                        <h2>Calculate Inflation</h2>
+                        <p>Enter your details to estimate future prices.</p>
+                    </div>
+
+                    <span class="inf-badge">Free Tool</span>
+                </div>
+
+
+                <form id="inflationForm" novalidate>
+
+                    <div class="inf-input-grid">
+
+                        <div class="inf-field">
+                            <label for="currentAmount">
+                                Current Amount
+                            </label>
+
+                            <div class="inf-input-wrapper">
+                                <span class="inf-input-prefix">₹</span>
+
+                                <input type="number" id="currentAmount" min="0.01" max="100000000000" step="any"
+                                    value="10000" placeholder="Enter amount" required>
+                            </div>
+
+                            <small>
+                                The current cost of an item, service, or expense.
+                            </small>
+                        </div>
+
+
+                        <div class="inf-field">
+                            <label for="inflationRate">
+                                Annual Inflation Rate (%)
+                            </label>
+
+                            <div class="inf-input-wrapper">
+                                <input type="number" id="inflationRate" min="0" max="100" step="any" value="6"
+                                    placeholder="e.g. 6" required>
+
+                                <span class="inf-input-suffix">%</span>
+                            </div>
+
+                            <small>
+                                Enter an assumed annual inflation rate.
+                            </small>
+                        </div>
+
+
+                        <div class="inf-field">
+                            <label for="timePeriod">
+                                Time Period
+                            </label>
+
+                            <div class="inf-input-wrapper">
+                                <input type="number" id="timePeriod" min="0" max="100" step="1" value="10"
+                                    placeholder="Enter years" required>
+
+                                <span class="inf-input-suffix">Years</span>
+                            </div>
+
+                            <small>
+                                Number of years into the future.
+                            </small>
+                        </div>
+
+
+                        <div class="inf-field">
+                            <label for="currency">
+                                Currency
+                            </label>
+
+                            <select id="currency" class="inf-select">
+                                <option value="INR" selected>
+                                    INR — Indian Rupee (₹)
+                                </option>
+
+                                <option value="USD">
+                                    USD — US Dollar ($)
+                                </option>
+
+                                <option value="EUR">
+                                    EUR — Euro (€)
+                                </option>
+
+                                <option value="GBP">
+                                    GBP — British Pound (£)
+                                </option>
+
+                                <option value="CAD">
+                                    CAD — Canadian Dollar
+                                </option>
+
+                                <option value="AUD">
+                                    AUD — Australian Dollar
+                                </option>
+
+                                <option value="SGD">
+                                    SGD — Singapore Dollar
+                                </option>
+
+                                <option value="AED">
+                                    AED — UAE Dirham
+                                </option>
+                            </select>
+
+                            <small>
+                                Changes the display currency only; no currency
+                                conversion is performed.
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="inf-error" id="inflationError" role="alert" aria-live="polite">
+                    </div>
+
+
+                    <div class="inf-button-row">
+
+                        <button type="submit" class="inf-btn inf-btn-primary">
+                            Calculate Inflation
+                        </button>
+
+                        <button type="button" id="resetInflation" class="inf-btn inf-btn-secondary">
+                            Reset
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results -->
+        <section class="inf-results-section" id="inflationResults" aria-live="polite" hidden>
+
+            <div class="inf-results-heading">
+                <div>
+                    <span class="inf-eyebrow">Your Results</span>
+                    <h2>Inflation Estimate</h2>
+                    <p>Here is how the assumed inflation rate affects your amount.</p>
+                </div>
+
+                <button type="button" class="inf-btn inf-btn-secondary" id="copyInflationResults">
+                    Copy Results
+                </button>
+            </div>
+
+
+            <div class="inf-result-grid">
+
+                <article class="inf-result-card inf-result-highlight">
+                    <span class="inf-result-label">Estimated Future Cost</span>
+
+                    <strong id="futureCost">₹17,908.48</strong>
+
+                    <p>
+                        Estimated cost after your selected time period.
+                    </p>
+                </article>
+
+
+                <article class="inf-result-card">
+                    <span class="inf-result-label">Total Price Increase</span>
+
+                    <strong id="totalIncrease">₹7,908.48</strong>
+
+                    <p>
+                        Additional amount due to assumed inflation.
+                    </p>
+                </article>
+
+
+                <article class="inf-result-card">
+                    <span class="inf-result-label">Cumulative Inflation</span>
+
+                    <strong id="cumulativeInflation">79.08%</strong>
+
+                    <p>
+                        Total percentage increase over the period.
+                    </p>
+                </article>
+
+
+                <article class="inf-result-card">
+                    <span class="inf-result-label">Future Purchasing Power</span>
+
+                    <strong id="futurePurchasingPower">₹5,584.00</strong>
+
+                    <p>
+                        Approximate future value of the same nominal amount
+                        in today's purchasing-power terms.
+                    </p>
+                </article>
+
+            </div>
+
+
+            <!-- Visual comparison -->
+            <div class="inf-breakdown-card">
+
+                <div class="inf-card-heading">
+                    <h3>Cost Comparison</h3>
+                    <p>Compare the current amount with its estimated future cost.</p>
+                </div>
+
+                <div class="inf-bar-item">
+                    <div class="inf-bar-label">
+                        <span>Current Amount</span>
+                        <strong id="currentAmountLabel">₹10,000.00</strong>
+                    </div>
+
+                    <div class="inf-bar-track">
+                        <div class="inf-bar inf-bar-current" id="currentAmountBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="inf-bar-item">
+                    <div class="inf-bar-label">
+                        <span>Future Cost</span>
+                        <strong id="futureCostLabel">₹17,908.48</strong>
+                    </div>
+
+                    <div class="inf-bar-track">
+                        <div class="inf-bar inf-bar-future" id="futureCostBar"></div>
+                    </div>
+                </div>
+
+
+                <div class="inf-insight" id="inflationInsight"></div>
+
+            </div>
+
+
+            <!-- Formula steps -->
+            <div class="inf-breakdown-card">
+
+                <div class="inf-card-heading">
+                    <h3>Calculation Breakdown</h3>
+                    <p>Understand how your estimated result is calculated.</p>
+                </div>
+
+                <div class="inf-steps" id="inflationSteps"></div>
+
+            </div>
+
+
+            <!-- Year-by-year table -->
+            <div class="inf-breakdown-card">
+
+                <div class="inf-card-heading">
+                    <h3>Year-by-Year Inflation</h3>
+
+                    <p>
+                        Estimated prices at the end of each year, assuming
+                        the same inflation rate continues.
+                    </p>
+                </div>
+
+                <div class="inf-table-wrapper">
+                    <table class="inf-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Year</th>
+                                <th scope="col">Estimated Cost</th>
+                                <th scope="col">Increase from Today</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="inflationTableBody"></tbody>
+                    </table>
+                </div>
+
+                <p class="inf-table-note">
+                    These are mathematical estimates, not actual or guaranteed
+                    future prices.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Formula -->
+        <section class="inf-info-section">
+
+            <div class="inf-info-card">
+
+                <span class="inf-eyebrow">The Mathematics</span>
+
+                <h2>Inflation Calculator Formula</h2>
+
+                <div class="inf-formula-box">
+                    <p>
+                        <strong>Future Cost =</strong>
+                    </p>
+
+                    <p>
+                        Current Amount × (1 + Inflation Rate / 100)<sup>Years</sup>
+                    </p>
+                </div>
+
+                <p>
+                    Inflation generally means that prices rise over time,
+                    reducing the purchasing power of money. This calculator
+                    applies a constant annual rate with annual compounding
+                    to estimate how much a current expense might cost later.
+                </p>
+
+                <ul class="inf-definition-list">
+                    <li>
+                        <strong>Current Amount:</strong>
+                        Today's cost of the item or service.
+                    </li>
+
+                    <li>
+                        <strong>Inflation Rate:</strong>
+                        Assumed annual price increase, expressed as a percentage.
+                    </li>
+
+                    <li>
+                        <strong>Years:</strong>
+                        The number of years in the estimate.
+                    </li>
+
+                    <li>
+                        <strong>Future Cost:</strong>
+                        Estimated future price after applying inflation.
+                    </li>
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- How to use -->
+        <section class="inf-info-section">
+
+            <div class="inf-info-card">
+
+                <h2>How to Use the Inflation Calculator</h2>
+
+                <div class="inf-how-grid">
+
+                    <article class="inf-how-item">
+                        <span>01</span>
+                        <h3>Enter the Amount</h3>
+                        <p>
+                            Add the current price or expense you want to evaluate.
+                        </p>
+                    </article>
+
+                    <article class="inf-how-item">
+                        <span>02</span>
+                        <h3>Set Inflation</h3>
+                        <p>
+                            Enter an annual inflation rate for your scenario.
+                        </p>
+                    </article>
+
+                    <article class="inf-how-item">
+                        <span>03</span>
+                        <h3>Choose the Period</h3>
+                        <p>
+                            Enter the number of years you want to project.
+                        </p>
+                    </article>
+
+                    <article class="inf-how-item">
+                        <span>04</span>
+                        <h3>Review Results</h3>
+                        <p>
+                            Compare future cost, price increases, purchasing
+                            power, and the yearly breakdown.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Example -->
+        <section class="inf-info-section">
+
+            <div class="inf-info-card">
+
+                <h2>Inflation Calculator Example</h2>
+
+                <p>
+                    Suppose an item costs ₹10,000 today and the assumed
+                    annual inflation rate is 6% for 10 years.
+                </p>
+
+                <div class="inf-example-box">
+                    <div>
+                        <span>Current Cost</span>
+                        <strong>₹10,000</strong>
+                    </div>
+
+                    <div>
+                        <span>Annual Inflation</span>
+                        <strong>6%</strong>
+                    </div>
+
+                    <div>
+                        <span>Period</span>
+                        <strong>10 years</strong>
+                    </div>
+
+                    <div>
+                        <span>Estimated Future Cost</span>
+                        <strong>₹17,908.48</strong>
+                    </div>
+                </div>
+
+                <p>
+                    Under these assumptions, the item would cost approximately
+                    ₹17,908 after 10 years. Actual prices may rise faster or
+                    slower, and individual items can behave differently from
+                    a general inflation index.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FAQs -->
+        <section class="inf-info-section">
+
+            <div class="inf-info-card">
+
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="inf-faq-list">
+
+                    <details class="inf-faq">
+                        <summary>What is an inflation calculator?</summary>
+
+                        <p>
+                            An inflation calculator estimates how prices may
+                            change over time using an assumed inflation rate.
+                            It can help you compare today's costs with
+                            potential future costs.
+                        </p>
+                    </details>
+
+
+                    <details class="inf-faq">
+                        <summary>How does inflation affect purchasing power?</summary>
+
+                        <p>
+                            When prices rise, the same amount of money buys
+                            fewer goods and services. For example, if prices
+                            increase by 50%, ₹100 will not buy as much as it
+                            did before the increase.
+                        </p>
+                    </details>
+
+
+                    <details class="inf-faq">
+                        <summary>Is the future cost guaranteed?</summary>
+
+                        <p>
+                            No. The result is an estimate based on the annual
+                            rate you enter. Actual inflation changes over time
+                            and varies across products, services, and regions.
+                        </p>
+                    </details>
+
+
+                    <details class="inf-faq">
+                        <summary>Does this calculator use live inflation data?</summary>
+
+                        <p>
+                            No. You enter the inflation rate yourself. This
+                            calculator does not fetch live inflation data or
+                            forecast future economic conditions.
+                        </p>
+                    </details>
+
+
+                    <details class="inf-faq">
+                        <summary>What does future purchasing power mean?</summary>
+
+                        <p>
+                            It estimates what a fixed amount of money in the
+                            future would be equivalent to in today's purchasing
+                            power, using the inflation rate and period you enter.
+                        </p>
+                    </details>
+
+
+                    <details class="inf-faq">
+                        <summary>Does changing the currency convert my money?</summary>
+
+                        <p>
+                            No. Changing the currency only changes how results
+                            are displayed. It does not convert the entered
+                            amount using exchange rates.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Related Calculators -->
+        <section class="inf-related-section">
+
+            <div class="inf-related-heading">
+                <h2>Related Calculators</h2>
+
+                <p>
+                    Explore more financial calculators from DigiiFox.
+                </p>
+            </div>
+
+            <div class="inf-related-grid">
+
+                <a href="compound-interest-calculator.html" class="calculator-card">
+                    <div class="calculator-card-icon">📈</div>
+                    <h3>Compound Interest Calculator</h3>
+                    <p>
+                        Estimate investment growth with compound interest.
+                    </p>
+                    <span class="calculator-card-link">
+                        Calculate Interest →
+                    </span>
+                </a>
+
+
+                <a href="fd-calculator.html" class="calculator-card">
+                    <div class="calculator-card-icon">🏦</div>
+                    <h3>FD Calculator</h3>
+                    <p>
+                        Estimate fixed deposit maturity and interest earned.
+                    </p>
+                    <span class="calculator-card-link">
+                        Calculate FD Returns →
+                    </span>
+                </a>
+
+
+                <a href="sip-calculator.html" class="calculator-card">
+                    <div class="calculator-card-icon">💹</div>
+                    <h3>SIP Calculator</h3>
+                    <p>
+                        Estimate the potential value of regular investments.
+                    </p>
+                    <span class="calculator-card-link">
+                        Calculate SIP →
+                    </span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Disclaimer -->
+        <section class="inf-disclaimer">
+            <strong>Disclaimer:</strong>
+            This calculator is for educational and estimation purposes only.
+            It assumes a constant annual inflation rate and does not predict
+            actual inflation, future market prices, or investment returns.
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                    </p>
+
+                    <p>
+                        DigiiFox provides simple online tools to help make
+                        everyday digital tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Finance Tools</h3>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="fd-calculator.html">FD Calculator</a>
+                    <a href="rd-calculator.html">RD Calculator</a>
+                    <a href="salary-calculator.html">Salary Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>More Tools</h3>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="average-calculator.html">Average Calculator</a>
+                    <a href="bmi-calculator.html">BMI Calculator</a>
+                    <a href="age-calculator.html">Age Calculator</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/inflation-calculator.js"></script>
+
+</body>
+
+</html>

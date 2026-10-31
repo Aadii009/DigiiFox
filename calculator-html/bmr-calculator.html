@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BMR Calculator - DigiiFox</title>
+    <meta name="description"
+        content="Calculate your Basal Metabolic Rate (BMR), estimate daily calorie needs, and understand the Mifflin–St Jeor formula.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/bmr-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="bmr-page">
+        <div class="container">
+
+            <nav class="bmr-breadcrumb" aria-label="Breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>›</span>
+                <a href="../calculator.html">Calculators</a>
+                <span>›</span>
+                <span>BMR Calculator</span>
+            </nav>
+
+            <section class="bmr-hero">
+                <span class="bmr-eyebrow">HEALTH &amp; FITNESS</span>
+                <h1>BMR Calculator</h1>
+                <p>
+                    Estimate how many calories your body uses at rest and discover
+                    your estimated daily calorie needs based on your activity level.
+                </p>
+            </section>
+
+            <section class="bmr-layout">
+
+                <div class="bmr-card bmr-input-card">
+                    <div class="bmr-card-heading">
+                        <span class="bmr-icon" aria-hidden="true">♡</span>
+                        <div>
+                            <h2>Your Details</h2>
+                            <p>Enter your information to calculate your BMR.</p>
+                        </div>
+                    </div>
+
+                    <form id="bmrForm" novalidate>
+                        <fieldset class="bmr-fieldset">
+                            <legend>Calculation units</legend>
+
+                            <div class="bmr-unit-options">
+                                <label class="bmr-radio-option">
+                                    <input type="radio" name="bmrUnitSystem" value="metric" checked>
+                                    <span>Metric (cm, kg)</span>
+                                </label>
+
+                                <label class="bmr-radio-option">
+                                    <input type="radio" name="bmrUnitSystem" value="imperial">
+                                    <span>Imperial (ft, lb)</span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div class="bmr-form-grid">
+                            <div class="bmr-field bmr-full-width">
+                                <label for="bmrAge">Age (years)</label>
+                                <input type="number" id="bmrAge" min="18" max="120" step="1" placeholder="e.g. 28"
+                                    required>
+                                <small>For adults aged 18 and above.</small>
+                            </div>
+
+                            <div class="bmr-field bmr-full-width">
+                                <label for="bmrSex">Equation selection</label>
+                                <select id="bmrSex" required>
+                                    <option value="male">Male equation</option>
+                                    <option value="female">Female equation</option>
+                                </select>
+                                <small>
+                                    The equation uses a male or female coefficient.
+                                    Choose the one appropriate for your calculation.
+                                </small>
+                            </div>
+
+                            <div class="bmr-field bmr-full-width">
+                                <label>Height</label>
+
+                                <div id="bmrMetricHeightGroup">
+                                    <div class="bmr-input-with-unit">
+                                        <input type="number" id="bmrHeightCm" min="80" max="250" step="0.1"
+                                            placeholder="e.g. 170">
+                                        <span>cm</span>
+                                    </div>
+                                </div>
+
+                                <div id="bmrImperialHeightGroup" hidden>
+                                    <div class="bmr-height-pair">
+                                        <div class="bmr-input-with-unit">
+                                            <input type="number" id="bmrHeightFt" min="2" max="8" step="1"
+                                                placeholder="5">
+                                            <span>ft</span>
+                                        </div>
+
+                                        <div class="bmr-input-with-unit">
+                                            <input type="number" id="bmrHeightIn" min="0" max="11.99" step="0.1"
+                                                placeholder="7">
+                                            <span>in</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bmr-field bmr-full-width">
+                                <label for="bmrWeight">Weight</label>
+
+                                <div class="bmr-weight-row">
+                                    <input type="number" id="bmrWeight" min="20" max="500" step="0.1"
+                                        placeholder="e.g. 70" required>
+
+                                    <select id="bmrWeightUnit" aria-label="Weight unit">
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="bmr-field bmr-full-width">
+                                <label for="bmrActivity">Activity level</label>
+                                <select id="bmrActivity" required>
+                                    <option value="1.2">
+                                        Sedentary — little or no exercise
+                                    </option>
+                                    <option value="1.375">
+                                        Lightly active — light exercise 1–3 days/week
+                                    </option>
+                                    <option value="1.55" selected>
+                                        Moderately active — exercise 3–5 days/week
+                                    </option>
+                                    <option value="1.725">
+                                        Very active — hard exercise 6–7 days/week
+                                    </option>
+                                    <option value="1.9">
+                                        Extra active — very hard training or physical work
+                                    </option>
+                                </select>
+                                <small>
+                                    Activity level is used to estimate daily energy
+                                    expenditure, not your BMR itself.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="bmr-error" id="bmrError" role="alert" aria-live="polite" hidden></div>
+
+                        <div class="bmr-form-actions">
+                            <button type="submit" class="bmr-btn bmr-btn-primary">
+                                Calculate BMR
+                            </button>
+                            <button type="reset" class="bmr-btn bmr-btn-secondary" id="bmrReset">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <section class="bmr-card bmr-result-card" id="bmrResults" aria-live="polite" hidden>
+                    <div class="bmr-result-top">
+                        <span class="bmr-result-label">YOUR ESTIMATED BMR</span>
+                        <div class="bmr-score">
+                            <span id="bmrScore">—</span>
+                            <span class="bmr-score-unit">kcal/day</span>
+                        </div>
+                        <p>
+                            Estimated energy your body uses each day at rest.
+                        </p>
+                    </div>
+
+                    <div class="bmr-daily-estimate">
+                        <div>
+                            <span class="bmr-result-label">ESTIMATED DAILY CALORIES</span>
+                            <strong id="bmrDailyCalories">—</strong>
+                            <span class="bmr-daily-unit">kcal/day</span>
+                        </div>
+                        <p>
+                            This estimate includes your selected activity level
+                            and is not the same as BMR.
+                        </p>
+                    </div>
+
+                    <h3>Calculation breakdown</h3>
+
+                    <div class="bmr-detail-list">
+                        <div>
+                            <span>Age</span>
+                            <strong id="bmrDetailAge">—</strong>
+                        </div>
+                        <div>
+                            <span>Height</span>
+                            <strong id="bmrDetailHeight">—</strong>
+                        </div>
+                        <div>
+                            <span>Weight</span>
+                            <strong id="bmrDetailWeight">—</strong>
+                        </div>
+                        <div>
+                            <span>Equation</span>
+                            <strong>Mifflin–St Jeor</strong>
+                        </div>
+                        <div>
+                            <span>Activity multiplier</span>
+                            <strong id="bmrDetailActivity">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="bmr-formula-box">
+                        <strong>Formula used</strong>
+                        <p id="bmrCalculation">—</p>
+                    </div>
+
+                    <button type="button" class="bmr-btn bmr-btn-primary bmr-copy-btn" id="bmrCopy">
+                        Copy Results
+                    </button>
+                    <p class="bmr-copy-message" id="bmrCopyMessage" aria-live="polite"></p>
+                </section>
+
+            </section>
+
+            <section class="bmr-info-section">
+                <article class="bmr-info-card">
+                    <h2>What Is BMR?</h2>
+                    <p>
+                        Basal Metabolic Rate (BMR) is an estimate of the energy
+                        your body uses to maintain essential functions at rest,
+                        such as breathing, circulation and temperature regulation.
+                        It is commonly expressed in kilocalories per day (kcal/day).
+                    </p>
+                </article>
+
+                <article class="bmr-info-card">
+                    <h2>BMR Formula</h2>
+                    <p>
+                        This calculator uses the Mifflin–St Jeor equation.
+                        Weight is measured in kilograms, height in centimetres,
+                        and age in years.
+                    </p>
+
+                    <div class="bmr-formula-display">
+                        <strong>Male equation</strong>
+                        <code>BMR = (10 × weight) + (6.25 × height) − (5 × age) + 5</code>
+                    </div>
+
+                    <div class="bmr-formula-display">
+                        <strong>Female equation</strong>
+                        <code>BMR = (10 × weight) + (6.25 × height) − (5 × age) − 161</code>
+                    </div>
+                </article>
+
+                <article class="bmr-info-card">
+                    <h2>BMR vs. Daily Calorie Needs</h2>
+                    <p>
+                        BMR estimates energy use at rest. Total daily energy
+                        expenditure (TDEE) estimates energy use across a typical
+                        day, including activity. This calculator approximates TDEE
+                        by multiplying BMR by an activity factor.
+                    </p>
+                    <div class="bmr-formula-display">
+                        <strong>Daily calorie estimate</strong>
+                        <code>TDEE ≈ BMR × Activity factor</code>
+                    </div>
+                </article>
+
+                <article class="bmr-info-card">
+                    <h2>How to Use the BMR Calculator</h2>
+                    <ol>
+                        <li>Select metric or imperial units.</li>
+                        <li>Enter your age and select the equation coefficient.</li>
+                        <li>Enter your height and weight.</li>
+                        <li>Choose the activity level that best describes your routine.</li>
+                        <li>Select Calculate BMR to view your estimates.</li>
+                    </ol>
+                </article>
+
+                <article class="bmr-info-card">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="bmr-faq-item">
+                        <h3>Is BMR the same as TDEE?</h3>
+                        <p>
+                            No. BMR estimates energy used at rest. TDEE includes
+                            estimated energy used through daily activity and exercise.
+                        </p>
+                    </div>
+
+                    <div class="bmr-faq-item">
+                        <h3>Can I use BMR as my daily calorie target?</h3>
+                        <p>
+                            BMR alone is not a personalized eating target. Your
+                            energy needs depend on activity, goals, health and other
+                            individual factors.
+                        </p>
+                    </div>
+
+                    <div class="bmr-faq-item">
+                        <h3>Why is this result only an estimate?</h3>
+                        <p>
+                            Equations estimate energy needs from a few measurements.
+                            Actual metabolism can differ because of body composition,
+                            health, medications and other factors.
+                        </p>
+                    </div>
+
+                    <div class="bmr-faq-item">
+                        <h3>Does exercise change BMR?</h3>
+                        <p>
+                            Exercise increases energy expenditure. Long-term changes
+                            in body composition and other factors can also affect
+                            resting energy use.
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="bmr-disclaimer">
+                    <strong>Health disclaimer</strong>
+                    <p>
+                        This tool provides an educational estimate, not a diagnosis
+                        or individualized medical nutrition advice. It is intended
+                        for adults and may not be appropriate during pregnancy,
+                        breastfeeding, adolescence, or for people with certain
+                        medical conditions. Consult a qualified healthcare
+                        professional for personalized guidance.
+                    </p>
+                </aside>
+            </section>
+
+            <section class="bmr-related-section">
+                <h2>Related Calculators</h2>
+                <div class="bmr-related-grid">
+                    <a href="bmi-calculator.html" class="bmr-related-card">
+                        <span>♡</span>
+                        <h3>BMI Calculator</h3>
+                        <p>Calculate Body Mass Index from height and weight.</p>
+                    </a>
+
+                    <a href="age-calculator.html" class="bmr-related-card">
+                        <span>◷</span>
+                        <h3>Age Calculator</h3>
+                        <p>Calculate your age in years, months and days.</p>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Tools</h3>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Health &amp; Fitness</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>Simple, useful online tools designed to make everyday tasks easier.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/bmr-calculator.js"></script>
+</body>
+
+</html>

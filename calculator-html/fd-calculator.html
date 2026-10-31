@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FD Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate your fixed deposit maturity amount, interest earned, and total returns using your deposit amount, interest rate, tenure, and compounding frequency.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/fd-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container fd-page">
+
+        <section class="fd-hero">
+            <span class="fd-eyebrow">FINANCE CALCULATOR</span>
+            <h1>Fixed Deposit (FD) Calculator</h1>
+            <p>
+                Estimate your fixed deposit maturity amount and interest earned.
+                Explore how your deposit may grow over your chosen tenure.
+            </p>
+        </section>
+
+        <section class="fd-calculator-card">
+
+            <div class="fd-section-heading">
+                <div>
+                    <h2>Calculate Your FD Returns</h2>
+                    <p>Enter your deposit details to estimate maturity value.</p>
+                </div>
+                <span class="fd-icon" aria-hidden="true">₹</span>
+            </div>
+
+            <form id="fdForm" novalidate>
+                <div class="fd-input-grid">
+
+                    <div class="fd-field">
+                        <label for="fdCurrency">Currency</label>
+                        <select id="fdCurrency">
+                            <option value="INR" selected>INR (₹)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="CAD">CAD (CA$)</option>
+                            <option value="AUD">AUD (A$)</option>
+                            <option value="SGD">SGD (S$)</option>
+                            <option value="AED">AED (د.إ)</option>
+                        </select>
+                        <small>Changes display currency only.</small>
+                    </div>
+
+                    <div class="fd-field">
+                        <label for="fdPrincipal">Deposit Amount</label>
+                        <div class="fd-input-with-symbol">
+                            <span id="fdCurrencySymbol">₹</span>
+                            <input type="number" id="fdPrincipal" min="0.01" max="1000000000000" step="any"
+                                value="100000" required placeholder="e.g. 100000">
+                        </div>
+                        <small>Enter the initial amount deposited.</small>
+                    </div>
+
+                    <div class="fd-field">
+                        <label for="fdRate">Annual Interest Rate (%)</label>
+                        <div class="fd-input-with-symbol fd-input-suffix">
+                            <input type="number" id="fdRate" min="0" max="100" step="any" value="7" required
+                                placeholder="e.g. 7">
+                            <span>%</span>
+                        </div>
+                        <small>Use the annual rate offered by your bank.</small>
+                    </div>
+
+                    <div class="fd-field">
+                        <label for="fdTenure">Deposit Tenure</label>
+                        <input type="number" id="fdTenure" min="1" max="1200" step="1" value="5" required
+                            placeholder="e.g. 5">
+                        <small>Enter the number of years, months, or days below.</small>
+                    </div>
+
+                    <div class="fd-field">
+                        <label for="fdTenureUnit">Tenure Unit</label>
+                        <select id="fdTenureUnit">
+                            <option value="years" selected>Years</option>
+                            <option value="months">Months</option>
+                            <option value="days">Days</option>
+                        </select>
+                        <small>Choose the unit for your deposit tenure.</small>
+                    </div>
+
+                    <div class="fd-field">
+                        <label for="fdFrequency">Compounding Frequency</label>
+                        <select id="fdFrequency">
+                            <option value="1">Yearly</option>
+                            <option value="2">Half-yearly</option>
+                            <option value="4" selected>Quarterly</option>
+                            <option value="12">Monthly</option>
+                        </select>
+                        <small>Select how often interest is compounded.</small>
+                    </div>
+
+                </div>
+
+                <div class="fd-error" id="fdError" role="alert" aria-live="polite" hidden></div>
+
+                <div class="fd-form-actions">
+                    <button type="submit" class="fd-btn fd-btn-primary">
+                        Calculate FD Returns
+                    </button>
+                    <button type="button" class="fd-btn fd-btn-secondary" id="fdReset">
+                        Reset
+                    </button>
+                </div>
+            </form>
+
+            <section class="fd-results" id="fdResults" aria-live="polite" hidden>
+
+                <div class="fd-results-header">
+                    <div>
+                        <span class="fd-result-label">Estimated Maturity Amount</span>
+                        <h2 id="fdMaturity">₹0.00</h2>
+                    </div>
+                    <span class="fd-result-badge">Estimate</span>
+                </div>
+
+                <div class="fd-result-grid">
+                    <article class="fd-result-item">
+                        <span class="fd-result-dot fd-dot-principal"></span>
+                        <p>Initial Deposit</p>
+                        <strong id="fdPrincipalResult">₹0.00</strong>
+                    </article>
+
+                    <article class="fd-result-item">
+                        <span class="fd-result-dot fd-dot-interest"></span>
+                        <p>Interest Earned</p>
+                        <strong id="fdInterest">₹0.00</strong>
+                    </article>
+
+                    <article class="fd-result-item">
+                        <span class="fd-result-dot fd-dot-growth"></span>
+                        <p>Total Growth</p>
+                        <strong id="fdGrowth">0%</strong>
+                    </article>
+                </div>
+
+                <div class="fd-breakdown">
+                    <div class="fd-breakdown-heading">
+                        <h3>Maturity Breakdown</h3>
+                        <span id="fdBreakdownTotal">Total: ₹0.00</span>
+                    </div>
+
+                    <div class="fd-composition-bar" role="img"
+                        aria-label="Breakdown of deposit principal and earned interest">
+                        <div id="fdPrincipalSegment" class="fd-principal-segment"></div>
+                        <div id="fdInterestSegment" class="fd-interest-segment"></div>
+                    </div>
+
+                    <div class="fd-legend">
+                        <span><i class="fd-legend-principal"></i> Initial deposit</span>
+                        <span><i class="fd-legend-interest"></i> Interest earned</span>
+                    </div>
+                </div>
+
+                <div class="fd-calculation-details">
+                    <h3>Calculation Details</h3>
+                    <p id="fdFormulaStep"></p>
+                    <p id="fdSubstitutionStep"></p>
+                    <p id="fdFinalStep"></p>
+                </div>
+
+                <div class="fd-result-note">
+                    This is an estimate based on the selected interest rate,
+                    tenure, and compounding frequency. Actual bank payouts may differ.
+                </div>
+
+                <div class="fd-result-actions">
+                    <button type="button" class="fd-btn fd-btn-primary" id="fdCopy">
+                        Copy Results
+                    </button>
+                    <span id="fdCopyMessage" role="status" aria-live="polite"></span>
+                </div>
+
+            </section>
+        </section>
+
+        <section class="fd-info-card">
+            <h2>What Is a Fixed Deposit Calculator?</h2>
+            <p>
+                A Fixed Deposit (FD) calculator estimates the amount you may
+                receive when a fixed-term deposit matures. You enter a deposit
+                amount, an annual interest rate, a tenure, and a compounding
+                frequency to estimate the principal plus accumulated interest.
+            </p>
+            <p>
+                Banks may use different interest calculation, payout, rounding,
+                and premature-withdrawal rules. This calculator provides a
+                simplified estimate and does not represent a bank's official quote.
+            </p>
+        </section>
+
+        <section class="fd-info-card">
+            <h2>FD Calculator Formula</h2>
+            <p>For compound interest, the estimated maturity amount is:</p>
+
+            <div class="fd-formula">
+                A = P × (1 + r/n)<sup>nt</sup>
+            </div>
+
+            <ul class="fd-definition-list">
+                <li><strong>A</strong> = Maturity amount</li>
+                <li><strong>P</strong> = Initial deposit (principal)</li>
+                <li><strong>r</strong> = Annual interest rate expressed as a decimal</li>
+                <li><strong>n</strong> = Number of compounding periods per year</li>
+                <li><strong>t</strong> = Deposit tenure in years</li>
+            </ul>
+
+            <p>
+                <strong>Interest earned = Maturity amount − Initial deposit.</strong>
+            </p>
+            <p>
+                For this calculator, the annual rate is converted to a decimal,
+                and the chosen compounding frequency determines the number of
+                compounding periods. Actual bank conventions may differ,
+                particularly for short or irregular tenures.
+            </p>
+        </section>
+
+        <section class="fd-info-card">
+            <h2>Example FD Calculation</h2>
+            <p>
+                Suppose you deposit ₹1,00,000 at an annual interest rate of 7%
+                for 5 years, compounded quarterly.
+            </p>
+
+            <div class="fd-example-grid">
+                <div><span>Initial Deposit</span><strong>₹1,00,000</strong></div>
+                <div><span>Annual Interest Rate</span><strong>7%</strong></div>
+                <div><span>Tenure</span><strong>5 years</strong></div>
+                <div><span>Compounding</span><strong>Quarterly</strong></div>
+            </div>
+
+            <p>
+                Using the compound interest formula, the estimated maturity
+                amount is approximately ₹1,41,478. Interest earned is
+                approximately ₹41,478 before any applicable taxes.
+            </p>
+        </section>
+
+        <section class="fd-info-card">
+            <h2>How to Use the FD Calculator</h2>
+            <ol class="fd-how-to">
+                <li>Select your preferred display currency.</li>
+                <li>Enter the initial deposit amount.</li>
+                <li>Enter the annual interest rate offered by your bank.</li>
+                <li>Enter the tenure and choose years, months, or days.</li>
+                <li>Select the compounding frequency.</li>
+                <li>Click <strong>Calculate FD Returns</strong> to view your estimate.</li>
+            </ol>
+        </section>
+
+        <section class="fd-info-card">
+            <h2>Frequently Asked Questions</h2>
+
+            <details class="fd-faq">
+                <summary>Is the maturity amount guaranteed by this calculator?</summary>
+                <p>
+                    No. This is a mathematical estimate based on your inputs.
+                    Your bank's applicable terms and conditions determine the
+                    actual interest and maturity amount.
+                </p>
+            </details>
+
+            <details class="fd-faq">
+                <summary>What is compounding frequency?</summary>
+                <p>
+                    It is how often accrued interest is added to the deposit
+                    balance for further interest calculations. Common frequencies
+                    include yearly, half-yearly, quarterly, and monthly.
+                </p>
+            </details>
+
+            <details class="fd-faq">
+                <summary>Does this calculator include tax or TDS?</summary>
+                <p>
+                    No. The displayed interest is before taxes, tax deducted at
+                    source (TDS), and other applicable charges.
+                </p>
+            </details>
+
+            <details class="fd-faq">
+                <summary>Can I calculate an FD for a few months?</summary>
+                <p>
+                    Yes. Choose Months as the tenure unit and enter the number
+                    of months. For days, choose Days and enter the number of days.
+                    Banks may calculate short-tenure deposits using different rules.
+                </p>
+            </details>
+
+            <details class="fd-faq">
+                <summary>Does changing the currency convert my money?</summary>
+                <p>
+                    No. The currency selector changes the display format only.
+                    It does not perform foreign-exchange conversion.
+                </p>
+            </details>
+        </section>
+
+        <section class="fd-related-section">
+            <h2>Related Finance Calculators</h2>
+            <p>Explore more useful financial tools from DigiiFox.</p>
+
+            <div class="fd-related-grid">
+                <a href="simple-interest-calculator.html" class="fd-related-card">
+                    <span>₹</span>
+                    <h3>Simple Interest Calculator</h3>
+                    <p>Calculate simple interest and total amount.</p>
+                    <b>Calculate Interest →</b>
+                </a>
+
+                <a href="compound-interest-calculator.html" class="fd-related-card">
+                    <span>📈</span>
+                    <h3>Compound Interest Calculator</h3>
+                    <p>Estimate compound interest and investment growth.</p>
+                    <b>Calculate Compound Interest →</b>
+                </a>
+
+                <a href="sip-calculator.html" class="fd-related-card">
+                    <span>💹</span>
+                    <h3>SIP Calculator</h3>
+                    <p>Estimate potential growth from monthly investments.</p>
+                    <b>Calculate SIP Returns →</b>
+                </a>
+            </div>
+        </section>
+
+        <p class="fd-disclaimer">
+            <strong>Disclaimer:</strong> This calculator is for educational
+            purposes only. It is not financial advice and does not replace
+            your bank's official FD maturity calculation.
+        </p>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Finance Calculators</h3>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="sip-calculator.html">SIP Calculator</a>
+                    <a href="fd-calculator.html">FD Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>Simple, accessible tools designed to make everyday tasks easier.</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/fd-calculator.js"></script>
+</body>
+
+</html>

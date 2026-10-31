@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIP Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate the estimated future value of your monthly SIP investments. See your invested amount, estimated returns, and potential investment growth.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/sip-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container sip-page">
+
+        <section class="sip-hero">
+            <span class="sip-eyebrow">FINANCE CALCULATOR</span>
+            <h1>SIP Calculator</h1>
+            <p>
+                Estimate how your monthly investments could grow over time.
+                Explore your potential investment value and estimated returns.
+            </p>
+        </section>
+
+        <section class="sip-calculator-card">
+            <div class="sip-section-heading">
+                <div>
+                    <h2>Calculate Your SIP Returns</h2>
+                    <p>Enter your investment details to get an estimate.</p>
+                </div>
+                <span class="sip-icon" aria-hidden="true">↗</span>
+            </div>
+
+            <form id="sipForm" novalidate>
+                <div class="sip-input-grid">
+
+                    <div class="sip-field">
+                        <label for="sipCurrency">Currency</label>
+                        <select id="sipCurrency">
+                            <option value="INR" selected>INR (₹)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="CAD">CAD (CA$)</option>
+                            <option value="AUD">AUD (A$)</option>
+                            <option value="SGD">SGD (S$)</option>
+                            <option value="AED">AED (د.إ)</option>
+                        </select>
+                        <small>Changes display currency only.</small>
+                    </div>
+
+                    <div class="sip-field">
+                        <label for="sipMonthly">Monthly Investment</label>
+                        <div class="sip-input-with-symbol">
+                            <span id="sipCurrencySymbol">₹</span>
+                            <input type="number" id="sipMonthly" min="1" max="1000000000000" step="any" value="5000"
+                                required placeholder="e.g. 5000">
+                        </div>
+                        <small>Amount invested each month.</small>
+                    </div>
+
+                    <div class="sip-field">
+                        <label for="sipRate">Expected Annual Return (%)</label>
+                        <div class="sip-input-with-symbol sip-input-suffix">
+                            <input type="number" id="sipRate" min="0" max="100" step="any" value="12" required
+                                placeholder="e.g. 12">
+                            <span>%</span>
+                        </div>
+                        <small>Assumed annual rate of return.</small>
+                    </div>
+
+                    <div class="sip-field">
+                        <label for="sipYears">Investment Duration</label>
+                        <div class="sip-input-with-symbol sip-input-suffix">
+                            <input type="number" id="sipYears" min="1" max="100" step="1" value="10" required
+                                placeholder="e.g. 10">
+                            <span>years</span>
+                        </div>
+                        <small>Whole years, from 1 to 100.</small>
+                    </div>
+
+                    <div class="sip-field sip-field-full">
+                        <label for="sipStepUp">Annual SIP Step-Up (%) <span class="sip-optional">Optional</span></label>
+                        <div class="sip-input-with-symbol sip-input-suffix">
+                            <input type="number" id="sipStepUp" min="0" max="100" step="any" value="0"
+                                placeholder="e.g. 10">
+                            <span>%</span>
+                        </div>
+                        <small>
+                            Increase your monthly investment by this percentage
+                            at the start of each new investment year. Use 0 for a fixed SIP.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="sip-error" id="sipError" role="alert" aria-live="polite" hidden></div>
+
+                <div class="sip-form-actions">
+                    <button type="submit" class="sip-btn sip-btn-primary">
+                        Calculate SIP Returns
+                    </button>
+                    <button type="button" class="sip-btn sip-btn-secondary" id="sipReset">
+                        Reset
+                    </button>
+                </div>
+            </form>
+
+            <section class="sip-results" id="sipResults" aria-live="polite" hidden>
+                <div class="sip-results-header">
+                    <div>
+                        <span class="sip-result-label">Estimated Future Value</span>
+                        <h2 id="sipFutureValue">₹0</h2>
+                    </div>
+                    <span class="sip-result-badge">Estimate</span>
+                </div>
+
+                <div class="sip-result-grid">
+                    <article class="sip-result-item">
+                        <span class="sip-result-dot sip-dot-invested"></span>
+                        <p>Total Invested</p>
+                        <strong id="sipInvested">₹0</strong>
+                    </article>
+
+                    <article class="sip-result-item">
+                        <span class="sip-result-dot sip-dot-returns"></span>
+                        <p>Estimated Returns</p>
+                        <strong id="sipReturns">₹0</strong>
+                    </article>
+
+                    <article class="sip-result-item">
+                        <span class="sip-result-dot sip-dot-growth"></span>
+                        <p>Estimated Growth</p>
+                        <strong id="sipGrowth">0%</strong>
+                    </article>
+                </div>
+
+                <div class="sip-breakdown">
+                    <div class="sip-breakdown-heading">
+                        <h3>Investment Breakdown</h3>
+                        <span id="sipBreakdownTotal">Total: ₹0</span>
+                    </div>
+
+                    <div class="sip-composition-bar" role="img"
+                        aria-label="Breakdown of invested amount and estimated returns">
+                        <div id="sipInvestedSegment" class="sip-invested-segment"></div>
+                        <div id="sipReturnsSegment" class="sip-returns-segment"></div>
+                    </div>
+
+                    <div class="sip-legend">
+                        <span><i class="sip-legend-invested"></i> Invested amount</span>
+                        <span><i class="sip-legend-returns"></i> Estimated returns</span>
+                    </div>
+                </div>
+
+                <div class="sip-result-note" id="sipResultNote">
+                    This is an estimate, not a guaranteed return.
+                </div>
+
+                <div class="sip-result-actions">
+                    <button type="button" class="sip-btn sip-btn-primary" id="sipCopy">
+                        Copy Results
+                    </button>
+                    <span id="sipCopyMessage" role="status" aria-live="polite"></span>
+                </div>
+            </section>
+        </section>
+
+        <section class="sip-info-card">
+            <h2>What Is a SIP Calculator?</h2>
+            <p>
+                A Systematic Investment Plan (SIP) lets you invest a fixed amount
+                at regular intervals, commonly every month. A SIP calculator
+                estimates how those contributions could accumulate over time
+                under an assumed rate of return.
+            </p>
+            <p>
+                Actual investment returns can fluctuate. This calculator uses
+                a simplified monthly-return model and does not account for taxes,
+                fees, inflation, or market volatility.
+            </p>
+        </section>
+
+        <section class="sip-info-card">
+            <h2>SIP Calculator Formula</h2>
+            <p>
+                For a fixed monthly investment made at the end of each month,
+                the estimated future value is calculated using:
+            </p>
+
+            <div class="sip-formula">
+                FV = P × [((1 + i)<sup>n</sup> − 1) / i]
+            </div>
+
+            <ul class="sip-definition-list">
+                <li><strong>FV</strong> = Estimated future value</li>
+                <li><strong>P</strong> = Monthly investment amount</li>
+                <li><strong>i</strong> = Monthly rate of return, calculated as annual rate ÷ 12</li>
+                <li><strong>n</strong> = Total number of monthly investments</li>
+            </ul>
+
+            <p>
+                When the return rate is 0%, the formula simplifies to
+                <strong>FV = P × n</strong>.
+            </p>
+            <p>
+                If you enter an annual step-up, the calculator increases your
+                monthly contribution at the start of each investment year and
+                calculates the future value of each contribution separately.
+            </p>
+        </section>
+
+        <section class="sip-info-card">
+            <h2>Example SIP Calculation</h2>
+            <p>
+                Suppose you invest ₹5,000 every month for 10 years and assume
+                an annual return of 12%, with no annual step-up.
+            </p>
+
+            <div class="sip-example-grid">
+                <div><span>Monthly SIP</span><strong>₹5,000</strong></div>
+                <div><span>Investment Period</span><strong>10 years</strong></div>
+                <div><span>Total Invested</span><strong>₹6,00,000</strong></div>
+                <div><span>Assumed Annual Return</span><strong>12%</strong></div>
+            </div>
+
+            <p>
+                Using the calculator's monthly-return model, the estimated future
+                value is approximately ₹11.5 lakh. Your actual result may be
+                higher or lower.
+            </p>
+        </section>
+
+        <section class="sip-info-card">
+            <h2>How to Use the SIP Calculator</h2>
+            <ol class="sip-how-to">
+                <li>Select your preferred display currency.</li>
+                <li>Enter the amount you plan to invest each month.</li>
+                <li>Enter your assumed annual return percentage.</li>
+                <li>Choose your investment duration in whole years.</li>
+                <li>Optionally enter an annual step-up percentage.</li>
+                <li>Click <strong>Calculate SIP Returns</strong> to view your estimate.</li>
+            </ol>
+        </section>
+
+        <section class="sip-info-card">
+            <h2>Frequently Asked Questions</h2>
+
+            <details class="sip-faq">
+                <summary>Are SIP returns guaranteed?</summary>
+                <p>
+                    No. SIP is a method of investing, not a guaranteed-return
+                    product. Market-linked investment values can rise or fall.
+                </p>
+            </details>
+
+            <details class="sip-faq">
+                <summary>What is an annual SIP step-up?</summary>
+                <p>
+                    A step-up increases your monthly contribution each year by a
+                    chosen percentage. For example, a 10% step-up increases a
+                    ₹5,000 monthly contribution to ₹5,500 in the second year.
+                </p>
+            </details>
+
+            <details class="sip-faq">
+                <summary>Does this calculator include taxes or fees?</summary>
+                <p>
+                    No. The result is a simplified estimate before taxes, fees,
+                    inflation, and other investment-specific costs.
+                </p>
+            </details>
+
+            <details class="sip-faq">
+                <summary>Does changing the currency convert my investment?</summary>
+                <p>
+                    No. The currency selector only changes how the numbers are
+                    displayed. It does not perform foreign-exchange conversion.
+                </p>
+            </details>
+
+            <details class="sip-faq">
+                <summary>Why may my actual investment value differ?</summary>
+                <p>
+                    Actual returns vary over time. This calculator assumes a
+                    steady monthly rate derived from the annual rate entered,
+                    which may differ from real market performance and from the
+                    conventions used by some financial calculators.
+                </p>
+            </details>
+        </section>
+
+        <section class="sip-related-section">
+            <h2>Related Finance Calculators</h2>
+            <p>Explore more useful tools from DigiiFox.</p>
+
+            <div class="sip-related-grid">
+                <a href="simple-interest-calculator.html" class="sip-related-card">
+                    <span>₹</span>
+                    <h3>Simple Interest Calculator</h3>
+                    <p>Calculate simple interest and total amount.</p>
+                    <b>Calculate Interest →</b>
+                </a>
+
+                <a href="compound-interest-calculator.html" class="sip-related-card">
+                    <span>📈</span>
+                    <h3>Compound Interest Calculator</h3>
+                    <p>Estimate compound interest and investment growth.</p>
+                    <b>Calculate Compound Interest →</b>
+                </a>
+
+                <a href="emi-calculator.html" class="sip-related-card">
+                    <span>🏦</span>
+                    <h3>EMI Calculator</h3>
+                    <p>Estimate monthly loan payments and total interest.</p>
+                    <b>Calculate EMI →</b>
+                </a>
+            </div>
+        </section>
+
+        <p class="sip-disclaimer">
+            <strong>Disclaimer:</strong> This calculator is for educational and
+            informational purposes only. It does not provide investment advice
+            or guarantee future performance.
+        </p>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Finance Calculators</h3>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="emi-calculator.html">EMI Calculator</a>
+                    <a href="sip-calculator.html">SIP Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>Simple, accessible tools designed to make everyday tasks easier.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/sip-calculator.js"></script>
+</body>
+
+</html>

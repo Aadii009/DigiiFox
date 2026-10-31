@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculate the number of days, weeks, weekdays, and weekend days between two dates with the free DigiiFox Days Between Dates Calculator.">
+    <title>Days Between Dates Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/days-between-dates-calculator.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">☰</button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="days-between-hero">
+            <div class="container">
+                <div class="days-between-breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Date &amp; Time</span>
+                    <span>/</span>
+                    <span>Days Between Dates</span>
+                </div>
+
+                <div class="days-between-hero-content">
+                    <span class="days-between-eyebrow">DATE &amp; TIME TOOLS</span>
+                    <h1>Days Between Dates Calculator</h1>
+                    <p>
+                        Find exactly how many days separate two dates.
+                        Calculate weeks, weekdays, and weekend days in seconds.
+                    </p>
+
+                    <div class="days-between-badges">
+                        <span>✓ Instant calculation</span>
+                        <span>✓ Inclusive date option</span>
+                        <span>✓ Free and private</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Calculator -->
+        <section class="days-between-main">
+            <div class="container">
+                <div class="days-between-layout">
+
+                    <div class="days-between-calculator-card">
+                        <div class="days-between-card-heading">
+                            <div>
+                                <span class="days-between-label">DAY COUNTER</span>
+                                <h2>Count Days Between Dates</h2>
+                                <p>Select two dates to calculate the difference.</p>
+                            </div>
+
+                            <div class="days-between-heading-icon" aria-hidden="true">
+                                📆
+                            </div>
+                        </div>
+
+                        <form id="daysBetweenForm" novalidate>
+                            <div class="days-between-input-grid">
+                                <div class="days-between-field">
+                                    <label for="daysStartDate">Start Date</label>
+                                    <input type="date" id="daysStartDate" name="daysStartDate" required>
+                                    <small>The first date in your range.</small>
+                                </div>
+
+                                <div class="days-between-field">
+                                    <label for="daysEndDate">End Date</label>
+                                    <input type="date" id="daysEndDate" name="daysEndDate" required>
+                                    <small>The second date in your range.</small>
+                                </div>
+                            </div>
+
+                            <div class="days-between-date-actions">
+                                <button type="button" id="daysSwap" class="days-between-secondary-action">
+                                    ⇄ Swap dates
+                                </button>
+
+                                <button type="button" id="daysUseToday" class="days-between-secondary-action">
+                                    Use today
+                                </button>
+                            </div>
+
+                            <div class="days-between-count-option">
+                                <label class="days-between-checkbox-label" for="includeBothDates">
+                                    <input type="checkbox" id="includeBothDates">
+                                    <span>
+                                        <strong>Include both start and end dates</strong>
+                                        <small>
+                                            When enabled, both dates are included in the total.
+                                        </small>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="days-between-error" id="daysBetweenError" role="alert" aria-live="polite"
+                                hidden></div>
+
+                            <div class="days-between-form-actions">
+                                <button type="submit" class="days-between-primary-button">
+                                    Calculate Days
+                                </button>
+
+                                <button type="button" id="daysReset" class="days-between-reset-button">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Results -->
+                        <section class="days-between-results" id="daysBetweenResults"
+                            aria-labelledby="daysBetweenResultsTitle" aria-live="polite" hidden>
+                            <div class="days-between-results-heading">
+                                <div>
+                                    <span class="days-between-label">YOUR RESULTS</span>
+                                    <h2 id="daysBetweenResultsTitle">Days Between Dates</h2>
+                                </div>
+                                <span class="days-between-result-check" aria-hidden="true">✓</span>
+                            </div>
+
+                            <div class="days-between-total-card">
+                                <p id="daysBetweenResultCaption">Total elapsed days</p>
+                                <div class="days-between-total-number" id="daysTotal">0</div>
+                                <span id="daysTotalLabel">days</span>
+                                <p class="days-between-range" id="daysRangeText"></p>
+                            </div>
+
+                            <div class="days-between-stats-grid">
+                                <div class="days-between-stat">
+                                    <span>Complete weeks</span>
+                                    <strong id="daysTotalWeeks">0</strong>
+                                    <small id="daysExtraDays">0 remaining days</small>
+                                </div>
+
+                                <div class="days-between-stat">
+                                    <span>Weekdays</span>
+                                    <strong id="daysWeekdays">0</strong>
+                                    <small>Monday–Friday</small>
+                                </div>
+
+                                <div class="days-between-stat">
+                                    <span>Weekend days</span>
+                                    <strong id="daysWeekendDays">0</strong>
+                                    <small>Saturday–Sunday</small>
+                                </div>
+
+                                <div class="days-between-stat">
+                                    <span>Calendar months</span>
+                                    <strong id="daysCalendarMonths">0</strong>
+                                    <small>Approximate month count</small>
+                                </div>
+                            </div>
+
+                            <div class="days-between-details">
+                                <h3>Calculation Details</h3>
+
+                                <div class="days-between-detail-row">
+                                    <span>Start date</span>
+                                    <strong id="daysDetailStart">—</strong>
+                                </div>
+
+                                <div class="days-between-detail-row">
+                                    <span>End date</span>
+                                    <strong id="daysDetailEnd">—</strong>
+                                </div>
+
+                                <div class="days-between-detail-row">
+                                    <span>Start day</span>
+                                    <strong id="daysDetailStartWeekday">—</strong>
+                                </div>
+
+                                <div class="days-between-detail-row">
+                                    <span>End day</span>
+                                    <strong id="daysDetailEndWeekday">—</strong>
+                                </div>
+
+                                <div class="days-between-detail-row">
+                                    <span>Counting method</span>
+                                    <strong id="daysDetailMethod">—</strong>
+                                </div>
+                            </div>
+
+                            <div class="days-between-copy-area">
+                                <button type="button" id="daysCopy" class="days-between-copy-button">
+                                    Copy Results
+                                </button>
+
+                                <p id="daysCopyMessage" class="days-between-copy-message" role="status"
+                                    aria-live="polite"></p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="days-between-side-card">
+                        <div class="days-between-side-icon" aria-hidden="true">🗓️</div>
+
+                        <h2>Count days with confidence</h2>
+                        <p>
+                            Calculate date ranges for deadlines, events, holidays,
+                            travel plans, projects, and personal milestones.
+                        </p>
+
+                        <div class="days-between-divider"></div>
+
+                        <h3>Included features</h3>
+
+                        <ul class="days-between-feature-list">
+                            <li><span>✓</span> Total number of days</li>
+                            <li><span>✓</span> Complete weeks and remaining days</li>
+                            <li><span>✓</span> Weekdays and weekend days</li>
+                            <li><span>✓</span> Inclusive date counting</li>
+                            <li><span>✓</span> Copyable calculation summary</li>
+                        </ul>
+
+                        <div class="days-between-tip">
+                            <strong>Counting tip</strong>
+                            <p>
+                                From Monday to Tuesday is <b>1 elapsed day</b>.
+                                If both dates are included, the count is <b>2 days</b>.
+                            </p>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Definition -->
+        <section class="days-between-content-section">
+            <div class="container">
+                <div class="days-between-content-card">
+                    <span class="days-between-label">UNDERSTANDING THE TOOL</span>
+                    <h2>What Is a Days Between Dates Calculator?</h2>
+
+                    <p>
+                        A Days Between Dates Calculator finds the number of calendar
+                        days between two dates. Depending on the counting method,
+                        it can calculate elapsed days or count both the start and
+                        end dates inclusively.
+                    </p>
+
+                    <p>
+                        The tool can also show complete weeks, remaining days,
+                        weekdays, and weekend days. It is useful for calculating
+                        deadlines, trip durations, event periods, and other date ranges.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formula -->
+        <section class="days-between-content-section days-between-soft-section">
+            <div class="container">
+                <div class="days-between-content-card">
+                    <span class="days-between-label">FORMULA &amp; LOGIC</span>
+                    <h2>Formula Used</h2>
+
+                    <div class="days-between-formula-grid">
+                        <div class="days-between-formula-card">
+                            <span>01</span>
+                            <h3>Elapsed Days</h3>
+                            <p>End date − Start date</p>
+                            <small>The start date is excluded.</small>
+                        </div>
+
+                        <div class="days-between-formula-card">
+                            <span>02</span>
+                            <h3>Inclusive Days</h3>
+                            <p>Elapsed days + 1</p>
+                            <small>Both dates are counted.</small>
+                        </div>
+
+                        <div class="days-between-formula-card">
+                            <span>03</span>
+                            <h3>Complete Weeks</h3>
+                            <p>⌊ Total days ÷ 7 ⌋</p>
+                            <small>Any remainder is shown separately.</small>
+                        </div>
+
+                        <div class="days-between-formula-card">
+                            <span>04</span>
+                            <h3>Weekdays</h3>
+                            <p>Total counted days − Weekend days</p>
+                            <small>Weekdays are Monday through Friday.</small>
+                        </div>
+                    </div>
+
+                    <div class="days-between-note">
+                        <strong>Important:</strong>
+                        The inclusive option changes the count by one day when
+                        both dates are the same or when the range spans multiple
+                        days. Weekdays and weekend days use the same selected
+                        counting convention.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to use -->
+        <section class="days-between-content-section">
+            <div class="container">
+                <div class="days-between-content-card">
+                    <span class="days-between-label">STEP-BY-STEP GUIDE</span>
+                    <h2>How to Use This Calculator</h2>
+
+                    <div class="days-between-steps">
+                        <div class="days-between-step">
+                            <span>1</span>
+                            <div>
+                                <h3>Choose the start date</h3>
+                                <p>Select the first date of the period you want to calculate.</p>
+                            </div>
+                        </div>
+
+                        <div class="days-between-step">
+                            <span>2</span>
+                            <div>
+                                <h3>Choose the end date</h3>
+                                <p>Select the second date. The calculator works even if the dates are reversed.</p>
+                            </div>
+                        </div>
+
+                        <div class="days-between-step">
+                            <span>3</span>
+                            <div>
+                                <h3>Choose the counting method</h3>
+                                <p>Leave the checkbox unchecked for elapsed days, or enable it to include both dates.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="days-between-step">
+                            <span>4</span>
+                            <div>
+                                <h3>Calculate and copy</h3>
+                                <p>View the results and copy the summary whenever you need it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="days-between-content-section days-between-soft-section">
+            <div class="container">
+                <div class="days-between-content-card">
+                    <span class="days-between-label">COMMON QUESTIONS</span>
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="days-between-faq-list">
+                        <details class="days-between-faq">
+                            <summary>How do I calculate the days between two dates?</summary>
+                            <p>
+                                Select the start and end dates and click Calculate Days.
+                                The calculator subtracts the earlier date from the later
+                                date to determine the elapsed calendar days.
+                            </p>
+                        </details>
+
+                        <details class="days-between-faq">
+                            <summary>What is the difference between inclusive and elapsed days?</summary>
+                            <p>
+                                Elapsed days measure the time between dates and exclude
+                                the starting date. Inclusive counting includes both
+                                the start and end dates, so it adds one day to the
+                                elapsed count.
+                            </p>
+                        </details>
+
+                        <details class="days-between-faq">
+                            <summary>Does it account for leap years?</summary>
+                            <p>
+                                Yes. Actual calendar dates are used, so February 29
+                                is included in the calculation whenever it occurs
+                                within the selected period.
+                            </p>
+                        </details>
+
+                        <details class="days-between-faq">
+                            <summary>Can I calculate dates in reverse order?</summary>
+                            <p>
+                                Yes. The calculator automatically orders the dates
+                                chronologically and returns a non-negative difference.
+                            </p>
+                        </details>
+
+                        <details class="days-between-faq">
+                            <summary>Are public holidays excluded from weekdays?</summary>
+                            <p>
+                                No. Weekdays include Monday through Friday, even if
+                                one of those days is a public holiday. The calculator
+                                does not use a country-specific holiday calendar.
+                            </p>
+                        </details>
+
+                        <details class="days-between-faq">
+                            <summary>Does one week always equal seven days?</summary>
+                            <p>
+                                Yes. Complete weeks are calculated by dividing the
+                                selected day count by seven and taking the whole-number
+                                result. Remaining days are displayed separately.
+                            </p>
+                        </details>
+
+                        <details class="days-between-faq">
+                            <summary>Is this calculator free to use?</summary>
+                            <p>
+                                Yes. All calculations run in your browser, and you
+                                do not need an account or backend service to use it.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="days-between-content-section">
+            <div class="container">
+                <div class="days-between-related-heading">
+                    <div>
+                        <span class="days-between-label">EXPLORE MORE</span>
+                        <h2>Related Calculators</h2>
+                    </div>
+
+                    <a href="../calculator.html" class="days-between-view-all">
+                        All Calculators →
+                    </a>
+                </div>
+
+                <div class="days-between-related-grid">
+                    <a href="age-calculator.html" class="days-between-related-card">
+                        <span class="days-between-related-icon">🎂</span>
+                        <h3>Age Calculator</h3>
+                        <p>Calculate your age in years, months, and days.</p>
+                        <span class="days-between-related-link">Open calculator →</span>
+                    </a>
+
+                    <a href="date-difference-calculator.html" class="days-between-related-card">
+                        <span class="days-between-related-icon">📅</span>
+                        <h3>Date Difference Calculator</h3>
+                        <p>Compare dates in calendar years, months, and days.</p>
+                        <span class="days-between-related-link">Open calculator →</span>
+                    </a>
+
+                    <a href="../calculator.html" class="days-between-related-card">
+                        <span class="days-between-related-icon">🧮</span>
+                        <h3>All Calculators</h3>
+                        <p>Explore more everyday calculators from DigiiFox.</p>
+                        <span class="days-between-related-link">Explore tools →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Full Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>
+                        Useful tools. Simple solutions.
+                        DigiiFox makes everyday online tasks easier.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Date &amp; Time</h3>
+                    <a href="age-calculator.html">Age Calculator</a>
+                    <a href="date-difference-calculator.html">Date Difference</a>
+                    <a href="days-between-dates-calculator.html">Days Between Dates</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>DigiiFox</h3>
+                    <p>Simple tools for everyday needs.</p>
+                    <p>Fast, accessible, and easy to use.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/days-between-dates-calculator.js"></script>
+</body>
+
+</html>

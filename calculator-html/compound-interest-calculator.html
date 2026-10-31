@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Compound Interest Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate compound interest, total interest earned, and investment growth using your principal, annual interest rate, time, and compounding frequency.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/compound-interest-calculator.css">
+
+    <script src="../calculator-js/compound-interest-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav" type="button">☰</button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="ci-page">
+
+        <!-- HERO -->
+        <section class="ci-hero">
+            <div class="container">
+
+                <a href="../calculator.html" class="ci-breadcrumb">
+                    ← Back to All Calculators
+                </a>
+
+                <div class="ci-hero-content">
+                    <span class="ci-eyebrow">FINANCE CALCULATOR</span>
+
+                    <h1>Compound Interest Calculator</h1>
+
+                    <p>
+                        Estimate how your money can grow over time when interest
+                        is added to your principal and earns interest in
+                        subsequent compounding periods.
+                    </p>
+
+                    <div class="ci-hero-tags">
+                        <span>✓ Multiple compounding options</span>
+                        <span>✓ Instant results</span>
+                        <span>✓ Free to use</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- CALCULATOR -->
+        <section class="ci-calculator-section">
+            <div class="container">
+
+                <div class="ci-calculator-layout">
+
+                    <!-- INPUT CARD -->
+                    <div class="ci-card ci-input-card">
+
+                        <div class="ci-card-heading">
+                            <div>
+                                <span class="ci-section-label">CALCULATE</span>
+                                <h2>Investment Details</h2>
+                            </div>
+
+                            <div class="ci-heading-icon" aria-hidden="true">↗</div>
+                        </div>
+
+                        <form id="compoundInterestForm" novalidate>
+
+                            <div class="ci-field">
+                                <label for="ciCurrency">Currency</label>
+
+                                <select id="ciCurrency" name="currency">
+                                    <option value="INR">Indian Rupee (₹)</option>
+                                    <option value="USD">US Dollar ($)</option>
+                                    <option value="EUR">Euro (€)</option>
+                                    <option value="GBP">British Pound (£)</option>
+                                    <option value="CAD">Canadian Dollar (CA$)</option>
+                                    <option value="AUD">Australian Dollar (A$)</option>
+                                    <option value="SGD">Singapore Dollar (S$)</option>
+                                    <option value="AED">UAE Dirham (AED)</option>
+                                </select>
+                            </div>
+
+                            <div class="ci-field">
+                                <label for="ciPrincipal">Initial Principal</label>
+
+                                <div class="ci-input-with-prefix">
+                                    <span id="ciCurrencySymbol" aria-hidden="true">₹</span>
+
+                                    <input type="number" id="ciPrincipal" name="principal" min="0.01" step="any"
+                                        placeholder="e.g. 10000" inputmode="decimal" required>
+                                </div>
+
+                                <small>Enter the initial amount invested.</small>
+                            </div>
+
+                            <div class="ci-field">
+                                <label for="ciRate">Annual Interest Rate (%)</label>
+
+                                <div class="ci-input-with-suffix">
+                                    <input type="number" id="ciRate" name="rate" min="0" max="100" step="any"
+                                        placeholder="e.g. 5" inputmode="decimal" required>
+
+                                    <span>%</span>
+                                </div>
+
+                                <small>Enter the nominal annual interest rate.</small>
+                            </div>
+
+                            <div class="ci-field">
+                                <label for="ciTime">Investment Duration</label>
+
+                                <div class="ci-time-inputs">
+                                    <input type="number" id="ciTime" name="time" min="0.01" step="any"
+                                        placeholder="e.g. 3" inputmode="decimal" aria-label="Investment duration"
+                                        required>
+
+                                    <select id="ciTimeUnit" name="timeUnit" aria-label="Duration unit">
+                                        <option value="years">Years</option>
+                                        <option value="months">Months</option>
+                                        <option value="days">Days</option>
+                                    </select>
+                                </div>
+
+                                <small>Choose years, months, or days.</small>
+                            </div>
+
+                            <div class="ci-field">
+                                <label for="ciFrequency">Compounding Frequency</label>
+
+                                <select id="ciFrequency" name="frequency">
+                                    <option value="1">Yearly (once a year)</option>
+                                    <option value="2">Half-yearly (twice a year)</option>
+                                    <option value="4">Quarterly (4 times a year)</option>
+                                    <option value="12" selected>Monthly (12 times a year)</option>
+                                    <option value="365">Daily (365 times a year)</option>
+                                </select>
+
+                                <small>
+                                    How often the accumulated interest is added
+                                    to the investment balance.
+                                </small>
+                            </div>
+
+                            <div class="ci-error" id="ciError" role="alert" hidden></div>
+
+                            <div class="ci-form-actions">
+                                <button type="submit" class="ci-btn ci-btn-primary">
+                                    Calculate Growth →
+                                </button>
+
+                                <button type="reset" class="ci-btn ci-btn-secondary" id="ciReset">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <div class="ci-privacy-note">
+                            <span aria-hidden="true">🔒</span>
+                            Calculations run in your browser. No account required.
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULTS CARD -->
+                    <div class="ci-card ci-results-card" id="ciResults">
+
+                        <div class="ci-results-top">
+                            <div>
+                                <span class="ci-section-label">YOUR RESULTS</span>
+                                <h2>Investment Summary</h2>
+                            </div>
+
+                            <span class="ci-result-badge" id="ciResultBadge">
+                                Ready to calculate
+                            </span>
+                        </div>
+
+                        <div class="ci-main-result">
+                            <span>Final Amount</span>
+
+                            <strong id="ciFinalAmount">—</strong>
+
+                            <p>
+                                Estimated value of your initial investment
+                                after the selected period.
+                            </p>
+                        </div>
+
+                        <div class="ci-result-breakdown">
+
+                            <div class="ci-result-row">
+                                <span>Initial Principal</span>
+                                <strong id="ciPrincipalResult">—</strong>
+                            </div>
+
+                            <div class="ci-result-row">
+                                <span>Compound Interest Earned</span>
+                                <strong id="ciInterestResult">—</strong>
+                            </div>
+
+                            <div class="ci-result-row">
+                                <span>Total Growth</span>
+                                <strong id="ciGrowthResult">—</strong>
+                            </div>
+
+                            <div class="ci-result-row">
+                                <span>Effective Annual Rate</span>
+                                <strong id="ciEffectiveRate">—</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="ci-visual-summary">
+                            <div class="ci-visual-heading">
+                                <span>Investment Composition</span>
+                                <span id="ciCompositionLabel">Principal + Interest</span>
+                            </div>
+
+                            <div class="ci-composition-bar" id="ciCompositionBar" role="img"
+                                aria-label="Investment composition will appear after calculation">
+                                <div class="ci-principal-segment" id="ciPrincipalSegment"></div>
+                                <div class="ci-interest-segment" id="ciInterestSegment"></div>
+                            </div>
+
+                            <div class="ci-legend">
+                                <span><i class="ci-dot ci-principal-dot"></i> Principal</span>
+                                <span><i class="ci-dot ci-interest-dot"></i> Interest</span>
+                            </div>
+                        </div>
+
+                        <div class="ci-calculation-steps" id="ciSteps" hidden>
+                            <h3>Calculation Breakdown</h3>
+                            <p id="ciFormulaStep"></p>
+                            <p id="ciSubstitutionStep"></p>
+                            <p id="ciFinalStep"></p>
+                        </div>
+
+                        <div class="ci-result-actions">
+                            <button type="button" class="ci-btn ci-btn-primary" id="ciCopy">
+                                Copy Results
+                            </button>
+
+                            <span id="ciCopyMessage" role="status" aria-live="polite"></span>
+                        </div>
+
+                        <p class="ci-result-disclaimer">
+                            This is a mathematical estimate. Actual investment
+                            returns may vary due to fees, taxes, rate changes,
+                            product rules, and rounding conventions.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FORMULA AND EXAMPLE -->
+        <section class="ci-content-section">
+            <div class="container">
+
+                <div class="ci-content-grid">
+
+                    <article class="ci-info-card">
+                        <span class="ci-section-label">UNDERSTAND THE MATH</span>
+                        <h2>Compound Interest Formula</h2>
+
+                        <p>
+                            Compound interest is calculated on the original
+                            principal and the interest accumulated in previous
+                            compounding periods.
+                        </p>
+
+                        <div class="ci-formula-box">
+                            <span>Final Amount</span>
+                            <strong>A = P(1 + r/n)<sup>nt</sup></strong>
+                        </div>
+
+                        <div class="ci-formula-box ci-formula-box-light">
+                            <span>Compound Interest</span>
+                            <strong>CI = A − P</strong>
+                        </div>
+
+                        <ul class="ci-definition-list">
+                            <li><strong>A:</strong> Final amount</li>
+                            <li><strong>P:</strong> Initial principal</li>
+                            <li><strong>r:</strong> Annual interest rate as a decimal</li>
+                            <li><strong>n:</strong> Compounding periods per year</li>
+                            <li><strong>t:</strong> Time in years</li>
+                        </ul>
+                    </article>
+
+
+                    <article class="ci-info-card">
+                        <span class="ci-section-label">WORKED EXAMPLE</span>
+                        <h2>Example: ₹10,000 at 5%</h2>
+
+                        <p>
+                            Suppose ₹10,000 is invested at a 5% annual interest
+                            rate for 3 years, compounded once per year.
+                        </p>
+
+                        <div class="ci-example-list">
+                            <div>
+                                <span>Initial principal</span>
+                                <strong>₹10,000</strong>
+                            </div>
+
+                            <div>
+                                <span>Annual interest rate</span>
+                                <strong>5%</strong>
+                            </div>
+
+                            <div>
+                                <span>Duration</span>
+                                <strong>3 years</strong>
+                            </div>
+
+                            <div>
+                                <span>Frequency</span>
+                                <strong>Yearly</strong>
+                            </div>
+                        </div>
+
+                        <div class="ci-example-equation">
+                            A = 10,000 × (1 + 0.05)<sup>3</sup>
+                            <strong>Final amount = ₹11,576.25</strong>
+                        </div>
+
+                        <div class="ci-example-total">
+                            <span>Compound Interest Earned</span>
+                            <strong>₹1,576.25</strong>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- HOW TO USE -->
+        <section class="ci-content-section ci-soft-section">
+            <div class="container">
+
+                <div class="ci-section-heading">
+                    <span class="ci-section-label">QUICK GUIDE</span>
+                    <h2>How to Use the Compound Interest Calculator</h2>
+                    <p>Enter four key details to estimate your investment growth.</p>
+                </div>
+
+                <div class="ci-steps-grid">
+
+                    <article class="ci-guide-card">
+                        <span class="ci-guide-number">01</span>
+                        <h3>Enter Principal</h3>
+                        <p>Enter the amount you initially invest or deposit.</p>
+                    </article>
+
+                    <article class="ci-guide-card">
+                        <span class="ci-guide-number">02</span>
+                        <h3>Add Interest Rate</h3>
+                        <p>Enter the annual interest rate as a percentage.</p>
+                    </article>
+
+                    <article class="ci-guide-card">
+                        <span class="ci-guide-number">03</span>
+                        <h3>Choose Time and Frequency</h3>
+                        <p>Select the duration and how often interest compounds.</p>
+                    </article>
+
+                    <article class="ci-guide-card">
+                        <span class="ci-guide-number">04</span>
+                        <h3>Calculate Growth</h3>
+                        <p>View your estimated final balance, interest earned, and growth.</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="ci-content-section">
+            <div class="container ci-faq-container">
+
+                <div class="ci-section-heading">
+                    <span class="ci-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Learn the basics of compound interest.</p>
+                </div>
+
+                <div class="ci-faq-list">
+
+                    <details class="ci-faq-item">
+                        <summary>What is compound interest?</summary>
+                        <p>
+                            Compound interest is interest calculated on the
+                            original principal and the interest accumulated
+                            during earlier compounding periods.
+                        </p>
+                    </details>
+
+                    <details class="ci-faq-item">
+                        <summary>What is the difference between simple and compound interest?</summary>
+                        <p>
+                            Simple interest is calculated on the original
+                            principal alone. Compound interest also takes
+                            previously accumulated interest into account.
+                        </p>
+                    </details>
+
+                    <details class="ci-faq-item">
+                        <summary>Which compounding frequency should I select?</summary>
+                        <p>
+                            Select the frequency specified by your investment
+                            or loan terms. More frequent compounding generally
+                            produces a higher final balance for a positive
+                            nominal rate, when the rate and time remain the same.
+                        </p>
+                    </details>
+
+                    <details class="ci-faq-item">
+                        <summary>Does monthly compounding mean monthly deposits?</summary>
+                        <p>
+                            No. Monthly compounding means interest is applied
+                            monthly. This calculator models one initial lump-sum
+                            amount and does not include recurring deposits.
+                        </p>
+                    </details>
+
+                    <details class="ci-faq-item">
+                        <summary>How are months and days calculated?</summary>
+                        <p>
+                            Months are converted using 12 months per year, and
+                            days using 365 days per year. The formula allows
+                            fractional compounding periods for an estimate.
+                            Financial institutions may use different conventions.
+                        </p>
+                    </details>
+
+                    <details class="ci-faq-item">
+                        <summary>Is the result guaranteed investment growth?</summary>
+                        <p>
+                            No. The result assumes a fixed interest rate and
+                            the selected compounding schedule. It does not
+                            include fees, taxes, market changes, or other
+                            investment-specific conditions.
+                        </p>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="ci-content-section ci-soft-section">
+            <div class="container">
+
+                <div class="ci-section-heading">
+                    <span class="ci-section-label">EXPLORE MORE</span>
+                    <h2>Related Calculators</h2>
+                    <p>Continue exploring useful DigiiFox calculators.</p>
+                </div>
+
+                <div class="ci-related-grid">
+
+                    <a href="simple-interest-calculator.html" class="ci-related-card">
+                        <span class="ci-related-icon">₹</span>
+                        <h3>Simple Interest Calculator</h3>
+                        <p>Calculate interest on the original principal amount.</p>
+                        <span class="ci-related-link">Calculate Interest →</span>
+                    </a>
+
+                    <a href="percentage-calculator.html" class="ci-related-card">
+                        <span class="ci-related-icon">%</span>
+                        <h3>Percentage Calculator</h3>
+                        <p>Calculate percentages, increases, and decreases.</p>
+                        <span class="ci-related-link">Calculate Percentage →</span>
+                    </a>
+
+                    <a href="discount-calculator.html" class="ci-related-card">
+                        <span class="ci-related-icon">🏷</span>
+                        <h3>Discount Calculator</h3>
+                        <p>Find discount amounts and final prices.</p>
+                        <span class="ci-related-link">Calculate Discount →</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FULL FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                        DigiiFox makes everyday digital tasks easier with
+                        practical, easy-to-use online tools.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">All Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Finance Calculators</h3>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>
+                        Simple tools designed to help you calculate,
+                        convert, and get things done.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

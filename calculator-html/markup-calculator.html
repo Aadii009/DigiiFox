@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Markup Calculator | DigiiFox</title>
+
+    <meta name="description"
+        content="Calculate markup amount, markup percentage, profit margin, and target selling price with the free DigiiFox Markup Calculator.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/markup-calculator.css">
+
+    <script src="../calculator-js/markup-calculator.js" defer></script>
+</head>
+
+<body class="markup-page">
+
+    <!-- Shared Website Header -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="markup-main">
+
+        <!-- Hero -->
+        <section class="mk-hero">
+            <div class="mk-container">
+
+                <span class="mk-eyebrow">BUSINESS &amp; FINANCE</span>
+
+                <h1>Markup Calculator</h1>
+
+                <p>
+                    Calculate markup amount, markup percentage and profit
+                    margin, or find the selling price needed to reach
+                    your target markup.
+                </p>
+
+                <div class="mk-hero-badges">
+                    <span>✓ Instant Results</span>
+                    <span>✓ Free Calculator</span>
+                    <span>✓ Browser-Based</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="mk-section">
+            <div class="mk-container">
+
+                <div class="mk-calculator-layout">
+
+                    <!-- Input Card -->
+                    <div class="mk-card mk-input-card">
+
+                        <div class="mk-card-heading">
+                            <div>
+                                <span class="mk-section-label">CALCULATOR</span>
+                                <h2>Enter Your Details</h2>
+                            </div>
+
+                            <div class="mk-heading-icon" aria-hidden="true">
+                                %
+                            </div>
+                        </div>
+
+                        <p class="mk-description">
+                            Choose a calculation mode and enter the
+                            required values.
+                        </p>
+
+
+                        <!-- Mode Selection -->
+                        <div class="mk-mode-selector">
+
+                            <label class="mk-mode-option">
+                                <input type="radio" name="markupMode" value="calculate" checked>
+
+                                <span>
+                                    <strong>Calculate Markup</strong>
+                                    <small>
+                                        From cost and selling price
+                                    </small>
+                                </span>
+                            </label>
+
+
+                            <label class="mk-mode-option">
+                                <input type="radio" name="markupMode" value="target">
+
+                                <span>
+                                    <strong>Find Selling Price</strong>
+                                    <small>
+                                        Using a target markup
+                                    </small>
+                                </span>
+                            </label>
+
+                        </div>
+
+
+                        <form id="markupForm" novalidate>
+
+                            <!-- Cost Price -->
+                            <div class="mk-form-group">
+
+                                <label for="costPrice">
+                                    Cost Price
+                                    <span class="mk-required">*</span>
+                                </label>
+
+                                <div class="mk-input-wrapper">
+                                    <span class="mk-prefix">₹</span>
+
+                                    <input type="number" id="costPrice" min="0.01" max="1000000000000" step="any"
+                                        value="1000" placeholder="Enter cost price" required>
+                                </div>
+
+                                <small>
+                                    The amount you paid to purchase or produce
+                                    the item.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Selling Price Mode -->
+                            <div class="mk-form-group" id="sellingPriceGroup">
+
+                                <label for="sellingPrice">
+                                    Selling Price
+                                    <span class="mk-required">*</span>
+                                </label>
+
+                                <div class="mk-input-wrapper">
+                                    <span class="mk-prefix">₹</span>
+
+                                    <input type="number" id="sellingPrice" min="0" max="1000000000000" step="any"
+                                        value="1500" placeholder="Enter selling price" required>
+                                </div>
+
+                                <small>
+                                    The price at which you sell the item.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Target Markup Mode -->
+                            <div class="mk-form-group" id="targetMarkupGroup" hidden>
+
+                                <label for="targetMarkup">
+                                    Target Markup Percentage
+                                    <span class="mk-required">*</span>
+                                </label>
+
+                                <div class="mk-input-wrapper">
+                                    <input type="number" id="targetMarkup" min="0" max="1000000" step="any" value="50"
+                                        placeholder="Enter markup percentage">
+
+                                    <span class="mk-suffix">%</span>
+                                </div>
+
+                                <small>
+                                    Enter the markup you want to apply
+                                    to the cost price.
+                                </small>
+
+                            </div>
+
+
+                            <!-- Error -->
+                            <div class="mk-error" id="markupError" role="alert" aria-live="polite" hidden></div>
+
+
+                            <!-- Actions -->
+                            <div class="mk-form-actions">
+
+                                <button type="submit" class="mk-btn mk-btn-primary">
+                                    Calculate Markup
+                                </button>
+
+                                <button type="reset" class="mk-btn mk-btn-secondary">
+                                    Reset
+                                </button>
+
+                            </div>
+
+                        </form>
+
+
+                        <!-- Examples -->
+                        <div class="mk-examples">
+
+                            <h3>Try an Example</h3>
+
+                            <div class="mk-example-buttons">
+
+                                <button type="button" class="mk-example-btn" data-mode="calculate" data-cost="1000"
+                                    data-selling="1500">
+                                    50% Markup
+                                </button>
+
+                                <button type="button" class="mk-example-btn" data-mode="calculate" data-cost="800"
+                                    data-selling="1000">
+                                    25% Markup
+                                </button>
+
+                                <button type="button" class="mk-example-btn" data-mode="target" data-cost="1000"
+                                    data-markup="40">
+                                    Target 40%
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Results Card -->
+                    <div class="mk-card mk-results-card">
+
+                        <div class="mk-card-heading">
+                            <div>
+                                <span class="mk-section-label">YOUR RESULTS</span>
+                                <h2>Markup Summary</h2>
+                            </div>
+
+                            <div class="mk-heading-icon" aria-hidden="true">
+                                ↗
+                            </div>
+                        </div>
+
+
+                        <div class="mk-status" id="markupStatus">
+                            <span class="mk-status-dot"></span>
+                            <span id="markupStatusText">
+                                Ready to calculate
+                            </span>
+                        </div>
+
+
+                        <div class="mk-primary-result">
+
+                            <span id="primaryResultLabel">
+                                Markup Amount
+                            </span>
+
+                            <strong id="primaryResult">₹500.00</strong>
+
+                            <span id="primaryResultNote">
+                                Your markup amount will appear here.
+                            </span>
+
+                        </div>
+
+
+                        <div class="mk-result-grid">
+
+                            <div class="mk-result-item">
+                                <span>Cost Price</span>
+                                <strong id="resultCost">₹1,000.00</strong>
+                            </div>
+
+                            <div class="mk-result-item">
+                                <span>Selling Price</span>
+                                <strong id="resultSelling">₹1,500.00</strong>
+                            </div>
+
+                            <div class="mk-result-item">
+                                <span>Markup Percentage</span>
+                                <strong id="resultMarkupPercent">50.00%</strong>
+                            </div>
+
+                            <div class="mk-result-item">
+                                <span>Profit Margin</span>
+                                <strong id="resultMargin">33.33%</strong>
+                            </div>
+
+                            <div class="mk-result-item">
+                                <span>Cost Recovery</span>
+                                <strong id="resultCostRecovery">66.67%</strong>
+                            </div>
+
+                            <div class="mk-result-item">
+                                <span>Price Difference</span>
+                                <strong id="resultDifference">₹500.00</strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Price Breakdown -->
+                        <div class="mk-breakdown">
+
+                            <div class="mk-breakdown-heading">
+                                <h3>Price Breakdown</h3>
+                                <span id="breakdownCaption">
+                                    Cost and markup
+                                </span>
+                            </div>
+
+                            <div class="mk-breakdown-bar" role="img" id="breakdownBar"
+                                aria-label="Selling price breakdown">
+                                <div class="mk-cost-segment" id="costSegment"></div>
+
+                                <div class="mk-markup-segment" id="markupSegment"></div>
+                            </div>
+
+                            <div class="mk-legend">
+
+                                <span>
+                                    <i class="mk-legend-dot mk-cost-dot"></i>
+                                    Cost
+                                </span>
+
+                                <span>
+                                    <i class="mk-legend-dot mk-markup-dot"></i>
+                                    Markup
+                                </span>
+
+                            </div>
+
+                            <p id="breakdownNote">
+                                Your price breakdown will appear here.
+                            </p>
+
+                        </div>
+
+
+                        <button type="button" class="mk-btn mk-btn-copy" id="copyMarkupResults" disabled>
+                            Copy Results
+                        </button>
+
+                        <p class="mk-copy-message" id="copyMarkupMessage" role="status" aria-live="polite"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition -->
+        <section class="mk-section mk-soft-section">
+            <div class="mk-container">
+
+                <article class="mk-info-card">
+
+                    <span class="mk-section-label">UNDERSTANDING MARKUP</span>
+
+                    <h2>What Is a Markup Calculator?</h2>
+
+                    <p>
+                        A Markup Calculator helps businesses, retailers
+                        and sellers determine how much to add to the cost
+                        of a product to establish its selling price.
+                    </p>
+
+                    <p>
+                        Markup is expressed as an amount or as a percentage
+                        of the cost price. For example, if an item costs
+                        ₹1,000 and is sold for ₹1,500, the markup is ₹500,
+                        or 50% of the cost.
+                    </p>
+
+                    <p>
+                        Markup and profit margin are not the same.
+                        A 50% markup on cost produces a 33.33% profit margin
+                        when the selling price is ₹1,500 and the cost is ₹1,000.
+                    </p>
+
+                </article>
+
+
+                <!-- Formulas -->
+                <div class="mk-formula-section">
+
+                    <div class="mk-section-heading">
+                        <span class="mk-section-label">THE MATHEMATICS</span>
+                        <h2>Markup Calculator Formulas</h2>
+                        <p>
+                            Learn how markup, selling price and margin
+                            are calculated.
+                        </p>
+                    </div>
+
+
+                    <div class="mk-formula-grid">
+
+                        <article class="mk-formula-card">
+                            <span class="mk-formula-number">01</span>
+                            <h3>Markup Amount</h3>
+
+                            <div class="mk-formula">
+                                Selling Price − Cost Price
+                            </div>
+
+                            <p>
+                                The difference between the selling price
+                                and the cost price.
+                            </p>
+                        </article>
+
+
+                        <article class="mk-formula-card">
+                            <span class="mk-formula-number">02</span>
+                            <h3>Markup Percentage</h3>
+
+                            <div class="mk-formula">
+                                (Markup ÷ Cost Price) × 100
+                            </div>
+
+                            <p>
+                                Shows markup relative to the original cost.
+                            </p>
+                        </article>
+
+
+                        <article class="mk-formula-card">
+                            <span class="mk-formula-number">03</span>
+                            <h3>Profit Margin</h3>
+
+                            <div class="mk-formula">
+                                (Markup ÷ Selling Price) × 100
+                            </div>
+
+                            <p>
+                                Shows the profit as a percentage of sales.
+                            </p>
+                        </article>
+
+
+                        <article class="mk-formula-card">
+                            <span class="mk-formula-number">04</span>
+                            <h3>Selling Price</h3>
+
+                            <div class="mk-formula">
+                                Cost × (1 + Markup % ÷ 100)
+                            </div>
+
+                            <p>
+                                Calculates a selling price from a target markup.
+                            </p>
+                        </article>
+
+
+                        <article class="mk-formula-card">
+                            <span class="mk-formula-number">05</span>
+                            <h3>Cost Price</h3>
+
+                            <div class="mk-formula">
+                                Selling Price ÷ (1 + Markup % ÷ 100)
+                            </div>
+
+                            <p>
+                                Finds the cost price when selling price
+                                and markup percentage are known.
+                            </p>
+                        </article>
+
+
+                        <article class="mk-formula-card">
+                            <span class="mk-formula-number">06</span>
+                            <h3>Cost Recovery</h3>
+
+                            <div class="mk-formula">
+                                (Cost ÷ Selling Price) × 100
+                            </div>
+
+                            <p>
+                                Shows how much of the selling price
+                                represents the cost.
+                            </p>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Worked Example -->
+        <section class="mk-section">
+            <div class="mk-container">
+
+                <div class="mk-example-card">
+
+                    <div class="mk-example-content">
+
+                        <span class="mk-section-label">WORKED EXAMPLE</span>
+
+                        <h2>How Is Markup Calculated?</h2>
+
+                        <p>
+                            Imagine a shop purchases a product for ₹1,000
+                            and sells it for ₹1,500.
+                        </p>
+
+                        <ul class="mk-example-list">
+
+                            <li>
+                                <span>Cost Price</span>
+                                <strong>₹1,000</strong>
+                            </li>
+
+                            <li>
+                                <span>Selling Price</span>
+                                <strong>₹1,500</strong>
+                            </li>
+
+                            <li>
+                                <span>Markup Amount</span>
+                                <strong>₹500</strong>
+                            </li>
+
+                            <li>
+                                <span>Markup Percentage</span>
+                                <strong>50.00%</strong>
+                            </li>
+
+                            <li class="mk-example-highlight">
+                                <span>Profit Margin</span>
+                                <strong>33.33%</strong>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="mk-example-answer">
+
+                        <div class="mk-answer-icon" aria-hidden="true">
+                            ✓
+                        </div>
+
+                        <span>Markup Percentage</span>
+                        <strong>50.00%</strong>
+
+                        <p>₹500 ÷ ₹1,000 × 100</p>
+
+                        <div class="mk-answer-divider"></div>
+
+                        <span>Profit Margin</span>
+                        <strong>33.33%</strong>
+
+                        <p>₹500 ÷ ₹1,500 × 100</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How to Use -->
+        <section class="mk-section mk-soft-section">
+            <div class="mk-container">
+
+                <div class="mk-section-heading">
+                    <span class="mk-section-label">QUICK GUIDE</span>
+                    <h2>How to Use This Calculator</h2>
+                    <p>
+                        Calculate an existing markup or plan a selling price.
+                    </p>
+                </div>
+
+
+                <div class="mk-steps-grid">
+
+                    <article class="mk-step-card">
+                        <span class="mk-step-number">1</span>
+                        <h3>Choose a Mode</h3>
+                        <p>
+                            Calculate markup from a selling price or
+                            find a price using a target markup.
+                        </p>
+                    </article>
+
+                    <article class="mk-step-card">
+                        <span class="mk-step-number">2</span>
+                        <h3>Enter the Cost</h3>
+                        <p>
+                            Enter the amount you paid for the product
+                            or item.
+                        </p>
+                    </article>
+
+                    <article class="mk-step-card">
+                        <span class="mk-step-number">3</span>
+                        <h3>Enter the Required Value</h3>
+                        <p>
+                            Provide a selling price or your desired
+                            markup percentage.
+                        </p>
+                    </article>
+
+                    <article class="mk-step-card">
+                        <span class="mk-step-number">4</span>
+                        <h3>View Your Results</h3>
+                        <p>
+                            Review the markup amount, percentage,
+                            margin and price breakdown.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="mk-section">
+            <div class="mk-container">
+
+                <div class="mk-section-heading">
+                    <span class="mk-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>
+                        Answers to common questions about markup calculations.
+                    </p>
+                </div>
+
+
+                <div class="mk-faq-list">
+
+                    <details class="mk-faq-item">
+                        <summary>What is markup percentage?</summary>
+
+                        <p>
+                            Markup percentage measures the difference between
+                            selling price and cost price as a percentage
+                            of cost price.
+                        </p>
+                    </details>
+
+
+                    <details class="mk-faq-item">
+                        <summary>What is the difference between markup and profit margin?</summary>
+
+                        <p>
+                            Markup is calculated using cost as the base,
+                            while profit margin uses selling price.
+                            For a ₹1,000 cost and ₹1,500 selling price,
+                            markup is 50% and profit margin is 33.33%.
+                        </p>
+                    </details>
+
+
+                    <details class="mk-faq-item">
+                        <summary>How do I calculate a selling price with a 40% markup?</summary>
+
+                        <p>
+                            Multiply the cost price by 1.40.
+                            For example, ₹1,000 × 1.40 = ₹1,400.
+                        </p>
+                    </details>
+
+
+                    <details class="mk-faq-item">
+                        <summary>Can markup percentage be more than 100%?</summary>
+
+                        <p>
+                            Yes. If the markup amount exceeds the cost price,
+                            the markup percentage is greater than 100%.
+                            For example, a ₹1,000 cost and ₹2,500 selling
+                            price produce a 150% markup.
+                        </p>
+                    </details>
+
+
+                    <details class="mk-faq-item">
+                        <summary>Can a product have a negative markup?</summary>
+
+                        <p>
+                            Yes. If the selling price is lower than the cost
+                            price, the difference is negative. This indicates
+                            a loss rather than a positive markup.
+                        </p>
+                    </details>
+
+
+                    <details class="mk-faq-item">
+                        <summary>Are my calculations stored or uploaded?</summary>
+
+                        <p>
+                            No. Calculations are performed locally in your
+                            browser. This calculator does not need to send
+                            your entered values to a server.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Related Calculators -->
+        <section class="mk-section mk-soft-section">
+            <div class="mk-container">
+
+                <div class="mk-section-heading">
+                    <span class="mk-section-label">EXPLORE MORE</span>
+                    <h2>Related Calculators</h2>
+                    <p>
+                        Discover other useful DigiiFox calculators.
+                    </p>
+                </div>
+
+
+                <div class="mk-related-grid">
+
+                    <a href="profit-loss-calculator.html" class="mk-related-card">
+                        <span class="mk-related-icon">±</span>
+
+                        <div>
+                            <h3>Profit &amp; Loss Calculator</h3>
+                            <p>Calculate profit and loss percentages.</p>
+                        </div>
+
+                        <span class="mk-related-arrow">→</span>
+                    </a>
+
+
+                    <a href="percentage-calculator.html" class="mk-related-card">
+                        <span class="mk-related-icon">%</span>
+
+                        <div>
+                            <h3>Percentage Calculator</h3>
+                            <p>Calculate percentages easily.</p>
+                        </div>
+
+                        <span class="mk-related-arrow">→</span>
+                    </a>
+
+
+                    <a href="discount-calculator.html" class="mk-related-card">
+                        <span class="mk-related-icon">−</span>
+
+                        <div>
+                            <h3>Discount Calculator</h3>
+                            <p>Find discounts and final prices.</p>
+                        </div>
+
+                        <span class="mk-related-arrow">→</span>
+                    </a>
+
+
+                    <a href="standard-calculator.html" class="mk-related-card">
+                        <span class="mk-related-icon">+</span>
+
+                        <div>
+                            <h3>Standard Calculator</h3>
+                            <p>Perform everyday calculations.</p>
+                        </div>
+
+                        <span class="mk-related-arrow">→</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Shared Website Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>Useful tools. Simple solutions.</p>
+
+                    <p class="footer-description">
+                        A collection of practical online tools designed
+                        to make everyday digital tasks easier.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Calculators</h3>
+
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="profit-loss-calculator.html">Profit &amp; Loss Calculator</a>
+                    <a href="markup-calculator.html">Markup Calculator</a>
+                    <a href="emi-calculator.html">EMI Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+
+                    <a href="../index.html">About Us</a>
+                    <a href="../index.html">Contact</a>
+                    <a href="../index.html">Privacy</a>
+                    <a href="../index.html">Terms</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

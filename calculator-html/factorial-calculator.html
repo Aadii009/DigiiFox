@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Factorial Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate factorials of non-negative integers with exact results, formulas, and calculation steps using the free DigiiFox Factorial Calculator.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/factorial-calculator.css">
+</head>
+
+<body>
+
+    <!-- Shared Navbar -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../calculator.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="factorial-page">
+
+        <!-- Hero -->
+        <section class="factorial-hero">
+            <div class="container">
+
+                <div class="factorial-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Factorial Calculator</span>
+                </div>
+
+                <div class="factorial-hero-content">
+                    <span class="factorial-eyebrow">MATH CALCULATOR</span>
+
+                    <h1>Factorial Calculator</h1>
+
+                    <p>
+                        Calculate the factorial of any non-negative whole
+                        number. Get exact results, explore the factorial
+                        formula, and understand the calculation step by step.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="factorial-calculator-section" id="calculator">
+            <div class="container">
+
+                <div class="factorial-calculator-card">
+
+                    <div class="factorial-card-heading">
+                        <div>
+                            <span class="factorial-section-label">CALCULATOR</span>
+
+                            <h2>Calculate a factorial</h2>
+
+                            <p>
+                                Enter a whole number from 0 to 1,000.
+                            </p>
+                        </div>
+
+                        <div class="factorial-icon" aria-hidden="true">n!</div>
+                    </div>
+
+
+                    <form id="factorialForm" novalidate>
+
+                        <div class="factorial-field">
+                            <label for="factorialNumber">Enter a whole number</label>
+
+                            <input type="number" id="factorialNumber" name="number" min="0" max="1000" step="1"
+                                value="5" placeholder="e.g. 5" inputmode="numeric"
+                                aria-describedby="factorialInputHelp factorialError" required>
+
+                            <small id="factorialInputHelp">
+                                Supported range: 0 to 1,000. Negative numbers
+                                and decimals are not accepted.
+                            </small>
+                        </div>
+
+
+                        <!-- Examples -->
+                        <div class="factorial-examples">
+                            <span class="factorial-examples-title">
+                                Try an example:
+                            </span>
+
+                            <button type="button" class="factorial-example-button" data-number="0">
+                                0!
+                            </button>
+
+                            <button type="button" class="factorial-example-button" data-number="5">
+                                5!
+                            </button>
+
+                            <button type="button" class="factorial-example-button" data-number="10">
+                                10!
+                            </button>
+
+                            <button type="button" class="factorial-example-button" data-number="20">
+                                20!
+                            </button>
+
+                            <button type="button" class="factorial-example-button" data-number="50">
+                                50!
+                            </button>
+                        </div>
+
+
+                        <p class="factorial-error" id="factorialError" role="alert" aria-live="polite"></p>
+
+
+                        <div class="factorial-actions">
+                            <button type="submit" class="factorial-primary-button">
+                                Calculate Factorial
+                            </button>
+
+                            <button type="button" class="factorial-secondary-button" id="factorialResetButton">
+                                Reset
+                            </button>
+                        </div>
+
+                    </form>
+
+
+                    <!-- Results -->
+                    <section class="factorial-results" id="factorialResultPanel" aria-live="polite" hidden>
+
+                        <div class="factorial-results-heading">
+                            <span class="factorial-section-label">
+                                YOUR RESULTS
+                            </span>
+
+                            <h3 id="factorialResultTitle">
+                                Factorial result
+                            </h3>
+
+                            <p id="factorialResultSummary"></p>
+                        </div>
+
+
+                        <div class="factorial-answer-card">
+
+                            <span class="factorial-answer-label">
+                                Factorial result
+                            </span>
+
+                            <div class="factorial-equation" id="factorialEquation"></div>
+
+                            <div class="factorial-answer-number" id="factorialAnswer"></div>
+
+                            <div class="factorial-result-stats">
+
+                                <div class="factorial-stat">
+                                    <span>Input number</span>
+                                    <strong id="factorialInputResult">5</strong>
+                                </div>
+
+                                <div class="factorial-stat">
+                                    <span>Number of digits</span>
+                                    <strong id="factorialDigitCount">3</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Formula -->
+                        <div class="factorial-formula-box">
+                            <h4>Factorial formula</h4>
+
+                            <p id="factorialFormula"></p>
+                        </div>
+
+
+                        <!-- Steps -->
+                        <div class="factorial-steps-box">
+                            <h4>Calculation steps</h4>
+
+                            <ol id="factorialSteps"></ol>
+
+                            <p class="factorial-steps-note" id="factorialStepsNote"></p>
+                        </div>
+
+
+                        <div class="factorial-actions factorial-result-actions">
+
+                            <button type="button" class="factorial-primary-button" id="factorialCopyButton">
+                                Copy Results
+                            </button>
+
+                            <button type="button" class="factorial-secondary-button" id="factorialCalculateAgainButton">
+                                Calculate Again
+                            </button>
+
+                        </div>
+
+                        <p class="factorial-copy-feedback" id="factorialCopyFeedback" aria-live="polite"></p>
+
+                    </section>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition -->
+        <section class="factorial-information-section" id="definition">
+            <div class="container">
+
+                <div class="factorial-information-card">
+
+                    <span class="factorial-section-label">
+                        UNDERSTANDING THE MATH
+                    </span>
+
+                    <h2>What is a factorial?</h2>
+
+                    <p>
+                        A factorial is a mathematical operation that
+                        multiplies a non-negative integer by every positive
+                        integer smaller than it, down to 1. The factorial
+                        of a number n is written as n!.
+                    </p>
+
+                    <p>
+                        Factorials are used in permutations, combinations,
+                        probability, statistics, algebra, and many other
+                        areas of mathematics.
+                    </p>
+
+
+                    <div class="factorial-definition-highlight">
+                        <span>Standard factorial formula</span>
+
+                        <strong>
+                            n! = n × (n − 1) × (n − 2) × ... × 2 × 1
+                        </strong>
+                    </div>
+
+
+                    <div class="factorial-definition-grid">
+
+                        <article class="factorial-definition-item">
+                            <div class="factorial-definition-symbol">0!</div>
+
+                            <h3>Zero factorial</h3>
+
+                            <p>
+                                Zero factorial is defined as 1. This
+                                convention is essential for many
+                                mathematical formulas.
+                            </p>
+
+                            <div class="factorial-definition-example">
+                                0! = 1
+                            </div>
+                        </article>
+
+
+                        <article class="factorial-definition-item">
+                            <div class="factorial-definition-symbol">1!</div>
+
+                            <h3>One factorial</h3>
+
+                            <p>
+                                The factorial of 1 is 1 because there is
+                                only one positive integer in the product.
+                            </p>
+
+                            <div class="factorial-definition-example">
+                                1! = 1
+                            </div>
+                        </article>
+
+
+                        <article class="factorial-definition-item">
+                            <div class="factorial-definition-symbol">5!</div>
+
+                            <h3>Example factorial</h3>
+
+                            <p>
+                                Multiply all positive integers from 5 down
+                                to 1 to calculate the factorial of 5.
+                            </p>
+
+                            <div class="factorial-definition-example">
+                                5! = 5 × 4 × 3 × 2 × 1 = 120
+                            </div>
+                        </article>
+
+                    </div>
+
+
+                    <div class="factorial-formula-reference">
+                        <h3>Important factorial rules</h3>
+
+                        <div class="factorial-reference-row">
+                            <span>General formula</span>
+                            <strong>n! = n × (n − 1)!</strong>
+                        </div>
+
+                        <div class="factorial-reference-row">
+                            <span>Zero factorial</span>
+                            <strong>0! = 1</strong>
+                        </div>
+
+                        <div class="factorial-reference-row">
+                            <span>One factorial</span>
+                            <strong>1! = 1</strong>
+                        </div>
+
+                        <div class="factorial-reference-row">
+                            <span>Example</span>
+                            <strong>6! = 720</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How to Use -->
+        <section class="factorial-information-section" id="how-to-use">
+            <div class="container">
+
+                <div class="factorial-information-card">
+
+                    <span class="factorial-section-label">
+                        QUICK GUIDE
+                    </span>
+
+                    <h2>How to use the Factorial Calculator</h2>
+
+                    <div class="factorial-how-to-grid">
+
+                        <article class="factorial-how-to-item">
+                            <span class="factorial-step-number">01</span>
+
+                            <h3>Enter a number</h3>
+
+                            <p>
+                                Type a non-negative whole number between
+                                0 and 1,000 into the input field.
+                            </p>
+                        </article>
+
+
+                        <article class="factorial-how-to-item">
+                            <span class="factorial-step-number">02</span>
+
+                            <h3>Calculate</h3>
+
+                            <p>
+                                Click Calculate Factorial to multiply the
+                                required sequence of whole numbers.
+                            </p>
+                        </article>
+
+
+                        <article class="factorial-how-to-item">
+                            <span class="factorial-step-number">03</span>
+
+                            <h3>Review the result</h3>
+
+                            <p>
+                                See the exact factorial, number of digits,
+                                formula, and calculation steps.
+                            </p>
+                        </article>
+
+
+                        <article class="factorial-how-to-item">
+                            <span class="factorial-step-number">04</span>
+
+                            <h3>Copy or reset</h3>
+
+                            <p>
+                                Copy your result for later use or reset
+                                the calculator to try another number.
+                            </p>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="factorial-information-section factorial-faq-section" id="faq">
+            <div class="container">
+
+                <div class="factorial-information-card">
+
+                    <span class="factorial-section-label">
+                        COMMON QUESTIONS
+                    </span>
+
+                    <h2>Frequently asked questions</h2>
+
+                    <div class="factorial-faq-list">
+
+                        <details class="factorial-faq-item">
+                            <summary>What is the factorial of 0?</summary>
+
+                            <p>
+                                The factorial of 0 is 1. This is a
+                                mathematical definition that makes
+                                factorial formulas consistent in
+                                combinations and other calculations.
+                            </p>
+                        </details>
+
+
+                        <details class="factorial-faq-item">
+                            <summary>Can a factorial be calculated for a negative number?</summary>
+
+                            <p>
+                                The ordinary factorial operation is defined
+                                for non-negative integers. This calculator
+                                does not accept negative integers or
+                                fractional inputs.
+                            </p>
+                        </details>
+
+
+                        <details class="factorial-faq-item">
+                            <summary>Why do factorials become so large?</summary>
+
+                            <p>
+                                Each new factorial multiplies the previous
+                                factorial by the next integer. As a result,
+                                factorial values grow very quickly.
+                            </p>
+                        </details>
+
+
+                        <details class="factorial-faq-item">
+                            <summary>What is the difference between n and n!?</summary>
+
+                            <p>
+                                The symbol n represents a number, while n!
+                                represents the product of all positive
+                                integers from 1 through n. For example,
+                                5 is the number, but 5! equals 120.
+                            </p>
+                        </details>
+
+
+                        <details class="factorial-faq-item">
+                            <summary>Where are factorials used?</summary>
+
+                            <p>
+                                Factorials are commonly used in
+                                permutations, combinations, probability,
+                                statistics, and mathematical series.
+                            </p>
+                        </details>
+
+
+                        <details class="factorial-faq-item">
+                            <summary>Does this calculator give exact results?</summary>
+
+                            <p>
+                                Yes. It uses JavaScript BigInt arithmetic
+                                to calculate exact integer factorials
+                                within the supported range, avoiding
+                                floating-point rounding errors.
+                            </p>
+                        </details>
+
+
+                        <details class="factorial-faq-item">
+                            <summary>Are my calculations processed online?</summary>
+
+                            <p>
+                                The factorial calculation runs locally
+                                in your browser. The calculator does not
+                                need to upload your entered number to
+                                calculate the result.
+                            </p>
+                        </details>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Shared Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../calculator.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Simple, useful online tools designed to make
+                        everyday tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                    <a href="probability-calculator.html">Probability Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Math Tools</h3>
+
+                    <a href="exponent-calculator.html">Exponent Calculator</a>
+                    <a href="square-root-calculator.html">Square Root Calculator</a>
+                    <a href="lcm-hcf-calculator.html">LCM &amp; HCF Calculator</a>
+                    <a href="prime-number-calculator.html">Prime Number Calculator</a>
+                    <a href="factorial-calculator.html">Factorial Calculator</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/factorial-calculator.js"></script>
+
+</body>
+
+</html>

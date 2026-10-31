@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RD Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Estimate your recurring deposit maturity amount, total deposits, and interest earned using your monthly deposit, annual interest rate, and investment tenure.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/rd-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container rd-page">
+
+        <section class="rd-hero">
+            <span class="rd-eyebrow">FINANCE CALCULATOR</span>
+            <h1>Recurring Deposit (RD) Calculator</h1>
+            <p>
+                Estimate how your regular monthly deposits may grow over time.
+                Calculate your total contributions, estimated interest, and
+                potential maturity amount.
+            </p>
+        </section>
+
+        <section class="rd-calculator-card">
+
+            <div class="rd-section-heading">
+                <div>
+                    <h2>Calculate Your RD Returns</h2>
+                    <p>Enter your monthly deposit details below.</p>
+                </div>
+                <span class="rd-icon" aria-hidden="true">₹</span>
+            </div>
+
+            <form id="rdForm" novalidate>
+                <div class="rd-input-grid">
+
+                    <div class="rd-field">
+                        <label for="rdCurrency">Currency</label>
+                        <select id="rdCurrency">
+                            <option value="INR" selected>INR (₹)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="CAD">CAD (CA$)</option>
+                            <option value="AUD">AUD (A$)</option>
+                            <option value="SGD">SGD (S$)</option>
+                            <option value="AED">AED (د.إ)</option>
+                        </select>
+                        <small>Changes display formatting only.</small>
+                    </div>
+
+                    <div class="rd-field">
+                        <label for="rdMonthly">Monthly Deposit</label>
+                        <div class="rd-input-with-symbol">
+                            <span id="rdCurrencySymbol">₹</span>
+                            <input type="number" id="rdMonthly" min="0.01" max="1000000000000" step="any" value="5000"
+                                required placeholder="e.g. 5000">
+                        </div>
+                        <small>Amount deposited every month.</small>
+                    </div>
+
+                    <div class="rd-field">
+                        <label for="rdRate">Annual Interest Rate (%)</label>
+                        <div class="rd-input-with-symbol rd-input-suffix">
+                            <input type="number" id="rdRate" min="0" max="100" step="any" value="7" required
+                                placeholder="e.g. 7">
+                            <span>%</span>
+                        </div>
+                        <small>Enter the annual rate offered by your bank.</small>
+                    </div>
+
+                    <div class="rd-field">
+                        <label for="rdTenure">Deposit Tenure</label>
+                        <input type="number" id="rdTenure" min="1" max="1200" step="1" value="5" required
+                            placeholder="e.g. 5">
+                        <small>Enter the duration in the selected unit.</small>
+                    </div>
+
+                    <div class="rd-field">
+                        <label for="rdTenureUnit">Tenure Unit</label>
+                        <select id="rdTenureUnit">
+                            <option value="years" selected>Years</option>
+                            <option value="months">Months</option>
+                        </select>
+                        <small>Choose years or months.</small>
+                    </div>
+
+                    <div class="rd-field">
+                        <label for="rdFrequency">Compounding Frequency</label>
+                        <select id="rdFrequency">
+                            <option value="1">Yearly</option>
+                            <option value="2">Half-yearly</option>
+                            <option value="4" selected>Quarterly</option>
+                            <option value="12">Monthly</option>
+                        </select>
+                        <small>Used to estimate the monthly growth rate.</small>
+                    </div>
+
+                </div>
+
+                <div class="rd-error" id="rdError" role="alert" aria-live="polite" hidden></div>
+
+                <div class="rd-form-actions">
+                    <button type="submit" class="rd-btn rd-btn-primary">
+                        Calculate RD Returns
+                    </button>
+                    <button type="button" class="rd-btn rd-btn-secondary" id="rdReset">
+                        Reset
+                    </button>
+                </div>
+            </form>
+
+            <section class="rd-results" id="rdResults" aria-live="polite" hidden>
+
+                <div class="rd-results-header">
+                    <div>
+                        <span class="rd-result-label">Estimated Maturity Amount</span>
+                        <h2 id="rdMaturity">₹0.00</h2>
+                    </div>
+                    <span class="rd-result-badge">Estimate</span>
+                </div>
+
+                <div class="rd-result-grid">
+                    <article class="rd-result-item">
+                        <span class="rd-result-dot rd-dot-principal"></span>
+                        <p>Total Deposits</p>
+                        <strong id="rdInvested">₹0.00</strong>
+                    </article>
+
+                    <article class="rd-result-item">
+                        <span class="rd-result-dot rd-dot-interest"></span>
+                        <p>Estimated Interest</p>
+                        <strong id="rdInterest">₹0.00</strong>
+                    </article>
+
+                    <article class="rd-result-item">
+                        <span class="rd-result-dot rd-dot-growth"></span>
+                        <p>Total Growth</p>
+                        <strong id="rdGrowth">0%</strong>
+                    </article>
+                </div>
+
+                <div class="rd-breakdown">
+                    <div class="rd-breakdown-heading">
+                        <h3>Maturity Breakdown</h3>
+                        <span id="rdBreakdownTotal">Total: ₹0.00</span>
+                    </div>
+
+                    <div class="rd-composition-bar" role="img"
+                        aria-label="Breakdown of total deposits and estimated interest">
+                        <div id="rdInvestedSegment" class="rd-invested-segment"></div>
+                        <div id="rdInterestSegment" class="rd-interest-segment"></div>
+                    </div>
+
+                    <div class="rd-legend">
+                        <span><i class="rd-legend-invested"></i> Total deposits</span>
+                        <span><i class="rd-legend-interest"></i> Interest earned</span>
+                    </div>
+                </div>
+
+                <div class="rd-calculation-details">
+                    <h3>Calculation Details</h3>
+                    <p id="rdFormulaStep"></p>
+                    <p id="rdSubstitutionStep"></p>
+                    <p id="rdFinalStep"></p>
+                </div>
+
+                <div class="rd-result-note">
+                    This is an illustrative estimate using end-of-month deposits
+                    and a monthly equivalent rate derived from your selected
+                    compounding frequency. Your bank may use a different method.
+                </div>
+
+                <div class="rd-result-actions">
+                    <button type="button" class="rd-btn rd-btn-primary" id="rdCopy">
+                        Copy Results
+                    </button>
+                    <span id="rdCopyMessage" role="status" aria-live="polite"></span>
+                </div>
+
+            </section>
+        </section>
+
+        <section class="rd-info-card">
+            <h2>What Is a Recurring Deposit Calculator?</h2>
+            <p>
+                A Recurring Deposit (RD) calculator estimates how much you may
+                accumulate by depositing a fixed amount regularly, usually every
+                month, for a selected period. It estimates the total contributions,
+                interest earned, and potential maturity amount.
+            </p>
+            <p>
+                RD products and interest conventions differ across financial
+                institutions. This calculator uses a simplified monthly-growth
+                model, so its estimate may not exactly match a bank's official
+                maturity quote.
+            </p>
+        </section>
+
+        <section class="rd-info-card">
+            <h2>RD Calculator Formula</h2>
+            <p>
+                Since deposits are made regularly, each instalment earns interest
+                for a different length of time. This calculator models each
+                end-of-month instalment separately.
+            </p>
+
+            <div class="rd-formula">
+                i = (1 + r/n)<sup>n/12</sup> − 1
+            </div>
+
+            <p>Then the estimated maturity amount is:</p>
+
+            <div class="rd-formula">
+                M = P × Σ (1 + i)<sup>k</sup>
+            </div>
+
+            <p>
+                Here, the sum runs from <strong>k = 0</strong> to
+                <strong>N − 1</strong>, where N is the total number of monthly
+                deposits.
+            </p>
+
+            <ul class="rd-definition-list">
+                <li><strong>M</strong> = Estimated maturity amount</li>
+                <li><strong>P</strong> = Monthly deposit amount</li>
+                <li><strong>r</strong> = Annual interest rate expressed as a decimal</li>
+                <li><strong>n</strong> = Selected compounding periods per year</li>
+                <li><strong>i</strong> = Effective monthly growth rate</li>
+                <li><strong>N</strong> = Total number of monthly deposits</li>
+            </ul>
+
+            <p>
+                <strong>Total deposits = Monthly deposit × Number of deposits.</strong>
+            </p>
+            <p>
+                <strong>Estimated interest = Maturity amount − Total deposits.</strong>
+            </p>
+        </section>
+
+        <section class="rd-info-card">
+            <h2>Example RD Calculation</h2>
+            <p>
+                Suppose you deposit ₹5,000 every month for 5 years at an annual
+                interest rate of 7%, using quarterly compounding as the rate
+                convention.
+            </p>
+
+            <div class="rd-example-grid">
+                <div><span>Monthly Deposit</span><strong>₹5,000</strong></div>
+                <div><span>Annual Interest Rate</span><strong>7%</strong></div>
+                <div><span>Tenure</span><strong>5 years</strong></div>
+                <div><span>Total Deposits</span><strong>₹3,00,000</strong></div>
+            </div>
+
+            <p>
+                The calculator estimates the maturity amount by growing each
+                monthly deposit for the remaining months of the term. The
+                resulting interest depends on the rate and deposit timing.
+            </p>
+        </section>
+
+        <section class="rd-info-card">
+            <h2>How to Use the RD Calculator</h2>
+            <ol class="rd-how-to">
+                <li>Select your preferred display currency.</li>
+                <li>Enter the amount you plan to deposit each month.</li>
+                <li>Enter the annual interest rate.</li>
+                <li>Enter the tenure and select years or months.</li>
+                <li>Choose the compounding frequency used for the estimate.</li>
+                <li>Click <strong>Calculate RD Returns</strong> to view the results.</li>
+            </ol>
+        </section>
+
+        <section class="rd-info-card">
+            <h2>Frequently Asked Questions</h2>
+
+            <details class="rd-faq">
+                <summary>How is an RD different from an FD?</summary>
+                <p>
+                    An RD generally involves regular instalments over time.
+                    An FD generally involves placing a lump sum for a fixed term.
+                </p>
+            </details>
+
+            <details class="rd-faq">
+                <summary>Is the maturity amount guaranteed by this calculator?</summary>
+                <p>
+                    No. This tool provides an estimate. Your financial institution's
+                    applicable rate, deposit schedule, calculation rules, and terms
+                    determine the actual maturity value.
+                </p>
+            </details>
+
+            <details class="rd-faq">
+                <summary>Does the calculator include taxes or penalties?</summary>
+                <p>
+                    No. The estimate excludes taxes, TDS, late-payment charges,
+                    premature-closure penalties, and other bank-specific charges.
+                </p>
+            </details>
+
+            <details class="rd-faq">
+                <summary>What happens if I change the compounding frequency?</summary>
+                <p>
+                    The calculator derives an effective monthly growth rate from
+                    the selected annual rate and compounding frequency. A different
+                    frequency may therefore change the estimated maturity amount.
+                </p>
+            </details>
+
+            <details class="rd-faq">
+                <summary>Does the currency selector convert money?</summary>
+                <p>
+                    No. It changes the displayed currency symbol and number
+                    formatting only. It does not perform foreign-exchange conversion.
+                </p>
+            </details>
+        </section>
+
+        <section class="rd-related-section">
+            <h2>Related Finance Calculators</h2>
+            <p>Explore more useful financial tools from DigiiFox.</p>
+
+            <div class="rd-related-grid">
+                <a href="fd-calculator.html" class="rd-related-card">
+                    <span>🏦</span>
+                    <h3>FD Calculator</h3>
+                    <p>Estimate maturity value from a lump-sum deposit.</p>
+                    <b>Calculate FD Returns →</b>
+                </a>
+
+                <a href="sip-calculator.html" class="rd-related-card">
+                    <span>📈</span>
+                    <h3>SIP Calculator</h3>
+                    <p>Estimate potential growth from regular investments.</p>
+                    <b>Calculate SIP Returns →</b>
+                </a>
+
+                <a href="compound-interest-calculator.html" class="rd-related-card">
+                    <span>💹</span>
+                    <h3>Compound Interest Calculator</h3>
+                    <p>Calculate compound interest and investment growth.</p>
+                    <b>Calculate Compound Interest →</b>
+                </a>
+            </div>
+        </section>
+
+        <p class="rd-disclaimer">
+            <strong>Disclaimer:</strong> This calculator is for educational
+            purposes only. It is not financial advice and does not replace
+            an official recurring deposit maturity calculation from your bank.
+        </p>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Finance Calculators</h3>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                    <a href="compound-interest-calculator.html">Compound Interest</a>
+                    <a href="sip-calculator.html">SIP Calculator</a>
+                    <a href="fd-calculator.html">FD Calculator</a>
+                    <a href="rd-calculator.html">RD Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>Simple, accessible tools designed to make everyday tasks easier.</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/rd-calculator.js"></script>
+</body>
+
+</html>

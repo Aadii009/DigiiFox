@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Probability Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate event probabilities, complementary probabilities, and combined probabilities using the free DigiiFox Probability Calculator.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/probability-calculator.css">
+</head>
+
+<body>
+
+    <!-- Shared DigiiFox Navbar -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="prob-page">
+
+        <!-- Hero -->
+        <section class="prob-hero">
+            <div class="container">
+
+                <div class="prob-breadcrumb">
+                    <a href="calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Probability Calculator</span>
+                </div>
+
+                <div class="prob-hero-content">
+                    <span class="prob-badge">Math Calculator</span>
+
+                    <h1>Probability Calculator</h1>
+
+                    <p>
+                        Calculate the probability of an event, find the chance
+                        that an event will not occur, and explore combined
+                        probabilities with clear formulas and worked steps.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="prob-main-section" id="calculator">
+            <div class="container">
+
+                <div class="prob-layout">
+
+                    <div class="prob-main-column">
+
+                        <div class="prob-card prob-calculator-card">
+
+                            <div class="prob-card-heading">
+                                <div>
+                                    <span class="prob-section-label">PROBABILITY TOOL</span>
+                                    <h2>Calculate Probability</h2>
+                                    <p>Choose a calculation and enter your values.</p>
+                                </div>
+
+                                <div class="prob-heading-icon" aria-hidden="true">
+                                    P(E)
+                                </div>
+                            </div>
+
+
+                            <form id="probForm" novalidate>
+
+                                <!-- Calculation type -->
+                                <div class="prob-field">
+                                    <label for="probMode">Calculation Type</label>
+
+                                    <select id="probMode" name="mode">
+                                        <option value="basic">
+                                            Single Event Probability
+                                        </option>
+
+                                        <option value="complement">
+                                            Probability of Not Occurring
+                                        </option>
+
+                                        <option value="independent">
+                                            Both Independent Events
+                                        </option>
+
+                                        <option value="exclusive">
+                                            Either Mutually Exclusive Event
+                                        </option>
+                                    </select>
+
+                                    <small>
+                                        Select the probability formula you need.
+                                    </small>
+                                </div>
+
+
+                                <!-- Basic probability -->
+                                <div class="prob-input-group" id="probBasicFields">
+
+                                    <div class="prob-field">
+                                        <label for="probFavorable">
+                                            Favorable Outcomes
+                                        </label>
+
+                                        <input type="number" id="probFavorable" min="0" step="1" value="3"
+                                            placeholder="e.g. 3">
+
+                                        <small>
+                                            Number of outcomes that satisfy the event.
+                                        </small>
+                                    </div>
+
+                                    <div class="prob-field">
+                                        <label for="probTotal">
+                                            Total Possible Outcomes
+                                        </label>
+
+                                        <input type="number" id="probTotal" min="1" step="1" value="6"
+                                            placeholder="e.g. 6">
+
+                                        <small>
+                                            Must be greater than zero and at least as
+                                            large as the favorable outcomes.
+                                        </small>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Complement probability -->
+                                <div class="prob-input-group" id="probComplementFields" hidden>
+                                    <div class="prob-field">
+                                        <label for="probEvent">
+                                            Probability of Event P(A)
+                                        </label>
+
+                                        <input type="number" id="probEvent" min="0" max="1" step="any" value="0.3"
+                                            placeholder="e.g. 0.3">
+
+                                        <small>
+                                            Enter a decimal from 0 to 1.
+                                            For example, 0.3 represents 30%.
+                                        </small>
+                                    </div>
+                                </div>
+
+
+                                <!-- Combined probabilities -->
+                                <div class="prob-input-group" id="probCombinedFields" hidden>
+
+                                    <div class="prob-field">
+                                        <label for="probA">
+                                            Probability of Event A
+                                        </label>
+
+                                        <input type="number" id="probA" min="0" max="1" step="any" value="0.5"
+                                            placeholder="e.g. 0.5">
+
+                                        <small>
+                                            Enter a decimal from 0 to 1.
+                                        </small>
+                                    </div>
+
+                                    <div class="prob-field">
+                                        <label for="probB">
+                                            Probability of Event B
+                                        </label>
+
+                                        <input type="number" id="probB" min="0" max="1" step="any" value="0.4"
+                                            placeholder="e.g. 0.4">
+
+                                        <small>
+                                            Enter a decimal from 0 to 1.
+                                        </small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="prob-mode-note" id="probModeNote">
+                                    <strong>Formula:</strong>
+                                    P(E) = Favorable Outcomes ÷ Total Outcomes
+                                </div>
+
+
+                                <div class="prob-error" id="probError" role="alert" hidden></div>
+
+
+                                <div class="prob-actions">
+                                    <button type="submit" class="prob-btn prob-btn-primary">
+                                        Calculate Probability
+                                    </button>
+
+                                    <button type="button" class="prob-btn prob-btn-secondary" id="probResetButton">
+                                        Reset
+                                    </button>
+                                </div>
+
+                            </form>
+
+
+                            <!-- Results -->
+                            <div class="prob-result-panel" id="probResultPanel" hidden>
+
+                                <div class="prob-result-top">
+                                    <span class="prob-result-label">
+                                        CALCULATED PROBABILITY
+                                    </span>
+
+                                    <span class="prob-result-check" aria-hidden="true">
+                                        ✓
+                                    </span>
+                                </div>
+
+                                <div class="prob-result-expression" id="probResultExpression">
+                                    P(E) = 3/6
+                                </div>
+
+                                <div class="prob-result-number" id="probResultNumber">
+                                    50%
+                                </div>
+
+                                <div class="prob-result-metrics">
+
+                                    <div class="prob-metric">
+                                        <span>Decimal</span>
+                                        <strong id="probDecimalResult">0.5</strong>
+                                    </div>
+
+                                    <div class="prob-metric">
+                                        <span>Percentage</span>
+                                        <strong id="probPercentageResult">50%</strong>
+                                    </div>
+
+                                    <div class="prob-metric">
+                                        <span>Fraction</span>
+                                        <strong id="probFractionResult">1/2</strong>
+                                    </div>
+
+                                </div>
+
+                                <div class="prob-result-actions">
+                                    <button type="button" class="prob-btn prob-btn-secondary" id="probCopyButton">
+                                        Copy Result
+                                    </button>
+
+                                    <span id="probCopyFeedback" role="status" aria-live="polite"></span>
+                                </div>
+
+                                <div class="prob-steps">
+                                    <h3>Calculation Steps</h3>
+                                    <ol id="probSteps"></ol>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Examples -->
+                        <div class="prob-card prob-examples-card">
+
+                            <div class="prob-section-heading">
+                                <span class="prob-section-label">TRY AN EXAMPLE</span>
+                                <h2>Common Probability Examples</h2>
+                                <p>
+                                    Select an example to load its values into
+                                    the calculator.
+                                </p>
+                            </div>
+
+                            <div class="prob-example-grid">
+
+                                <button type="button" class="prob-example-button" data-mode="basic" data-favorable="1"
+                                    data-total="2">
+                                    <span class="prob-example-expression">
+                                        1 out of 2
+                                    </span>
+                                    <span class="prob-example-result">
+                                        Probability: 50%
+                                    </span>
+                                </button>
+
+                                <button type="button" class="prob-example-button" data-mode="basic" data-favorable="1"
+                                    data-total="6">
+                                    <span class="prob-example-expression">
+                                        Roll a 6
+                                    </span>
+                                    <span class="prob-example-result">
+                                        Probability: 16.67%
+                                    </span>
+                                </button>
+
+                                <button type="button" class="prob-example-button" data-mode="basic" data-favorable="4"
+                                    data-total="52">
+                                    <span class="prob-example-expression">
+                                        Draw a heart
+                                    </span>
+                                    <span class="prob-example-result">
+                                        Probability: 7.69%
+                                    </span>
+                                </button>
+
+                                <button type="button" class="prob-example-button" data-mode="complement"
+                                    data-event="0.25">
+                                    <span class="prob-example-expression">
+                                        Event does not occur
+                                    </span>
+                                    <span class="prob-example-result">
+                                        P(A) = 25%
+                                    </span>
+                                </button>
+
+                                <button type="button" class="prob-example-button" data-mode="independent" data-a="0.5"
+                                    data-b="0.5">
+                                    <span class="prob-example-expression">
+                                        Two coin tosses
+                                    </span>
+                                    <span class="prob-example-result">
+                                        Both heads: 25%
+                                    </span>
+                                </button>
+
+                                <button type="button" class="prob-example-button" data-mode="exclusive" data-a="0.25"
+                                    data-b="0.25">
+                                    <span class="prob-example-expression">
+                                        A or B
+                                    </span>
+                                    <span class="prob-example-result">
+                                        Probability: 50%
+                                    </span>
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Definition -->
+                        <section class="prob-card prob-information-card" id="definition">
+                            <span class="prob-section-label">
+                                UNDERSTANDING PROBABILITY
+                            </span>
+
+                            <h2>What Is Probability?</h2>
+
+                            <p>
+                                Probability measures how likely an event is
+                                to happen. It ranges from 0 to 1, or from
+                                0% to 100%. A probability of 0 means an event
+                                is impossible, while a probability of 1 means
+                                it is certain under the model being considered.
+                            </p>
+
+                            <div class="prob-formula-box">
+                                <span class="prob-formula-title">
+                                    Basic Probability Formula
+                                </span>
+
+                                <div class="prob-formula">
+                                    P(E) = <span>F</span>/<span>N</span>
+                                </div>
+
+                                <p>
+                                    F = favorable outcomes and N = total equally
+                                    likely outcomes.
+                                </p>
+                            </div>
+
+                            <h3>Example: Rolling a Die</h3>
+
+                            <p>
+                                A standard six-sided die has six equally likely
+                                outcomes. Only one outcome shows a 4.
+                            </p>
+
+                            <div class="prob-math-example">
+                                P(rolling a 4) = 1/6
+                                <br>
+                                ≈ 0.1667 = 16.67%
+                            </div>
+
+                            <h3>Important Probability Formulas</h3>
+
+                            <div class="prob-rule-list">
+
+                                <div class="prob-rule-item">
+                                    <strong>Single event</strong>
+                                    <span>
+                                        P(A) = Favorable outcomes / Total outcomes,
+                                        for equally likely outcomes.
+                                    </span>
+                                </div>
+
+                                <div class="prob-rule-item">
+                                    <strong>Complement</strong>
+                                    <span>P(not A) = 1 − P(A)</span>
+                                </div>
+
+                                <div class="prob-rule-item">
+                                    <strong>Independent events</strong>
+                                    <span>P(A and B) = P(A) × P(B)</span>
+                                </div>
+
+                                <div class="prob-rule-item">
+                                    <strong>Mutually exclusive events</strong>
+                                    <span>P(A or B) = P(A) + P(B)</span>
+                                </div>
+
+                            </div>
+
+                            <p class="prob-note">
+                                Important: The basic favorable-outcomes formula
+                                requires equally likely outcomes. The combined
+                                formulas also require the stated conditions:
+                                independence for multiplication and mutual
+                                exclusivity for simple addition.
+                            </p>
+                        </section>
+
+
+                        <!-- How to Use -->
+                        <section class="prob-card prob-information-card" id="how-to-use">
+                            <span class="prob-section-label">QUICK GUIDE</span>
+
+                            <h2>How to Use the Probability Calculator</h2>
+
+                            <ol class="prob-how-list">
+
+                                <li>
+                                    <strong>Choose a calculation type.</strong>
+                                    <p>
+                                        Select single event, complement,
+                                        independent events, or mutually exclusive events.
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <strong>Enter the required values.</strong>
+                                    <p>
+                                        For basic probability, enter favorable
+                                        and total outcomes. For other calculations,
+                                        enter the event probabilities as decimals.
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <strong>Calculate the probability.</strong>
+                                    <p>
+                                        Click Calculate Probability to see the result.
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <strong>Understand the result.</strong>
+                                    <p>
+                                        Review the decimal, percentage, fraction
+                                        when available, and calculation steps.
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <strong>Copy or reset.</strong>
+                                    <p>
+                                        Copy the result or reset the form for
+                                        another calculation.
+                                    </p>
+                                </li>
+
+                            </ol>
+                        </section>
+
+
+                        <!-- FAQ -->
+                        <section class="prob-card prob-information-card" id="faq">
+                            <span class="prob-section-label">COMMON QUESTIONS</span>
+
+                            <h2>Frequently Asked Questions</h2>
+
+                            <div class="prob-faq-list">
+
+                                <details class="prob-faq-item">
+                                    <summary>What is probability?</summary>
+                                    <p>
+                                        Probability measures the likelihood of
+                                        an event. It ranges from 0 to 1, or
+                                        0% to 100%.
+                                    </p>
+                                </details>
+
+                                <details class="prob-faq-item">
+                                    <summary>How do I calculate basic probability?</summary>
+                                    <p>
+                                        For equally likely outcomes, divide
+                                        the number of favorable outcomes by
+                                        the total number of possible outcomes.
+                                    </p>
+                                </details>
+
+                                <details class="prob-faq-item">
+                                    <summary>What is the probability of an impossible event?</summary>
+                                    <p>
+                                        An impossible event has probability 0,
+                                        or 0%.
+                                    </p>
+                                </details>
+
+                                <details class="prob-faq-item">
+                                    <summary>What is complementary probability?</summary>
+                                    <p>
+                                        It is the probability that an event
+                                        does not occur. Calculate it using
+                                        1 − P(A).
+                                    </p>
+                                </details>
+
+                                <details class="prob-faq-item">
+                                    <summary>When can I multiply two probabilities?</summary>
+                                    <p>
+                                        For independent events, the probability
+                                        that both occur is P(A) × P(B).
+                                        Dependent events require conditional
+                                        probability instead.
+                                    </p>
+                                </details>
+
+                                <details class="prob-faq-item">
+                                    <summary>When can I add two probabilities?</summary>
+                                    <p>
+                                        For mutually exclusive events, the
+                                        probability that either occurs is
+                                        P(A) + P(B). For events that can overlap,
+                                        subtract P(A and B) from the sum.
+                                    </p>
+                                </details>
+
+                                <details class="prob-faq-item">
+                                    <summary>Why is probability shown as a percentage?</summary>
+                                    <p>
+                                        Multiplying a probability decimal by
+                                        100 converts it to a percentage.
+                                        For example, 0.25 equals 25%.
+                                    </p>
+                                </details>
+
+                            </div>
+                        </section>
+
+                    </div>
+
+
+                    <!-- Sidebar -->
+                    <aside class="prob-sidebar">
+
+                        <div class="prob-card prob-sidebar-card">
+                            <h3>Probability Basics</h3>
+
+                            <div class="prob-sidebar-item">
+                                <span>Impossible</span>
+                                <strong>0%</strong>
+                                <p>The event cannot occur.</p>
+                            </div>
+
+                            <div class="prob-sidebar-item">
+                                <span>Equally likely</span>
+                                <strong>50%</strong>
+                                <p>A probability of one-half.</p>
+                            </div>
+
+                            <div class="prob-sidebar-item">
+                                <span>Certain</span>
+                                <strong>100%</strong>
+                                <p>The event is certain under the model.</p>
+                            </div>
+                        </div>
+
+
+                        <div class="prob-card prob-sidebar-card">
+                            <h3>Useful Formulas</h3>
+
+                            <div class="prob-mini-formula">
+                                <span>Single event</span>
+                                <strong>P(A) = F/N</strong>
+                            </div>
+
+                            <div class="prob-mini-formula">
+                                <span>Complement</span>
+                                <strong>P(A') = 1 − P(A)</strong>
+                            </div>
+
+                            <div class="prob-mini-formula">
+                                <span>Independent events</span>
+                                <strong>P(A ∩ B) = P(A)P(B)</strong>
+                            </div>
+
+                            <div class="prob-mini-formula">
+                                <span>Mutually exclusive events</span>
+                                <strong>P(A ∪ B) = P(A) + P(B)</strong>
+                            </div>
+                        </div>
+
+
+                        <div class="prob-card prob-sidebar-card prob-sidebar-tip">
+                            <span class="prob-tip-icon" aria-hidden="true">✦</span>
+
+                            <h3>Quick Tip</h3>
+
+                            <p>
+                                A probability of 0.75 means a 75% chance.
+                                To convert a decimal probability to a
+                                percentage, multiply it by 100.
+                            </p>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Shared Full DigiiFox Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Smart online tools designed to make everyday digital
+                        tasks simpler, faster, and more convenient.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Math Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                    <a href="exponent-calculator.html">Exponent Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Probability Calculator</h3>
+                    <a href="#calculator">Calculate Probability</a>
+                    <a href="#definition">Formula &amp; Definition</a>
+                    <a href="#how-to-use">How to Use</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Simple tools. Smarter work.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/probability-calculator.js"></script>
+
+</body>
+
+</html>

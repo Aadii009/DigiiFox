@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simple Interest Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Calculate simple interest, interest earned, and total amount using principal, annual interest rate, and time. Free online simple interest calculator.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/simple-interest-calculator.css">
+
+    <script src="../calculator-js/simple-interest-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav" type="button">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= PAGE HERO ================= -->
+    <main class="si-page">
+
+        <section class="si-hero">
+            <div class="container">
+
+                <a href="../calculator.html" class="si-breadcrumb">
+                    ← Back to All Calculators
+                </a>
+
+                <div class="si-hero-content">
+                    <span class="si-eyebrow">FINANCE CALCULATOR</span>
+
+                    <h1>Simple Interest Calculator</h1>
+
+                    <p>
+                        Calculate the interest earned or payable on a principal
+                        amount over time. Enter your amount, annual interest
+                        rate, and duration to get an instant result.
+                    </p>
+
+                    <div class="si-hero-tags">
+                        <span>✓ Free to use</span>
+                        <span>✓ Instant results</span>
+                        <span>✓ No sign-up required</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CALCULATOR ================= -->
+        <section class="si-calculator-section">
+            <div class="container">
+
+                <div class="si-calculator-layout">
+
+                    <!-- INPUT CARD -->
+                    <div class="si-card si-input-card">
+
+                        <div class="si-card-heading">
+                            <div>
+                                <span class="si-section-label">CALCULATE</span>
+                                <h2>Enter Your Details</h2>
+                            </div>
+
+                            <div class="si-heading-icon" aria-hidden="true">
+                                ₹
+                            </div>
+                        </div>
+
+                        <form id="simpleInterestForm" novalidate>
+
+                            <div class="si-field">
+                                <label for="siCurrency">Currency</label>
+
+                                <select id="siCurrency" name="currency">
+                                    <option value="INR">Indian Rupee (₹)</option>
+                                    <option value="USD">US Dollar ($)</option>
+                                    <option value="EUR">Euro (€)</option>
+                                    <option value="GBP">British Pound (£)</option>
+                                    <option value="CAD">Canadian Dollar (CA$)</option>
+                                    <option value="AUD">Australian Dollar (A$)</option>
+                                    <option value="SGD">Singapore Dollar (S$)</option>
+                                    <option value="AED">UAE Dirham (AED)</option>
+                                </select>
+                            </div>
+
+                            <div class="si-field">
+                                <label for="siPrincipal">
+                                    Principal Amount
+                                </label>
+
+                                <div class="si-input-with-prefix">
+                                    <span id="siCurrencySymbol" aria-hidden="true">₹</span>
+
+                                    <input type="number" id="siPrincipal" name="principal" min="0.01" step="any"
+                                        placeholder="e.g. 10000" inputmode="decimal" required>
+                                </div>
+
+                                <small>
+                                    The initial amount invested or borrowed.
+                                </small>
+                            </div>
+
+                            <div class="si-field">
+                                <label for="siRate">
+                                    Annual Interest Rate (%)
+                                </label>
+
+                                <div class="si-input-with-suffix">
+                                    <input type="number" id="siRate" name="rate" min="0" max="1000" step="any"
+                                        placeholder="e.g. 5" inputmode="decimal" required>
+
+                                    <span>%</span>
+                                </div>
+
+                                <small>
+                                    Enter the yearly interest rate.
+                                </small>
+                            </div>
+
+                            <div class="si-field">
+                                <label for="siTime">
+                                    Time Period
+                                </label>
+
+                                <div class="si-time-inputs">
+                                    <input type="number" id="siTime" name="time" min="0.01" step="any"
+                                        placeholder="e.g. 3" inputmode="decimal" aria-label="Time period" required>
+
+                                    <select id="siTimeUnit" name="timeUnit" aria-label="Time unit">
+                                        <option value="years">Years</option>
+                                        <option value="months">Months</option>
+                                        <option value="days">Days</option>
+                                    </select>
+                                </div>
+
+                                <small>
+                                    Enter the duration of the investment or loan.
+                                </small>
+                            </div>
+
+                            <div class="si-error" id="siError" role="alert" hidden></div>
+
+                            <div class="si-form-actions">
+                                <button type="submit" class="si-btn si-btn-primary">
+                                    Calculate Interest →
+                                </button>
+
+                                <button type="reset" class="si-btn si-btn-secondary" id="siReset">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <div class="si-privacy-note">
+                            <span aria-hidden="true">🔒</span>
+                            Your calculation runs in your browser. No account required.
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULTS CARD -->
+                    <div class="si-card si-results-card" id="siResults" aria-live="polite">
+
+                        <div class="si-results-top">
+                            <div>
+                                <span class="si-section-label">YOUR RESULTS</span>
+                                <h2>Interest Summary</h2>
+                            </div>
+
+                            <span class="si-result-badge" id="siResultBadge">
+                                Ready to calculate
+                            </span>
+                        </div>
+
+                        <div class="si-main-result">
+                            <span>Simple Interest</span>
+
+                            <strong id="siInterestResult">—</strong>
+
+                            <p>
+                                The interest earned or payable over your selected period.
+                            </p>
+                        </div>
+
+                        <div class="si-result-breakdown">
+
+                            <div class="si-result-row">
+                                <span>Principal Amount</span>
+                                <strong id="siPrincipalResult">—</strong>
+                            </div>
+
+                            <div class="si-result-row">
+                                <span>Simple Interest</span>
+                                <strong id="siInterestBreakdown">—</strong>
+                            </div>
+
+                            <div class="si-result-row si-total-row">
+                                <span>Total Amount</span>
+                                <strong id="siTotalResult">—</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="si-visual-summary">
+                            <div class="si-visual-heading">
+                                <span>Amount Composition</span>
+                                <span id="siCompositionLabel">Principal + Interest</span>
+                            </div>
+
+                            <div class="si-composition-bar" id="siCompositionBar" role="img"
+                                aria-label="Amount composition will appear after calculation">
+                                <div class="si-principal-segment" id="siPrincipalSegment"></div>
+                                <div class="si-interest-segment" id="siInterestSegment"></div>
+                            </div>
+
+                            <div class="si-legend">
+                                <span><i class="si-dot si-principal-dot"></i> Principal</span>
+                                <span><i class="si-dot si-interest-dot"></i> Interest</span>
+                            </div>
+                        </div>
+
+                        <div class="si-calculation-steps" id="siSteps" hidden>
+                            <h3>Calculation Breakdown</h3>
+
+                            <p id="siFormulaStep"></p>
+                            <p id="siSubstitutionStep"></p>
+                            <p id="siFinalStep"></p>
+                        </div>
+
+                        <div class="si-result-actions">
+                            <button type="button" class="si-btn si-btn-primary" id="siCopy">
+                                Copy Results
+                            </button>
+
+                            <span id="siCopyMessage" role="status" aria-live="polite"></span>
+                        </div>
+
+                        <p class="si-result-disclaimer">
+                            Results are estimates based on simple interest.
+                            Actual financial products may use different terms,
+                            fees, compounding methods, or day-count conventions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FORMULA ================= -->
+        <section class="si-content-section">
+            <div class="container">
+
+                <div class="si-content-grid">
+
+                    <article class="si-info-card">
+                        <span class="si-section-label">UNDERSTAND THE MATH</span>
+                        <h2>Simple Interest Formula</h2>
+
+                        <p>
+                            Simple interest is calculated only on the original
+                            principal amount. Interest previously earned or
+                            charged is not added to the principal for future
+                            interest calculations.
+                        </p>
+
+                        <div class="si-formula-box">
+                            <span>Simple Interest</span>
+                            <strong>SI = (P × R × T) ÷ 100</strong>
+                        </div>
+
+                        <div class="si-formula-box si-formula-box-light">
+                            <span>Total Amount</span>
+                            <strong>A = P + SI</strong>
+                        </div>
+
+                        <ul class="si-definition-list">
+                            <li><strong>SI:</strong> Simple interest</li>
+                            <li><strong>P:</strong> Original principal amount</li>
+                            <li><strong>R:</strong> Annual interest rate in percent</li>
+                            <li><strong>T:</strong> Time in years</li>
+                            <li><strong>A:</strong> Principal plus simple interest</li>
+                        </ul>
+                    </article>
+
+
+                    <article class="si-info-card">
+                        <span class="si-section-label">WORKED EXAMPLE</span>
+                        <h2>Example: ₹10,000 at 5%</h2>
+
+                        <p>
+                            Suppose you invest ₹10,000 at a simple annual interest
+                            rate of 5% for 3 years.
+                        </p>
+
+                        <div class="si-example-list">
+                            <div>
+                                <span>Principal</span>
+                                <strong>₹10,000</strong>
+                            </div>
+
+                            <div>
+                                <span>Annual rate</span>
+                                <strong>5%</strong>
+                            </div>
+
+                            <div>
+                                <span>Duration</span>
+                                <strong>3 years</strong>
+                            </div>
+                        </div>
+
+                        <div class="si-example-equation">
+                            SI = (10,000 × 5 × 3) ÷ 100
+                            <strong>= ₹1,500</strong>
+                        </div>
+
+                        <div class="si-example-total">
+                            <span>Total Amount</span>
+                            <strong>₹11,500</strong>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= HOW TO USE ================= -->
+        <section class="si-content-section si-soft-section">
+            <div class="container">
+
+                <div class="si-section-heading">
+                    <span class="si-section-label">QUICK GUIDE</span>
+                    <h2>How to Use the Simple Interest Calculator</h2>
+                    <p>Follow these four simple steps to calculate interest.</p>
+                </div>
+
+                <div class="si-steps-grid">
+
+                    <article class="si-guide-card">
+                        <span class="si-guide-number">01</span>
+                        <h3>Choose Currency</h3>
+                        <p>Select the currency in which your principal and results should be displayed.</p>
+                    </article>
+
+                    <article class="si-guide-card">
+                        <span class="si-guide-number">02</span>
+                        <h3>Enter Principal</h3>
+                        <p>Enter the initial amount of your investment or loan.</p>
+                    </article>
+
+                    <article class="si-guide-card">
+                        <span class="si-guide-number">03</span>
+                        <h3>Add Rate and Time</h3>
+                        <p>Enter the annual interest rate and choose years, months, or days.</p>
+                    </article>
+
+                    <article class="si-guide-card">
+                        <span class="si-guide-number">04</span>
+                        <h3>View Your Results</h3>
+                        <p>Click calculate to see the interest, total amount, and calculation steps.</p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="si-content-section">
+            <div class="container si-faq-container">
+
+                <div class="si-section-heading">
+                    <span class="si-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Learn more about simple interest and how it works.</p>
+                </div>
+
+                <div class="si-faq-list">
+
+                    <details class="si-faq-item">
+                        <summary>What is simple interest?</summary>
+                        <p>
+                            Simple interest is interest calculated only on the
+                            original principal amount over a specified period.
+                            It does not include interest on previously accrued
+                            interest.
+                        </p>
+                    </details>
+
+                    <details class="si-faq-item">
+                        <summary>How is simple interest different from compound interest?</summary>
+                        <p>
+                            Simple interest is based on the original principal.
+                            Compound interest is calculated on the principal plus
+                            accumulated interest from earlier periods.
+                        </p>
+                    </details>
+
+                    <details class="si-faq-item">
+                        <summary>Can I calculate interest for months or days?</summary>
+                        <p>
+                            Yes. Select months or days in the time-period field.
+                            Months are converted using 12 months per year, and
+                            days using 365 days per year. Financial institutions
+                            may use different day-count conventions.
+                        </p>
+                    </details>
+
+                    <details class="si-faq-item">
+                        <summary>Can the interest rate be zero?</summary>
+                        <p>
+                            Yes. If the annual interest rate is zero, the simple
+                            interest will also be zero and the total amount will
+                            equal the principal.
+                        </p>
+                    </details>
+
+                    <details class="si-faq-item">
+                        <summary>Does this calculator provide financial advice?</summary>
+                        <p>
+                            No. It provides a mathematical estimate based on the
+                            figures entered. It does not account for taxes,
+                            charges, changing rates, or the specific terms of a
+                            financial product.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= RELATED TOOLS ================= -->
+        <section class="si-content-section si-soft-section">
+            <div class="container">
+
+                <div class="si-section-heading">
+                    <span class="si-section-label">EXPLORE MORE</span>
+                    <h2>Related Calculators</h2>
+                    <p>Explore more tools available in DigiiFox.</p>
+                </div>
+
+                <div class="si-related-grid">
+
+                    <a href="percentage-calculator.html" class="si-related-card">
+                        <span class="si-related-icon">%</span>
+                        <h3>Percentage Calculator</h3>
+                        <p>Calculate percentages, increases, and decreases.</p>
+                        <span class="si-related-link">Calculate Percentage →</span>
+                    </a>
+
+                    <a href="discount-calculator.html" class="si-related-card">
+                        <span class="si-related-icon">🏷</span>
+                        <h3>Discount Calculator</h3>
+                        <p>Find discount amounts and final prices.</p>
+                        <span class="si-related-link">Calculate Discount →</span>
+                    </a>
+
+                    <a href="../calculator.html" class="si-related-card">
+                        <span class="si-related-icon">▦</span>
+                        <h3>All Calculators</h3>
+                        <p>Explore more useful DigiiFox calculators.</p>
+                        <span class="si-related-link">Explore Tools →</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FULL FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                        DigiiFox makes everyday digital tasks easier with
+                        practical, easy-to-use online tools.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">All Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculator Tools</h3>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="discount-calculator.html">Discount Calculator</a>
+                    <a href="simple-interest-calculator.html">Simple Interest</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>Simple tools designed to help you calculate, convert, and get things done.</p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

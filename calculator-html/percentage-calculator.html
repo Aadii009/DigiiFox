@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate percentages, percentage increases, and percentage decreases with the free DigiiFox Percentage Calculator.">
+
+    <title>Percentage Calculator | DigiiFox</title>
+
+    <!-- Shared calculator design system -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Percentage Calculator styles -->
+    <link rel="stylesheet" href="../calculator-css/percentage-calculator.css">
+
+    <script src="../calculator-js/percentage-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- ================= PAGE INTRO ================= -->
+        <section class="page-intro">
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="calculators.html">Calculators</a>
+                    <span>/</span>
+                    <span>Percentage Calculator</span>
+                </div>
+
+                <div class="intro-badge">
+                    <span class="badge-dot"></span>
+                    Free Online Calculator
+                </div>
+
+                <h1>Percentage <span>Calculator</span></h1>
+
+                <p>
+                    Calculate percentages, find percentage differences,
+                    and work out increases or decreases in just a few clicks.
+                    Simple, fast, and free.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CALCULATOR ================= -->
+        <section class="percentage-section">
+            <div class="container">
+
+                <div class="percentage-heading">
+                    <div>
+                        <span class="eyebrow">DIGIIFOX CALCULATOR</span>
+                        <h2>What would you like to calculate?</h2>
+                        <p>
+                            Choose a calculation type and enter your numbers.
+                        </p>
+                    </div>
+
+                    <div class="percentage-heading-icon" aria-hidden="true">
+                        %
+                    </div>
+                </div>
+
+
+                <div class="percentage-grid">
+
+                    <!-- CARD 1: FIND A PERCENTAGE -->
+                    <article class="percentage-card">
+
+                        <div class="percentage-card-top">
+                            <div class="percentage-icon">%</div>
+                            <span class="calculation-tag">Type 01</span>
+                        </div>
+
+                        <h3>Find a Percentage</h3>
+
+                        <p class="card-description">
+                            Find a specific percentage of a number.
+                        </p>
+
+                        <div class="example-label">Example</div>
+                        <p class="example-text">What is 20% of 500?</p>
+
+                        <form class="percentage-form" id="ofForm">
+
+                            <div class="field-group">
+                                <label for="ofPercent">Percentage (%)</label>
+                                <input type="number" id="ofPercent" placeholder="e.g. 20" step="any" required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="ofNumber">Number</label>
+                                <input type="number" id="ofNumber" placeholder="e.g. 500" step="any" required>
+                            </div>
+
+                            <button class="calculate-button" type="submit">
+                                Calculate Percentage
+                                <span aria-hidden="true">→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="percentage-result" id="ofResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 2: WHAT PERCENTAGE -->
+                    <article class="percentage-card">
+
+                        <div class="percentage-card-top">
+                            <div class="percentage-icon">÷%</div>
+                            <span class="calculation-tag">Type 02</span>
+                        </div>
+
+                        <h3>What Percentage?</h3>
+
+                        <p class="card-description">
+                            Find what percentage one number is of another.
+                        </p>
+
+                        <div class="example-label">Example</div>
+                        <p class="example-text">50 is what percentage of 200?</p>
+
+                        <form class="percentage-form" id="whatPercentForm">
+
+                            <div class="field-group">
+                                <label for="partNumber">Part</label>
+                                <input type="number" id="partNumber" placeholder="e.g. 50" step="any" required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="wholeNumber">Total</label>
+                                <input type="number" id="wholeNumber" placeholder="e.g. 200" step="any" required>
+                            </div>
+
+                            <button class="calculate-button" type="submit">
+                                Find Percentage
+                                <span aria-hidden="true">→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="percentage-result" id="whatPercentResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 3: PERCENTAGE INCREASE -->
+                    <article class="percentage-card">
+
+                        <div class="percentage-card-top">
+                            <div class="percentage-icon increase-icon">↗</div>
+                            <span class="calculation-tag">Type 03</span>
+                        </div>
+
+                        <h3>Percentage Increase</h3>
+
+                        <p class="card-description">
+                            Calculate how much a value has increased in percentage terms.
+                        </p>
+
+                        <div class="example-label">Example</div>
+                        <p class="example-text">A value rises from 500 to 600.</p>
+
+                        <form class="percentage-form" id="increaseForm">
+
+                            <div class="field-group">
+                                <label for="increaseOld">Original Value</label>
+                                <input type="number" id="increaseOld" placeholder="e.g. 500" step="any" required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="increaseNew">New Value</label>
+                                <input type="number" id="increaseNew" placeholder="e.g. 600" step="any" required>
+                            </div>
+
+                            <button class="calculate-button" type="submit">
+                                Calculate Increase
+                                <span aria-hidden="true">→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="percentage-result" id="increaseResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 4: PERCENTAGE DECREASE -->
+                    <article class="percentage-card">
+
+                        <div class="percentage-card-top">
+                            <div class="percentage-icon decrease-icon">↘</div>
+                            <span class="calculation-tag">Type 04</span>
+                        </div>
+
+                        <h3>Percentage Decrease</h3>
+
+                        <p class="card-description">
+                            Calculate how much a value has decreased in percentage terms.
+                        </p>
+
+                        <div class="example-label">Example</div>
+                        <p class="example-text">A value falls from 500 to 400.</p>
+
+                        <form class="percentage-form" id="decreaseForm">
+
+                            <div class="field-group">
+                                <label for="decreaseOld">Original Value</label>
+                                <input type="number" id="decreaseOld" placeholder="e.g. 500" step="any" required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="decreaseNew">New Value</label>
+                                <input type="number" id="decreaseNew" placeholder="e.g. 400" step="any" required>
+                            </div>
+
+                            <button class="calculate-button" type="submit">
+                                Calculate Decrease
+                                <span aria-hidden="true">→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="percentage-result" id="decreaseResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <p class="privacy-message">
+                    <span aria-hidden="true">✓</span>
+                    Calculations run directly in your browser.
+                    Your entered numbers are not sent to a calculation server.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= DEFINITION ================= -->
+        <section class="content-section">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">UNDERSTAND THE TOOL</span>
+                    <h2>What Is a Percentage?</h2>
+                </div>
+
+                <div class="content-card">
+                    <p>
+                        A percentage represents a value as a fraction of 100.
+                        The word percentage means "per hundred" and is
+                        represented by the symbol %.
+                    </p>
+
+                    <p>
+                        For example, 25% means 25 out of every 100.
+                        Percentages are commonly used to calculate discounts,
+                        exam scores, interest, price changes, taxes, and
+                        business growth.
+                    </p>
+
+                    <p>
+                        The DigiiFox Percentage Calculator provides four
+                        common percentage calculations in one place, helping
+                        you solve everyday numerical problems quickly.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FORMULAS ================= -->
+        <section class="content-section section-tinted">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">MATHEMATICAL BASICS</span>
+                    <h2>Percentage Formulas</h2>
+                    <p>
+                        Understand the formulas behind each calculation.
+                    </p>
+                </div>
+
+                <div class="formula-grid">
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">%</div>
+                        <h3>Find a Percentage</h3>
+
+                        <div class="formula-box">
+                            (Percentage ÷ 100) × Number
+                        </div>
+
+                        <p>
+                            Example: 20% of 500 = (20 ÷ 100) × 500 = 100.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">÷</div>
+                        <h3>What Percentage?</h3>
+
+                        <div class="formula-box">
+                            (Part ÷ Total) × 100
+                        </div>
+
+                        <p>
+                            Example: (50 ÷ 200) × 100 = 25%.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">↗</div>
+                        <h3>Percentage Increase</h3>
+
+                        <div class="formula-box">
+                            ((New − Old) ÷ Old) × 100
+                        </div>
+
+                        <p>
+                            Example: ((600 − 500) ÷ 500) × 100 = 20%.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">↘</div>
+                        <h3>Percentage Decrease</h3>
+
+                        <div class="formula-box">
+                            ((Old − New) ÷ Old) × 100
+                        </div>
+
+                        <p>
+                            Example: ((500 − 400) ÷ 500) × 100 = 20%.
+                        </p>
+                    </article>
+
+                </div>
+
+                <div class="formula-tip">
+                    <strong>Important:</strong>
+                    Percentage increase and decrease use the original value
+                    as the reference. The original value must not be zero.
+                    If the new value moves in the opposite direction,
+                    the calculator will explain the direction of the change.
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= HOW TO USE ================= -->
+        <section class="content-section">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">QUICK GUIDE</span>
+                    <h2>How to Use the Percentage Calculator</h2>
+                    <p>
+                        Select the calculation that matches your question.
+                    </p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <article class="step-card">
+                        <span class="step-number">01</span>
+                        <h3>Choose a calculation</h3>
+                        <p>
+                            Select percentage of a number, what percentage,
+                            percentage increase, or percentage decrease.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">02</span>
+                        <h3>Enter your values</h3>
+                        <p>
+                            Fill in the required number fields. You can
+                            enter whole numbers or decimal values.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">03</span>
+                        <h3>View your result</h3>
+                        <p>
+                            Press the relevant calculate button to see
+                            your answer and the calculation breakdown.
+                        </p>
+                    </article>
+
+                </div>
+
+                <div class="example-box">
+                    <div>
+                        <span class="eyebrow">QUICK EXAMPLE</span>
+                        <h3>What is 15% of 800?</h3>
+                        <p>
+                            Divide 15 by 100, then multiply by 800.
+                        </p>
+                    </div>
+
+                    <div class="example-result">120</div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="content-section section-tinted">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">NEED HELP?</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>
+                        Answers to common questions about percentages.
+                    </p>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>How do I calculate a percentage of a number?</summary>
+                        <p>
+                            Divide the percentage by 100 and multiply the
+                            result by the number. For example, 20% of 500
+                            is (20 ÷ 100) × 500 = 100.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How do I find what percentage one number is of another?</summary>
+                        <p>
+                            Divide the part by the total and multiply by 100.
+                            For example, 50 out of 200 is (50 ÷ 200) × 100 = 25%.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How do I calculate percentage increase?</summary>
+                        <p>
+                            Subtract the original value from the new value,
+                            divide by the original value, and multiply by 100.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How do I calculate percentage decrease?</summary>
+                        <p>
+                            Subtract the new value from the original value,
+                            divide by the original value, and multiply by 100.
+                            This gives the percentage decrease when the new
+                            value is lower than the original.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can a percentage be greater than 100%?</summary>
+                        <p>
+                            Yes. A percentage can exceed 100% when the value
+                            being compared is greater than the reference value.
+                            For example, 150 out of 100 is 150%.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I calculate percentages using decimal numbers?</summary>
+                        <p>
+                            Yes. You can enter decimal values, such as 12.5
+                            or 49.75, into the calculator.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Is this calculator free and private?</summary>
+                        <p>
+                            Yes. The calculator is free to use and performs
+                            its calculations in your browser. It does not
+                            send the entered numbers to a calculation server.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo footer-logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Simple, useful online tools designed to make
+                        everyday digital tasks easier.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="pdf-tools.html">PDF Tools</a>
+                    <a href="image-tools.html">Image Tools</a>
+                    <a href="calculators.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="calculators.html">All Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>
+                        Built for convenient, accessible, and
+                        browser-based digital tools.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Simple tools. Smarter tasks.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

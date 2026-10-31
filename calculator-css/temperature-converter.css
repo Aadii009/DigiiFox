@@ -1,0 +1,875 @@
+/* =========================================
+   DIGIIFOX TEMPERATURE CONVERTER
+   Theme: Calm Green
+   Shared styles: standard-calculator.css
+========================================= */
+
+.temperature-page {
+    --temp-primary: #25845b;
+    --temp-primary-dark: #176744;
+    --temp-primary-light: #e9f7ef;
+    --temp-background: #f7faf8;
+    --temp-card: #ffffff;
+    --temp-text: #20332a;
+    --temp-muted: #6d7d74;
+    --temp-border: #e0eae3;
+    --temp-danger: #c0392b;
+
+    color: var(--temp-text);
+    background: var(--temp-background);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.temperature-page *,
+.temperature-page *::before,
+.temperature-page *::after {
+    box-sizing: border-box;
+}
+
+.temperature-page [hidden] {
+    display: none !important;
+}
+
+.temperature-page .container {
+    width: min(1160px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.temperature-page a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.temperature-page button,
+.temperature-page input,
+.temperature-page select {
+    font: inherit;
+}
+
+.temperature-page button {
+    cursor: pointer;
+}
+
+.temperature-page button:focus-visible,
+.temperature-page a:focus-visible,
+.temperature-page input:focus-visible,
+.temperature-page select:focus-visible,
+.temperature-page summary:focus-visible {
+    outline: 3px solid rgba(37, 132, 91, 0.25);
+    outline-offset: 3px;
+}
+
+/* HERO */
+
+.temperature-hero {
+    padding: 40px 0 52px;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(67, 176, 119, 0.13), transparent 30%),
+        linear-gradient(135deg, #edf8f0, #f9fcfa);
+    border-bottom: 1px solid var(--temp-border);
+}
+
+.temperature-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    align-items: center;
+    margin-bottom: 28px;
+    color: var(--temp-muted);
+    font-size: 13px;
+}
+
+.temperature-breadcrumb a {
+    color: var(--temp-primary-dark);
+}
+
+.temperature-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.temperature-eyebrow,
+.temperature-section-label {
+    display: inline-block;
+    color: var(--temp-primary-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.temperature-hero h1 {
+    margin: 9px 0 12px;
+    color: var(--temp-text);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.temperature-hero p {
+    max-width: 650px;
+    margin: 0;
+    color: var(--temp-muted);
+    font-size: 16px;
+}
+
+/* MAIN CONVERTER LAYOUT */
+
+.temperature-main-section {
+    padding: 42px 0 54px;
+}
+
+.temperature-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.85fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.temperature-card,
+.temperature-side-card {
+    min-width: 0;
+    padding: 28px;
+    background: var(--temp-card);
+    border: 1px solid var(--temp-border);
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(29, 74, 48, 0.045);
+}
+
+.temperature-card-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.temperature-card-heading h2,
+.temperature-side-card h2 {
+    margin: 7px 0 5px;
+    font-size: 24px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.temperature-card-heading p {
+    margin: 0;
+    color: var(--temp-muted);
+    font-size: 14px;
+}
+
+.temperature-icon {
+    display: grid;
+    flex: 0 0 62px;
+    width: 62px;
+    height: 62px;
+    place-items: center;
+    color: var(--temp-primary-dark);
+    background: var(--temp-primary-light);
+    border-radius: 16px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* INPUT FIELDS */
+
+.temperature-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 22px 18px;
+}
+
+.temperature-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.temperature-field label {
+    color: var(--temp-text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.temperature-field input,
+.temperature-field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 49px;
+    padding: 12px 14px;
+    color: var(--temp-text);
+    background: #fff;
+    border: 1px solid #d8e4db;
+    border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.temperature-field input:focus,
+.temperature-field select:focus {
+    border-color: var(--temp-primary);
+    box-shadow: 0 0 0 3px rgba(37, 132, 91, 0.09);
+    outline: none;
+}
+
+.temperature-field small {
+    color: var(--temp-muted);
+    font-size: 11px;
+}
+
+.temperature-swap-wrap {
+    display: none;
+}
+
+.temperature-error {
+    margin: 18px 0 0;
+    padding: 11px 13px;
+    color: var(--temp-danger);
+    background: #fff0ee;
+    border: 1px solid #f5cfca;
+    border-radius: 9px;
+    font-size: 13px;
+}
+
+/* BUTTONS */
+
+.temperature-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.temperature-btn {
+    min-height: 46px;
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 750;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.temperature-btn:hover {
+    transform: translateY(-1px);
+}
+
+.temperature-btn-primary {
+    color: #fff;
+    background: var(--temp-primary);
+}
+
+.temperature-btn-primary:hover {
+    background: var(--temp-primary-dark);
+}
+
+.temperature-btn-secondary {
+    color: var(--temp-text);
+    background: #fff;
+    border-color: var(--temp-border);
+}
+
+.temperature-btn-secondary:hover {
+    background: #f4f8f5;
+}
+
+/* RESULT */
+
+.temperature-result {
+    margin-top: 30px;
+    padding: 22px;
+    background: linear-gradient(145deg, #f0faf3, #f8fcf9);
+    border: 1px solid #d7ecde;
+    border-radius: 15px;
+}
+
+.temperature-result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: var(--temp-primary-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.temperature-copy-btn {
+    padding: 7px 11px;
+    color: var(--temp-primary-dark);
+    background: #fff;
+    border: 1px solid #cfe4d5;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.temperature-copy-btn:hover {
+    background: var(--temp-primary-light);
+}
+
+.temperature-result-input {
+    margin-top: 20px;
+    color: var(--temp-muted);
+    font-size: 13px;
+}
+
+.temperature-result-value {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    align-items: baseline;
+    margin-top: 1px;
+    color: var(--temp-primary-dark);
+}
+
+.temperature-result-value strong {
+    font-size: clamp(34px, 5vw, 46px);
+    font-weight: 800;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.temperature-result-value span {
+    font-size: 24px;
+    font-weight: 750;
+}
+
+.temperature-result-summary {
+    margin: 10px 0 0;
+}
+
+#temperatureResultSummary {
+    margin: 10px 0 0;
+    color: var(--temp-muted);
+    font-size: 13px;
+}
+
+.temperature-formula-box,
+.temperature-steps-box {
+    margin-top: 18px;
+    padding: 14px 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #dfede3;
+    border-radius: 10px;
+}
+
+.temperature-formula-box > span {
+    color: var(--temp-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.temperature-formula-box p,
+.temperature-steps-box p {
+    margin: 5px 0 0;
+    color: var(--temp-text);
+    font-size: 13px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+
+.temperature-steps-box h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.temperature-copy-message {
+    min-height: 0;
+    margin: 8px 0 0;
+    color: var(--temp-primary-dark);
+    font-size: 12px;
+}
+
+/* SIDE CARD */
+
+.temperature-side-card {
+    padding: 26px 24px;
+}
+
+.temperature-side-card h2 {
+    margin-bottom: 24px;
+}
+
+.temperature-scale-item {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--temp-border);
+}
+
+.temperature-scale-symbol {
+    display: grid;
+    flex: 0 0 43px;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    color: var(--temp-primary-dark);
+    background: var(--temp-primary-light);
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.temperature-scale-item h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.temperature-scale-item p {
+    margin: 0;
+    color: var(--temp-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.temperature-tip {
+    margin-top: 22px;
+    padding: 15px;
+    background: #f5f8f5;
+    border-radius: 11px;
+}
+
+.temperature-tip strong {
+    font-size: 13px;
+}
+
+.temperature-tip p {
+    margin: 6px 0 0;
+    color: var(--temp-muted);
+    font-size: 12px;
+}
+
+/* CONTENT SECTIONS */
+
+.temperature-content-section {
+    padding: 55px 0;
+    background: #fff;
+}
+
+.temperature-soft-section {
+    background: #f3f8f4;
+    border-top: 1px solid #e7efe8;
+    border-bottom: 1px solid #e7efe8;
+}
+
+.temperature-section-heading {
+    max-width: 680px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.temperature-section-heading h2 {
+    margin: 8px 0 9px;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+}
+
+.temperature-section-heading > p {
+    margin: 0;
+    color: var(--temp-muted);
+    font-size: 14px;
+}
+
+/* REFERENCE CARDS */
+
+.temperature-reference-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.temperature-reference-card {
+    padding: 21px;
+    background: #fff;
+    border: 1px solid var(--temp-border);
+    border-radius: 13px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.temperature-reference-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 24px rgba(29, 74, 48, 0.07);
+}
+
+.temperature-reference-card > span {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--temp-muted);
+    font-size: 12px;
+}
+
+.temperature-reference-card strong {
+    display: block;
+    color: var(--temp-primary-dark);
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.temperature-reference-card p {
+    margin: 7px 0 0;
+    color: var(--temp-muted);
+    font-size: 12px;
+}
+
+/* FORMULA CARDS */
+
+.temperature-formula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.temperature-info-card {
+    min-width: 0;
+    padding: 23px;
+    background: #fff;
+    border: 1px solid var(--temp-border);
+    border-radius: 13px;
+}
+
+.temperature-info-card h3 {
+    margin: 0 0 15px;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.temperature-equation {
+    padding: 13px 14px;
+    color: var(--temp-primary-dark);
+    background: var(--temp-primary-light);
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.temperature-info-card p {
+    margin: 12px 0 0;
+    color: var(--temp-muted);
+    font-size: 13px;
+}
+
+/* HOW TO USE */
+
+.temperature-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.temperature-steps-grid article {
+    padding: 23px 19px;
+    background: #fff;
+    border: 1px solid var(--temp-border);
+    border-radius: 13px;
+}
+
+.temperature-step-number {
+    display: grid;
+    width: 39px;
+    height: 39px;
+    place-items: center;
+    color: var(--temp-primary-dark);
+    background: var(--temp-primary-light);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.temperature-steps-grid h3 {
+    margin: 16px 0 7px;
+    font-size: 15px;
+}
+
+.temperature-steps-grid p {
+    margin: 0;
+    color: var(--temp-muted);
+    font-size: 13px;
+}
+
+/* FAQ */
+
+.temperature-faq-list {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.temperature-faq-list details {
+    margin-bottom: 12px;
+    padding: 18px 20px;
+    background: #fff;
+    border: 1px solid var(--temp-border);
+    border-radius: 11px;
+}
+
+.temperature-faq-list summary {
+    position: relative;
+    padding-right: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 750;
+    list-style: none;
+}
+
+.temperature-faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.temperature-faq-list summary::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--temp-primary);
+    content: "+";
+    font-size: 21px;
+    line-height: 1;
+}
+
+.temperature-faq-list details[open] summary::after {
+    content: "−";
+}
+
+.temperature-faq-list details p {
+    margin: 13px 0 0;
+    color: var(--temp-muted);
+    font-size: 13px;
+}
+
+/* RELATED TOOLS */
+
+.temperature-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.temperature-related-card {
+    display: flex;
+    min-width: 0;
+    gap: 13px;
+    align-items: flex-start;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--temp-border);
+    border-radius: 13px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.temperature-related-card:hover {
+    transform: translateY(-3px);
+    border-color: #a8d2b7;
+}
+
+.temperature-related-card > span {
+    display: grid;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    background: var(--temp-primary-light);
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.temperature-related-card > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.temperature-related-card h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.temperature-related-card p {
+    margin: 0;
+    color: var(--temp-muted);
+    font-size: 12px;
+}
+
+.temperature-related-card > b {
+    color: var(--temp-primary);
+    font-size: 19px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .temperature-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .temperature-side-card {
+        padding: 25px;
+    }
+
+    .temperature-reference-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .temperature-steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .temperature-related-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .temperature-page .container {
+        width: min(100% - 28px, 1160px);
+    }
+
+    .temperature-hero {
+        padding: 27px 0 35px;
+    }
+
+    .temperature-breadcrumb {
+        gap: 6px;
+        margin-bottom: 21px;
+        font-size: 11px;
+    }
+
+    .temperature-hero h1 {
+        font-size: 31px;
+    }
+
+    .temperature-hero p {
+        font-size: 14px;
+    }
+
+    .temperature-main-section {
+        padding: 25px 0 38px;
+    }
+
+    .temperature-card,
+    .temperature-side-card {
+        padding: 19px;
+        border-radius: 14px;
+    }
+
+    .temperature-card-heading {
+        margin-bottom: 23px;
+    }
+
+    .temperature-card-heading h2,
+    .temperature-side-card h2 {
+        font-size: 21px;
+    }
+
+    .temperature-icon {
+        flex-basis: 49px;
+        width: 49px;
+        height: 49px;
+        border-radius: 12px;
+        font-size: 20px;
+    }
+
+    .temperature-fields {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .temperature-swap-wrap {
+        display: flex;
+        justify-content: center;
+        margin: -6px 0;
+    }
+
+    .temperature-swap-btn {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        color: var(--temp-primary-dark);
+        background: var(--temp-primary-light);
+        border: 1px solid #d5eadb;
+        border-radius: 50%;
+        font-size: 23px;
+        font-weight: 700;
+    }
+
+    .temperature-actions {
+        flex-direction: column;
+    }
+
+    .temperature-btn {
+        width: 100%;
+    }
+
+    .temperature-result {
+        padding: 17px;
+    }
+
+    .temperature-result-top {
+        align-items: flex-start;
+    }
+
+    .temperature-result-value strong {
+        font-size: 36px;
+    }
+
+    .temperature-content-section {
+        padding: 40px 0;
+    }
+
+    .temperature-section-heading {
+        margin-bottom: 23px;
+    }
+
+    .temperature-section-heading h2 {
+        font-size: 25px;
+    }
+
+    .temperature-reference-grid,
+    .temperature-formula-grid,
+    .temperature-steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .temperature-reference-card,
+    .temperature-info-card,
+    .temperature-steps-grid article {
+        padding: 19px;
+    }
+
+    .temperature-equation {
+        font-size: 14px;
+    }
+
+    .temperature-faq-list details {
+        padding: 16px;
+    }
+
+    .temperature-related-card {
+        padding: 17px;
+    }
+}
+
+@media (max-width: 360px) {
+    .temperature-card,
+    .temperature-side-card {
+        padding: 15px;
+    }
+
+    .temperature-result {
+        padding: 13px;
+    }
+
+    .temperature-result-top {
+        flex-direction: column;
+    }
+
+    .temperature-result-value strong {
+        font-size: 31px;
+    }
+}

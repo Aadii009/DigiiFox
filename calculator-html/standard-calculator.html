@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Use the free DigiiFox Standard Calculator for quick and accurate everyday mathematical calculations.">
+
+    <title>Standard Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <script src="../calculator-js/standard-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= PAGE INTRO ================= -->
+    <main>
+
+        <section class="page-intro">
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="calculators.html">Calculators</a>
+                    <span>/</span>
+                    <span>Standard Calculator</span>
+                </div>
+
+                <div class="intro-badge">
+                    <span class="badge-dot"></span>
+                    Free Online Calculator
+                </div>
+
+                <h1>Standard <span>Calculator</span></h1>
+
+                <p>
+                    Perform everyday mathematical calculations quickly and
+                    easily with our simple, reliable, and free online calculator.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CALCULATOR ================= -->
+        <section class="calculator-section">
+            <div class="container">
+
+                <div class="calculator-layout">
+
+                    <div class="calculator-card">
+
+                        <div class="calculator-card-header">
+                            <div>
+                                <span class="eyebrow">DIGIIFOX TOOL</span>
+                                <h2>Calculate with ease</h2>
+                            </div>
+
+                            <span class="calculator-icon" aria-hidden="true">＋</span>
+                        </div>
+
+                        <div class="calculator-display"
+                             role="group"
+                             aria-label="Calculator display">
+
+                            <div class="display-expression"
+                                 id="expression"
+                                 aria-label="Current expression">&nbsp;</div>
+
+                            <div class="display-result"
+                                 id="display"
+                                 role="status"
+                                 aria-live="polite"
+                                 aria-atomic="true">0</div>
+
+                        </div>
+
+                        <div class="calculator-keypad"
+                             id="calculatorKeypad"
+                             aria-label="Calculator keys">
+
+                            <button type="button" class="key key-utility"
+                                    data-action="clear" aria-label="Clear all">AC</button>
+
+                            <button type="button" class="key key-utility"
+                                    data-action="delete" aria-label="Delete last character">DEL</button>
+
+                            <button type="button" class="key key-utility"
+                                    data-value="(" aria-label="Open parenthesis">(</button>
+
+                            <button type="button" class="key key-operator"
+                                    data-value="/" aria-label="Divide">÷</button>
+
+
+                            <button type="button" class="key" data-value="7">7</button>
+                            <button type="button" class="key" data-value="8">8</button>
+                            <button type="button" class="key" data-value="9">9</button>
+
+                            <button type="button" class="key key-operator"
+                                    data-value="*" aria-label="Multiply">×</button>
+
+
+                            <button type="button" class="key" data-value="4">4</button>
+                            <button type="button" class="key" data-value="5">5</button>
+                            <button type="button" class="key" data-value="6">6</button>
+
+                            <button type="button" class="key key-operator"
+                                    data-value="-" aria-label="Subtract">−</button>
+
+
+                            <button type="button" class="key" data-value="1">1</button>
+                            <button type="button" class="key" data-value="2">2</button>
+                            <button type="button" class="key" data-value="3">3</button>
+
+                            <button type="button" class="key key-operator"
+                                    data-value="+" aria-label="Add">+</button>
+
+
+                            <button type="button" class="key key-utility"
+                                    data-value="%" aria-label="Percent">%</button>
+
+                            <button type="button" class="key" data-value="0">0</button>
+
+                            <button type="button" class="key" data-value="."
+                                    aria-label="Decimal point">.</button>
+
+                            <button type="button" class="key key-equals"
+                                    data-action="calculate"
+                                    aria-label="Calculate result">=</button>
+
+                        </div>
+
+                        <p class="calculator-note">
+                            Your calculations stay in your browser.
+                        </p>
+
+                    </div>
+
+
+                    <aside class="quick-info-card">
+
+                        <div class="info-icon" aria-hidden="true">✓</div>
+
+                        <h2>Simple and convenient</h2>
+
+                        <p>
+                            Handle everyday arithmetic without installing
+                            software or creating an account.
+                        </p>
+
+                        <ul class="benefit-list">
+                            <li><span>✓</span> Addition and subtraction</li>
+                            <li><span>✓</span> Multiplication and division</li>
+                            <li><span>✓</span> Percentages and decimals</li>
+                            <li><span>✓</span> Parentheses and expressions</li>
+                            <li><span>✓</span> Keyboard support</li>
+                        </ul>
+
+                        <div class="privacy-note">
+                            <strong>Privacy first</strong>
+                            <p>
+                                Calculations run locally in your browser.
+                                No account or server-side calculation is required.
+                            </p>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= DEFINITION ================= -->
+        <section class="content-section">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">UNDERSTAND THE TOOL</span>
+                    <h2>What is a Standard Calculator?</h2>
+                </div>
+
+                <div class="content-card">
+                    <p>
+                        A standard calculator is a basic mathematical tool
+                        used to perform everyday arithmetic operations.
+                        It helps you add, subtract, multiply, and divide
+                        numbers, as well as work with percentages, decimals,
+                        and grouped expressions.
+                    </p>
+
+                    <p>
+                        You can use it for shopping calculations, budgeting,
+                        schoolwork, quick estimates, and other everyday tasks.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FORMULA ================= -->
+        <section class="content-section section-tinted">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">MATHEMATICAL BASICS</span>
+                    <h2>Formulas and Examples</h2>
+                    <p>
+                        A standard calculator applies the rules of arithmetic
+                        to calculate the result of an expression.
+                    </p>
+                </div>
+
+                <div class="formula-grid">
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">+</div>
+                        <h3>Addition</h3>
+                        <div class="formula-box">a + b = result</div>
+                        <p>Example: 12 + 8 = 20</p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">−</div>
+                        <h3>Subtraction</h3>
+                        <div class="formula-box">a − b = result</div>
+                        <p>Example: 15 − 6 = 9</p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">×</div>
+                        <h3>Multiplication</h3>
+                        <div class="formula-box">a × b = result</div>
+                        <p>Example: 7 × 4 = 28</p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">÷</div>
+                        <h3>Division</h3>
+                        <div class="formula-box">a ÷ b = result</div>
+                        <p>Example: 20 ÷ 5 = 4</p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">%</div>
+                        <h3>Percentage</h3>
+                        <div class="formula-box">a × b ÷ 100</div>
+                        <p>Example: 200 × 10 ÷ 100 = 20</p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">( )</div>
+                        <h3>Parentheses</h3>
+                        <div class="formula-box">(a + b) × c</div>
+                        <p>Example: (2 + 3) × 4 = 20</p>
+                    </article>
+
+                </div>
+
+                <div class="formula-tip">
+                    <strong>Remember:</strong>
+                    Multiplication and division are performed before addition
+                    and subtraction unless parentheses change the order.
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= HOW TO USE ================= -->
+        <section class="content-section">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">QUICK GUIDE</span>
+                    <h2>How to Use the Standard Calculator</h2>
+                    <p>Follow these simple steps to calculate an expression.</p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <article class="step-card">
+                        <span class="step-number">01</span>
+                        <h3>Enter your numbers</h3>
+                        <p>
+                            Click the number buttons or type numbers using
+                            your computer keyboard.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">02</span>
+                        <h3>Choose an operation</h3>
+                        <p>
+                            Select addition, subtraction, multiplication,
+                            division, or another available operation.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">03</span>
+                        <h3>Calculate the result</h3>
+                        <p>
+                            Press the equals button or the Enter key to
+                            calculate your expression.
+                        </p>
+                    </article>
+
+                </div>
+
+                <div class="example-box">
+                    <div>
+                        <span class="eyebrow">TRY THIS EXAMPLE</span>
+                        <h3>Calculate (12 + 8) × 3</h3>
+                        <p>Enter the expression and press equals.</p>
+                    </div>
+
+                    <div class="example-result">60</div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="content-section section-tinted">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">NEED HELP?</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Answers to common questions about this calculator.</p>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>Is the DigiiFox Standard Calculator free?</summary>
+                        <p>
+                            Yes. You can use this calculator for everyday
+                            arithmetic without paying or creating an account.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Which calculations does it support?</summary>
+                        <p>
+                            It supports addition, subtraction, multiplication,
+                            division, decimals, percentages, and parentheses.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can I use my computer keyboard?</summary>
+                        <p>
+                            Yes. You can enter numbers and operators from your
+                            keyboard. Use Enter or the equals key to calculate,
+                            Backspace to delete, and Escape to clear.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How does the percentage button work?</summary>
+                        <p>
+                            The percentage button converts the number directly
+                            before it into its decimal equivalent. For example,
+                            25% becomes 0.25. You can then use it in an expression.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Why can't I divide by zero?</summary>
+                        <p>
+                            Division by zero is undefined in ordinary arithmetic.
+                            The calculator will show an error if an expression
+                            attempts to divide by zero.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Are my calculations uploaded to a server?</summary>
+                        <p>
+                            No. This calculator performs calculations locally
+                            in your browser and does not send your expressions
+                            to a calculation server.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo footer-logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Simple, useful online tools designed to make
+                        everyday digital tasks easier.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="pdf-tools.html">PDF Tools</a>
+                    <a href="image-tools.html">Image Tools</a>
+                    <a href="calculators.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculator</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="calculators.html">All Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>
+                        Built for convenient, accessible, and browser-based
+                        digital tools.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Simple tools. Smarter tasks.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

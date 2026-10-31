@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate, simplify, and compare ratios or split amounts with the free DigiiFox Ratio Calculator.">
+
+    <title>Ratio Calculator | DigiiFox</title>
+
+    <!-- Shared calculator design: keep navbar and footer consistent -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Ratio Calculator-specific styles -->
+    <link rel="stylesheet" href="../calculator-css/ratio-calculator.css">
+
+    <script src="../calculator-js/ratio-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- =====================================
+         SHARED DIGIIFOX NAVBAR
+         Keep the same structure on every tool.
+    ====================================== -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="calculator.html" class="logo" aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="calculator.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="ratio-hero">
+            <div class="container">
+
+                <div class="ratio-breadcrumb">
+                    <a href="calculator.html">Home</a>
+                    <span>/</span>
+                    <a href="calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Ratio Calculator</span>
+                </div>
+
+                <div class="ratio-hero-content">
+                    <span class="ratio-eyebrow">MATH CALCULATOR</span>
+
+                    <h1>Ratio <span>Calculator</span></h1>
+
+                    <p>
+                        Simplify ratios, find missing values, and divide amounts
+                        proportionally with a simple, accurate calculator.
+                    </p>
+
+                    <div class="ratio-hero-features">
+                        <span>✓ Free to use</span>
+                        <span>✓ Instant results</span>
+                        <span>✓ No sign-up required</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Calculator -->
+        <section class="ratio-calculator-section">
+            <div class="container">
+
+                <div class="ratio-section-heading">
+                    <span class="ratio-section-label">RATIO TOOL</span>
+                    <h2>Calculate Your Ratio</h2>
+                    <p>Choose a calculation type and enter your values.</p>
+                </div>
+
+                <div class="ratio-layout">
+
+                    <!-- Main calculator card -->
+                    <div class="ratio-calculator-card">
+
+                        <div class="ratio-card-heading">
+                            <div class="ratio-heading-icon" aria-hidden="true">
+                                ÷
+                            </div>
+
+                            <div>
+                                <h3>Ratio Calculator</h3>
+                                <p>Choose a mode to get started.</p>
+                            </div>
+                        </div>
+
+                        <!-- Calculation modes -->
+                        <div class="ratio-mode-tabs" aria-label="Calculation type">
+
+                            <button class="ratio-mode-tab active" type="button" data-mode="simplify"
+                                aria-pressed="true">
+                                Simplify Ratio
+                            </button>
+
+                            <button class="ratio-mode-tab" type="button" data-mode="missing" aria-pressed="false">
+                                Missing Value
+                            </button>
+
+                            <button class="ratio-mode-tab" type="button" data-mode="split" aria-pressed="false">
+                                Split Amount
+                            </button>
+
+                        </div>
+
+                        <p class="ratio-mode-description" id="modeDescription">
+                            Enter two numbers to find their simplest ratio.
+                        </p>
+
+                        <form id="ratioForm" novalidate>
+
+                            <div class="ratio-input-group">
+                                <label for="firstValue" id="firstLabel">
+                                    First number
+                                </label>
+
+                                <input type="number" id="firstValue" step="any" inputmode="decimal"
+                                    placeholder="e.g. 12" required>
+                            </div>
+
+                            <div class="ratio-input-group">
+                                <label for="secondValue" id="secondLabel">
+                                    Second number
+                                </label>
+
+                                <input type="number" id="secondValue" step="any" inputmode="decimal"
+                                    placeholder="e.g. 18" required>
+                            </div>
+
+                            <div class="ratio-input-group" id="thirdInputGroup" hidden>
+                                <label for="thirdValue" id="thirdLabel">
+                                    Third value
+                                </label>
+
+                                <input type="number" id="thirdValue" step="any" inputmode="decimal"
+                                    placeholder="Enter a value">
+                            </div>
+
+                            <div class="ratio-error" id="errorMessage" role="alert" aria-live="polite" hidden></div>
+
+                            <div class="ratio-button-row">
+                                <button class="ratio-primary-button" type="submit">
+                                    Calculate Ratio
+                                    <span aria-hidden="true">→</span>
+                                </button>
+
+                                <button class="ratio-secondary-button" id="resetButton" type="button">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <!-- Result -->
+                        <div class="ratio-result" id="resultPanel" hidden>
+
+                            <div class="ratio-result-heading">
+                                <span id="resultLabel">Result</span>
+                                <span class="ratio-result-check" aria-hidden="true">
+                                    ✓
+                                </span>
+                            </div>
+
+                            <div class="ratio-result-value" id="resultValue" aria-live="polite"></div>
+
+                            <p class="ratio-result-description" id="resultDescription"></p>
+
+                            <div class="ratio-result-details" id="resultDetails"></div>
+
+                            <div class="ratio-copy-row">
+                                <button class="ratio-copy-button" id="copyButton" type="button">
+                                    Copy Result
+                                </button>
+
+                                <span id="copyFeedback" class="ratio-copy-feedback" aria-live="polite"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="ratio-privacy-note">
+                            <span aria-hidden="true">🔒</span>
+                            Calculations run in your browser.
+                        </div>
+
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="ratio-sidebar">
+
+                        <div class="ratio-sidebar-card">
+                            <span class="ratio-sidebar-icon" aria-hidden="true">
+                                💡
+                            </span>
+
+                            <h3>What Is a Ratio?</h3>
+
+                            <p>
+                                A ratio compares two quantities. For example,
+                                2:3 represents two parts of one quantity for
+                                every three parts of another.
+                            </p>
+                        </div>
+
+                        <div class="ratio-sidebar-card">
+                            <h3>Quick Example</h3>
+
+                            <div class="ratio-example-equation">12 : 18</div>
+                            <div class="ratio-example-line"></div>
+                            <div class="ratio-example-equation ratio-example-answer">
+                                2 : 3
+                            </div>
+
+                            <p>
+                                Divide both terms by their greatest common divisor, 6.
+                            </p>
+
+                            <button type="button" class="ratio-example-button" id="loadExampleButton">
+                                Try this example →
+                            </button>
+                        </div>
+
+                        <div class="ratio-sidebar-card">
+                            <h3>Useful For</h3>
+
+                            <ul class="ratio-benefit-list">
+                                <li>Simplifying mathematical ratios</li>
+                                <li>Solving proportions</li>
+                                <li>Dividing money or quantities</li>
+                                <li>Checking homework calculations</li>
+                            </ul>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Definition -->
+        <section class="ratio-content-section">
+            <div class="container ratio-content-narrow">
+
+                <span class="ratio-section-label">UNDERSTAND THE BASICS</span>
+                <h2>What Is a Ratio?</h2>
+
+                <p>
+                    A ratio is a mathematical comparison between two or more
+                    quantities. It describes how much of one quantity there is
+                    in relation to another quantity.
+                </p>
+
+                <p>
+                    For example, if a basket contains 4 apples and 6 oranges,
+                    the ratio of apples to oranges is 4:6. Dividing both terms
+                    by 2 simplifies the ratio to 2:3.
+                </p>
+
+                <div class="ratio-information-box">
+                    <strong>Remember:</strong>
+                    The order of a ratio matters. A ratio of 2:3 is not the
+                    same as 3:2.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Formula -->
+        <section class="ratio-content-section ratio-alternate-section">
+            <div class="container ratio-content-narrow">
+
+                <span class="ratio-section-label">MATHEMATICAL METHOD</span>
+                <h2>Ratio Calculator Formula</h2>
+
+                <div class="ratio-formula-card">
+                    <h3>1. Simplifying a Ratio</h3>
+
+                    <div class="ratio-formula">
+                        a : b = (a ÷ GCD) : (b ÷ GCD)
+                    </div>
+
+                    <p>
+                        Divide both terms by their greatest common divisor
+                        to simplify a whole-number ratio.
+                    </p>
+                </div>
+
+                <div class="ratio-formula-card">
+                    <h3>2. Finding a Missing Value</h3>
+
+                    <div class="ratio-formula">a : b = c : x</div>
+                    <div class="ratio-formula">x = (b × c) ÷ a</div>
+
+                    <p>
+                        This formula solves for x when the proportion is
+                        a:b = c:x and a is non-zero.
+                    </p>
+                </div>
+
+                <div class="ratio-formula-card">
+                    <h3>3. Splitting an Amount</h3>
+
+                    <div class="ratio-formula">
+                        First share = Total × a ÷ (a + b)
+                    </div>
+
+                    <div class="ratio-formula">
+                        Second share = Total × b ÷ (a + b)
+                    </div>
+
+                    <p>
+                        Each share is calculated according to its proportion
+                        of the total ratio parts.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Examples -->
+        <section class="ratio-content-section">
+            <div class="container">
+
+                <div class="ratio-section-heading">
+                    <span class="ratio-section-label">PRACTICAL EXAMPLES</span>
+                    <h2>Ratio Calculation Examples</h2>
+                    <p>See how ratios work in everyday situations.</p>
+                </div>
+
+                <div class="ratio-example-grid">
+
+                    <article class="ratio-example-card">
+                        <span class="ratio-example-number">01</span>
+                        <h3>Simplify a Ratio</h3>
+
+                        <p><strong>Given:</strong> 12:18</p>
+                        <p><strong>Method:</strong> Divide both terms by 6.</p>
+
+                        <div class="ratio-example-answer-box">
+                            12:18 = 2:3
+                        </div>
+                    </article>
+
+                    <article class="ratio-example-card">
+                        <span class="ratio-example-number">02</span>
+                        <h3>Find a Missing Value</h3>
+
+                        <p><strong>Given:</strong> 2:3 = 8:x</p>
+                        <p><strong>Method:</strong> x = (3 × 8) ÷ 2.</p>
+
+                        <div class="ratio-example-answer-box">
+                            x = 12
+                        </div>
+                    </article>
+
+                    <article class="ratio-example-card">
+                        <span class="ratio-example-number">03</span>
+                        <h3>Split an Amount</h3>
+
+                        <p><strong>Given:</strong> 1,000 in the ratio 2:3.</p>
+                        <p><strong>Method:</strong> There are 5 total parts.</p>
+
+                        <div class="ratio-example-answer-box">
+                            400 and 600
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use -->
+        <section class="ratio-content-section ratio-alternate-section">
+            <div class="container ratio-content-narrow">
+
+                <span class="ratio-section-label">SIMPLE STEPS</span>
+                <h2>How to Use the Ratio Calculator</h2>
+
+                <div class="ratio-steps">
+
+                    <div class="ratio-step">
+                        <span>1</span>
+                        <div>
+                            <h3>Choose a calculation mode</h3>
+                            <p>
+                                Select Simplify Ratio, Missing Value, or Split Amount.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="ratio-step">
+                        <span>2</span>
+                        <div>
+                            <h3>Enter your values</h3>
+                            <p>
+                                Fill in the required fields using the labels
+                                and examples as a guide.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="ratio-step">
+                        <span>3</span>
+                        <div>
+                            <h3>Calculate the result</h3>
+                            <p>
+                                Click Calculate Ratio to view your answer
+                                and the calculation details.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="ratio-step">
+                        <span>4</span>
+                        <div>
+                            <h3>Copy or reset</h3>
+                            <p>
+                                Copy your result or reset the form to
+                                perform another calculation.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="ratio-content-section">
+            <div class="container ratio-content-narrow">
+
+                <span class="ratio-section-label">COMMON QUESTIONS</span>
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="ratio-faq-list">
+
+                    <details class="ratio-faq-item">
+                        <summary>What is the simplest form of a ratio?</summary>
+                        <p>
+                            It is a ratio whose whole-number terms have no
+                            common factor greater than 1. For example,
+                            12:18 simplifies to 2:3.
+                        </p>
+                    </details>
+
+                    <details class="ratio-faq-item">
+                        <summary>Can a ratio contain decimal numbers?</summary>
+                        <p>
+                            Yes. Ratios can compare decimal quantities.
+                            This calculator supports decimal inputs for
+                            the available calculation modes.
+                        </p>
+                    </details>
+
+                    <details class="ratio-faq-item">
+                        <summary>Can I use zero in a ratio?</summary>
+                        <p>
+                            Zero can be a valid term in some ratios, but
+                            both terms cannot be zero when simplifying a ratio.
+                            A missing-value calculation also cannot divide
+                            by a zero first term.
+                        </p>
+                    </details>
+
+                    <details class="ratio-faq-item">
+                        <summary>How do I divide money in a ratio?</summary>
+                        <p>
+                            Add the ratio terms, divide the total amount
+                            by the sum, and multiply by each term to
+                            calculate each share.
+                        </p>
+                    </details>
+
+                    <details class="ratio-faq-item">
+                        <summary>Is the DigiiFox Ratio Calculator free?</summary>
+                        <p>
+                            Yes. The calculator is free to use in your browser
+                            without creating an account.
+                        </p>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Calculators -->
+        <section class="ratio-content-section ratio-alternate-section">
+            <div class="container">
+
+                <div class="ratio-section-heading">
+                    <span class="ratio-section-label">EXPLORE MORE TOOLS</span>
+                    <h2>Related Calculators</h2>
+                    <p>Continue calculating with DigiiFox.</p>
+                </div>
+
+                <div class="ratio-related-grid">
+
+                    <a href="percentage-calculator.html" class="ratio-related-card">
+                        <span class="ratio-related-icon">%</span>
+                        <span class="ratio-related-text">
+                            <strong>Percentage Calculator</strong>
+                            <small>Calculate percentages easily.</small>
+                        </span>
+                        <span class="ratio-related-arrow" aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="average-calculator.html" class="ratio-related-card">
+                        <span class="ratio-related-icon">x̄</span>
+                        <span class="ratio-related-text">
+                            <strong>Average Calculator</strong>
+                            <small>Find the average of numbers.</small>
+                        </span>
+                        <span class="ratio-related-arrow" aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="standard-calculator.html" class="ratio-related-card">
+                        <span class="ratio-related-icon">＋</span>
+                        <span class="ratio-related-text">
+                            <strong>Standard Calculator</strong>
+                            <small>Perform everyday calculations.</small>
+                        </span>
+                        <span class="ratio-related-arrow" aria-hidden="true">→</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =====================================
+         SHARED DIGIIFOX FOOTER
+         Keep the same structure on every tool.
+    ====================================== -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="calculator.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Smart online tools for everyday tasks.
+                        Simple, useful, and easy to use.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="calculator.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="discount-calculator.html">Discount Calculator</a>
+                    <a href="average-calculator.html">Average Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Ratio Calculator</h3>
+                    <a href="#calculator">Use Calculator</a>
+                    <a href="#definition">About Ratios</a>
+                    <a href="#how-to-use">How to Use</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Designed to make everyday tasks easier.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

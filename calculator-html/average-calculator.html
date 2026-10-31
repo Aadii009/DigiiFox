@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate the arithmetic average of multiple numbers with the free DigiiFox Average Calculator. See the sum, count, formula, and calculation steps.">
+
+    <meta name="theme-color" content="#e8f5e9">
+
+    <title>Average Calculator - DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/average-calculator.css">
+
+    <script src="../calculator-js/average-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="site-header">
+
+        <div class="container header-container">
+
+            <a href="../../../index.html" class="logo"
+                aria-label="DigiiFox Home">
+                Digii<span>Fox</span>
+            </a>
+
+            <nav class="main-navigation"
+                id="mainNavigation"
+                aria-label="Main navigation">
+
+                <a href="../../../index.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="../../../pdf-tools/pdf.html" class="nav-link">
+                    PDF Tools
+                </a>
+
+                <a href="../../../image-tools/image.html" class="nav-link">
+                    Image Tools
+                </a>
+
+                <a href="../../calculator.html"
+                    class="nav-link active"
+                    aria-current="page">
+                    Calculators
+                </a>
+
+            </nav>
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             BREADCRUMB
+        ========================== -->
+
+        <div class="container breadcrumb">
+
+            <a href="../../calculator.html">
+                Calculators
+            </a>
+
+            <span aria-hidden="true">/</span>
+
+            <span aria-current="page">
+                Average Calculator
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             PAGE INTRODUCTION
+        ========================== -->
+
+        <section class="tool-hero">
+
+            <div class="container">
+
+                <span class="section-badge">
+                    Mathematics Calculator
+                </span>
+
+                <h1>Average Calculator</h1>
+
+                <p class="hero-description">
+                    Calculate the arithmetic average of any set of numbers.
+                    Enter your values to find the average, total sum,
+                    number of values, and calculation steps.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAIN CALCULATOR
+        ========================== -->
+
+        <section class="calculator-section">
+
+            <div class="container calculator-layout">
+
+                <!-- Calculator Input Card -->
+
+                <section class="calculator-panel"
+                    aria-labelledby="calculatorHeading">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <span class="panel-eyebrow">
+                                Average Calculator
+                            </span>
+
+                            <h2 id="calculatorHeading">
+                                Enter Your Numbers
+                            </h2>
+                        </div>
+
+                        <span class="panel-icon" aria-hidden="true">
+                            &#8721;
+                        </span>
+
+                    </div>
+
+                    <p class="panel-description">
+                        Enter at least two numbers. You can add or remove
+                        fields as needed.
+                    </p>
+
+
+                    <!-- Input Controls -->
+
+                    <div class="input-section-header">
+
+                        <label class="field-label">
+                            Numbers
+                        </label>
+
+                        <span class="input-count" id="inputCount">
+                            3 values
+                        </span>
+
+                    </div>
+
+
+                    <div class="number-input-list" id="numberInputList">
+
+                        <div class="number-row">
+
+                            <label for="number1">
+                                Number 1
+                            </label>
+
+                            <input
+                                type="number"
+                                id="number1"
+                                class="number-input"
+                                name="number"
+                                step="any"
+                                inputmode="decimal"
+                                placeholder="Enter a number"
+                                autocomplete="off"
+                                required>
+
+                            <button
+                                type="button"
+                                class="remove-number-button"
+                                aria-label="Remove number 1"
+                                disabled>
+                                &times;
+                            </button>
+
+                        </div>
+
+
+                        <div class="number-row">
+
+                            <label for="number2">
+                                Number 2
+                            </label>
+
+                            <input
+                                type="number"
+                                id="number2"
+                                class="number-input"
+                                name="number"
+                                step="any"
+                                inputmode="decimal"
+                                placeholder="Enter a number"
+                                autocomplete="off"
+                                required>
+
+                            <button
+                                type="button"
+                                class="remove-number-button"
+                                aria-label="Remove number 2"
+                                disabled>
+                                &times;
+                            </button>
+
+                        </div>
+
+
+                        <div class="number-row">
+
+                            <label for="number3">
+                                Number 3
+                            </label>
+
+                            <input
+                                type="number"
+                                id="number3"
+                                class="number-input"
+                                name="number"
+                                step="any"
+                                inputmode="decimal"
+                                placeholder="Enter a number"
+                                autocomplete="off"
+                                required>
+
+                            <button
+                                type="button"
+                                class="remove-number-button"
+                                aria-label="Remove number 3"
+                                disabled>
+                                &times;
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-actions">
+
+                        <button
+                            type="button"
+                            id="addNumberButton"
+                            class="secondary-button">
+
+                            <span aria-hidden="true">+</span>
+                            Add Number
+
+                        </button>
+
+                        <span class="input-limit">
+                            Maximum 50 numbers
+                        </span>
+
+                    </div>
+
+
+                    <!-- Validation Message -->
+
+                    <p
+                        id="errorMessage"
+                        class="error-message"
+                        role="alert"
+                        hidden>
+                    </p>
+
+
+                    <!-- Main Actions -->
+
+                    <div class="calculator-actions">
+
+                        <button
+                            type="button"
+                            id="calculateButton"
+                            class="primary-button">
+
+                            Calculate Average
+                            <span aria-hidden="true">&rarr;</span>
+
+                        </button>
+
+                        <button
+                            type="button"
+                            id="resetButton"
+                            class="reset-button">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Results -->
+
+                    <section
+                        class="result-panel"
+                        id="resultPanel"
+                        aria-labelledby="resultHeading"
+                        aria-live="polite"
+                        hidden>
+
+                        <div class="result-header">
+
+                            <div>
+                                <span class="result-eyebrow">
+                                    Your Result
+                                </span>
+
+                                <h3 id="resultHeading">
+                                    Arithmetic Average
+                                </h3>
+                            </div>
+
+                            <span class="result-check" aria-hidden="true">
+                                &#10003;
+                            </span>
+
+                        </div>
+
+
+                        <div class="average-result">
+
+                            <span>Average</span>
+
+                            <output id="averageResult">
+                                0
+                            </output>
+
+                        </div>
+
+
+                        <div class="result-details">
+
+                            <div class="result-detail">
+
+                                <span>Sum of Numbers</span>
+
+                                <strong id="sumResult">0</strong>
+
+                            </div>
+
+                            <div class="result-detail">
+
+                                <span>Number of Values</span>
+
+                                <strong id="countResult">0</strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="calculation-steps">
+
+                            <h4>Calculation Steps</h4>
+
+                            <p id="sumExplanation"></p>
+
+                            <p id="averageExplanation"></p>
+
+                        </div>
+
+                        <p class="rounding-note" id="roundingNote">
+                            The displayed average is rounded when necessary.
+                        </p>
+
+                    </section>
+
+                </section>
+
+
+                <!-- Calculator Information Sidebar -->
+
+                <aside class="calculator-sidebar">
+
+                    <div class="sidebar-card quick-info-card">
+
+                        <span class="sidebar-icon" aria-hidden="true">
+                            &#128218;
+                        </span>
+
+                        <h2>About This Calculator</h2>
+
+                        <p>
+                            Find the arithmetic mean of a group of numbers
+                            by dividing their sum by the total count.
+                        </p>
+
+                        <div class="quick-info-divider"></div>
+
+                        <div class="quick-info-row">
+
+                            <span>Calculator Type</span>
+
+                            <strong>Mathematics</strong>
+
+                        </div>
+
+                        <div class="quick-info-row">
+
+                            <span>Minimum Values</span>
+
+                            <strong>2</strong>
+
+                        </div>
+
+                        <div class="quick-info-row">
+
+                            <span>Maximum Values</span>
+
+                            <strong>50</strong>
+
+                        </div>
+
+                        <div class="quick-info-row">
+
+                            <span>Calculation</span>
+
+                            <strong>Arithmetic Mean</strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="sidebar-card formula-sidebar">
+
+                        <span class="sidebar-icon" aria-hidden="true">
+                            &#402;
+                        </span>
+
+                        <h2>Average Formula</h2>
+
+                        <p class="mini-formula">
+                            Average = Sum &divide; Count
+                        </p>
+
+                        <p>
+                            Add all the values together, then divide
+                            by the number of values.
+                        </p>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DEFINITION
+        ========================== -->
+
+        <section class="content-section">
+
+            <div class="container content-container">
+
+                <div class="section-heading">
+
+                    <span class="section-badge">
+                        Definition
+                    </span>
+
+                    <h2>What Is an Average?</h2>
+
+                </div>
+
+                <div class="content-card">
+
+                    <p>
+                        An average is a single value used to represent
+                        a collection of numbers. In everyday mathematics,
+                        the word average usually refers to the arithmetic
+                        mean.
+                    </p>
+
+                    <p>
+                        To calculate the arithmetic mean, add all the
+                        numbers together and divide their sum by the
+                        number of values in the collection.
+                    </p>
+
+                    <p>
+                        Averages are commonly used to understand examination
+                        scores, monthly expenses, sales figures, measurements,
+                        and many other numerical datasets.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FORMULA
+        ========================== -->
+
+        <section class="content-section tinted-section">
+
+            <div class="container content-container">
+
+                <div class="section-heading">
+
+                    <span class="section-badge">
+                        Mathematical Formula
+                    </span>
+
+                    <h2>Average Calculator Formula</h2>
+
+                    <p>
+                        Use this formula to calculate the arithmetic mean
+                        of any valid set of numbers.
+                    </p>
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <div class="formula-main">
+                        Average = &Sigma;x / n
+                    </div>
+
+                    <div class="formula-definitions">
+
+                        <div>
+                            <strong>&Sigma;x</strong>
+                            <span>The sum of all values</span>
+                        </div>
+
+                        <div>
+                            <strong>n</strong>
+                            <span>The total number of values</span>
+                        </div>
+
+                    </div>
+
+                    <p class="formula-note">
+                        This formula calculates the arithmetic mean.
+                        It is not the same as the median or mode.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WORKED EXAMPLE
+        ========================== -->
+
+        <section class="content-section">
+
+            <div class="container content-container">
+
+                <div class="section-heading">
+
+                    <span class="section-badge">
+                        Worked Example
+                    </span>
+
+                    <h2>How to Calculate an Average</h2>
+
+                    <p>
+                        Let's calculate the average of five numbers.
+                    </p>
+
+                </div>
+
+
+                <div class="example-card">
+
+                    <div class="example-values">
+
+                        <span>Numbers</span>
+
+                        <div class="number-chips">
+
+                            <span>10</span>
+                            <span>20</span>
+                            <span>30</span>
+                            <span>40</span>
+                            <span>50</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="example-step">
+
+                        <span class="example-step-number">01</span>
+
+                        <div>
+
+                            <h3>Add the numbers</h3>
+
+                            <p>
+                                10 + 20 + 30 + 40 + 50 = 150
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="example-step">
+
+                        <span class="example-step-number">02</span>
+
+                        <div>
+
+                            <h3>Count the values</h3>
+
+                            <p>
+                                There are 5 numbers in the collection.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="example-step">
+
+                        <span class="example-step-number">03</span>
+
+                        <div>
+
+                            <h3>Divide the sum by the count</h3>
+
+                            <p>
+                                150 &divide; 5 = 30
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="example-answer">
+
+                        <span>Final Average</span>
+
+                        <strong>30</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOW TO USE
+        ========================== -->
+
+        <section class="content-section tinted-section">
+
+            <div class="container content-container">
+
+                <div class="section-heading">
+
+                    <span class="section-badge">
+                        Step-by-Step Guide
+                    </span>
+
+                    <h2>How to Use the Average Calculator</h2>
+
+                </div>
+
+
+                <div class="instruction-grid">
+
+                    <article class="instruction-card">
+
+                        <span class="instruction-number">01</span>
+
+                        <h3>Enter Your Numbers</h3>
+
+                        <p>
+                            Fill in at least two number fields.
+                            Whole numbers, decimals, and negative
+                            numbers are supported.
+                        </p>
+
+                    </article>
+
+
+                    <article class="instruction-card">
+
+                        <span class="instruction-number">02</span>
+
+                        <h3>Add More Values</h3>
+
+                        <p>
+                            Select Add Number to create another input.
+                            Remove extra fields if you no longer need them.
+                        </p>
+
+                    </article>
+
+
+                    <article class="instruction-card">
+
+                        <span class="instruction-number">03</span>
+
+                        <h3>Calculate the Average</h3>
+
+                        <p>
+                            Click Calculate Average to view the mean,
+                            sum, count, and calculation steps.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FAQ
+        ========================== -->
+
+        <section class="content-section faq-section"
+            id="averageFAQs">
+
+            <div class="container content-container">
+
+                <div class="section-heading">
+
+                    <span class="section-badge">
+                        FAQs
+                    </span>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                </div>
+
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What does an average calculator do?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                It calculates the arithmetic mean by adding
+                                all entered numbers and dividing the sum
+                                by the number of values.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What is the formula for an average?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Average = Sum of all values divided by
+                                the number of values.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Can I calculate the average of decimal numbers?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Yes. Decimal numbers such as 12.5, 18.75,
+                                and 20.2 can be entered.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Can I enter negative numbers or zero?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Yes. Zero and negative numbers are valid
+                                inputs. The calculator includes them in
+                                the sum and count.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What happens if an input field is empty?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                The calculator asks you to complete all
+                                displayed number fields before calculating.
+                                You can remove any unnecessary field.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What is the difference between average and median?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                The arithmetic average is the sum divided
+                                by the count. The median is the middle value
+                                after sorting the numbers. They can produce
+                                different results.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Is this calculator free?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Yes. This DigiiFox calculator is designed
+                                to be free to use without requiring an account.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Are my numbers uploaded to a server?
+                        </summary>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                The calculation is performed locally in
+                                your browser. The calculator JavaScript
+                                does not send the entered numbers to a
+                                calculation server.
+                            </p>
+
+                        </div>
+
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RELATED CALCULATORS
+        ========================== -->
+
+        <section class="content-section related-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-badge">
+                        Keep Calculating
+                    </span>
+
+                    <h2>Related Calculators</h2>
+
+                    <p>
+                        Explore more useful mathematical tools on DigiiFox.
+                    </p>
+
+                </div>
+
+
+                <div class="related-grid">
+
+                    <a href="../standard-calculator/standard-calculator.html"
+                        class="related-card">
+
+                        <span class="related-icon" aria-hidden="true">
+                            &#128290;
+                        </span>
+
+                        <h3>Standard Calculator</h3>
+
+                        <p>
+                            Perform everyday arithmetic operations.
+                        </p>
+
+                        <span class="related-link">
+                            Open Calculator &rarr;
+                        </span>
+
+                    </a>
+
+
+                    <a href="../percentage-calculator/percentage-calculator.html"
+                        class="related-card">
+
+                        <span class="related-icon" aria-hidden="true">
+                            &#37;
+                        </span>
+
+                        <h3>Percentage Calculator</h3>
+
+                        <p>
+                            Calculate percentages and percentage changes.
+                        </p>
+
+                        <span class="related-link">
+                            Open Calculator &rarr;
+                        </span>
+
+                    </a>
+
+
+                    <a href="../../calculator.html#allCalculators"
+                        class="related-card">
+
+                        <span class="related-icon" aria-hidden="true">
+                            &#43;
+                        </span>
+
+                        <h3>Explore All Calculators</h3>
+
+                        <p>
+                            Browse more calculators in the DigiiFox collection.
+                        </p>
+
+                        <span class="related-link">
+                            View All Tools &rarr;
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CALL TO ACTION
+        ========================== -->
+
+        <section class="calculator-cta">
+
+            <div class="container cta-container">
+
+                <div>
+
+                    <span class="cta-label">
+                        Simple Mathematics, Clear Results
+                    </span>
+
+                    <h2>
+                        Calculate Your Next Average with DigiiFox
+                    </h2>
+
+                    <p>
+                        Enter your numbers and get your result in seconds.
+                    </p>
+
+                </div>
+
+                <a href="#calculatorHeading" class="cta-button">
+                    Back to Calculator
+                    <span aria-hidden="true">&uarr;</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         COMPLETE FOOTER
+    ========================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+
+                <a href="../../../index.html"
+                    class="footer-logo"
+                    aria-label="DigiiFox Home">
+
+                    Digii<span>Fox</span>
+
+                </a>
+
+                <p>
+                    Smart tools for everyday tasks. Explore PDF tools,
+                    image tools, and online calculators designed to make
+                    your digital life easier.
+                </p>
+
+                <div class="footer-badges">
+
+                    <span>Free Tools</span>
+                    <span>Easy to Use</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Quick Links</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="../../../index.html">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="../../../pdf-tools/pdf.html">PDF Tools</a>
+                    </li>
+
+                    <li>
+                        <a href="../../../image-tools/image.html">Image Tools</a>
+                    </li>
+
+                    <li>
+                        <a href="../../calculator.html">Calculators</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Calculator Categories</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="../../calculator.html#allCalculators">
+                            Mathematics
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../../calculator.html#allCalculators">
+                            Finance
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../../calculator.html#allCalculators">
+                            Health
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../../calculator.html#allCalculators">
+                            Everyday Calculators
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Helpful Information</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#averageFAQs">FAQs</a>
+                    </li>
+
+                    <li>
+                        <a href="#calculatorHeading">
+                            Average Calculator
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../standard-calculator/standard-calculator.html">
+                            Standard Calculator
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="../percentage-calculator/percentage-calculator.html">
+                            Percentage Calculator
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container footer-bottom-container">
+
+                <p>
+                    &copy; <span id="currentYear">2026</span>
+                    DigiiFox. All rights reserved.
+                </p>
+
+                <p class="footer-tagline">
+                    Built for simpler digital experiences.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

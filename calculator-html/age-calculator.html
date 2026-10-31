@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate your exact age in years, months, days, weeks, and more with the free DigiiFox Age Calculator.">
+    <meta name="keywords" content="age calculator, calculate age, birthday calculator, date of birth calculator">
+    <meta name="author" content="DigiiFox">
+
+    <title>Age Calculator - DigiiFox</title>
+
+    <!-- Shared Calculator Styles -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Age Calculator Styles -->
+    <link rel="stylesheet" href="../calculator-css/age-calculator.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav" type="button">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="age-page">
+
+        <!-- Hero -->
+        <section class="age-hero">
+            <div class="container">
+
+                <div class="age-breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Date &amp; Time</span>
+                    <span>/</span>
+                    <span>Age Calculator</span>
+                </div>
+
+                <div class="age-hero-content">
+                    <div class="age-hero-icon" aria-hidden="true">🎂</div>
+
+                    <span class="age-eyebrow">DATE &amp; TIME TOOLS</span>
+
+                    <h1>Age Calculator</h1>
+
+                    <p>
+                        Calculate your exact age in years, months, and days.
+                        Discover your total age in weeks and days, and find
+                        out how long remains until your next birthday.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="age-calculator-section">
+            <div class="container">
+
+                <div class="age-calculator-card">
+
+                    <div class="age-card-heading">
+                        <div>
+                            <span class="age-section-label">FREE ONLINE TOOL</span>
+                            <h2>Calculate Your Age</h2>
+                            <p>Enter your date of birth to get started.</p>
+                        </div>
+
+                        <div class="age-heading-icon" aria-hidden="true">
+                            📅
+                        </div>
+                    </div>
+
+
+                    <form id="ageForm" class="age-form">
+
+                        <div class="age-form-grid">
+
+                            <div class="age-field">
+                                <label for="birthDate">Date of Birth</label>
+
+                                <input type="date" id="birthDate" name="birthDate" required autocomplete="bday"
+                                    aria-describedby="birthDateHelp ageError">
+
+                                <small id="birthDateHelp">
+                                    Select your birth date.
+                                </small>
+                            </div>
+
+                            <div class="age-field">
+                                <label for="ageAsOfDate">Calculate Age As Of</label>
+
+                                <input type="date" id="ageAsOfDate" name="ageAsOfDate" required
+                                    aria-describedby="ageAsOfHelp ageError">
+
+                                <small id="ageAsOfHelp">
+                                    Defaults to today's date.
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="age-error" id="ageError" role="alert" aria-live="polite" hidden></div>
+
+
+                        <div class="age-form-actions">
+
+                            <button type="submit" class="age-btn age-btn-primary" id="calculateAgeBtn">
+                                Calculate Age
+                            </button>
+
+                            <button type="button" class="age-btn age-btn-secondary" id="ageReset">
+                                Reset
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- Results -->
+                    <div class="age-results" id="ageResults" aria-live="polite" hidden>
+
+                        <div class="age-results-heading">
+                            <div>
+                                <span class="age-section-label">
+                                    YOUR RESULTS
+                                </span>
+
+                                <h2>Your Exact Age</h2>
+                            </div>
+
+                            <span class="age-result-badge">
+                                ✓ Calculated
+                            </span>
+                        </div>
+
+
+                        <div class="age-main-result">
+
+                            <div class="age-main-result-icon" aria-hidden="true">
+                                🎉
+                            </div>
+
+                            <p class="age-result-caption">
+                                Your age is
+                            </p>
+
+                            <div class="age-primary-age">
+                                <div>
+                                    <strong id="resultYears">0</strong>
+                                    <span>Years</span>
+                                </div>
+
+                                <div>
+                                    <strong id="resultMonths">0</strong>
+                                    <span>Months</span>
+                                </div>
+
+                                <div>
+                                    <strong id="resultDays">0</strong>
+                                    <span>Days</span>
+                                </div>
+                            </div>
+
+                            <p class="age-result-date" id="resultDateRange"></p>
+
+                        </div>
+
+
+                        <!-- Detailed age cards -->
+                        <div class="age-detail-grid">
+
+                            <div class="age-detail-card">
+                                <span class="age-detail-icon" aria-hidden="true">
+                                    📆
+                                </span>
+
+                                <span class="age-detail-label">
+                                    Total Months
+                                </span>
+
+                                <strong id="resultTotalMonths">0</strong>
+                            </div>
+
+                            <div class="age-detail-card">
+                                <span class="age-detail-icon" aria-hidden="true">
+                                    🗓️
+                                </span>
+
+                                <span class="age-detail-label">
+                                    Total Weeks
+                                </span>
+
+                                <strong id="resultTotalWeeks">0</strong>
+                            </div>
+
+                            <div class="age-detail-card">
+                                <span class="age-detail-icon" aria-hidden="true">
+                                    ☀️
+                                </span>
+
+                                <span class="age-detail-label">
+                                    Total Days
+                                </span>
+
+                                <strong id="resultTotalDays">0</strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Birthday countdown -->
+                        <div class="age-birthday-card">
+
+                            <div class="age-birthday-icon" aria-hidden="true">
+                                🎂
+                            </div>
+
+                            <div class="age-birthday-content">
+                                <span class="age-detail-label">
+                                    NEXT BIRTHDAY
+                                </span>
+
+                                <h3 id="nextBirthdayTitle">
+                                    Your next birthday
+                                </h3>
+
+                                <p id="nextBirthdayMessage"></p>
+                            </div>
+
+                            <div class="age-birthday-countdown">
+                                <strong id="nextBirthdayDays">0</strong>
+                                <span>days left</span>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Calculation explanation -->
+                        <div class="age-calculation-details">
+
+                            <h3>Calculation Details</h3>
+
+                            <div class="age-calculation-row">
+                                <span>Date of birth</span>
+                                <strong id="detailBirthDate">—</strong>
+                            </div>
+
+                            <div class="age-calculation-row">
+                                <span>Age calculated as of</span>
+                                <strong id="detailAsOfDate">—</strong>
+                            </div>
+
+                            <div class="age-calculation-row">
+                                <span>Last birthday</span>
+                                <strong id="detailLastBirthday">—</strong>
+                            </div>
+
+                            <div class="age-calculation-row">
+                                <span>Next birthday</span>
+                                <strong id="detailNextBirthday">—</strong>
+                            </div>
+
+                            <div class="age-calculation-row">
+                                <span>Days since last birthday</span>
+                                <strong id="detailDaysSinceBirthday">0 days</strong>
+                            </div>
+
+                        </div>
+
+
+                        <button type="button" class="age-btn age-btn-copy" id="ageCopy">
+                            Copy Age Results
+                        </button>
+
+                        <p class="age-copy-message" id="ageCopyMessage" role="status" aria-live="polite"></p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Information -->
+                <div class="age-info-strip">
+
+                    <div class="age-info-item">
+                        <span aria-hidden="true">🔒</span>
+                        <div>
+                            <strong>Private &amp; Secure</strong>
+                            <p>Your dates stay in your browser.</p>
+                        </div>
+                    </div>
+
+                    <div class="age-info-item">
+                        <span aria-hidden="true">⚡</span>
+                        <div>
+                            <strong>Instant Results</strong>
+                            <p>Calculate your age in seconds.</p>
+                        </div>
+                    </div>
+
+                    <div class="age-info-item">
+                        <span aria-hidden="true">📱</span>
+                        <div>
+                            <strong>Mobile Friendly</strong>
+                            <p>Works on desktop and mobile.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition -->
+        <section class="age-content-section">
+            <div class="container">
+
+                <article class="age-content-card">
+
+                    <span class="age-section-label">UNDERSTANDING AGE</span>
+
+                    <h2>What Is an Age Calculator?</h2>
+
+                    <p>
+                        An age calculator is a tool that determines the time
+                        elapsed between a person's date of birth and a selected
+                        calculation date. It expresses the result in complete
+                        years, months, and days.
+                    </p>
+
+                    <p>
+                        Unlike a simple division of total days by 365, this
+                        calculator accounts for the actual lengths of calendar
+                        months and leap years. This makes the calendar age
+                        result more accurate.
+                    </p>
+
+                </article>
+
+
+                <!-- Formula -->
+                <article class="age-content-card">
+
+                    <span class="age-section-label">THE METHOD</span>
+
+                    <h2>Age Calculator Formula</h2>
+
+                    <p>
+                        Calendar age is calculated by comparing the birth date
+                        with the selected end date.
+                    </p>
+
+                    <div class="age-formula-box">
+                        <span>Age = End Date − Date of Birth</span>
+                    </div>
+
+                    <p>The calculation follows these steps:</p>
+
+                    <ol class="age-steps-list">
+                        <li>
+                            Calculate the difference between the two years.
+                        </li>
+
+                        <li>
+                            Subtract one year if the birthday has not yet
+                            occurred in the end date's year.
+                        </li>
+
+                        <li>
+                            Calculate the remaining complete months and days
+                            using calendar dates.
+                        </li>
+
+                        <li>
+                            Count the total elapsed days to determine total
+                            weeks and days.
+                        </li>
+                    </ol>
+
+                    <div class="age-note">
+                        <strong>Important:</strong>
+                        A calendar month can contain 28, 29, 30, or 31 days.
+                        Leap years are also accounted for when calculating
+                        calendar age.
+                    </div>
+
+                </article>
+
+
+                <!-- How to use -->
+                <article class="age-content-card">
+
+                    <span class="age-section-label">QUICK GUIDE</span>
+
+                    <h2>How to Use the Age Calculator</h2>
+
+                    <div class="age-how-grid">
+
+                        <div class="age-how-card">
+                            <span class="age-how-number">01</span>
+                            <h3>Enter Your Birth Date</h3>
+                            <p>
+                                Select your day, month, and year of birth.
+                            </p>
+                        </div>
+
+                        <div class="age-how-card">
+                            <span class="age-how-number">02</span>
+                            <h3>Select an End Date</h3>
+                            <p>
+                                Use today's date or choose another date
+                                to calculate your age at that time.
+                            </p>
+                        </div>
+
+                        <div class="age-how-card">
+                            <span class="age-how-number">03</span>
+                            <h3>Calculate Your Age</h3>
+                            <p>
+                                Click Calculate Age to see your calendar age
+                                and other age details.
+                            </p>
+                        </div>
+
+                        <div class="age-how-card">
+                            <span class="age-how-number">04</span>
+                            <h3>Copy Your Results</h3>
+                            <p>
+                                Copy the calculated results for your
+                                personal reference.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FAQs -->
+                <article class="age-content-card age-faq-section">
+
+                    <span class="age-section-label">COMMON QUESTIONS</span>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="age-faq-list">
+
+                        <details class="age-faq-item">
+                            <summary>How is my exact age calculated?</summary>
+
+                            <p>
+                                Your age is calculated by comparing your birth
+                                date with the selected end date. The result
+                                accounts for calendar years, actual month
+                                lengths, and leap years.
+                            </p>
+                        </details>
+
+                        <details class="age-faq-item">
+                            <summary>Can I calculate my age on a past date?</summary>
+
+                            <p>
+                                Yes. Choose a date on or after your birth date
+                                in the Calculate Age As Of field. The calculator
+                                will determine your age on that date.
+                            </p>
+                        </details>
+
+                        <details class="age-faq-item">
+                            <summary>Does the calculator account for leap years?</summary>
+
+                            <p>
+                                Yes. It uses calendar-date calculations, which
+                                account for February having 28 or 29 days
+                                depending on the year.
+                            </p>
+                        </details>
+
+                        <details class="age-faq-item">
+                            <summary>How are total weeks calculated?</summary>
+
+                            <p>
+                                Total weeks are the number of complete
+                                seven-day periods elapsed since your birth.
+                                Any remaining days are shown separately.
+                            </p>
+                        </details>
+
+                        <details class="age-faq-item">
+                            <summary>Is my date of birth stored anywhere?</summary>
+
+                            <p>
+                                This calculator performs its calculations
+                                locally in your browser. It does not need a
+                                server or database to calculate your age.
+                            </p>
+                        </details>
+
+                        <details class="age-faq-item">
+                            <summary>Why can age in months differ from total days?</summary>
+
+                            <p>
+                                Calendar months have different lengths.
+                                Therefore, total calendar months and the
+                                number of elapsed days measure time differently.
+                            </p>
+                        </details>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Related Tools -->
+                <section class="age-related-section">
+
+                    <div class="age-related-heading">
+                        <div>
+                            <span class="age-section-label">EXPLORE MORE</span>
+                            <h2>Related Date &amp; Time Tools</h2>
+                        </div>
+                    </div>
+
+                    <div class="age-related-grid">
+
+                        <a href="date-difference-calculator.html" class="age-related-card">
+                            <span aria-hidden="true">📅</span>
+                            <div>
+                                <h3>Date Difference Calculator</h3>
+                                <p>Find the time between two dates.</p>
+                            </div>
+                            <span class="age-related-arrow" aria-hidden="true">
+                                →
+                            </span>
+                        </a>
+
+                        <a href="days-between-dates-calculator.html" class="age-related-card">
+                            <span aria-hidden="true">🗓️</span>
+                            <div>
+                                <h3>Days Between Dates</h3>
+                                <p>Calculate the number of days between dates.</p>
+                            </div>
+                            <span class="age-related-arrow" aria-hidden="true">
+                                →
+                            </span>
+                        </a>
+
+                        <a href="../calculator.html" class="age-related-card">
+                            <span aria-hidden="true">🧮</span>
+                            <div>
+                                <h3>All Calculators</h3>
+                                <p>Explore more useful DigiiFox tools.</p>
+                            </div>
+                            <span class="age-related-arrow" aria-hidden="true">
+                                →
+                            </span>
+                        </a>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                        Making everyday tasks easier with fast,
+                        accessible, and practical online tools.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Calculators</h3>
+                    <a href="../calculator.html">Math Calculators</a>
+                    <a href="../calculator.html">Finance Calculators</a>
+                    <a href="../calculator.html">Health Calculators</a>
+                    <a href="../calculator.html">Date &amp; Time</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Our Promise</h3>
+                    <p>Simple to use</p>
+                    <p>Privacy focused</p>
+                    <p>Responsive design</p>
+                    <p>Useful everyday tools</p>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Age Calculator Script -->
+    <script src="../calculator-js/age-calculator.js"></script>
+
+</body>
+
+</html>

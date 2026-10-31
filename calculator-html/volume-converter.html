@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Convert litres, millilitres, gallons, cups, cubic metres, and more with the free DigiiFox Volume Converter.">
+
+    <title>Volume Converter | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/volume-converter.css">
+</head>
+
+<body>
+    <div class="volume-page">
+
+        <!-- HEADER -->
+        <header class="site-header">
+            <div class="container header-content">
+                <a href="../index.html" class="logo" aria-label="DigiiFox Home">
+                    Digii<span>Fox</span>
+                </a>
+
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                    aria-controls="mainNav">☰</button>
+
+                <nav class="main-nav" id="mainNav">
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html" class="active">Calculators</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO -->
+            <section class="volume-hero">
+                <div class="container">
+                    <div class="volume-breadcrumb">
+                        <a href="../calculator.html">Calculators</a>
+                        <span>/</span>
+                        <span>Unit Conversion</span>
+                        <span>/</span>
+                        <span>Volume Converter</span>
+                    </div>
+
+                    <span class="volume-eyebrow">DIGIIFOX UNIT CONVERTER</span>
+
+                    <h1>Volume Converter</h1>
+
+                    <p>
+                        Convert liquid quantities and three-dimensional volumes
+                        between metric and US customary units in seconds.
+                    </p>
+                </div>
+            </section>
+
+            <!-- MAIN CONVERTER -->
+            <section class="volume-main-section">
+                <div class="container">
+                    <div class="volume-layout">
+
+                        <div class="volume-card">
+                            <div class="volume-card-heading">
+                                <div>
+                                    <span class="volume-section-label">CONVERSION TOOL</span>
+                                    <h2>Convert Volume</h2>
+                                    <p>Enter a value and choose your units.</p>
+                                </div>
+
+                                <div class="volume-icon" aria-hidden="true">L</div>
+                            </div>
+
+                            <form id="volumeForm" novalidate>
+                                <div class="volume-fields">
+
+                                    <div class="volume-field">
+                                        <label for="volumeValue">Volume value</label>
+                                        <input type="number" id="volumeValue" value="1" min="0" step="any"
+                                            placeholder="Enter volume" required>
+                                        <small>Enter zero or a positive number.</small>
+                                    </div>
+
+                                    <div class="volume-field">
+                                        <label for="volumeFromUnit">Convert from</label>
+                                        <select id="volumeFromUnit">
+                                            <option value="ml">Millilitres (mL)</option>
+                                            <option value="l" selected>Litres (L)</option>
+                                            <option value="cm3">Cubic centimetres (cm³)</option>
+                                            <option value="m3">Cubic metres (m³)</option>
+                                            <option value="usfloz">US fluid ounces (fl oz)</option>
+                                            <option value="uscup">US cups</option>
+                                            <option value="uspint">US liquid pints (pt)</option>
+                                            <option value="usquart">US liquid quarts (qt)</option>
+                                            <option value="usgal">US gallons (gal)</option>
+                                            <option value="in3">Cubic inches (in³)</option>
+                                            <option value="ft3">Cubic feet (ft³)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="volume-swap-wrap">
+                                        <button type="button" id="volumeSwap" class="volume-swap-btn"
+                                            aria-label="Swap volume units" title="Swap units">⇅</button>
+                                    </div>
+
+                                    <div class="volume-field">
+                                        <label for="volumeToUnit">Convert to</label>
+                                        <select id="volumeToUnit">
+                                            <option value="ml">Millilitres (mL)</option>
+                                            <option value="l">Litres (L)</option>
+                                            <option value="cm3">Cubic centimetres (cm³)</option>
+                                            <option value="m3">Cubic metres (m³)</option>
+                                            <option value="usfloz">US fluid ounces (fl oz)</option>
+                                            <option value="uscup">US cups</option>
+                                            <option value="uspint">US liquid pints (pt)</option>
+                                            <option value="usquart">US liquid quarts (qt)</option>
+                                            <option value="usgal">US gallons (gal)</option>
+                                            <option value="in3">Cubic inches (in³)</option>
+                                            <option value="ft3">Cubic feet (ft³)</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <p id="volumeError" class="volume-error" role="alert" hidden></p>
+
+                                <div class="volume-actions">
+                                    <button type="submit" class="volume-btn volume-btn-primary">
+                                        Convert Volume
+                                    </button>
+
+                                    <button type="button" id="volumeReset" class="volume-btn volume-btn-secondary">
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- RESULT -->
+                            <div class="volume-result" aria-live="polite">
+                                <div class="volume-result-top">
+                                    <span>CONVERSION RESULT</span>
+
+                                    <button type="button" id="volumeCopy" class="volume-copy-btn">Copy result</button>
+                                </div>
+
+                                <div class="volume-result-input" id="volumeResultInput">
+                                    1 L
+                                </div>
+
+                                <div class="volume-result-value">
+                                    <strong id="volumeResultValue">0.2641721</strong>
+                                    <span id="volumeResultUnit">US gal</span>
+                                </div>
+
+                                <p id="volumeResultSummary">
+                                    1 litre equals approximately 0.2641721 US gallons.
+                                </p>
+
+                                <div class="volume-formula-box">
+                                    <span>CONVERSION FORMULA</span>
+                                    <p id="volumeResultFormula">
+                                        Result = Input × Source factor ÷ Target factor
+                                    </p>
+                                </div>
+
+                                <div class="volume-steps-box">
+                                    <h3>Calculation steps</h3>
+                                    <p id="volumeResultSteps">
+                                        Convert the input volume using the unit factors.
+                                    </p>
+                                </div>
+
+                                <p id="volumeCopyMessage" class="volume-copy-message" role="status"></p>
+                            </div>
+                        </div>
+
+                        <!-- QUICK GUIDE -->
+                        <aside class="volume-side-card">
+                            <span class="volume-section-label">QUICK GUIDE</span>
+                            <h2>Common volume units</h2>
+
+                            <div class="volume-unit-item">
+                                <span class="volume-unit-symbol">mL</span>
+                                <div>
+                                    <h3>Millilitre</h3>
+                                    <p>Useful for small liquid quantities, cooking, and medicine measurements.</p>
+                                </div>
+                            </div>
+
+                            <div class="volume-unit-item">
+                                <span class="volume-unit-symbol">L</span>
+                                <div>
+                                    <h3>Litre</h3>
+                                    <p>Commonly used for water, beverages, fuel, and household liquids.</p>
+                                </div>
+                            </div>
+
+                            <div class="volume-unit-item">
+                                <span class="volume-unit-symbol">m³</span>
+                                <div>
+                                    <h3>Cubic metre</h3>
+                                    <p>Used for tanks, rooms, storage, and large volumes.</p>
+                                </div>
+                            </div>
+
+                            <div class="volume-unit-item">
+                                <span class="volume-unit-symbol">gal</span>
+                                <div>
+                                    <h3>US gallon</h3>
+                                    <p>A US customary unit for measuring liquid capacity.</p>
+                                </div>
+                            </div>
+
+                            <div class="volume-tip">
+                                <strong>Quick fact</strong>
+                                <p>1 litre = 1,000 millilitres = 1,000 cubic centimetres.</p>
+                            </div>
+                        </aside>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUICK REFERENCES -->
+            <section class="volume-content-section">
+                <div class="container">
+                    <div class="volume-section-heading">
+                        <span class="volume-section-label">QUICK REFERENCE</span>
+                        <h2>Common Volume Conversions</h2>
+                        <p>Use these frequently needed measurements as a quick guide.</p>
+                    </div>
+
+                    <div class="volume-reference-grid">
+                        <article class="volume-reference-card">
+                            <span>Metric liquid volume</span>
+                            <strong>1 L</strong>
+                            <p>1,000 mL</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>Small volume</span>
+                            <strong>1 mL</strong>
+                            <p>1 cm³</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>Large volume</span>
+                            <strong>1 m³</strong>
+                            <p>1,000 L</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>US liquid measure</span>
+                            <strong>1 US gal</strong>
+                            <p>3.785411784 L</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>US cup</span>
+                            <strong>1 cup</strong>
+                            <p>236.5882365 mL</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>US fluid ounce</span>
+                            <strong>1 fl oz</strong>
+                            <p>29.57352956 mL</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>US liquid quart</span>
+                            <strong>1 qt</strong>
+                            <p>0.946352946 L</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>US liquid pint</span>
+                            <strong>1 pt</strong>
+                            <p>0.473176473 L</p>
+                        </article>
+
+                        <article class="volume-reference-card">
+                            <span>Cubic foot</span>
+                            <strong>1 ft³</strong>
+                            <p>28.316846592 L</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMULAS -->
+            <section class="volume-content-section volume-soft-section">
+                <div class="container">
+                    <div class="volume-section-heading">
+                        <span class="volume-section-label">FORMULAS</span>
+                        <h2>Volume Conversion Formulas</h2>
+                        <p>Learn how common metric and US customary volume units relate.</p>
+                    </div>
+
+                    <div class="volume-formula-grid">
+                        <article class="volume-info-card">
+                            <h3>Litres to millilitres</h3>
+                            <div class="volume-equation">mL = L × 1,000</div>
+                            <p>Multiply litres by 1,000 to obtain millilitres.</p>
+                        </article>
+
+                        <article class="volume-info-card">
+                            <h3>Millilitres to litres</h3>
+                            <div class="volume-equation">L = mL ÷ 1,000</div>
+                            <p>Divide millilitres by 1,000 to obtain litres.</p>
+                        </article>
+
+                        <article class="volume-info-card">
+                            <h3>Cubic metres to litres</h3>
+                            <div class="volume-equation">L = m³ × 1,000</div>
+                            <p>One cubic metre equals exactly 1,000 litres.</p>
+                        </article>
+
+                        <article class="volume-info-card">
+                            <h3>US gallons to litres</h3>
+                            <div class="volume-equation">L = US gal × 3.785411784</div>
+                            <p>Multiply US gallons by the standard US gallon factor.</p>
+                        </article>
+
+                        <article class="volume-info-card">
+                            <h3>Cubic inches to cubic centimetres</h3>
+                            <div class="volume-equation">cm³ = in³ × 16.387064</div>
+                            <p>Use this conversion for engine displacement and other volume measurements.</p>
+                        </article>
+
+                        <article class="volume-info-card">
+                            <h3>Cubic feet to cubic metres</h3>
+                            <div class="volume-equation">m³ = ft³ × 0.028316846592</div>
+                            <p>Useful for storage spaces, rooms, and larger volume calculations.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW TO USE -->
+            <section class="volume-content-section">
+                <div class="container">
+                    <div class="volume-section-heading">
+                        <span class="volume-section-label">HOW IT WORKS</span>
+                        <h2>How to Use the Volume Converter</h2>
+                    </div>
+
+                    <div class="volume-steps-grid">
+                        <article>
+                            <span class="volume-step-number">01</span>
+                            <h3>Enter a value</h3>
+                            <p>Type the liquid capacity or volume you want to convert.</p>
+                        </article>
+
+                        <article>
+                            <span class="volume-step-number">02</span>
+                            <h3>Select units</h3>
+                            <p>Choose the starting and target volume units.</p>
+                        </article>
+
+                        <article>
+                            <span class="volume-step-number">03</span>
+                            <h3>View your result</h3>
+                            <p>See the converted value and the calculation details instantly.</p>
+                        </article>
+
+                        <article>
+                            <span class="volume-step-number">04</span>
+                            <h3>Copy the answer</h3>
+                            <p>Copy the result for use in recipes, projects, or calculations.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="volume-content-section volume-soft-section">
+                <div class="container">
+                    <div class="volume-section-heading">
+                        <span class="volume-section-label">FAQ</span>
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+
+                    <div class="volume-faq-list">
+                        <details>
+                            <summary>What is a volume converter?</summary>
+                            <p>
+                                A volume converter changes a measurement from one volume unit
+                                to another, such as litres to gallons or cubic metres to litres.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>How many millilitres are in one litre?</summary>
+                            <p>One litre equals exactly 1,000 millilitres.</p>
+                        </details>
+
+                        <details>
+                            <summary>How many litres are in one US gallon?</summary>
+                            <p>One US liquid gallon equals exactly 3.785411784 litres.</p>
+                        </details>
+
+                        <details>
+                            <summary>Are US and UK gallons the same?</summary>
+                            <p>
+                                No. A US liquid gallon is approximately 3.785 litres,
+                                while an imperial gallon is approximately 4.546 litres.
+                                This converter uses US customary liquid units.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>What is the difference between volume and capacity?</summary>
+                            <p>
+                                Volume describes the space occupied by a three-dimensional
+                                object or substance. Capacity commonly refers to how much
+                                a container can hold. Litres and cubic metres can be used
+                                to express both, depending on the context.
+                            </p>
+                        </details>
+
+                        <details>
+                            <summary>Does the converter upload my values?</summary>
+                            <p>
+                                No. All conversion calculations run directly in your browser.
+                                Your entered values do not need to be sent to a server.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RELATED TOOLS -->
+            <section class="volume-content-section">
+                <div class="container">
+                    <div class="volume-section-heading">
+                        <span class="volume-section-label">EXPLORE MORE</span>
+                        <h2>Related Conversion Tools</h2>
+                    </div>
+
+                    <div class="volume-related-grid">
+                        <a href="length-converter.html" class="volume-related-card">
+                            <span>📏</span>
+                            <div>
+                                <h3>Length Converter</h3>
+                                <p>Convert metres, kilometres, feet, and inches.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="weight-converter.html" class="volume-related-card">
+                            <span>⚖️</span>
+                            <div>
+                                <h3>Weight Converter</h3>
+                                <p>Convert kilograms, grams, pounds, and ounces.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="temperature-converter.html" class="volume-related-card">
+                            <span>🌡️</span>
+                            <div>
+                                <h3>Temperature Converter</h3>
+                                <p>Convert Celsius, Fahrenheit, and Kelvin.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="area-converter.html" class="volume-related-card">
+                            <span>📐</span>
+                            <div>
+                                <h3>Area Converter</h3>
+                                <p>Convert square metres, acres, hectares, and more.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+
+                        <a href="../calculator.html" class="volume-related-card">
+                            <span>🧮</span>
+                            <div>
+                                <h3>All Calculators</h3>
+                                <p>Explore more free DigiiFox calculators.</p>
+                            </div>
+                            <b aria-hidden="true">→</b>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FULL FOOTER -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+
+                    <div class="footer-brand">
+                        <a href="../index.html" class="logo">
+                            Digii<span>Fox</span>
+                        </a>
+
+                        <p>
+                            Useful tools. Simple solutions.
+                            Make everyday digital tasks easier with DigiiFox.
+                        </p>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Explore</h3>
+                        <a href="../index.html">Home</a>
+                        <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                        <a href="../image-html/image-tools.html">Image Tools</a>
+                        <a href="../calculator.html">Calculators</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Unit Converters</h3>
+                        <a href="length-converter.html">Length Converter</a>
+                        <a href="weight-converter.html">Weight Converter</a>
+                        <a href="temperature-converter.html">Temperature Converter</a>
+                        <a href="area-converter.html">Area Converter</a>
+                        <a href="volume-converter.html">Volume Converter</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>DigiiFox</h3>
+                        <a href="../index.html">About DigiiFox</a>
+                        <a href="../calculator.html">Explore Tools</a>
+                    </div>
+
+                </div>
+
+                <div class="footer-bottom">
+                    <p>
+                        &copy; <span id="currentYear"></span> DigiiFox.
+                        All rights reserved.
+                    </p>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="../calculator-js/volume-converter.js"></script>
+</body>
+
+</html>

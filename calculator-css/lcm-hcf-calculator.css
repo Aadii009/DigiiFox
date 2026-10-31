@@ -1,0 +1,827 @@
+/* =========================================
+   DigiiFox LCM & HCF Calculator
+   Tool-specific styles
+   Shared navbar/footer remain unchanged
+========================================= */
+
+.lcm-page {
+    --lcm-primary: #23845b;
+    --lcm-primary-dark: #176443;
+    --lcm-primary-light: #eaf7ef;
+    --lcm-border: #dce9e0;
+    --lcm-text: #24342b;
+    --lcm-muted: #68776d;
+    --lcm-surface: #ffffff;
+    --lcm-background: #f6faf7;
+
+    color: var(--lcm-text);
+    background: var(--lcm-background);
+}
+
+.lcm-page *,
+.lcm-page *::before,
+.lcm-page *::after {
+    box-sizing: border-box;
+}
+
+.lcm-page .container {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.lcm-page button,
+.lcm-page input {
+    font: inherit;
+}
+
+
+/* =========================================
+   Hero
+========================================= */
+
+.lcm-hero {
+    padding: 28px 0 54px;
+    background: linear-gradient(180deg, #edf8f0 0%, #f6faf7 100%);
+}
+
+.lcm-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    color: var(--lcm-muted);
+    font-size: 14px;
+}
+
+.lcm-breadcrumb a {
+    color: var(--lcm-primary);
+    text-decoration: none;
+}
+
+.lcm-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.lcm-hero-content {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.lcm-eyebrow,
+.lcm-section-label {
+    display: inline-block;
+    color: var(--lcm-primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    line-height: 1.5;
+}
+
+.lcm-hero-content h1 {
+    margin: 14px 0 16px;
+    color: #1e3527;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -1.1px;
+}
+
+.lcm-hero-content p {
+    max-width: 690px;
+    margin: 0 auto;
+    color: var(--lcm-muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   Calculator section
+========================================= */
+
+.lcm-calculator-section {
+    padding: 0 0 64px;
+}
+
+.lcm-calculator-card {
+    max-width: 850px;
+    margin: -16px auto 0;
+    padding: 34px;
+    position: relative;
+    background: var(--lcm-surface);
+    border: 1px solid var(--lcm-border);
+    border-radius: 18px;
+    box-shadow: 0 12px 36px rgba(24, 78, 47, 0.07);
+}
+
+.lcm-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.lcm-card-heading h2,
+.lcm-information-card h2 {
+    margin: 9px 0 10px;
+    color: #203529;
+    font-size: 27px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.lcm-card-heading p {
+    margin: 0;
+    color: var(--lcm-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.lcm-icon {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    flex: 0 0 54px;
+    place-items: center;
+    border-radius: 15px;
+    background: var(--lcm-primary-light);
+    color: var(--lcm-primary);
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.lcm-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lcm-field label {
+    color: var(--lcm-text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.lcm-field input {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 16px;
+    border: 1px solid #cddbd1;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    color: var(--lcm-text);
+    font-size: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lcm-field input::placeholder {
+    color: #9aa79e;
+}
+
+.lcm-field input:focus {
+    border-color: var(--lcm-primary);
+    box-shadow: 0 0 0 3px rgba(35, 132, 91, 0.13);
+}
+
+.lcm-field small {
+    color: var(--lcm-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   Examples
+========================================= */
+
+.lcm-examples {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-top: 22px;
+}
+
+.lcm-examples-title {
+    margin-right: 3px;
+    color: var(--lcm-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.lcm-example-button {
+    padding: 8px 12px;
+    border: 1px solid var(--lcm-border);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--lcm-primary-dark);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 650;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.lcm-example-button:hover {
+    border-color: var(--lcm-primary);
+    background: var(--lcm-primary-light);
+}
+
+
+/* =========================================
+   Actions
+========================================= */
+
+.lcm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.lcm-primary-button,
+.lcm-secondary-button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 19px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.4;
+    transition: background 0.2s ease, border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.lcm-primary-button {
+    border: 1px solid var(--lcm-primary);
+    background: var(--lcm-primary);
+    color: #fff;
+}
+
+.lcm-primary-button:hover {
+    border-color: var(--lcm-primary-dark);
+    background: var(--lcm-primary-dark);
+}
+
+.lcm-secondary-button {
+    border: 1px solid #d7e2da;
+    background: #fff;
+    color: var(--lcm-text);
+}
+
+.lcm-secondary-button:hover {
+    border-color: #a9c7b4;
+    background: #f3f8f4;
+}
+
+.lcm-primary-button:focus-visible,
+.lcm-secondary-button:focus-visible,
+.lcm-example-button:focus-visible {
+    outline: 3px solid rgba(35, 132, 91, 0.25);
+    outline-offset: 3px;
+}
+
+.lcm-error {
+    margin: 14px 0 0;
+    color: #b42318;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.lcm-error:empty {
+    display: none;
+}
+
+
+/* =========================================
+   Results
+========================================= */
+
+.lcm-results {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--lcm-border);
+}
+
+.lcm-results[hidden] {
+    display: none !important;
+}
+
+.lcm-results-heading {
+    margin-bottom: 20px;
+}
+
+.lcm-results-heading h3 {
+    margin: 8px 0;
+    color: #203529;
+    font-size: 23px;
+    line-height: 1.35;
+}
+
+.lcm-results-heading p {
+    margin: 0;
+    color: var(--lcm-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.lcm-result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.lcm-result-box {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid #cfe6d6;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #f2fbf5, #e8f6ed);
+}
+
+.lcm-result-label {
+    color: #42644f;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.lcm-result-number {
+    max-width: 100%;
+    margin: 12px 0 6px;
+    overflow-wrap: anywhere;
+    color: var(--lcm-primary-dark);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 850;
+    line-height: 1.2;
+}
+
+.lcm-result-description {
+    color: var(--lcm-muted);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+
+/* =========================================
+   Formula and working
+========================================= */
+
+.lcm-formula-box,
+.lcm-steps-box {
+    margin-top: 22px;
+    padding: 23px;
+    border: 1px solid var(--lcm-border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.lcm-formula-box h4,
+.lcm-steps-box h4 {
+    margin: 0 0 14px;
+    color: #263b2d;
+    font-size: 17px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+.lcm-formula-box p {
+    margin: 0 0 12px;
+    color: var(--lcm-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.lcm-formula {
+    padding: 15px;
+    overflow-wrap: anywhere;
+    border-radius: 9px;
+    background: var(--lcm-primary-light);
+    color: var(--lcm-primary-dark);
+    text-align: center;
+    font-size: clamp(15px, 2.5vw, 19px);
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.lcm-formula-note {
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+}
+
+.lcm-steps-box ol {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding-left: 23px;
+}
+
+.lcm-steps-box li {
+    padding-left: 4px;
+    color: #536358;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.lcm-steps-box li::marker {
+    color: var(--lcm-primary);
+    font-weight: 800;
+}
+
+.lcm-result-actions {
+    margin-top: 22px;
+}
+
+.lcm-copy-feedback {
+    min-height: 20px;
+    margin: 12px 0 0;
+    color: var(--lcm-primary-dark);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   Information sections
+========================================= */
+
+.lcm-information-section {
+    padding: 0 0 38px;
+}
+
+.lcm-information-card {
+    padding: 32px;
+    border: 1px solid var(--lcm-border);
+    border-radius: 16px;
+    background: #fff;
+}
+
+.lcm-information-card h2 {
+    margin-bottom: 16px;
+}
+
+.lcm-information-card > p {
+    max-width: 850px;
+    margin: 0;
+    color: var(--lcm-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.lcm-definition-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.lcm-definition-item {
+    padding: 23px;
+    border: 1px solid var(--lcm-border);
+    border-radius: 12px;
+    background: #fbfdfb;
+}
+
+.lcm-definition-symbol {
+    display: inline-grid;
+    min-width: 58px;
+    min-height: 38px;
+    padding: 8px 12px;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--lcm-primary-light);
+    color: var(--lcm-primary-dark);
+    font-size: 14px;
+    font-weight: 850;
+}
+
+.lcm-definition-item h3 {
+    margin: 16px 0 9px;
+    color: #263b2d;
+    font-size: 18px;
+    line-height: 1.45;
+}
+
+.lcm-definition-item p {
+    margin: 0;
+    color: var(--lcm-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.lcm-definition-example {
+    margin-top: 16px;
+    padding-top: 13px;
+    border-top: 1px solid var(--lcm-border);
+    color: var(--lcm-primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   Formula reference
+========================================= */
+
+.lcm-formula-reference {
+    margin-top: 28px;
+    padding: 22px;
+    border-radius: 12px;
+    background: #f4f9f5;
+}
+
+.lcm-formula-reference h3 {
+    margin: 0 0 14px;
+    color: #263b2d;
+    font-size: 17px;
+}
+
+.lcm-reference-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e0ebe3;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.lcm-reference-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.lcm-reference-row span {
+    color: var(--lcm-muted);
+}
+
+.lcm-reference-row strong {
+    color: var(--lcm-primary-dark);
+    font-weight: 750;
+}
+
+
+/* =========================================
+   How to use
+========================================= */
+
+.lcm-how-to-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.lcm-how-to-item {
+    position: relative;
+    padding: 23px;
+    border: 1px solid var(--lcm-border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.lcm-step-number {
+    display: inline-block;
+    margin-bottom: 13px;
+    color: var(--lcm-primary);
+    font-size: 13px;
+    font-weight: 850;
+    letter-spacing: 1px;
+}
+
+.lcm-how-to-item h3 {
+    margin: 0 0 9px;
+    color: #263b2d;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.lcm-how-to-item p {
+    margin: 0;
+    color: var(--lcm-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   FAQ
+========================================= */
+
+.lcm-faq-section {
+    padding-bottom: 64px;
+}
+
+.lcm-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.lcm-faq-item {
+    border: 1px solid var(--lcm-border);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.lcm-faq-item summary {
+    position: relative;
+    padding: 18px 46px 18px 18px;
+    color: #293c30;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.7;
+    list-style: none;
+}
+
+.lcm-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.lcm-faq-item summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    color: var(--lcm-primary);
+    font-size: 23px;
+    font-weight: 500;
+    transform: translateY(-50%);
+}
+
+.lcm-faq-item[open] summary::after {
+    content: "−";
+}
+
+.lcm-faq-item p {
+    margin: 0;
+    padding: 0 18px 19px;
+    color: var(--lcm-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   Responsive layout
+========================================= */
+
+@media (max-width: 700px) {
+    .lcm-page .container {
+        width: min(100% - 28px, 1120px);
+    }
+
+    .lcm-hero {
+        padding: 22px 0 40px;
+    }
+
+    .lcm-breadcrumb {
+        margin-bottom: 25px;
+        font-size: 12px;
+    }
+
+    .lcm-hero-content h1 {
+        font-size: 31px;
+        letter-spacing: -0.6px;
+    }
+
+    .lcm-hero-content p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .lcm-calculator-section {
+        padding-bottom: 42px;
+    }
+
+    .lcm-calculator-card {
+        margin-top: -10px;
+        padding: 23px 18px;
+        border-radius: 14px;
+    }
+
+    .lcm-card-heading {
+        gap: 12px;
+        margin-bottom: 23px;
+    }
+
+    .lcm-card-heading h2,
+    .lcm-information-card h2 {
+        font-size: 23px;
+    }
+
+    .lcm-icon {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+        border-radius: 12px;
+        font-size: 23px;
+    }
+
+    .lcm-examples {
+        gap: 8px;
+    }
+
+    .lcm-examples-title {
+        width: 100%;
+    }
+
+    .lcm-actions {
+        gap: 10px;
+    }
+
+    .lcm-primary-button,
+    .lcm-secondary-button {
+        flex: 1 1 140px;
+        padding: 12px;
+    }
+
+    .lcm-result-grid,
+    .lcm-definition-grid,
+    .lcm-how-to-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lcm-result-box {
+        padding: 20px;
+    }
+
+    .lcm-formula-box,
+    .lcm-steps-box {
+        padding: 18px;
+    }
+
+    .lcm-information-section {
+        padding-bottom: 25px;
+    }
+
+    .lcm-information-card {
+        padding: 23px 18px;
+        border-radius: 13px;
+    }
+
+    .lcm-definition-item,
+    .lcm-how-to-item {
+        padding: 19px;
+    }
+
+    .lcm-formula-reference {
+        padding: 17px;
+    }
+
+    .lcm-reference-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .lcm-faq-section {
+        padding-bottom: 42px;
+    }
+}
+
+@media (max-width: 380px) {
+    .lcm-hero-content h1 {
+        font-size: 27px;
+    }
+
+    .lcm-calculator-card {
+        padding: 20px 14px;
+    }
+
+    .lcm-card-heading h2,
+    .lcm-information-card h2 {
+        font-size: 21px;
+    }
+
+    .lcm-icon {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+        font-size: 20px;
+    }
+
+    .lcm-actions {
+        flex-direction: column;
+    }
+
+    .lcm-primary-button,
+    .lcm-secondary-button {
+        width: 100%;
+        flex-basis: auto;
+    }
+}

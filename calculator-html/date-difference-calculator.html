@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate the difference between two dates in years, months, weeks, days, and weekdays with the free DigiiFox Date Difference Calculator.">
+    <title>Date Difference Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/date-difference-calculator.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="date-diff-hero">
+            <div class="container">
+                <div class="date-diff-breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Date &amp; Time</span>
+                    <span>/</span>
+                    <span>Date Difference Calculator</span>
+                </div>
+
+                <div class="date-diff-hero-content">
+                    <span class="date-diff-eyebrow">DATE &amp; TIME TOOLS</span>
+                    <h1>Date Difference Calculator</h1>
+                    <p>
+                        Find the exact time between two dates in years, months,
+                        weeks, days, and weekdays. Simple, fast, and free.
+                    </p>
+
+                    <div class="date-diff-hero-badges">
+                        <span>✓ Instant results</span>
+                        <span>✓ Calendar-based calculation</span>
+                        <span>✓ Free to use</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator -->
+        <section class="date-diff-main-section">
+            <div class="container">
+                <div class="date-diff-layout">
+
+                    <div class="date-diff-calculator-card">
+                        <div class="date-diff-card-heading">
+                            <div>
+                                <span class="date-diff-section-label">DATE CALCULATOR</span>
+                                <h2>Calculate Date Difference</h2>
+                                <p>Choose your start and end dates below.</p>
+                            </div>
+
+                            <div class="date-diff-heading-icon" aria-hidden="true">
+                                📅
+                            </div>
+                        </div>
+
+                        <form id="dateDiffForm" novalidate>
+                            <div class="date-diff-input-grid">
+                                <div class="date-diff-field">
+                                    <label for="startDate">Start Date</label>
+                                    <input
+                                        type="date"
+                                        id="startDate"
+                                        name="startDate"
+                                        required
+                                    >
+                                    <small>The date from which to count.</small>
+                                </div>
+
+                                <div class="date-diff-field">
+                                    <label for="endDate">End Date</label>
+                                    <input
+                                        type="date"
+                                        id="endDate"
+                                        name="endDate"
+                                        required
+                                    >
+                                    <small>The date up to which to count.</small>
+                                </div>
+                            </div>
+
+                            <div class="date-diff-date-actions">
+                                <button
+                                    type="button"
+                                    class="date-diff-swap-button"
+                                    id="dateDiffSwap"
+                                >
+                                    ⇄ Swap dates
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="date-diff-today-button"
+                                    id="dateDiffToday"
+                                >
+                                    Use today
+                                </button>
+                            </div>
+
+                            <div
+                                class="date-diff-error"
+                                id="dateDiffError"
+                                role="alert"
+                                aria-live="polite"
+                                hidden
+                            ></div>
+
+                            <div class="date-diff-form-actions">
+                                <button type="submit" class="date-diff-primary-button">
+                                    Calculate Difference
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="date-diff-reset-button"
+                                    id="dateDiffReset"
+                                >
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Results -->
+                        <section
+                            class="date-diff-results"
+                            id="dateDiffResults"
+                            aria-labelledby="dateDiffResultsTitle"
+                            aria-live="polite"
+                            hidden
+                        >
+                            <div class="date-diff-results-heading">
+                                <div>
+                                    <span class="date-diff-section-label">YOUR RESULTS</span>
+                                    <h2 id="dateDiffResultsTitle">Date Difference</h2>
+                                </div>
+
+                                <span class="date-diff-result-icon" aria-hidden="true">
+                                    ✓
+                                </span>
+                            </div>
+
+                            <div class="date-diff-main-result">
+                                <p class="date-diff-result-caption">Calendar difference</p>
+
+                                <div class="date-diff-calendar-result">
+                                    <div>
+                                        <strong id="diffYears">0</strong>
+                                        <span>Years</span>
+                                    </div>
+                                    <div>
+                                        <strong id="diffMonths">0</strong>
+                                        <span>Months</span>
+                                    </div>
+                                    <div>
+                                        <strong id="diffDays">0</strong>
+                                        <span>Days</span>
+                                    </div>
+                                </div>
+
+                                <p class="date-diff-range-text" id="dateDiffRangeText"></p>
+                            </div>
+
+                            <div class="date-diff-stat-grid">
+                                <div class="date-diff-stat-card">
+                                    <span>Total days</span>
+                                    <strong id="diffTotalDays">0</strong>
+                                    <small>Elapsed days</small>
+                                </div>
+
+                                <div class="date-diff-stat-card">
+                                    <span>Total weeks</span>
+                                    <strong id="diffTotalWeeks">0</strong>
+                                    <small id="diffRemainingDays">0 extra days</small>
+                                </div>
+
+                                <div class="date-diff-stat-card">
+                                    <span>Weekdays</span>
+                                    <strong id="diffWeekdays">0</strong>
+                                    <small>Monday–Friday</small>
+                                </div>
+
+                                <div class="date-diff-stat-card">
+                                    <span>Weekend days</span>
+                                    <strong id="diffWeekendDays">0</strong>
+                                    <small>Saturday–Sunday</small>
+                                </div>
+                            </div>
+
+                            <div class="date-diff-details">
+                                <h3>Calculation Details</h3>
+
+                                <div class="date-diff-detail-row">
+                                    <span>Start date</span>
+                                    <strong id="detailStartDate">—</strong>
+                                </div>
+
+                                <div class="date-diff-detail-row">
+                                    <span>End date</span>
+                                    <strong id="detailEndDate">—</strong>
+                                </div>
+
+                                <div class="date-diff-detail-row">
+                                    <span>Day of the week</span>
+                                    <strong id="detailDayNames">—</strong>
+                                </div>
+
+                                <div class="date-diff-detail-row">
+                                    <span>Counting convention</span>
+                                    <strong>Start excluded, end included</strong>
+                                </div>
+                            </div>
+
+                            <div class="date-diff-copy-area">
+                                <button
+                                    type="button"
+                                    class="date-diff-copy-button"
+                                    id="dateDiffCopy"
+                                >
+                                    Copy Results
+                                </button>
+
+                                <p
+                                    class="date-diff-copy-message"
+                                    id="dateDiffCopyMessage"
+                                    role="status"
+                                    aria-live="polite"
+                                ></p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Quick guide -->
+                    <aside class="date-diff-side-card">
+                        <div class="date-diff-side-icon" aria-hidden="true">🗓️</div>
+                        <h2>Calculate dates easily</h2>
+                        <p>
+                            Compare two dates to understand the time between them
+                            for planning, tracking, or everyday calculations.
+                        </p>
+
+                        <div class="date-diff-side-divider"></div>
+
+                        <h3>What you will get</h3>
+
+                        <ul class="date-diff-benefit-list">
+                            <li><span>✓</span> Years, months, and days</li>
+                            <li><span>✓</span> Total elapsed days</li>
+                            <li><span>✓</span> Complete weeks and extra days</li>
+                            <li><span>✓</span> Weekdays and weekend days</li>
+                            <li><span>✓</span> Copyable results</li>
+                        </ul>
+
+                        <div class="date-diff-tip">
+                            <strong>Quick tip</strong>
+                            <p>
+                                The result is the same whichever date you enter
+                                first. Use <b>Swap dates</b> to reverse the inputs.
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Definition -->
+        <section class="date-diff-content-section">
+            <div class="container">
+                <div class="date-diff-content-card">
+                    <span class="date-diff-section-label">UNDERSTANDING THE TOOL</span>
+                    <h2>What Is a Date Difference Calculator?</h2>
+
+                    <p>
+                        A Date Difference Calculator determines the time between
+                        two calendar dates. It can express the difference as
+                        calendar years, months, and days, as well as the total
+                        number of elapsed days, weeks, weekdays, and weekend days.
+                    </p>
+
+                    <p>
+                        This tool is useful for project timelines, event planning,
+                        travel schedules, tracking milestones, and calculating how
+                        long it has been since a particular date.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formula -->
+        <section class="date-diff-content-section date-diff-soft-section">
+            <div class="container">
+                <div class="date-diff-content-card">
+                    <span class="date-diff-section-label">CALCULATION METHOD</span>
+                    <h2>Formula Used</h2>
+
+                    <div class="date-diff-formula-grid">
+                        <div class="date-diff-formula-card">
+                            <span>01</span>
+                            <h3>Total Days</h3>
+                            <p>End date − Start date</p>
+                            <small>Counted as elapsed calendar days.</small>
+                        </div>
+
+                        <div class="date-diff-formula-card">
+                            <span>02</span>
+                            <h3>Total Weeks</h3>
+                            <p>⌊ Total days ÷ 7 ⌋</p>
+                            <small>The remainder is shown as extra days.</small>
+                        </div>
+
+                        <div class="date-diff-formula-card">
+                            <span>03</span>
+                            <h3>Calendar Difference</h3>
+                            <p>Years + Months + Days</p>
+                            <small>Uses calendar month lengths and leap years.</small>
+                        </div>
+
+                        <div class="date-diff-formula-card">
+                            <span>04</span>
+                            <h3>Weekdays</h3>
+                            <p>Monday through Friday</p>
+                            <small>Weekend days are counted separately.</small>
+                        </div>
+                    </div>
+
+                    <div class="date-diff-note">
+                        <strong>Important:</strong>
+                        Calendar months have different lengths. Therefore, the
+                        calendar difference is calculated using the actual dates,
+                        not by treating every month as 30 days. Weekday and weekend
+                        counts exclude the start date and include the end date.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to use -->
+        <section class="date-diff-content-section">
+            <div class="container">
+                <div class="date-diff-content-card">
+                    <span class="date-diff-section-label">STEP-BY-STEP GUIDE</span>
+                    <h2>How to Use the Date Difference Calculator</h2>
+
+                    <div class="date-diff-steps">
+                        <div class="date-diff-step">
+                            <span>1</span>
+                            <div>
+                                <h3>Select the start date</h3>
+                                <p>Choose the earlier or starting date of your period.</p>
+                            </div>
+                        </div>
+
+                        <div class="date-diff-step">
+                            <span>2</span>
+                            <div>
+                                <h3>Select the end date</h3>
+                                <p>Choose the date you want to compare it with.</p>
+                            </div>
+                        </div>
+
+                        <div class="date-diff-step">
+                            <span>3</span>
+                            <div>
+                                <h3>Calculate the difference</h3>
+                                <p>Press the button to display the date difference and day counts.</p>
+                            </div>
+                        </div>
+
+                        <div class="date-diff-step">
+                            <span>4</span>
+                            <div>
+                                <h3>Copy your results</h3>
+                                <p>Use the copy button to save or share the calculation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs -->
+        <section class="date-diff-content-section date-diff-soft-section">
+            <div class="container">
+                <div class="date-diff-content-card">
+                    <span class="date-diff-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="date-diff-faq-list">
+                        <details class="date-diff-faq">
+                            <summary>How do I calculate the number of days between two dates?</summary>
+                            <p>
+                                Select both dates and calculate. The tool subtracts
+                                the start date from the end date to find the elapsed
+                                number of calendar days.
+                            </p>
+                        </details>
+
+                        <details class="date-diff-faq">
+                            <summary>Does the calculator account for leap years?</summary>
+                            <p>
+                                Yes. It uses actual calendar dates, including
+                                February 29 in leap years, when calculating elapsed days.
+                            </p>
+                        </details>
+
+                        <details class="date-diff-faq">
+                            <summary>Are the start and end dates both included?</summary>
+                            <p>
+                                Total elapsed days exclude the start date and include
+                                the end date. For example, the difference between
+                                Monday and Tuesday is one day. Weekday and weekend
+                                counts follow the same convention.
+                            </p>
+                        </details>
+
+                        <details class="date-diff-faq">
+                            <summary>Can I enter the end date before the start date?</summary>
+                            <p>
+                                Yes. The calculator automatically orders the dates
+                                chronologically so the difference remains positive.
+                            </p>
+                        </details>
+
+                        <details class="date-diff-faq">
+                            <summary>Why can the number of months vary?</summary>
+                            <p>
+                                Calendar months contain different numbers of days.
+                                The years, months, and days result follows calendar
+                                boundaries rather than assuming each month has 30 days.
+                            </p>
+                        </details>
+
+                        <details class="date-diff-faq">
+                            <summary>Is this calculator free?</summary>
+                            <p>
+                                Yes. The Date Difference Calculator is free to use
+                                in your browser and does not require an account.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="date-diff-content-section">
+            <div class="container">
+                <div class="date-diff-related-heading">
+                    <div>
+                        <span class="date-diff-section-label">EXPLORE MORE</span>
+                        <h2>Related Calculators</h2>
+                    </div>
+                    <a href="../calculator.html" class="date-diff-view-all">
+                        All Calculators →
+                    </a>
+                </div>
+
+                <div class="date-diff-related-grid">
+                    <a href="age-calculator.html" class="date-diff-related-card">
+                        <span class="date-diff-related-icon">🎂</span>
+                        <h3>Age Calculator</h3>
+                        <p>Calculate your age in years, months, and days.</p>
+                        <span class="date-diff-related-link">Open calculator →</span>
+                    </a>
+
+                    <a href="days-between-dates-calculator.html" class="date-diff-related-card">
+                        <span class="date-diff-related-icon">📆</span>
+                        <h3>Days Between Dates</h3>
+                        <p>Find the total elapsed days between two dates.</p>
+                        <span class="date-diff-related-link">Open calculator →</span>
+                    </a>
+
+                    <a href="../calculator.html" class="date-diff-related-card">
+                        <span class="date-diff-related-icon">🧮</span>
+                        <h3>All Calculators</h3>
+                        <p>Explore more useful calculators from DigiiFox.</p>
+                        <span class="date-diff-related-link">Explore tools →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Full Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>
+                        Useful tools. Simple solutions.
+                        DigiiFox makes everyday online tasks easier.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculators</h3>
+                    <a href="age-calculator.html">Age Calculator</a>
+                    <a href="date-difference-calculator.html">Date Difference</a>
+                    <a href="days-between-dates-calculator.html">Days Between Dates</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>DigiiFox</h3>
+                    <p>Simple tools for everyday needs.</p>
+                    <p>Fast, accessible, and easy to use.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/date-difference-calculator.js"></script>
+</body>
+</html>

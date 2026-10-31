@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Use the free DigiiFox Statistics Calculator to calculate mean, median, mode, variance, standard deviation, quartiles, and other statistical measures.">
+
+    <meta name="keywords" content="statistics calculator, mean calculator, median calculator, mode calculator, standard deviation calculator, variance calculator">
+
+    <meta name="author" content="DigiiFox">
+
+    <title>Statistics Calculator - DigiiFox</title>
+
+    <!-- Shared Calculator Stylesheet -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Statistics Calculator Stylesheet -->
+    <link rel="stylesheet" href="../calculator-css/statistics-calculator.css">
+</head>
+
+<body class="statistics-page">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="statistics-main">
+
+        <!-- Hero Section -->
+
+        <section class="statistics-hero">
+            <div class="container">
+
+                <div class="statistics-badge">
+                    Free Online Calculator
+                </div>
+
+                <h1>Statistics Calculator</h1>
+
+                <p>
+                    Calculate mean, median, mode, variance, standard
+                    deviation, quartiles, and other important statistical
+                    measures quickly and accurately.
+                </p>
+
+                <div class="statistics-hero-tags">
+                    <span>✓ Instant Results</span>
+                    <span>✓ Multiple Statistics</span>
+                    <span>✓ Browser-Based</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator Section -->
+
+        <section class="statistics-section">
+            <div class="container">
+
+                <div class="statistics-layout">
+
+                    <!-- Input Card -->
+
+                    <div class="statistics-card statistics-input-card">
+
+                        <div class="statistics-card-heading">
+                            <div>
+                                <span class="section-eyebrow">
+                                    YOUR DATA
+                                </span>
+
+                                <h2>Enter Your Numbers</h2>
+
+                                <p>
+                                    Enter at least one number to calculate
+                                    statistical measures.
+                                </p>
+                            </div>
+
+                            <div class="statistics-icon">Σ</div>
+                        </div>
+
+
+                        <form id="statisticsForm" novalidate>
+
+                            <div class="statistics-field">
+
+                                <label for="dataInput">
+                                    Dataset
+                                </label>
+
+                                <textarea
+                                    id="dataInput"
+                                    rows="7"
+                                    placeholder="Example: 10, 20, 20, 30, 40"
+                                    spellcheck="false"
+                                    aria-describedby="inputHelp"
+                                ></textarea>
+
+                                <small id="inputHelp">
+                                    Separate numbers using commas, spaces,
+                                    semicolons, or new lines.
+                                </small>
+
+                            </div>
+
+
+                            <div class="statistics-dataset-info">
+                                <span id="dataCount">0 values entered</span>
+
+                                <button
+                                    type="button"
+                                    class="statistics-text-button"
+                                    id="clearInputBtn"
+                                >
+                                    Clear input
+                                </button>
+                            </div>
+
+
+                            <div
+                                class="statistics-error"
+                                id="statisticsError"
+                                role="alert"
+                                aria-live="polite"
+                            ></div>
+
+
+                            <div class="statistics-examples">
+
+                                <span class="statistics-label">
+                                    TRY AN EXAMPLE
+                                </span>
+
+                                <div class="statistics-example-buttons">
+
+                                    <button
+                                        type="button"
+                                        class="statistics-example-btn"
+                                        data-example="5, 10, 15, 20, 25"
+                                    >
+                                        Basic
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="statistics-example-btn"
+                                        data-example="10, 20, 20, 30, 40"
+                                    >
+                                        Repeated Values
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="statistics-example-btn"
+                                        data-example="12, 15, 18, 22, 25, 28, 30, 35"
+                                    >
+                                        Larger Dataset
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="statistics-action-buttons">
+
+                                <button
+                                    type="submit"
+                                    class="statistics-btn statistics-primary-btn"
+                                >
+                                    Calculate Statistics
+                                    <span aria-hidden="true">→</span>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="statistics-btn statistics-reset-btn"
+                                    id="resetStatisticsBtn"
+                                >
+                                    Reset
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- Results Card -->
+
+                    <div
+                        class="statistics-card statistics-results-card"
+                        id="statisticsResults"
+                        aria-live="polite"
+                        aria-atomic="false"
+                    >
+
+                        <div class="statistics-card-heading">
+
+                            <div>
+                                <span class="section-eyebrow">
+                                    YOUR RESULTS
+                                </span>
+
+                                <h2>Statistical Summary</h2>
+
+                                <p>
+                                    Your calculated statistical measures
+                                    will appear here.
+                                </p>
+                            </div>
+
+                            <div class="statistics-icon">📊</div>
+
+                        </div>
+
+
+                        <!-- Initial State -->
+
+                        <div
+                            class="statistics-empty-state"
+                            id="statisticsEmpty"
+                        >
+                            <div class="statistics-empty-icon">Σ</div>
+
+                            <h3>Ready to analyze your data?</h3>
+
+                            <p>
+                                Enter your dataset and click
+                                <strong>Calculate Statistics</strong>
+                                to see your results.
+                            </p>
+                        </div>
+
+
+                        <!-- Calculated Results -->
+
+                        <div id="statisticsOutput" hidden>
+
+                            <div class="statistics-summary-grid">
+
+                                <div class="statistics-summary-item">
+                                    <span>Mean</span>
+                                    <strong id="resultMean">—</strong>
+                                </div>
+
+                                <div class="statistics-summary-item">
+                                    <span>Median</span>
+                                    <strong id="resultMedian">—</strong>
+                                </div>
+
+                                <div class="statistics-summary-item">
+                                    <span>Mode</span>
+                                    <strong id="resultMode">—</strong>
+                                </div>
+
+                                <div class="statistics-summary-item">
+                                    <span>Range</span>
+                                    <strong id="resultRange">—</strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="statistics-result-group">
+
+                                <h3>Central Tendency</h3>
+
+                                <div class="statistics-result-row">
+                                    <span>Count</span>
+                                    <strong id="resultCount">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Sum</span>
+                                    <strong id="resultSum">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Mean</span>
+                                    <strong id="resultMeanDetail">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Median</span>
+                                    <strong id="resultMedianDetail">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Mode</span>
+                                    <strong id="resultModeDetail">—</strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="statistics-result-group">
+
+                                <h3>Dispersion</h3>
+
+                                <div class="statistics-result-row">
+                                    <span>Minimum</span>
+                                    <strong id="resultMin">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Maximum</span>
+                                    <strong id="resultMax">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Range</span>
+                                    <strong id="resultRangeDetail">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Population Variance</span>
+                                    <strong id="resultPopulationVariance">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Sample Variance</span>
+                                    <strong id="resultSampleVariance">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Population Standard Deviation</span>
+                                    <strong id="resultPopulationSD">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Sample Standard Deviation</span>
+                                    <strong id="resultSampleSD">—</strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="statistics-result-group">
+
+                                <h3>Quartiles</h3>
+
+                                <div class="statistics-result-row">
+                                    <span>First Quartile (Q1)</span>
+                                    <strong id="resultQ1">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Second Quartile (Q2)</span>
+                                    <strong id="resultQ2">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Third Quartile (Q3)</span>
+                                    <strong id="resultQ3">—</strong>
+                                </div>
+
+                                <div class="statistics-result-row">
+                                    <span>Interquartile Range (IQR)</span>
+                                    <strong id="resultIQR">—</strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="statistics-result-actions">
+
+                                <button
+                                    type="button"
+                                    class="statistics-btn statistics-primary-btn"
+                                    id="copyStatisticsBtn"
+                                >
+                                    Copy Results
+                                </button>
+
+                            </div>
+
+                            <p
+                                class="statistics-copy-status"
+                                id="copyStatus"
+                                role="status"
+                            ></p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Dataset Preview -->
+
+                <div
+                    class="statistics-card statistics-dataset-card"
+                    id="datasetCard"
+                    hidden
+                >
+
+                    <div class="statistics-card-heading">
+                        <div>
+                            <span class="section-eyebrow">
+                                DATA OVERVIEW
+                            </span>
+
+                            <h2>Sorted Dataset</h2>
+
+                            <p>
+                                Your numbers arranged from smallest to largest.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="statistics-sorted-values"
+                        id="sortedDataset"
+                    ></div>
+
+                </div>
+
+
+                <!-- Calculation Steps -->
+
+                <div
+                    class="statistics-card statistics-steps-card"
+                    id="calculationStepsCard"
+                    hidden
+                >
+
+                    <div class="statistics-card-heading">
+                        <div>
+                            <span class="section-eyebrow">
+                                UNDERSTAND THE MATH
+                            </span>
+
+                            <h2>Calculation Steps</h2>
+
+                            <p>
+                                See how the main statistical results
+                                were calculated.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="statistics-steps-list"
+                        id="calculationSteps"
+                    ></div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition and Formulas -->
+
+        <section class="statistics-info-section">
+            <div class="container">
+
+                <div class="statistics-section-heading">
+                    <span class="section-eyebrow">
+                        LEARN THE BASICS
+                    </span>
+
+                    <h2>What Is a Statistics Calculator?</h2>
+
+                    <p>
+                        A statistics calculator analyzes numerical data
+                        and summarizes important characteristics such as
+                        its center, spread, and distribution.
+                    </p>
+                </div>
+
+
+                <div class="statistics-info-grid">
+
+                    <article class="statistics-info-card">
+                        <div class="statistics-info-icon">x̄</div>
+
+                        <h3>Mean</h3>
+
+                        <p>
+                            The mean is the arithmetic average of all
+                            values in a dataset.
+                        </p>
+
+                        <div class="statistics-formula">
+                            Mean = Σx / n
+                        </div>
+                    </article>
+
+
+                    <article class="statistics-info-card">
+                        <div class="statistics-info-icon">M</div>
+
+                        <h3>Median</h3>
+
+                        <p>
+                            The median is the middle value after the
+                            numbers are sorted.
+                        </p>
+
+                        <div class="statistics-formula">
+                            Middle value(s)
+                        </div>
+                    </article>
+
+
+                    <article class="statistics-info-card">
+                        <div class="statistics-info-icon">σ²</div>
+
+                        <h3>Variance</h3>
+
+                        <p>
+                            Variance measures how far the data values
+                            spread around the mean.
+                        </p>
+
+                        <div class="statistics-formula">
+                            Population: Σ(x − μ)² / N
+                        </div>
+                    </article>
+
+
+                    <article class="statistics-info-card">
+                        <div class="statistics-info-icon">σ</div>
+
+                        <h3>Standard Deviation</h3>
+
+                        <p>
+                            Standard deviation measures spread in the
+                            same units as the original data.
+                        </p>
+
+                        <div class="statistics-formula">
+                            SD = √Variance
+                        </div>
+                    </article>
+
+
+                    <article class="statistics-info-card">
+                        <div class="statistics-info-icon">Mo</div>
+
+                        <h3>Mode</h3>
+
+                        <p>
+                            The mode is the value or values that occur
+                            most frequently.
+                        </p>
+
+                        <div class="statistics-formula">
+                            Highest frequency
+                        </div>
+                    </article>
+
+
+                    <article class="statistics-info-card">
+                        <div class="statistics-info-icon">Q</div>
+
+                        <h3>Quartiles</h3>
+
+                        <p>
+                            Quartiles divide sorted data into four
+                            sections to help describe its distribution.
+                        </p>
+
+                        <div class="statistics-formula">
+                            IQR = Q3 − Q1
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How to Use -->
+
+        <section class="statistics-info-section statistics-how-section">
+            <div class="container">
+
+                <div class="statistics-section-heading">
+                    <span class="section-eyebrow">
+                        SIMPLE STEPS
+                    </span>
+
+                    <h2>How to Use the Statistics Calculator</h2>
+
+                    <p>
+                        Analyze your dataset in just a few steps.
+                    </p>
+                </div>
+
+
+                <div class="statistics-how-grid">
+
+                    <article class="statistics-how-card">
+                        <span class="statistics-step-number">01</span>
+
+                        <h3>Enter Your Data</h3>
+
+                        <p>
+                            Type or paste your numbers into the dataset
+                            input field.
+                        </p>
+                    </article>
+
+
+                    <article class="statistics-how-card">
+                        <span class="statistics-step-number">02</span>
+
+                        <h3>Calculate</h3>
+
+                        <p>
+                            Click the Calculate Statistics button to
+                            analyze your values.
+                        </p>
+                    </article>
+
+
+                    <article class="statistics-how-card">
+                        <span class="statistics-step-number">03</span>
+
+                        <h3>Review Results</h3>
+
+                        <p>
+                            Explore the summary, dispersion measures,
+                            quartiles, and calculation steps.
+                        </p>
+                    </article>
+
+
+                    <article class="statistics-how-card">
+                        <span class="statistics-step-number">04</span>
+
+                        <h3>Copy Your Results</h3>
+
+                        <p>
+                            Use the Copy Results button to copy the
+                            statistical summary.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQs -->
+
+        <section class="statistics-info-section statistics-faq-section">
+            <div class="container">
+
+                <div class="statistics-section-heading">
+                    <span class="section-eyebrow">
+                        COMMON QUESTIONS
+                    </span>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <p>
+                        Learn more about statistics and the results
+                        provided by this calculator.
+                    </p>
+                </div>
+
+
+                <div class="statistics-faq-list">
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            What statistics does this calculator provide?
+                        </summary>
+
+                        <p>
+                            It calculates the mean, median, mode, sum,
+                            count, minimum, maximum, range, population
+                            variance, sample variance, population standard
+                            deviation, sample standard deviation, quartiles,
+                            and interquartile range.
+                        </p>
+                    </details>
+
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            What is the difference between population
+                            and sample variance?
+                        </summary>
+
+                        <p>
+                            Population variance divides the sum of squared
+                            deviations by the total number of population
+                            values, N. Sample variance divides by n − 1
+                            to estimate the variance of a larger population
+                            from a sample.
+                        </p>
+                    </details>
+
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            What happens if there is no mode?
+                        </summary>
+
+                        <p>
+                            If every value occurs equally often, the
+                            calculator reports no unique mode. If multiple
+                            values share the highest frequency, it reports
+                            all of those modes.
+                        </p>
+                    </details>
+
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            How are quartiles calculated?
+                        </summary>
+
+                        <p>
+                            The calculator sorts the data, finds the
+                            median, and calculates Q1 and Q3 as the medians
+                            of the lower and upper halves. When the dataset
+                            contains an odd number of values, the overall
+                            median is excluded from both halves.
+                        </p>
+                    </details>
+
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            Can I enter decimal and negative numbers?
+                        </summary>
+
+                        <p>
+                            Yes. The calculator accepts positive numbers,
+                            negative numbers, zero, and decimal values.
+                        </p>
+                    </details>
+
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            Is my data uploaded to a server?
+                        </summary>
+
+                        <p>
+                            No. This calculator performs its calculations
+                            in your browser. It does not send your dataset
+                            to a server.
+                        </p>
+                    </details>
+
+
+                    <details class="statistics-faq-item">
+                        <summary>
+                            Why are sample statistics unavailable for
+                            a single value?
+                        </summary>
+
+                        <p>
+                            Sample variance divides by n − 1. With only
+                            one observation, that denominator is zero,
+                            so sample variance and sample standard
+                            deviation are undefined.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                    </p>
+
+                    <p class="footer-description">
+                        Simple online tools designed to make everyday
+                        tasks faster, easier, and more convenient.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+
+                    <a href="./standard-calculator.html">
+                        Standard Calculator
+                    </a>
+
+                    <a href="./percentage-calculator.html">
+                        Percentage Calculator
+                    </a>
+
+                    <a href="./average-calculator.html">
+                        Average Calculator
+                    </a>
+
+                    <a href="./prime-number-calculator.html">
+                        Prime Number Calculator
+                    </a>
+
+                    <a href="./factorial-calculator.html">
+                        Factorial Calculator
+                    </a>
+
+                    <a href="./statistics-calculator.html">
+                        Statistics Calculator
+                    </a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>More Tools</h3>
+
+                    <a href="./fraction-calculator.html">
+                        Fraction Calculator
+                    </a>
+
+                    <a href="./probability-calculator.html">
+                        Probability Calculator
+                    </a>
+
+                    <a href="./exponent-calculator.html">
+                        Exponent Calculator
+                    </a>
+
+                    <a href="./square-root-calculator.html">
+                        Square Root Calculator
+                    </a>
+
+                    <a href="./lcm-hcf-calculator.html">
+                        LCM &amp; HCF Calculator
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Statistics Calculator JavaScript -->
+    <script src="../calculator-js/statistics-calculator.js"></script>
+
+</body>
+</html>

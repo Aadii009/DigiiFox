@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Estimate body fat percentage, fat mass, and fat-free mass using the U.S. Navy circumference method with the free DigiiFox Body Fat Calculator.">
+
+    <title>Body Fat Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/body-fat-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav">☰</button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="bf-page">
+
+        <section class="bf-hero">
+            <div class="container">
+                <div class="bf-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>›</span>
+                    <span>Health &amp; Fitness</span>
+                </div>
+
+                <span class="bf-eyebrow">HEALTH &amp; FITNESS</span>
+
+                <h1>Body Fat Percentage Calculator</h1>
+
+                <p>
+                    Estimate your body fat percentage and body composition
+                    using your height, weight, and body circumference measurements.
+                </p>
+            </div>
+        </section>
+
+        <section class="container bf-main">
+
+            <div class="bf-layout">
+
+                <!-- INPUT CARD -->
+                <section class="bf-card">
+                    <div class="bf-card-heading">
+                        <span class="bf-icon">◉</span>
+                        <div>
+                            <h2>Your Measurements</h2>
+                            <p>Enter your measurements carefully for an estimate.</p>
+                        </div>
+                    </div>
+
+                    <form id="bodyFatForm" novalidate>
+
+                        <fieldset class="bf-fieldset">
+                            <legend>Measurement system</legend>
+
+                            <div class="bf-unit-options">
+                                <label class="bf-unit-option">
+                                    <input type="radio" name="bfUnitSystem" value="metric" checked>
+                                    <span>Metric (cm, kg)</span>
+                                </label>
+
+                                <label class="bf-unit-option">
+                                    <input type="radio" name="bfUnitSystem" value="imperial">
+                                    <span>Imperial (in, lb)</span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div class="bf-field">
+                            <label for="bfSex">Formula reference</label>
+                            <select id="bfSex" required>
+                                <option value="male">Male reference formula</option>
+                                <option value="female">Female reference formula</option>
+                            </select>
+
+                            <small class="bf-help">
+                                The Navy equations use different reference formulas.
+                                Choose the one appropriate for the equation you want to use.
+                            </small>
+                        </div>
+
+                        <div class="bf-field">
+                            <label for="bfHeight" id="bfHeightLabel">Height (cm)</label>
+                            <input type="number" id="bfHeight" min="100" max="250" step="0.1" placeholder="e.g. 175"
+                                inputmode="decimal" required>
+                        </div>
+
+                        <div class="bf-field">
+                            <label for="bfWeight" id="bfWeightLabel">Weight (kg)</label>
+                            <input type="number" id="bfWeight" min="20" max="500" step="0.1" placeholder="e.g. 75"
+                                inputmode="decimal" required>
+                        </div>
+
+                        <div class="bf-field">
+                            <label for="bfNeck" id="bfNeckLabel">Neck circumference (cm)</label>
+                            <input type="number" id="bfNeck" min="15" max="100" step="0.1" placeholder="e.g. 38"
+                                inputmode="decimal" required>
+
+                            <small class="bf-help">
+                                Measure around the neck without pulling the tape too tightly.
+                            </small>
+                        </div>
+
+                        <div class="bf-field">
+                            <label for="bfWaist" id="bfWaistLabel">
+                                Abdomen circumference (cm)
+                            </label>
+
+                            <input type="number" id="bfWaist" min="30" max="250" step="0.1" placeholder="e.g. 85"
+                                inputmode="decimal" required>
+
+                            <small class="bf-help" id="bfWaistHelp">
+                                For the male reference formula, measure around the abdomen
+                                at approximately navel level.
+                            </small>
+                        </div>
+
+                        <div class="bf-field" id="bfHipGroup" hidden>
+                            <label for="bfHip" id="bfHipLabel">Hip circumference (cm)</label>
+
+                            <input type="number" id="bfHip" min="40" max="250" step="0.1" placeholder="e.g. 100"
+                                inputmode="decimal">
+
+                            <small class="bf-help">
+                                For the female reference formula, measure around the
+                                widest part of the hips.
+                            </small>
+                        </div>
+
+                        <div class="bf-measurement-tip">
+                            <strong>Measurement tip</strong>
+                            <p>
+                                Stand naturally and keep the measuring tape level.
+                                Use the same measurement technique each time for
+                                more consistent comparisons.
+                            </p>
+                        </div>
+
+                        <div class="bf-error" id="bfError" role="alert" aria-live="polite"></div>
+
+                        <div class="bf-actions">
+                            <button type="submit" class="bf-btn bf-btn-primary">
+                                Calculate Body Fat
+                            </button>
+
+                            <button type="reset" class="bf-btn bf-btn-secondary" id="bfReset">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- RESULTS CARD -->
+                <section class="bf-card bf-results-card" id="bfResults" aria-live="polite" hidden>
+
+                    <div class="bf-card-heading">
+                        <span class="bf-icon">✓</span>
+                        <div>
+                            <h2>Your Estimated Results</h2>
+                            <p>Calculated using the U.S. Navy circumference method.</p>
+                        </div>
+                    </div>
+
+                    <div class="bf-primary-result">
+                        <span class="bf-result-label">Estimated body fat</span>
+
+                        <div class="bf-percentage">
+                            <span id="bfPercentage">—</span><span>%</span>
+                        </div>
+
+                        <p>Estimated percentage of your body weight that is fat.</p>
+                    </div>
+
+                    <div class="bf-composition">
+                        <div class="bf-composition-item">
+                            <span class="bf-composition-icon">◉</span>
+                            <div>
+                                <small>Estimated fat mass</small>
+                                <strong id="bfFatMass">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="bf-composition-item">
+                            <span class="bf-composition-icon">◇</span>
+                            <div>
+                                <small>Estimated fat-free mass</small>
+                                <strong id="bfLeanMass">—</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bf-bar-section">
+                        <div class="bf-bar-heading">
+                            <span>Estimated composition</span>
+                            <span id="bfBarCaption">—</span>
+                        </div>
+
+                        <div class="bf-composition-bar" role="img" id="bfCompositionBar"
+                            aria-label="Estimated body composition">
+                            <div class="bf-fat-segment" id="bfFatSegment"></div>
+                            <div class="bf-lean-segment" id="bfLeanSegment"></div>
+                        </div>
+
+                        <div class="bf-legend">
+                            <span><i class="bf-legend-fat"></i> Body fat</span>
+                            <span><i class="bf-legend-lean"></i> Fat-free mass</span>
+                        </div>
+                    </div>
+
+                    <div class="bf-result-details">
+                        <h3>Calculation details</h3>
+
+                        <div>
+                            <span>Formula</span>
+                            <strong>U.S. Navy method</strong>
+                        </div>
+
+                        <div>
+                            <span>Reference</span>
+                            <strong id="bfReference">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Height</span>
+                            <strong id="bfDetailHeight">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Weight</span>
+                            <strong id="bfDetailWeight">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="bf-result-note">
+                        <strong>Interpret your result carefully</strong>
+                        <p>
+                            This is an estimate, not a direct measurement or diagnosis.
+                            The method may be less accurate for some body types and
+                            populations.
+                        </p>
+                    </div>
+
+                    <button type="button" class="bf-btn bf-btn-primary bf-copy-btn" id="bfCopy">
+                        Copy Results
+                    </button>
+
+                    <p class="bf-copy-message" id="bfCopyMessage" aria-live="polite"></p>
+                </section>
+
+            </div>
+
+            <!-- INFORMATION -->
+            <section class="bf-info-card">
+
+                <h2>What Is Body Fat Percentage?</h2>
+
+                <p>
+                    Body fat percentage is the proportion of total body weight made
+                    up of fat. The remaining weight includes muscle, bone, organs,
+                    water, and other fat-free tissues. It is one measure of body
+                    composition, but it cannot independently determine overall health.
+                </p>
+
+                <h2>Formula Used</h2>
+
+                <p>
+                    This calculator uses the U.S. Navy circumference equations.
+                    Measurements are converted to inches before applying the formulas.
+                </p>
+
+                <div class="bf-formula-grid">
+                    <article class="bf-formula-item">
+                        <h3>Male reference formula</h3>
+                        <p>
+                            Body fat % = 86.010 × log₁₀(abdomen − neck)
+                            − 70.041 × log₁₀(height) + 36.76
+                        </p>
+                    </article>
+
+                    <article class="bf-formula-item">
+                        <h3>Female reference formula</h3>
+                        <p>
+                            Body fat % = 163.205 × log₁₀(waist + hip − neck)
+                            − 97.684 × log₁₀(height) − 78.387
+                        </p>
+                    </article>
+                </div>
+
+                <p class="bf-formula-footnote">
+                    Here, log₁₀ means the base-10 logarithm. All measurements in
+                    these equations are in inches. The female equation uses waist,
+                    hip, and neck measurements; the male equation uses abdomen,
+                    neck, and height.
+                </p>
+
+                <h2>How to Measure Correctly</h2>
+
+                <div class="bf-instructions-grid">
+                    <article>
+                        <span>01</span>
+                        <h3>Measure your height</h3>
+                        <p>Stand upright without shoes and enter your height accurately.</p>
+                    </article>
+
+                    <article>
+                        <span>02</span>
+                        <h3>Measure your neck</h3>
+                        <p>Keep the tape level and comfortably positioned around your neck.</p>
+                    </article>
+
+                    <article>
+                        <span>03</span>
+                        <h3>Measure your abdomen or waist</h3>
+                        <p>Follow the measurement location described for your selected formula.</p>
+                    </article>
+
+                    <article>
+                        <span>04</span>
+                        <h3>Measure your hips if required</h3>
+                        <p>For the female reference formula, measure the widest part of your hips.</p>
+                    </article>
+                </div>
+
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="bf-faq">
+                    <details>
+                        <summary>Is this calculator accurate?</summary>
+                        <p>
+                            It provides an estimate from circumference measurements.
+                            Tape placement, measurement technique, and individual body
+                            differences can affect the result. It is not equivalent to
+                            a direct body composition assessment.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>What is a healthy body fat percentage?</summary>
+                        <p>
+                            There is no single suitable percentage for everyone.
+                            Age, sex, individual health, and the reference used all
+                            affect interpretation. A healthcare professional can help
+                            interpret your result in context.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>What is fat-free mass?</summary>
+                        <p>
+                            Fat-free mass is estimated by subtracting estimated fat
+                            mass from total body weight. It includes muscle, bone,
+                            organs, water, and other non-fat tissues.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Can I use this calculator for children?</summary>
+                        <p>
+                            This calculator is intended for adults. Do not use its
+                            results to assess children or teenagers; seek age-appropriate
+                            guidance from a qualified healthcare professional.
+                        </p>
+                    </details>
+
+                    <details>
+                        <summary>Are my measurements uploaded?</summary>
+                        <p>
+                            No. This calculator performs its calculations in your
+                            browser and does not send your measurements to a server.
+                        </p>
+                    </details>
+                </div>
+
+                <div class="bf-disclaimer">
+                    <strong>Health disclaimer:</strong>
+                    This tool is for general educational purposes only and is not
+                    medical advice. Its equations have limitations and may not be
+                    suitable for everyone, including people who are pregnant or whose
+                    body composition differs substantially from the populations for
+                    which the method was developed. Consult a qualified healthcare
+                    professional for personalised guidance.
+                </div>
+            </section>
+
+            <!-- RELATED CALCULATORS -->
+            <section class="bf-related">
+                <h2>Related Calculators</h2>
+
+                <div class="bf-related-grid">
+                    <a href="bmi-calculator.html" class="bf-related-card">
+                        <span>♡</span>
+                        <strong>BMI Calculator</strong>
+                        <small>Calculate body mass index</small>
+                    </a>
+
+                    <a href="bmr-calculator.html" class="bf-related-card">
+                        <span>🔥</span>
+                        <strong>BMR Calculator</strong>
+                        <small>Estimate resting energy needs</small>
+                    </a>
+
+                    <a href="tdee-calculator.html" class="bf-related-card">
+                        <span>⚡</span>
+                        <strong>TDEE Calculator</strong>
+                        <small>Estimate daily calorie expenditure</small>
+                    </a>
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Health &amp; Fitness</h3>
+                    <a href="bmi-calculator.html">BMI Calculator</a>
+                    <a href="bmr-calculator.html">BMR Calculator</a>
+                    <a href="tdee-calculator.html">TDEE Calculator</a>
+                    <a href="ideal-weight-calculator.html">Ideal Weight Calculator</a>
+                    <a href="body-fat-calculator.html">Body Fat Calculator</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/body-fat-calculator.js"></script>
+</body>
+
+</html>

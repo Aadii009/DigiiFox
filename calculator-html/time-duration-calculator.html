@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calculate the duration between two times or dates with the free DigiiFox Time Duration Calculator.">
+    <title>Time Duration Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/time-duration-calculator.css">
+    <script src="../calculator-js/time-duration-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tdc-page">
+        <section class="tdc-hero">
+            <div class="container">
+                <div class="tdc-breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Date &amp; Time</span>
+                    <span>/</span>
+                    <span>Time Duration Calculator</span>
+                </div>
+
+                <span class="tdc-eyebrow">DATE &amp; TIME TOOLS</span>
+                <h1>Time Duration Calculator</h1>
+                <p>
+                    Calculate the time between two times or dates in seconds,
+                    minutes, hours, and days.
+                </p>
+            </div>
+        </section>
+
+        <section class="container tdc-main">
+            <div class="tdc-layout">
+
+                <section class="tdc-card tdc-calculator-card">
+                    <div class="tdc-section-heading">
+                        <span class="tdc-icon">◷</span>
+                        <div>
+                            <h2>Calculate Time Duration</h2>
+                            <p>Enter your start and end times below.</p>
+                        </div>
+                    </div>
+
+                    <form id="tdcForm" novalidate>
+                        <div class="tdc-input-grid">
+                            <div class="tdc-field">
+                                <label for="tdcStartDate">Start date <span
+                                        class="tdc-optional">(optional)</span></label>
+                                <input type="date" id="tdcStartDate">
+                            </div>
+
+                            <div class="tdc-field">
+                                <label for="tdcEndDate">End date <span class="tdc-optional">(optional)</span></label>
+                                <input type="date" id="tdcEndDate">
+                            </div>
+
+                            <div class="tdc-field">
+                                <label for="tdcStartTime">Start time</label>
+                                <input type="time" id="tdcStartTime" value="09:00" required>
+                            </div>
+
+                            <div class="tdc-field">
+                                <label for="tdcEndTime">End time</label>
+                                <input type="time" id="tdcEndTime" value="17:30" required>
+                            </div>
+                        </div>
+
+                        <p class="tdc-hint">
+                            Leave both dates blank to calculate a time-only duration.
+                            If the end time is earlier than the start time, the calculator
+                            assumes the end time is on the following day.
+                        </p>
+
+                        <div class="tdc-error" id="tdcError" role="alert" hidden></div>
+
+                        <div class="tdc-actions">
+                            <button type="submit" class="tdc-btn tdc-btn-primary">Calculate Duration</button>
+                            <button type="button" class="tdc-btn tdc-btn-secondary" id="tdcSwap">Swap Times</button>
+                            <button type="button" class="tdc-btn tdc-btn-secondary" id="tdcReset">Reset</button>
+                        </div>
+                    </form>
+
+                    <section class="tdc-results" id="tdcResults" aria-live="polite" hidden>
+                        <div class="tdc-result-top">
+                            <span class="tdc-result-label">TOTAL TIME DURATION</span>
+                            <button type="button" class="tdc-copy-btn" id="tdcCopy">Copy Result</button>
+                        </div>
+
+                        <div class="tdc-primary-result">
+                            <strong id="tdcMainDuration">8 hours, 30 minutes</strong>
+                            <span id="tdcDateRange">Between the selected start and end times</span>
+                        </div>
+
+                        <div class="tdc-stat-grid">
+                            <div class="tdc-stat">
+                                <span>Total days</span>
+                                <strong id="tdcDays">0</strong>
+                            </div>
+                            <div class="tdc-stat">
+                                <span>Total hours</span>
+                                <strong id="tdcHours">8.5</strong>
+                            </div>
+                            <div class="tdc-stat">
+                                <span>Total minutes</span>
+                                <strong id="tdcMinutes">510</strong>
+                            </div>
+                            <div class="tdc-stat">
+                                <span>Total seconds</span>
+                                <strong id="tdcSeconds">30,600</strong>
+                            </div>
+                        </div>
+
+                        <div class="tdc-result-details">
+                            <h3>Calculation details</h3>
+                            <p><span>Start:</span> <strong id="tdcDetailStart">—</strong></p>
+                            <p><span>End:</span> <strong id="tdcDetailEnd">—</strong></p>
+                            <p><span>Duration in HH:MM:SS:</span> <strong id="tdcClockFormat">08:30:00</strong></p>
+                            <p><span>Calculation method:</span> <strong id="tdcMethod">Elapsed time</strong></p>
+                        </div>
+
+                        <p class="tdc-copy-message" id="tdcCopyMessage" role="status"></p>
+                    </section>
+                </section>
+
+                <aside class="tdc-card tdc-sidebar">
+                    <span class="tdc-sidebar-badge">QUICK GUIDE</span>
+                    <h2>How it works</h2>
+                    <p>Choose a start time and an end time. Add dates when you need a duration across specific days.</p>
+
+                    <div class="tdc-guide-item">
+                        <span>01</span>
+                        <div>
+                            <h3>Enter the start</h3>
+                            <p>Choose when the period begins.</p>
+                        </div>
+                    </div>
+
+                    <div class="tdc-guide-item">
+                        <span>02</span>
+                        <div>
+                            <h3>Enter the end</h3>
+                            <p>Choose when the period finishes.</p>
+                        </div>
+                    </div>
+
+                    <div class="tdc-guide-item">
+                        <span>03</span>
+                        <div>
+                            <h3>Calculate</h3>
+                            <p>See the duration in multiple units.</p>
+                        </div>
+                    </div>
+
+                    <div class="tdc-sidebar-note">
+                        <strong>Tip</strong>
+                        <p>For a work shift that ends after midnight, you can leave dates blank and enter an end time
+                            earlier than the start time.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="container tdc-info-section">
+            <div class="tdc-section-title">
+                <span class="tdc-eyebrow">UNDERSTAND THE MATH</span>
+                <h2>What is a Time Duration Calculator?</h2>
+                <p>
+                    A Time Duration Calculator finds the elapsed time between a
+                    starting point and an ending point. It can help calculate work
+                    shifts, study sessions, travel time, event lengths, and more.
+                </p>
+            </div>
+
+            <div class="tdc-info-grid">
+                <article class="tdc-info-card">
+                    <span class="tdc-info-icon">ƒ</span>
+                    <h3>Basic formula</h3>
+                    <p class="tdc-formula">Duration = End time − Start time</p>
+                    <p>When the end point is on the next day, the date difference is included before calculating the
+                        elapsed time.</p>
+                </article>
+
+                <article class="tdc-info-card">
+                    <span class="tdc-info-icon">↔</span>
+                    <h3>Convert time units</h3>
+                    <p class="tdc-formula">Hours = Seconds ÷ 3,600</p>
+                    <p>Convert a duration into minutes by dividing seconds by 60, or into days by dividing seconds by
+                        86,400.</p>
+                </article>
+
+                <article class="tdc-info-card">
+                    <span class="tdc-info-icon">◷</span>
+                    <h3>Clock format</h3>
+                    <p class="tdc-formula">HH:MM:SS</p>
+                    <p>The result also uses hours, minutes, and seconds in a clock-style format for easy reading.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="container tdc-info-section">
+            <div class="tdc-section-title">
+                <span class="tdc-eyebrow">GET STARTED</span>
+                <h2>How to use the calculator</h2>
+            </div>
+
+            <div class="tdc-steps">
+                <div class="tdc-step"><span>1</span>
+                    <p>Enter the start and end times.</p>
+                </div>
+                <div class="tdc-step"><span>2</span>
+                    <p>Optionally select both dates for a specific date range.</p>
+                </div>
+                <div class="tdc-step"><span>3</span>
+                    <p>Select <strong>Calculate Duration</strong> to view the result.</p>
+                </div>
+                <div class="tdc-step"><span>4</span>
+                    <p>Copy the result or use Reset to start again.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container tdc-info-section">
+            <div class="tdc-section-title">
+                <span class="tdc-eyebrow">COMMON QUESTIONS</span>
+                <h2>Frequently asked questions</h2>
+            </div>
+
+            <div class="tdc-faq-list">
+                <details class="tdc-faq">
+                    <summary>Can I calculate a duration across midnight?</summary>
+                    <p>Yes. Leave both dates blank and enter an end time earlier than the start time. The calculator
+                        treats the end time as occurring on the next day.</p>
+                </details>
+
+                <details class="tdc-faq">
+                    <summary>Can I calculate a duration across several days?</summary>
+                    <p>Yes. Select both the start date and end date, then enter the times. The calculator uses the
+                        selected dates to determine the elapsed duration.</p>
+                </details>
+
+                <details class="tdc-faq">
+                    <summary>What if the start and end times are identical?</summary>
+                    <p>With no dates selected, identical times produce a duration of zero. If you select dates, the date
+                        range determines the duration.</p>
+                </details>
+
+                <details class="tdc-faq">
+                    <summary>Are my entered dates and times uploaded?</summary>
+                    <p>No. The calculation runs in your browser. This page does not need to upload your entries to a
+                        server.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="container tdc-related-section">
+            <div class="tdc-section-title">
+                <span class="tdc-eyebrow">EXPLORE MORE</span>
+                <h2>Related tools</h2>
+            </div>
+
+            <div class="tdc-related-grid">
+                <a href="age-calculator.html" class="tdc-related-card">
+                    <span>🎂</span>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate age from a date of birth.</p>
+                </a>
+
+                <a href="date-difference-calculator.html" class="tdc-related-card">
+                    <span>📅</span>
+                    <h3>Date Difference Calculator</h3>
+                    <p>Find the difference between two dates.</p>
+                </a>
+
+                <a href="days-between-dates-calculator.html" class="tdc-related-card">
+                    <span>🗓️</span>
+                    <h3>Days Between Dates</h3>
+                    <p>Count the days in a date range.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Tools</h3>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculator Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Date &amp; Time</h3>
+                    <a href="age-calculator.html">Age Calculator</a>
+                    <a href="date-difference-calculator.html">Date Difference</a>
+                    <a href="days-between-dates-calculator.html">Days Between Dates</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

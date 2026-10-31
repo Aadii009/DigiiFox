@@ -1,0 +1,1086 @@
+/* =========================================
+   DIGIIFOX DAYS BETWEEN DATES CALCULATOR
+   Shared base: standard-calculator.css
+========================================= */
+
+.days-between-hero {
+    padding: 34px 0 46px;
+    background: linear-gradient(135deg, #effaf2, #f7fcf8 55%, #e7f7eb);
+    border-bottom: 1px solid #dcefe0;
+}
+
+.days-between-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 30px;
+    color: #718078;
+    font-size: 13px;
+}
+
+.days-between-breadcrumb a {
+    color: #39794b;
+    text-decoration: none;
+}
+
+.days-between-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.days-between-hero-content {
+    max-width: 760px;
+}
+
+.days-between-eyebrow,
+.days-between-label {
+    display: inline-block;
+    color: #278348;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.days-between-hero h1 {
+    margin: 12px 0;
+    color: #173c27;
+    font-size: clamp(30px, 4vw, 43px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1.2px;
+}
+
+.days-between-hero-content>p {
+    max-width: 650px;
+    margin: 0;
+    color: #607267;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.days-between-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.days-between-badges span {
+    padding: 8px 12px;
+    border: 1px solid #d3e9d9;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #347548;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Main layout */
+
+.days-between-main {
+    padding: 42px 0;
+    background: #f7f9f7;
+}
+
+.days-between-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.8fr);
+    align-items: start;
+    gap: 25px;
+}
+
+.days-between-calculator-card,
+.days-between-side-card,
+.days-between-content-card {
+    min-width: 0;
+    border: 1px solid #e5ebe6;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 7px 25px rgba(28, 69, 41, 0.045);
+}
+
+.days-between-calculator-card {
+    padding: 30px;
+}
+
+.days-between-card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.days-between-card-heading h2,
+.days-between-results-heading h2 {
+    margin: 9px 0 7px;
+    color: #193b27;
+    font-size: 24px;
+    font-weight: 750;
+    line-height: 1.35;
+}
+
+.days-between-card-heading p {
+    margin: 0;
+    color: #7a887e;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.days-between-heading-icon {
+    display: grid;
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    place-items: center;
+    border-radius: 15px;
+    background: #eaf7ed;
+    font-size: 25px;
+}
+
+.days-between-input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.days-between-field {
+    min-width: 0;
+}
+
+.days-between-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: #2b4031;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.days-between-field input[type="date"] {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 49px;
+    padding: 12px 13px;
+    border: 1px solid #d9e3db;
+    border-radius: 10px;
+    outline: none;
+    background: #ffffff;
+    color: #263c2c;
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.days-between-field input[type="date"]:focus {
+    border-color: #3b9a59;
+    box-shadow: 0 0 0 3px rgba(59, 154, 89, 0.12);
+}
+
+.days-between-field small {
+    display: block;
+    margin-top: 8px;
+    color: #849087;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.days-between-date-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 19px;
+}
+
+.days-between-secondary-action {
+    padding: 9px 13px;
+    border: 1px solid #d9e7dc;
+    border-radius: 9px;
+    background: #f7fbf8;
+    color: #357448;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.days-between-secondary-action:hover {
+    border-color: #a9d5b5;
+    background: #edf8f0;
+}
+
+/* Inclusive counting checkbox */
+
+.days-between-count-option {
+    margin-top: 21px;
+    padding: 15px;
+    border: 1px solid #e0eae2;
+    border-radius: 11px;
+    background: #f9fcf9;
+}
+
+.days-between-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.days-between-checkbox-label input {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin: 3px 0 0;
+    accent-color: #278448;
+    cursor: pointer;
+}
+
+.days-between-checkbox-label strong {
+    display: block;
+    color: #344b3a;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.days-between-checkbox-label small {
+    display: block;
+    margin-top: 4px;
+    color: #7b887e;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Buttons and errors */
+
+.days-between-error {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #f3caca;
+    border-radius: 9px;
+    background: #fff4f4;
+    color: #a52d2d;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.days-between-error[hidden],
+.days-between-results[hidden] {
+    display: none !important;
+}
+
+.days-between-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.days-between-primary-button,
+.days-between-reset-button,
+.days-between-copy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 47px;
+    padding: 12px 19px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    text-align: center;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.days-between-primary-button {
+    flex: 1;
+    background: #278448;
+    color: #ffffff;
+    box-shadow: 0 5px 13px rgba(39, 132, 72, 0.15);
+}
+
+.days-between-primary-button:hover {
+    transform: translateY(-1px);
+    background: #206d3b;
+    box-shadow: 0 7px 17px rgba(39, 132, 72, 0.2);
+}
+
+.days-between-reset-button {
+    border-color: #dfe7e0;
+    background: #ffffff;
+    color: #596a5e;
+}
+
+.days-between-reset-button:hover {
+    background: #f3f7f4;
+}
+
+/* Results */
+
+.days-between-results {
+    margin-top: 30px;
+    padding-top: 27px;
+    border-top: 1px solid #e9efea;
+}
+
+.days-between-results-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.days-between-results-heading h2 {
+    margin-bottom: 0;
+}
+
+.days-between-result-check {
+    display: grid;
+    flex-shrink: 0;
+    width: 39px;
+    height: 39px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e7f7eb;
+    color: #278448;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.days-between-total-card {
+    padding: 25px 20px;
+    border: 1px solid #d7eddd;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f0faf2, #f9fdf9);
+    text-align: center;
+}
+
+.days-between-total-card>p:first-child {
+    margin: 0 0 12px;
+    color: #66806d;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.days-between-total-number {
+    color: #217640;
+    font-size: clamp(42px, 5vw, 58px);
+    font-weight: 850;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
+
+.days-between-total-card>span {
+    display: block;
+    margin-top: 5px;
+    color: #617969;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.days-between-range {
+    margin: 19px 0 0;
+    padding-top: 15px;
+    border-top: 1px solid #dceee0;
+    color: #4d6755;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.days-between-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.days-between-stat {
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid #e6ece7;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.days-between-stat>span {
+    display: block;
+    margin-bottom: 8px;
+    color: #748177;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.days-between-stat strong {
+    display: block;
+    color: #243e2c;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.days-between-stat small {
+    display: block;
+    margin-top: 5px;
+    color: #8a968d;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.days-between-details {
+    margin-top: 23px;
+    padding: 20px;
+    border: 1px solid #e7ece8;
+    border-radius: 12px;
+    background: #fbfcfb;
+}
+
+.days-between-details h3 {
+    margin: 0 0 14px;
+    color: #294431;
+    font-size: 15px;
+}
+
+.days-between-detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 11px 0;
+    border-bottom: 1px solid #edf0ed;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.days-between-detail-row:last-child {
+    border-bottom: 0;
+}
+
+.days-between-detail-row span {
+    color: #79857c;
+}
+
+.days-between-detail-row strong {
+    color: #344b3a;
+    font-weight: 700;
+    text-align: right;
+}
+
+.days-between-copy-area {
+    margin-top: 20px;
+}
+
+.days-between-copy-button {
+    width: 100%;
+    background: #e8f6eb;
+    color: #287641;
+}
+
+.days-between-copy-button:hover {
+    background: #d9efdf;
+}
+
+.days-between-copy-message {
+    min-height: 18px;
+    margin: 8px 0 0;
+    color: #32834a;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Sidebar */
+
+.days-between-side-card {
+    padding: 27px;
+}
+
+.days-between-side-icon {
+    display: grid;
+    width: 51px;
+    height: 51px;
+    place-items: center;
+    border-radius: 14px;
+    background: #eaf7ed;
+    font-size: 24px;
+}
+
+.days-between-side-card h2 {
+    margin: 18px 0 10px;
+    color: #203c29;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+.days-between-side-card>p {
+    margin: 0;
+    color: #758178;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.days-between-divider {
+    height: 1px;
+    margin: 23px 0;
+    background: #e8eee9;
+}
+
+.days-between-side-card h3 {
+    margin: 0 0 15px;
+    color: #2d4735;
+    font-size: 14px;
+}
+
+.days-between-feature-list {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.days-between-feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #657268;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.days-between-feature-list li span {
+    display: grid;
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e7f6eb;
+    color: #2d8a49;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.days-between-tip {
+    margin-top: 25px;
+    padding: 16px;
+    border: 1px solid #dceee0;
+    border-radius: 11px;
+    background: #f3faf4;
+}
+
+.days-between-tip strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #287642;
+    font-size: 12px;
+}
+
+.days-between-tip p {
+    margin: 0;
+    color: #65796a;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Educational content */
+
+.days-between-content-section {
+    padding: 24px 0;
+    background: #ffffff;
+}
+
+.days-between-soft-section {
+    background: #f7f9f7;
+}
+
+.days-between-content-card {
+    padding: 30px;
+}
+
+.days-between-content-card>h2,
+.days-between-related-heading h2 {
+    margin: 10px 0 17px;
+    color: #203b29;
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+.days-between-content-card>p {
+    max-width: 900px;
+    margin: 0 0 14px;
+    color: #68766c;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.days-between-content-card>p:last-child {
+    margin-bottom: 0;
+}
+
+.days-between-formula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 23px;
+}
+
+.days-between-formula-card {
+    padding: 21px;
+    border: 1px solid #e4ece5;
+    border-radius: 12px;
+    background: #fbfdfb;
+}
+
+.days-between-formula-card>span {
+    display: inline-grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border-radius: 9px;
+    background: #e6f5e9;
+    color: #278448;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.days-between-formula-card h3 {
+    margin: 13px 0 8px;
+    color: #2d4534;
+    font-size: 15px;
+}
+
+.days-between-formula-card p {
+    margin: 0 0 7px;
+    color: #278448;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.7;
+}
+
+.days-between-formula-card small {
+    color: #7b887e;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.days-between-note {
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-left: 3px solid #3a9857;
+    border-radius: 0 9px 9px 0;
+    background: #eff8f1;
+    color: #607365;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.days-between-note strong {
+    color: #287642;
+}
+
+/* How to use */
+
+.days-between-steps {
+    display: grid;
+    gap: 21px;
+    margin-top: 25px;
+}
+
+.days-between-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.days-between-step>span {
+    display: grid;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 11px;
+    background: #e8f6eb;
+    color: #278448;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.days-between-step h3 {
+    margin: 1px 0 5px;
+    color: #304737;
+    font-size: 14px;
+}
+
+.days-between-step p {
+    margin: 0;
+    color: #77837a;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* FAQs */
+
+.days-between-faq-list {
+    display: grid;
+    gap: 11px;
+    margin-top: 23px;
+}
+
+.days-between-faq {
+    overflow: hidden;
+    border: 1px solid #e4eae5;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.days-between-faq summary {
+    position: relative;
+    padding: 17px 43px 17px 17px;
+    color: #304737;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.7;
+    list-style: none;
+}
+
+.days-between-faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.days-between-faq summary::after {
+    position: absolute;
+    top: 50%;
+    right: 17px;
+    color: #2c8a49;
+    content: "+";
+    font-size: 21px;
+    font-weight: 500;
+    transform: translateY(-50%);
+}
+
+.days-between-faq[open] summary::after {
+    content: "−";
+}
+
+.days-between-faq[open] summary {
+    border-bottom: 1px solid #e9efea;
+    background: #f8fcf9;
+}
+
+.days-between-faq p {
+    margin: 0;
+    padding: 15px 17px 18px;
+    color: #718076;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* Related calculators */
+
+.days-between-related-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.days-between-related-heading h2 {
+    margin-bottom: 0;
+}
+
+.days-between-view-all {
+    flex-shrink: 0;
+    padding-bottom: 5px;
+    color: #278448;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.days-between-view-all:hover {
+    text-decoration: underline;
+}
+
+.days-between-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.days-between-related-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+    border: 1px solid #e5ebe6;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 5px 18px rgba(28, 69, 41, 0.035);
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.days-between-related-card:hover {
+    transform: translateY(-3px);
+    border-color: #b7ddc0;
+    box-shadow: 0 10px 24px rgba(28, 69, 41, 0.08);
+}
+
+.days-between-related-icon {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    border-radius: 12px;
+    background: #eaf7ed;
+    font-size: 21px;
+}
+
+.days-between-related-card h3 {
+    margin: 15px 0 8px;
+    color: #2d4434;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.days-between-related-card p {
+    flex: 1;
+    margin: 0 0 16px;
+    color: #78847b;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.days-between-related-link {
+    color: #278448;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+/* Accessibility */
+
+.days-between-primary-button:focus-visible,
+.days-between-reset-button:focus-visible,
+.days-between-copy-button:focus-visible,
+.days-between-secondary-action:focus-visible,
+.days-between-related-card:focus-visible,
+.days-between-faq summary:focus-visible {
+    outline: 3px solid rgba(39, 132, 72, 0.35);
+    outline-offset: 3px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .days-between-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .days-between-side-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+        column-gap: 18px;
+    }
+
+    .days-between-side-icon {
+        grid-row: 1 / span 2;
+    }
+
+    .days-between-side-card h2 {
+        margin-top: 0;
+    }
+
+    .days-between-side-card>p {
+        grid-column: 2;
+    }
+
+    .days-between-divider,
+    .days-between-side-card h3,
+    .days-between-feature-list,
+    .days-between-tip {
+        grid-column: 1 / -1;
+    }
+
+    .days-between-feature-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .days-between-hero {
+        padding: 25px 0 32px;
+    }
+
+    .days-between-breadcrumb {
+        gap: 6px;
+        margin-bottom: 23px;
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+    .days-between-hero h1 {
+        font-size: 30px;
+        letter-spacing: -0.6px;
+    }
+
+    .days-between-hero-content>p {
+        font-size: 14px;
+    }
+
+    .days-between-badges {
+        gap: 7px;
+    }
+
+    .days-between-badges span {
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+
+    .days-between-main {
+        padding: 25px 0;
+    }
+
+    .days-between-calculator-card,
+    .days-between-side-card,
+    .days-between-content-card {
+        padding: 21px;
+        border-radius: 14px;
+    }
+
+    .days-between-card-heading h2,
+    .days-between-results-heading h2 {
+        font-size: 21px;
+    }
+
+    .days-between-heading-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 21px;
+    }
+
+    .days-between-input-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 17px;
+    }
+
+    .days-between-form-actions {
+        flex-direction: column;
+    }
+
+    .days-between-primary-button,
+    .days-between-reset-button {
+        width: 100%;
+    }
+
+    .days-between-total-card {
+        padding: 22px 13px;
+    }
+
+    .days-between-total-number {
+        font-size: 44px;
+    }
+
+    .days-between-stats-grid {
+        gap: 9px;
+    }
+
+    .days-between-stat {
+        padding: 13px;
+    }
+
+    .days-between-stat strong {
+        font-size: 22px;
+    }
+
+    .days-between-details {
+        padding: 15px;
+    }
+
+    .days-between-detail-row {
+        gap: 10px;
+        font-size: 11px;
+    }
+
+    .days-between-content-section {
+        padding: 17px 0;
+    }
+
+    .days-between-content-card>h2,
+    .days-between-related-heading h2 {
+        font-size: 22px;
+    }
+
+    .days-between-formula-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .days-between-related-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .days-between-related-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .days-between-related-card {
+        padding: 19px;
+    }
+
+    .days-between-side-card {
+        display: block;
+    }
+
+    .days-between-side-card h2 {
+        margin-top: 17px;
+    }
+
+    .days-between-feature-list {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 360px) {
+
+    .days-between-calculator-card,
+    .days-between-side-card,
+    .days-between-content-card {
+        padding: 16px;
+    }
+
+    .days-between-total-number {
+        font-size: 36px;
+    }
+
+    .days-between-stat strong {
+        font-size: 19px;
+    }
+
+    .days-between-detail-row {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .days-between-detail-row strong {
+        text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .days-between-primary-button,
+    .days-between-reset-button,
+    .days-between-copy-button,
+    .days-between-secondary-action,
+    .days-between-related-card {
+        transition: none;
+    }
+}

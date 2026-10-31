@@ -1,0 +1,1204 @@
+/* =========================================
+   DIGIIFOX EMI CALCULATOR
+   Theme: Calm Green
+   ========================================= */
+
+.emi-page {
+    --emi-primary: #23845b;
+    --emi-primary-dark: #176747;
+    --emi-primary-light: #eaf6ef;
+    --emi-background: #f6f9f7;
+    --emi-card: #ffffff;
+    --emi-border: #e0e9e3;
+    --emi-text: #24352b;
+    --emi-muted: #718078;
+    --emi-danger: #c43c3c;
+    --emi-interest: #e9b96b;
+
+    background: var(--emi-background);
+    color: var(--emi-text);
+}
+
+.emi-main {
+    min-height: 60vh;
+}
+
+.emi-main .container {
+    width: min(1160px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.emi-page button,
+.emi-page input,
+.emi-page select {
+    font: inherit;
+}
+
+.emi-page button {
+    cursor: pointer;
+}
+
+.emi-page button:focus-visible,
+.emi-page input:focus-visible,
+.emi-page select:focus-visible,
+.emi-page summary:focus-visible {
+    outline: 3px solid rgba(35, 132, 91, 0.25);
+    outline-offset: 3px;
+}
+
+.emi-page [hidden] {
+    display: none !important;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.emi-hero {
+    padding: 62px 0 58px;
+    border-bottom: 1px solid var(--emi-border);
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(35, 132, 91, 0.09),
+            transparent 30%
+        ),
+        linear-gradient(135deg, #f0f8f2, #ffffff);
+    text-align: center;
+}
+
+.emi-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    margin-bottom: 18px;
+    border: 1px solid #cce6d5;
+    border-radius: 30px;
+    background: #ffffff;
+    color: var(--emi-primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.emi-hero h1 {
+    margin: 0 0 17px;
+    color: #1d3326;
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -1.3px;
+    line-height: 1.15;
+}
+
+.emi-hero > .container > p {
+    max-width: 730px;
+    margin: 0 auto;
+    color: var(--emi-muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.emi-hero-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.emi-hero-tags span {
+    padding: 8px 12px;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #456454;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   MAIN CALCULATOR LAYOUT
+   ========================================= */
+
+.emi-section {
+    padding: 48px 0 34px;
+}
+
+.emi-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+    gap: 24px;
+}
+
+.emi-card {
+    min-width: 0;
+    padding: 27px;
+    border: 1px solid var(--emi-border);
+    border-radius: 16px;
+    background: var(--emi-card);
+    box-shadow: 0 5px 22px rgba(27, 69, 45, 0.045);
+}
+
+.emi-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.emi-card-heading h2 {
+    margin: 6px 0 9px;
+    color: #24392d;
+    font-size: 23px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.emi-card-heading p {
+    margin: 0;
+    color: var(--emi-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.emi-eyebrow {
+    color: var(--emi-primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.emi-icon {
+    display: flex;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: var(--emi-primary-light);
+    color: var(--emi-primary-dark);
+    font-size: 23px;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   INPUT FIELDS
+   ========================================= */
+
+.emi-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.emi-field label {
+    color: var(--emi-text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.emi-input-wrapper {
+    display: flex;
+    min-height: 49px;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #d7e3db;
+    border-radius: 9px;
+    background: #fcfefc;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.emi-input-wrapper:focus-within {
+    border-color: var(--emi-primary);
+    box-shadow: 0 0 0 3px rgba(35, 132, 91, 0.09);
+}
+
+.emi-input-wrapper input {
+    width: 100%;
+    min-width: 0;
+    height: 47px;
+    padding: 12px 14px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #273a2e;
+    font-size: 15px;
+}
+
+.emi-input-wrapper input:focus-visible {
+    outline: none;
+}
+
+.emi-input-prefix,
+.emi-input-suffix {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    padding: 0 14px;
+    background: #f0f7f2;
+    color: #527260;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.emi-input-prefix {
+    border-right: 1px solid #dfe9e2;
+}
+
+.emi-input-suffix {
+    border-left: 1px solid #dfe9e2;
+}
+
+.emi-field small {
+    color: var(--emi-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.emi-tenure-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 115px;
+    gap: 10px;
+}
+
+.emi-tenure-row > input,
+.emi-tenure-row > select {
+    width: 100%;
+    min-width: 0;
+    min-height: 49px;
+    padding: 12px;
+    border: 1px solid #d7e3db;
+    border-radius: 9px;
+    background: #fcfefc;
+    color: #273a2e;
+    font-size: 14px;
+}
+
+.emi-tenure-row > input:focus,
+.emi-tenure-row > select:focus {
+    border-color: var(--emi-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(35, 132, 91, 0.09);
+}
+
+
+/* =========================================
+   EXAMPLE BUTTONS
+   ========================================= */
+
+.emi-examples {
+    margin-top: 25px;
+}
+
+.emi-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--emi-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.emi-example-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.emi-example-btn {
+    padding: 9px 12px;
+    border: 1px solid #dce8df;
+    border-radius: 7px;
+    background: #f8fbf9;
+    color: #456454;
+    font-size: 12px;
+    font-weight: 650;
+    transition: all 0.2s ease;
+}
+
+.emi-example-btn:hover {
+    border-color: var(--emi-primary);
+    background: var(--emi-primary-light);
+    color: var(--emi-primary-dark);
+}
+
+
+/* =========================================
+   ERROR MESSAGES
+   ========================================= */
+
+.emi-error {
+    display: none;
+    margin-top: 17px;
+    padding: 12px 14px;
+    border: 1px solid #f1caca;
+    border-radius: 8px;
+    background: #fff3f3;
+    color: var(--emi-danger);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.emi-error.is-visible {
+    display: block;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+   ========================================= */
+
+.emi-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.emi-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 45px;
+    padding: 12px 17px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 750;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.emi-btn:hover {
+    transform: translateY(-1px);
+}
+
+.emi-primary-btn {
+    border-color: var(--emi-primary);
+    background: var(--emi-primary);
+    color: #ffffff;
+}
+
+.emi-primary-btn:hover {
+    border-color: var(--emi-primary-dark);
+    background: var(--emi-primary-dark);
+}
+
+.emi-actions .emi-primary-btn {
+    flex: 1;
+}
+
+.emi-reset-btn {
+    border-color: #dce6df;
+    background: #ffffff;
+    color: #52665a;
+}
+
+.emi-reset-btn:hover {
+    border-color: #b8cfc0;
+    background: #f5faf6;
+}
+
+
+/* =========================================
+   EMPTY RESULTS
+   ========================================= */
+
+.emi-empty-state {
+    padding: 34px 16px;
+    border: 1px dashed #d7e6dc;
+    border-radius: 12px;
+    background: #fbfdfb;
+    text-align: center;
+}
+
+.emi-empty-icon {
+    display: flex;
+    width: 65px;
+    height: 65px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 17px;
+    border-radius: 50%;
+    background: var(--emi-primary-light);
+    color: var(--emi-primary);
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.emi-empty-state h3 {
+    margin: 0 0 9px;
+    color: #2d4435;
+    font-size: 17px;
+}
+
+.emi-empty-state p {
+    max-width: 320px;
+    margin: 0 auto;
+    color: var(--emi-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   MONTHLY EMI HIGHLIGHT
+   ========================================= */
+
+.emi-monthly-highlight {
+    padding: 25px 20px;
+    border: 1px solid #d0e7d8;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #edf8f0, #f9fdf9);
+    text-align: center;
+}
+
+.emi-monthly-highlight > span {
+    display: block;
+    margin-bottom: 11px;
+    color: #527260;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.emi-monthly-highlight > strong {
+    display: block;
+    color: var(--emi-primary-dark);
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 850;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.emi-monthly-highlight > small {
+    display: block;
+    margin-top: 8px;
+    color: var(--emi-muted);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   REPAYMENT BREAKDOWN
+   ========================================= */
+
+.emi-breakdown {
+    margin-top: 25px;
+}
+
+.emi-breakdown-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.emi-breakdown-heading h3 {
+    margin: 0;
+    color: #344b3b;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.emi-breakdown-heading > span {
+    color: var(--emi-muted);
+    font-size: 11px;
+}
+
+.emi-breakdown-bar {
+    display: flex;
+    width: 100%;
+    height: 13px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #e9efeb;
+}
+
+.emi-principal-bar {
+    width: 0;
+    background: var(--emi-primary);
+    transition: width 0.3s ease;
+}
+
+.emi-interest-bar {
+    width: 0;
+    background: var(--emi-interest);
+    transition: width 0.3s ease;
+}
+
+.emi-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.emi-legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    min-width: 0;
+}
+
+.emi-legend-dot {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    margin-top: 4px;
+    border-radius: 3px;
+}
+
+.emi-principal-dot {
+    background: var(--emi-primary);
+}
+
+.emi-interest-dot {
+    background: var(--emi-interest);
+}
+
+.emi-legend-item > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.emi-legend-item > div > span {
+    color: var(--emi-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.emi-legend-item strong {
+    color: #2b4233;
+    font-size: 14px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   SUMMARY GRID
+   ========================================= */
+
+.emi-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.emi-summary-item {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 9px;
+    padding: 15px;
+    border: 1px solid #e0eae3;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.emi-summary-item span {
+    color: var(--emi-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.emi-summary-item strong {
+    color: #2b4233;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   RESULT NOTE AND COPY
+   ========================================= */
+
+.emi-result-note {
+    margin-top: 20px;
+    padding: 13px 14px;
+    border: 1px solid #e2ebe5;
+    border-radius: 8px;
+    background: #f8fbf9;
+    color: #68796f;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.emi-result-note strong {
+    color: #3c5846;
+}
+
+.emi-copy-action {
+    margin-top: 20px;
+}
+
+.emi-copy-action .emi-btn {
+    width: 100%;
+}
+
+.emi-copy-status {
+    min-height: 18px;
+    margin: 10px 0 0;
+    color: var(--emi-primary-dark);
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* =========================================
+   AMORTIZATION SCHEDULE
+   ========================================= */
+
+.emi-schedule-card {
+    margin-top: 25px;
+}
+
+.emi-schedule-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.emi-schedule-controls label {
+    color: #52665a;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.emi-schedule-controls select {
+    min-height: 39px;
+    padding: 8px 11px;
+    border: 1px solid #d7e3db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #304638;
+    font-size: 12px;
+}
+
+.emi-schedule-controls > span {
+    margin-left: auto;
+    color: var(--emi-muted);
+    font-size: 11px;
+}
+
+.emi-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e3ebe5;
+    border-radius: 10px;
+}
+
+.emi-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    background: #ffffff;
+    text-align: right;
+}
+
+.emi-table th,
+.emi-table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #edf2ee;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.emi-table th {
+    background: #f1f8f3;
+    color: #43614d;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.emi-table th:first-child,
+.emi-table td:first-child {
+    text-align: center;
+}
+
+.emi-table td {
+    color: #53685b;
+    font-variant-numeric: tabular-nums;
+}
+
+.emi-table tbody tr:hover {
+    background: #f8fbf9;
+}
+
+.emi-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.emi-table td:last-child {
+    color: #2c6b47;
+    font-weight: 750;
+}
+
+.emi-schedule-note {
+    margin: 15px 0 0;
+    color: var(--emi-muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   INFORMATION SECTIONS
+   ========================================= */
+
+.emi-info-section {
+    padding: 55px 0;
+}
+
+.emi-how-section {
+    background: #ffffff;
+    border-top: 1px solid #e9f0eb;
+    border-bottom: 1px solid #e9f0eb;
+}
+
+.emi-section-heading {
+    max-width: 760px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
+.emi-section-heading h2 {
+    margin: 10px 0 13px;
+    color: #24392d;
+    font-size: clamp(25px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    line-height: 1.3;
+}
+
+.emi-section-heading > p {
+    margin: 0;
+    color: var(--emi-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   FORMULA CARD
+   ========================================= */
+
+.emi-formula-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 850px;
+    margin: 0 auto 25px;
+    padding: 26px;
+    border: 1px solid #d9e9de;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 5px 22px rgba(27, 69, 45, 0.035);
+}
+
+.emi-formula-symbol {
+    display: flex;
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--emi-primary-light);
+    color: var(--emi-primary-dark);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.emi-formula-card h3 {
+    margin: 0 0 14px;
+    color: #2d4435;
+    font-size: 17px;
+}
+
+.emi-formula {
+    color: var(--emi-primary-dark);
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 800;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.emi-formula-card p {
+    margin: 12px 0 0;
+    color: var(--emi-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   INFORMATION CARDS
+   ========================================= */
+
+.emi-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+}
+
+.emi-info-card {
+    padding: 24px;
+    border: 1px solid var(--emi-border);
+    border-radius: 13px;
+    background: #ffffff;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.emi-info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(30, 75, 48, 0.07);
+}
+
+.emi-info-icon {
+    display: flex;
+    width: 43px;
+    height: 43px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 17px;
+    border-radius: 10px;
+    background: var(--emi-primary-light);
+    color: var(--emi-primary-dark);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.emi-info-card h3 {
+    margin: 0 0 10px;
+    color: #2c4233;
+    font-size: 16px;
+}
+
+.emi-info-card p {
+    margin: 0;
+    color: var(--emi-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.emi-mini-formula {
+    margin-top: 13px;
+    padding: 10px;
+    border-radius: 7px;
+    background: #f2f8f4;
+    color: #286847;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+
+/* =========================================
+   HOW TO USE
+   ========================================= */
+
+.emi-how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.emi-how-card {
+    padding: 23px;
+    border: 1px solid var(--emi-border);
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.emi-step-number {
+    display: inline-flex;
+    width: 39px;
+    height: 39px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    border-radius: 9px;
+    background: var(--emi-primary-light);
+    color: var(--emi-primary-dark);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.emi-how-card h3 {
+    margin: 0 0 10px;
+    color: #2b4233;
+    font-size: 15px;
+}
+
+.emi-how-card p {
+    margin: 0;
+    color: var(--emi-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   FAQ
+   ========================================= */
+
+.emi-faq-list {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.emi-faq-item {
+    margin-bottom: 12px;
+    border: 1px solid var(--emi-border);
+    border-radius: 11px;
+    background: #ffffff;
+}
+
+.emi-faq-item summary {
+    position: relative;
+    padding: 19px 45px 19px 20px;
+    color: #2d4435;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.6;
+    cursor: pointer;
+    list-style: none;
+}
+
+.emi-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.emi-faq-item summary::after {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    color: var(--emi-primary);
+    font-size: 21px;
+    font-weight: 500;
+    content: "+";
+    transform: translateY(-50%);
+}
+
+.emi-faq-item[open] summary::after {
+    content: "−";
+}
+
+.emi-faq-item p {
+    margin: 0;
+    padding: 0 20px 20px;
+    color: var(--emi-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   RESPONSIVE TABLET
+   ========================================= */
+
+@media (max-width: 950px) {
+
+    .emi-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .emi-info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .emi-how-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .emi-main .container {
+        width: calc(100% - 28px);
+    }
+
+    .emi-hero {
+        padding: 43px 0 40px;
+    }
+
+    .emi-hero h1 {
+        font-size: 32px;
+        letter-spacing: -0.7px;
+    }
+
+    .emi-hero > .container > p {
+        font-size: 14px;
+    }
+
+    .emi-hero-tags {
+        gap: 8px;
+    }
+
+    .emi-hero-tags span {
+        font-size: 11px;
+    }
+
+    .emi-section {
+        padding: 27px 0;
+    }
+
+    .emi-card {
+        padding: 19px;
+        border-radius: 12px;
+    }
+
+    .emi-card-heading h2 {
+        font-size: 20px;
+    }
+
+    .emi-icon {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+    }
+
+    .emi-tenure-row {
+        grid-template-columns: minmax(0, 1fr) 105px;
+        gap: 8px;
+    }
+
+    .emi-example-buttons {
+        gap: 7px;
+    }
+
+    .emi-example-btn {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .emi-actions {
+        flex-direction: column;
+    }
+
+    .emi-actions .emi-btn {
+        width: 100%;
+    }
+
+    .emi-monthly-highlight {
+        padding: 22px 15px;
+    }
+
+    .emi-monthly-highlight > strong {
+        font-size: 28px;
+    }
+
+    .emi-summary-grid {
+        gap: 9px;
+    }
+
+    .emi-summary-item {
+        padding: 12px;
+    }
+
+    .emi-summary-item strong {
+        font-size: 14px;
+    }
+
+    .emi-legend {
+        gap: 10px;
+    }
+
+    .emi-legend-item strong {
+        font-size: 12px;
+    }
+
+    .emi-schedule-controls {
+        align-items: flex-start;
+    }
+
+    .emi-schedule-controls > span {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .emi-info-section {
+        padding: 40px 0;
+    }
+
+    .emi-section-heading {
+        margin-bottom: 26px;
+    }
+
+    .emi-section-heading h2 {
+        font-size: 25px;
+    }
+
+    .emi-formula-card {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .emi-info-grid,
+    .emi-how-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .emi-info-card,
+    .emi-how-card {
+        padding: 20px;
+    }
+
+    .emi-faq-item summary {
+        padding: 16px 42px 16px 16px;
+        font-size: 13px;
+    }
+
+    .emi-faq-item p {
+        padding: 0 16px 17px;
+    }
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .emi-page *,
+    .emi-page *::before,
+    .emi-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+}

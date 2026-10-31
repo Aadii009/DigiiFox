@@ -1,0 +1,380 @@
+/* =====================================================
+   DIGIIFOX DISCOUNT CALCULATOR
+   Shared foundation: standard-calculator.css
+   Theme: Calm Green
+   ===================================================== */
+
+
+/* ================= MAIN SECTION ================= */
+
+.discount-section {
+    padding: 60px 0 64px;
+}
+
+.discount-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.discount-heading h2 {
+    margin-bottom: 10px;
+    font-size: var(--font-2xl);
+    line-height: 1.3;
+    letter-spacing: -0.7px;
+}
+
+.discount-heading p {
+    color: var(--text-secondary);
+}
+
+.discount-heading-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 66px;
+    height: 66px;
+    border: 1px solid #d3eadb;
+    border-radius: 18px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+
+/* ================= CALCULATOR GRID ================= */
+
+.discount-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 24px;
+}
+
+.discount-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+}
+
+.discount-card:hover {
+    transform: translateY(-3px);
+    border-color: #cfe4d5;
+    box-shadow: var(--shadow-hover);
+}
+
+.discount-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.discount-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.stacked-icon {
+    background: #eaf3ff;
+    color: #3568a8;
+}
+
+.calculation-tag {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+    background: var(--background-soft);
+    font-size: var(--font-xs);
+    font-weight: 700;
+}
+
+.discount-card h3 {
+    margin-bottom: 8px;
+    font-size: var(--font-xl);
+    line-height: 1.35;
+    letter-spacing: -0.4px;
+}
+
+.card-description {
+    min-height: 48px;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+}
+
+
+/* ================= EXAMPLE LABEL ================= */
+
+.example-box-small {
+    display: grid;
+    gap: 4px;
+    margin: 18px 0 20px;
+    padding: 14px;
+    border: 1px solid #e0ece4;
+    border-radius: var(--radius-sm);
+    background: var(--primary-soft);
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    font-weight: 650;
+}
+
+.example-box-small span {
+    color: var(--primary);
+    font-size: var(--font-xs);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+
+/* ================= FORM AND INPUTS ================= */
+
+.discount-form {
+    display: grid;
+    gap: 16px;
+}
+
+.field-group {
+    display: grid;
+    gap: 7px;
+}
+
+.field-group label {
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+    font-weight: 650;
+}
+
+.field-group input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    outline: none;
+    background: #ffffff;
+    color: var(--text-primary);
+    font-size: var(--font-base);
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.field-group input::placeholder {
+    color: #9aa69e;
+}
+
+.field-group input:hover {
+    border-color: #a8cbb5;
+}
+
+.field-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(35, 132, 91, 0.12);
+}
+
+.field-group input[aria-invalid="true"] {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(196, 61, 61, 0.08);
+}
+
+
+/* ================= CALCULATE BUTTON ================= */
+
+.calculate-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 50px;
+    margin-top: 4px;
+    padding: 12px 16px;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: #ffffff;
+    font-size: var(--font-sm);
+    font-weight: 750;
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
+}
+
+.calculate-button span {
+    font-size: 1.1rem;
+    transition: transform var(--transition);
+}
+
+.calculate-button:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.calculate-button:hover span {
+    transform: translateX(3px);
+}
+
+.calculate-button:active {
+    transform: scale(0.99);
+}
+
+.calculate-button:focus-visible {
+    outline: 3px solid rgba(35, 132, 91, 0.3);
+    outline-offset: 3px;
+}
+
+
+/* ================= RESULT PANEL ================= */
+
+.discount-result {
+    display: grid;
+    gap: 7px;
+    min-height: 105px;
+    margin-top: 20px;
+    padding: 17px;
+    border: 1px solid #dcebe0;
+    border-radius: var(--radius-md);
+    background: var(--primary-soft);
+    overflow-wrap: anywhere;
+}
+
+.result-label {
+    color: var(--text-secondary);
+    font-size: var(--font-xs);
+    font-weight: 750;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.discount-result strong {
+    color: var(--primary-dark);
+    font-size: 1.55rem;
+    font-weight: 800;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.discount-result .result-detail {
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    line-height: 1.6;
+}
+
+.discount-result.error {
+    border-color: #f0d4d4;
+    background: #fff7f7;
+}
+
+.discount-result.error strong {
+    color: var(--danger);
+    font-size: var(--font-base);
+}
+
+.discount-result.error .result-detail {
+    color: #8f4545;
+}
+
+
+/* ================= PRIVACY MESSAGE ================= */
+
+.privacy-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    text-align: center;
+}
+
+.privacy-message span {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 760px) {
+    .discount-section {
+        padding: 44px 0 48px;
+    }
+
+    .discount-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .discount-card {
+        padding: 23px;
+    }
+
+    .card-description {
+        min-height: 0;
+    }
+
+    .discount-heading h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .discount-heading {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .discount-heading-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 13px;
+        font-size: 1.8rem;
+    }
+
+    .discount-heading h2 {
+        font-size: 1.5rem;
+    }
+
+    .discount-card {
+        padding: 19px;
+        border-radius: var(--radius-md);
+    }
+
+    .discount-card h3 {
+        font-size: var(--font-lg);
+    }
+
+    .discount-result strong {
+        font-size: 1.4rem;
+    }
+
+    .privacy-message {
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+    }
+}

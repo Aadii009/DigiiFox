@@ -1,0 +1,1141 @@
+/* =====================================================
+   DIGIIFOX AGE CALCULATOR
+   Theme: Calm Green
+   Shared styles: standard-calculator.css
+===================================================== */
+
+
+/* ================= PAGE VARIABLES ================= */
+
+.age-page {
+    --age-primary: #198754;
+    --age-primary-dark: #146c43;
+    --age-primary-light: #eaf7ef;
+    --age-primary-border: #ccebd8;
+
+    --age-text: #1f2937;
+    --age-muted: #6b7280;
+    --age-border: #e5e7eb;
+    --age-surface: #ffffff;
+    --age-background: #f7faf8;
+
+    color: var(--age-text);
+    background: var(--age-background);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.age-page *,
+.age-page *::before,
+.age-page *::after {
+    box-sizing: border-box;
+}
+
+.age-page a {
+    color: inherit;
+}
+
+.age-page button,
+.age-page input {
+    font: inherit;
+}
+
+.age-page button:focus-visible,
+.age-page a:focus-visible,
+.age-page input:focus-visible,
+.age-page summary:focus-visible {
+    outline: 3px solid rgba(25, 135, 84, 0.35);
+    outline-offset: 3px;
+}
+
+.age-page [hidden] {
+    display: none !important;
+}
+
+
+/* ================= HERO ================= */
+
+.age-hero {
+    padding: 24px 0 54px;
+    background:
+        radial-gradient(circle at 85% 20%,
+            rgba(25, 135, 84, 0.09),
+            transparent 35%),
+        linear-gradient(135deg, #f0faf3, #ffffff);
+    border-bottom: 1px solid var(--age-primary-border);
+}
+
+.age-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 38px;
+    font-size: 13px;
+    color: var(--age-muted);
+}
+
+.age-breadcrumb a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.age-breadcrumb a:hover {
+    color: var(--age-primary);
+}
+
+.age-breadcrumb span:last-child {
+    color: var(--age-primary-dark);
+    font-weight: 600;
+}
+
+.age-hero-content {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.age-hero-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border: 1px solid var(--age-primary-border);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(25, 135, 84, 0.08);
+    font-size: 34px;
+}
+
+.age-eyebrow,
+.age-section-label {
+    display: inline-block;
+    color: var(--age-primary-dark);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.age-hero h1 {
+    margin: 12px 0 16px;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -1.2px;
+    font-weight: 800;
+}
+
+.age-hero-content>p {
+    max-width: 660px;
+    margin: 0 auto;
+    color: var(--age-muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* ================= CALCULATOR SECTION ================= */
+
+.age-calculator-section {
+    padding: 54px 0 36px;
+}
+
+.age-calculator-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 34px;
+    border: 1px solid var(--age-border);
+    border-radius: 20px;
+    background: var(--age-surface);
+    box-shadow: 0 12px 40px rgba(31, 41, 55, 0.045);
+}
+
+.age-card-heading,
+.age-results-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.age-card-heading {
+    margin-bottom: 28px;
+}
+
+.age-card-heading h2,
+.age-results-heading h2 {
+    margin: 8px 0 8px;
+    font-size: 25px;
+    line-height: 1.3;
+    font-weight: 750;
+}
+
+.age-card-heading p {
+    margin: 0;
+    color: var(--age-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.age-heading-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    background: var(--age-primary-light);
+    font-size: 26px;
+}
+
+
+/* ================= FORM ================= */
+
+.age-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.age-field {
+    min-width: 0;
+}
+
+.age-field label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.age-field input {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--age-text);
+    font-size: 15px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.age-field input:hover {
+    border-color: #9ca3af;
+}
+
+.age-field input:focus {
+    border-color: var(--age-primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
+}
+
+.age-field small {
+    display: block;
+    margin-top: 8px;
+    color: var(--age-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.age-error {
+    margin-top: 20px;
+    padding: 12px 14px;
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+    background: #fef2f2;
+    color: #b91c1c;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.age-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.age-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 22px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.age-btn:active {
+    transform: translateY(1px);
+}
+
+.age-btn-primary {
+    background: var(--age-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.16);
+}
+
+.age-btn-primary:hover {
+    background: var(--age-primary-dark);
+    box-shadow: 0 6px 16px rgba(25, 135, 84, 0.2);
+}
+
+.age-btn-secondary {
+    border-color: var(--age-border);
+    background: #ffffff;
+    color: var(--age-text);
+}
+
+.age-btn-secondary:hover {
+    border-color: var(--age-primary-border);
+    background: var(--age-primary-light);
+}
+
+.age-btn-copy {
+    width: 100%;
+    margin-top: 22px;
+    border-color: var(--age-primary-border);
+    background: var(--age-primary-light);
+    color: var(--age-primary-dark);
+}
+
+.age-btn-copy:hover {
+    border-color: var(--age-primary);
+    background: #ddf2e5;
+}
+
+
+/* ================= RESULTS ================= */
+
+.age-results {
+    margin-top: 36px;
+    padding-top: 30px;
+    border-top: 1px solid var(--age-border);
+}
+
+.age-results-heading {
+    margin-bottom: 22px;
+}
+
+.age-results-heading h2 {
+    margin-bottom: 0;
+}
+
+.age-result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 11px;
+    border-radius: 30px;
+    background: var(--age-primary-light);
+    color: var(--age-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ================= PRIMARY AGE ================= */
+
+.age-main-result {
+    padding: 28px 20px;
+    border: 1px solid var(--age-primary-border);
+    border-radius: 16px;
+    background:
+        radial-gradient(circle at top right,
+            rgba(25, 135, 84, 0.09),
+            transparent 42%),
+        linear-gradient(135deg, #f3fbf5, #ffffff);
+    text-align: center;
+}
+
+.age-main-result-icon {
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.age-result-caption {
+    margin: 0 0 20px;
+    color: var(--age-muted);
+    font-size: 14px;
+}
+
+.age-primary-age {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.age-primary-age>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 5px;
+}
+
+.age-primary-age strong {
+    color: var(--age-primary-dark);
+    font-size: clamp(30px, 5vw, 43px);
+    line-height: 1.1;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.age-primary-age span {
+    color: var(--age-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.age-result-date {
+    margin: 20px 0 0;
+    color: var(--age-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ================= AGE DETAIL CARDS ================= */
+
+.age-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.age-detail-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--age-border);
+    border-radius: 13px;
+    background: #ffffff;
+}
+
+.age-detail-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39px;
+    height: 39px;
+    margin-bottom: 14px;
+    border-radius: 11px;
+    background: var(--age-primary-light);
+    font-size: 19px;
+}
+
+.age-detail-label {
+    color: var(--age-muted);
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.6;
+}
+
+.age-detail-card>strong {
+    margin-top: 7px;
+    color: var(--age-text);
+    font-size: clamp(20px, 3vw, 27px);
+    line-height: 1.3;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+
+/* ================= BIRTHDAY COUNTDOWN ================= */
+
+.age-birthday-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid var(--age-primary-border);
+    border-radius: 14px;
+    background: #f7fcf8;
+}
+
+.age-birthday-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #ffffff;
+    font-size: 25px;
+}
+
+.age-birthday-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.age-birthday-content h3 {
+    margin: 5px 0;
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.age-birthday-content p {
+    margin: 0;
+    color: var(--age-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.age-birthday-countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 78px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.age-birthday-countdown strong {
+    color: var(--age-primary-dark);
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.age-birthday-countdown span {
+    margin-top: 4px;
+    color: var(--age-muted);
+    font-size: 10px;
+    font-weight: 650;
+}
+
+
+/* ================= CALCULATION DETAILS ================= */
+
+.age-calculation-details {
+    margin-top: 26px;
+}
+
+.age-calculation-details h3 {
+    margin: 0 0 15px;
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.age-calculation-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0f1f3;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.age-calculation-row:last-child {
+    border-bottom: none;
+}
+
+.age-calculation-row>span {
+    color: var(--age-muted);
+}
+
+.age-calculation-row>strong {
+    max-width: 60%;
+    color: var(--age-text);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.age-copy-message {
+    min-height: 20px;
+    margin: 10px 0 0;
+    color: var(--age-primary-dark);
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* ================= QUICK INFO STRIP ================= */
+
+.age-info-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 24px auto 0;
+    padding: 22px;
+    border: 1px solid var(--age-border);
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.age-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+}
+
+.age-info-item>span {
+    font-size: 22px;
+}
+
+.age-info-item strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.age-info-item p {
+    margin: 0;
+    color: var(--age-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* ================= EDUCATIONAL CONTENT ================= */
+
+.age-content-section {
+    padding: 28px 0 70px;
+}
+
+.age-content-card {
+    margin-bottom: 22px;
+    padding: 30px;
+    border: 1px solid var(--age-border);
+    border-radius: 17px;
+    background: #ffffff;
+}
+
+.age-content-card h2,
+.age-related-heading h2 {
+    margin: 10px 0 18px;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: 750;
+    letter-spacing: -0.4px;
+}
+
+.age-content-card>p {
+    margin: 0 0 15px;
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.age-content-card>p:last-child {
+    margin-bottom: 0;
+}
+
+.age-formula-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75px;
+    margin: 22px 0;
+    padding: 20px;
+    border: 1px dashed var(--age-primary-border);
+    border-radius: 12px;
+    background: var(--age-primary-light);
+    color: var(--age-primary-dark);
+    font-size: clamp(17px, 3vw, 22px);
+    font-weight: 800;
+    text-align: center;
+}
+
+.age-steps-list {
+    display: grid;
+    gap: 12px;
+    margin: 18px 0;
+    padding-left: 24px;
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.age-steps-list li {
+    padding-left: 5px;
+}
+
+.age-note {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-left: 4px solid var(--age-primary);
+    border-radius: 0 9px 9px 0;
+    background: #f5faf6;
+    color: #4b5563;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.age-note strong {
+    color: var(--age-primary-dark);
+}
+
+
+/* ================= HOW TO USE ================= */
+
+.age-how-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.age-how-card {
+    padding: 22px;
+    border: 1px solid var(--age-border);
+    border-radius: 13px;
+    background: #ffffff;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.age-how-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--age-primary-border);
+    box-shadow: 0 8px 22px rgba(31, 41, 55, 0.04);
+}
+
+.age-how-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    background: var(--age-primary-light);
+    color: var(--age-primary-dark);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.age-how-card h3 {
+    margin: 0 0 9px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.age-how-card p {
+    margin: 0;
+    color: var(--age-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* ================= FAQ ================= */
+
+.age-faq-list {
+    margin-top: 22px;
+    border-top: 1px solid var(--age-border);
+}
+
+.age-faq-item {
+    border-bottom: 1px solid var(--age-border);
+}
+
+.age-faq-item summary {
+    position: relative;
+    padding: 19px 35px 19px 0;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 700;
+    list-style: none;
+}
+
+.age-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.age-faq-item summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    transform: translateY(-50%);
+    color: var(--age-primary);
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.age-faq-item[open] summary::after {
+    content: "−";
+}
+
+.age-faq-item p {
+    margin: -2px 0 20px;
+    padding-right: 24px;
+    color: var(--age-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* ================= RELATED TOOLS ================= */
+
+.age-related-section {
+    margin-top: 36px;
+}
+
+.age-related-heading {
+    margin-bottom: 22px;
+}
+
+.age-related-heading h2 {
+    margin-bottom: 0;
+}
+
+.age-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.age-related-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--age-border);
+    border-radius: 13px;
+    background: #ffffff;
+    text-decoration: none;
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.age-related-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--age-primary-border);
+    box-shadow: 0 9px 25px rgba(31, 41, 55, 0.05);
+}
+
+.age-related-card>span:first-child {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: var(--age-primary-light);
+    font-size: 20px;
+}
+
+.age-related-card>div {
+    flex: 1;
+    min-width: 0;
+}
+
+.age-related-card h3 {
+    margin: 1px 0 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.age-related-card p {
+    margin: 0;
+    color: var(--age-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.age-related-arrow {
+    flex-shrink: 0;
+    color: var(--age-primary);
+    font-size: 20px;
+}
+
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+@media (max-width: 900px) {
+
+    .age-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .age-info-strip {
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .age-calculator-card {
+        padding: 28px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .age-hero {
+        padding: 20px 0 38px;
+    }
+
+    .age-breadcrumb {
+        gap: 6px;
+        margin-bottom: 28px;
+        font-size: 11px;
+    }
+
+    .age-hero-icon {
+        width: 62px;
+        height: 62px;
+        margin-bottom: 17px;
+        border-radius: 18px;
+        font-size: 29px;
+    }
+
+    .age-hero h1 {
+        font-size: 33px;
+        letter-spacing: -0.8px;
+    }
+
+    .age-hero-content>p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .age-calculator-section {
+        padding: 32px 0 24px;
+    }
+
+    .age-calculator-card {
+        padding: 21px 17px;
+        border-radius: 15px;
+    }
+
+    .age-card-heading,
+    .age-results-heading {
+        gap: 12px;
+    }
+
+    .age-card-heading h2,
+    .age-results-heading h2 {
+        font-size: 21px;
+    }
+
+    .age-heading-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        font-size: 21px;
+    }
+
+    .age-form-grid {
+        grid-template-columns: 1fr;
+        gap: 19px;
+    }
+
+    .age-form-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.65fr);
+    }
+
+    .age-btn {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .age-main-result {
+        padding: 23px 10px;
+    }
+
+    .age-primary-age {
+        gap: 2px;
+    }
+
+    .age-primary-age strong {
+        font-size: 30px;
+    }
+
+    .age-primary-age span {
+        font-size: 11px;
+    }
+
+    .age-detail-grid {
+        gap: 9px;
+    }
+
+    .age-detail-card {
+        padding: 13px 10px;
+    }
+
+    .age-detail-icon {
+        width: 33px;
+        height: 33px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .age-detail-label {
+        font-size: 10px;
+    }
+
+    .age-detail-card>strong {
+        font-size: 20px;
+    }
+
+    .age-birthday-card {
+        gap: 11px;
+        padding: 14px 11px;
+    }
+
+    .age-birthday-icon {
+        width: 39px;
+        height: 39px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+
+    .age-birthday-content h3 {
+        font-size: 14px;
+    }
+
+    .age-birthday-content p {
+        font-size: 11px;
+    }
+
+    .age-birthday-countdown {
+        min-width: 58px;
+        padding: 9px 6px;
+    }
+
+    .age-birthday-countdown strong {
+        font-size: 23px;
+    }
+
+    .age-birthday-countdown span {
+        font-size: 9px;
+    }
+
+    .age-calculation-row {
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .age-calculation-row>strong {
+        max-width: 55%;
+    }
+
+    .age-info-strip {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 19px;
+    }
+
+    .age-info-item p {
+        font-size: 12px;
+    }
+
+    .age-content-section {
+        padding: 20px 0 45px;
+    }
+
+    .age-content-card {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .age-content-card h2,
+    .age-related-heading h2 {
+        font-size: 21px;
+    }
+
+    .age-content-card>p,
+    .age-steps-list {
+        font-size: 13px;
+    }
+
+    .age-how-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .age-how-card {
+        padding: 18px;
+    }
+
+    .age-related-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .age-related-card {
+        padding: 16px;
+    }
+
+    .age-related-card h3 {
+        font-size: 13px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .age-calculator-card {
+        padding: 17px 12px;
+    }
+
+    .age-primary-age strong {
+        font-size: 26px;
+    }
+
+    .age-primary-age span {
+        font-size: 10px;
+    }
+
+    .age-birthday-card {
+        flex-wrap: wrap;
+    }
+
+    .age-birthday-content {
+        flex-basis: calc(100% - 60px);
+    }
+
+    .age-birthday-countdown {
+        margin-left: auto;
+    }
+
+    .age-formula-box {
+        font-size: 16px;
+    }
+}

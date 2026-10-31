@@ -1,0 +1,894 @@
+/* =========================================
+   DIGIIFOX SCIENTIFIC CALCULATOR
+   Tool-specific styles only
+========================================= */
+
+:root {
+    --scientific-green: #16845b;
+    --scientific-green-dark: #106b49;
+    --scientific-green-light: #eaf7f0;
+    --scientific-page-bg: #f6f9f7;
+    --scientific-card-bg: #ffffff;
+    --scientific-text: #24332b;
+    --scientific-muted: #718078;
+    --scientific-border: #e2eae5;
+    --scientific-radius: 16px;
+    --scientific-shadow: 0 8px 30px rgba(25, 60, 42, 0.06);
+}
+
+
+/* =========================================
+   GENERAL
+========================================= */
+
+.scientific-hero,
+.scientific-main-section,
+.scientific-content-section {
+    font-family: inherit;
+    color: var(--scientific-text);
+}
+
+.scientific-hero *,
+.scientific-main-section *,
+.scientific-content-section * {
+    box-sizing: border-box;
+}
+
+.scientific-hero {
+    padding: 26px 0 44px;
+    background:
+        radial-gradient(circle at 90% 10%, #d9f1e4 0, transparent 30%),
+        linear-gradient(135deg, #f0faf4, #ffffff);
+}
+
+.scientific-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    color: var(--scientific-muted);
+    font-size: 13px;
+}
+
+.scientific-breadcrumb a {
+    color: var(--scientific-green);
+    text-decoration: none;
+}
+
+.scientific-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.scientific-hero-content {
+    max-width: 760px;
+}
+
+.scientific-badge,
+.scientific-eyebrow {
+    display: inline-block;
+    color: var(--scientific-green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.scientific-badge {
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    background: #dff3e7;
+    border-radius: 30px;
+}
+
+.scientific-hero h1 {
+    margin: 0 0 16px;
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.15;
+    letter-spacing: -1.4px;
+}
+
+.scientific-hero-content > p {
+    max-width: 680px;
+    margin: 0;
+    color: #5f7066;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.scientific-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.scientific-hero-tags span {
+    color: #416151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.scientific-main-section {
+    padding: 46px 0 64px;
+    background: var(--scientific-page-bg);
+}
+
+.scientific-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(260px, 0.8fr);
+    align-items: start;
+    gap: 26px;
+}
+
+.scientific-calculator-card,
+.scientific-info-card {
+    min-width: 0;
+    background: var(--scientific-card-bg);
+    border: 1px solid var(--scientific-border);
+    border-radius: var(--scientific-radius);
+    box-shadow: var(--scientific-shadow);
+}
+
+.scientific-calculator-card {
+    padding: 26px;
+}
+
+.scientific-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.scientific-card-heading h2 {
+    margin: 7px 0 0;
+    font-size: 23px;
+    line-height: 1.3;
+}
+
+.scientific-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 10px;
+    border: 1px solid #dcefe3;
+    border-radius: 30px;
+    background: #f4fbf6;
+    color: #417054;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.scientific-status > span {
+    width: 7px;
+    height: 7px;
+    background: #27a469;
+    border-radius: 50%;
+}
+
+
+/* =========================================
+   DISPLAY
+========================================= */
+
+.scientific-display {
+    padding: 18px 20px 20px;
+    background: #f6faf7;
+    border: 1px solid #e2ece5;
+    border-radius: 13px;
+}
+
+.scientific-display-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--scientific-muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#angleModeLabel {
+    color: var(--scientific-green);
+}
+
+.scientific-expression {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin-top: 22px;
+    padding: 4px 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #52655a;
+    font-family: inherit;
+    font-size: 17px;
+    text-align: right;
+}
+
+.scientific-expression::placeholder {
+    color: #a4b1a9;
+}
+
+.scientific-expression:focus-visible {
+    outline: 2px solid #a9d9bd;
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+.scientific-result {
+    min-height: 48px;
+    margin-top: 10px;
+    overflow-wrap: anywhere;
+    color: #173d2b;
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 750;
+    line-height: 1.25;
+    text-align: right;
+}
+
+.scientific-help {
+    margin: 12px 0 20px;
+    color: var(--scientific-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* =========================================
+   CONTROL BUTTONS
+========================================= */
+
+.scientific-controls {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 9px;
+    margin-bottom: 12px;
+}
+
+.scientific-control-btn {
+    min-height: 42px;
+    padding: 9px 5px;
+    border: 1px solid var(--scientific-border);
+    border-radius: 9px;
+    background: #f4f8f5;
+    color: #3d5a48;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.scientific-control-btn:hover {
+    background: #e5f3e9;
+    border-color: #c5e4d0;
+}
+
+.scientific-control-btn.clear-btn {
+    color: #b54747;
+    background: #fff2f0;
+    border-color: #f2dedb;
+}
+
+.scientific-control-btn.clear-btn:hover {
+    background: #ffe6e2;
+}
+
+
+/* =========================================
+   KEYPAD
+========================================= */
+
+.scientific-keypad {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.scientific-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 51px;
+    padding: 8px 3px;
+    border: 1px solid var(--scientific-border);
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--scientific-text);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.scientific-key:hover {
+    background: #f0f8f2;
+    border-color: #bddfc9;
+}
+
+.scientific-key:active {
+    transform: scale(0.97);
+}
+
+.scientific-key:focus-visible,
+.scientific-control-btn:focus-visible,
+.scientific-calculator-bottom button:focus-visible,
+.scientific-history-heading button:focus-visible {
+    outline: 3px solid #93d5ae;
+    outline-offset: 2px;
+}
+
+.scientific-key.function-key {
+    background: #edf7f0;
+    border-color: #e0eee4;
+    color: #286b46;
+    font-size: 13px;
+}
+
+.scientific-key.function-key:hover {
+    background: #dff1e5;
+}
+
+.scientific-key.operator-key {
+    background: #f0f4f1;
+    color: #2d5d41;
+    font-size: 19px;
+}
+
+.scientific-key.operator-key:hover {
+    background: #e1eee5;
+}
+
+.scientific-key.number-key {
+    font-size: 18px;
+}
+
+.scientific-key.zero-key {
+    grid-column: span 2;
+}
+
+.scientific-key.equals-key {
+    background: var(--scientific-green);
+    border-color: var(--scientific-green);
+    color: #ffffff;
+    font-size: 23px;
+}
+
+.scientific-key.equals-key:hover {
+    background: var(--scientific-green-dark);
+    border-color: var(--scientific-green-dark);
+}
+
+
+/* =========================================
+   CALCULATOR BOTTOM
+========================================= */
+
+.scientific-calculator-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 17px;
+    border-top: 1px solid var(--scientific-border);
+}
+
+.scientific-calculator-bottom > span {
+    color: var(--scientific-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.scientific-calculator-bottom button {
+    padding: 9px 13px;
+    border: 1px solid #cfe5d6;
+    border-radius: 8px;
+    background: #edf8f0;
+    color: var(--scientific-green-dark);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.scientific-calculator-bottom button:hover {
+    background: #dff1e5;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.scientific-sidebar {
+    display: grid;
+    gap: 22px;
+}
+
+.scientific-info-card {
+    padding: 23px;
+}
+
+.scientific-info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 17px;
+    border-radius: 13px;
+    background: var(--scientific-green-light);
+    color: var(--scientific-green);
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.scientific-info-card h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.scientific-info-card > p {
+    margin: 0;
+    color: var(--scientific-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.scientific-feature-list {
+    display: grid;
+    gap: 12px;
+    margin: 21px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid var(--scientific-border);
+    list-style: none;
+}
+
+.scientific-feature-list li {
+    position: relative;
+    padding-left: 23px;
+    color: #4e6356;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.scientific-feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--scientific-green);
+    font-weight: 800;
+}
+
+
+/* =========================================
+   HISTORY
+========================================= */
+
+.scientific-history-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.scientific-history-heading h3 {
+    margin: 0;
+}
+
+.scientific-history-heading button {
+    padding: 6px 8px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--scientific-green);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.scientific-history-heading button:hover {
+    background: var(--scientific-green-light);
+}
+
+.scientific-history-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 17px;
+}
+
+.scientific-empty-history {
+    margin: 0;
+    padding: 15px 10px;
+    border: 1px dashed var(--scientific-border);
+    border-radius: 9px;
+    color: var(--scientific-muted);
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.scientific-history-item {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--scientific-border);
+    border-radius: 9px;
+    background: #fbfdfb;
+    text-align: left;
+    cursor: pointer;
+}
+
+.scientific-history-item:hover {
+    border-color: #b9ddc5;
+    background: #f0f8f2;
+}
+
+.scientific-history-expression {
+    display: block;
+    overflow-wrap: anywhere;
+    color: var(--scientific-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.scientific-history-answer {
+    display: block;
+    margin-top: 5px;
+    overflow-wrap: anywhere;
+    color: #236a43;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+
+/* =========================================
+   CONTENT SECTIONS
+========================================= */
+
+.scientific-content-section {
+    padding: 66px 0;
+    background: #ffffff;
+}
+
+.scientific-content-container {
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.scientific-content-section h2 {
+    margin: 12px 0 20px;
+    font-size: clamp(25px, 3vw, 32px);
+    line-height: 1.3;
+    letter-spacing: -0.6px;
+}
+
+.scientific-content-section p {
+    color: #65736a;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.scientific-functions-section,
+.scientific-faq-section {
+    background: #f7faf8;
+}
+
+.scientific-section-heading {
+    max-width: 650px;
+    margin: 0 auto 34px;
+    text-align: center;
+}
+
+.scientific-section-heading h2 {
+    margin-bottom: 10px;
+}
+
+.scientific-section-heading p {
+    margin: 0;
+}
+
+
+/* =========================================
+   FORMULA CARDS
+========================================= */
+
+.scientific-formula-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.scientific-formula-card {
+    padding: 23px;
+    border: 1px solid var(--scientific-border);
+    border-radius: 13px;
+    background: #ffffff;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.scientific-formula-card:hover {
+    transform: translateY(-3px);
+    border-color: #b9ddc5;
+}
+
+.scientific-formula-card h3 {
+    margin: 0 0 15px;
+    font-size: 16px;
+}
+
+.scientific-formula {
+    display: flex;
+    align-items: center;
+    min-height: 46px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #edf7f0;
+    color: #216641;
+    font-size: 15px;
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.scientific-formula-card p {
+    margin: 14px 0 0;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   HOW TO USE
+========================================= */
+
+.scientific-steps {
+    display: grid;
+    gap: 0;
+    margin-top: 28px;
+}
+
+.scientific-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 19px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--scientific-border);
+}
+
+.scientific-step:last-child {
+    border-bottom: 0;
+}
+
+.scientific-step > span {
+    display: flex;
+    flex: 0 0 43px;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    background: var(--scientific-green-light);
+    color: var(--scientific-green);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.scientific-step h3 {
+    margin: 2px 0 5px;
+    font-size: 16px;
+}
+
+.scientific-step p {
+    margin: 0;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   FAQ
+========================================= */
+
+.scientific-faq-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.scientific-faq-item {
+    padding: 18px 20px;
+    border: 1px solid var(--scientific-border);
+    border-radius: 11px;
+    background: #ffffff;
+}
+
+.scientific-faq-item summary {
+    position: relative;
+    padding-right: 25px;
+    color: #2d4034;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    cursor: pointer;
+    list-style: none;
+}
+
+.scientific-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.scientific-faq-item summary::after {
+    content: "+";
+    position: absolute;
+    top: -2px;
+    right: 0;
+    color: var(--scientific-green);
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.scientific-faq-item[open] summary::after {
+    content: "−";
+}
+
+.scientific-faq-item p {
+    margin: 14px 0 0;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+    .scientific-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .scientific-sidebar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .scientific-formula-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .scientific-hero {
+        padding: 22px 0 34px;
+    }
+
+    .scientific-breadcrumb {
+        margin-bottom: 22px;
+    }
+
+    .scientific-hero-tags {
+        gap: 10px 15px;
+    }
+
+    .scientific-main-section {
+        padding: 28px 0 42px;
+    }
+
+    .scientific-calculator-card {
+        padding: 16px;
+    }
+
+    .scientific-card-heading {
+        align-items: flex-start;
+    }
+
+    .scientific-card-heading h2 {
+        font-size: 20px;
+    }
+
+    .scientific-display {
+        padding: 15px;
+    }
+
+    .scientific-keypad,
+    .scientific-controls {
+        gap: 6px;
+    }
+
+    .scientific-key {
+        min-height: 46px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .scientific-key.function-key {
+        font-size: 11px;
+    }
+
+    .scientific-key.number-key {
+        font-size: 17px;
+    }
+
+    .scientific-control-btn {
+        min-height: 39px;
+        font-size: 12px;
+    }
+
+    .scientific-sidebar {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .scientific-content-section {
+        padding: 45px 0;
+    }
+
+    .scientific-formula-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .scientific-formula-card {
+        padding: 19px;
+    }
+
+    .scientific-calculator-bottom {
+        align-items: flex-start;
+    }
+
+    .scientific-calculator-bottom > span {
+        max-width: 230px;
+    }
+
+    .scientific-faq-item {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .scientific-calculator-card {
+        padding: 11px;
+    }
+
+    .scientific-keypad,
+    .scientific-controls {
+        gap: 4px;
+    }
+
+    .scientific-key {
+        min-height: 42px;
+    }
+
+    .scientific-key.function-key {
+        font-size: 10px;
+    }
+
+    .scientific-display-top {
+        font-size: 10px;
+    }
+}

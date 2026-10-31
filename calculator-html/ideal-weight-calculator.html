@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Estimate an ideal weight range using four traditional weight formulas. Free, private, and easy-to-use Ideal Weight Calculator by DigiiFox.">
+    <title>Ideal Weight Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/ideal-weight-calculator.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="mainNav">☰</button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="iw-page">
+        <section class="iw-hero">
+            <div class="container">
+                <div class="iw-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>›</span>
+                    <span>Health &amp; Fitness</span>
+                </div>
+
+                <span class="iw-eyebrow">HEALTH &amp; FITNESS</span>
+                <h1>Ideal Weight Calculator</h1>
+                <p>
+                    Explore estimated reference weights based on your height
+                    using four commonly cited formulas.
+                </p>
+            </div>
+        </section>
+
+        <section class="container iw-main">
+            <div class="iw-layout">
+
+                <section class="iw-card">
+                    <div class="iw-card-heading">
+                        <span class="iw-icon">⚖</span>
+                        <div>
+                            <h2>Your Measurements</h2>
+                            <p>Enter your details to compare the estimates.</p>
+                        </div>
+                    </div>
+
+                    <form id="idealWeightForm" novalidate>
+                        <fieldset class="iw-unit-fieldset">
+                            <legend>Measurement system</legend>
+                            <div class="iw-unit-options">
+                                <label class="iw-unit-option">
+                                    <input type="radio" name="iwUnitSystem" value="metric" checked>
+                                    <span>Metric (cm)</span>
+                                </label>
+                                <label class="iw-unit-option">
+                                    <input type="radio" name="iwUnitSystem" value="imperial">
+                                    <span>Imperial (ft/in)</span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div id="iwMetricGroup" class="iw-field">
+                            <label for="iwHeightCm">Height (cm)</label>
+                            <input type="number" id="iwHeightCm" min="100" max="250" step="0.1" placeholder="e.g. 170"
+                                inputmode="decimal">
+                        </div>
+
+                        <div id="iwImperialGroup" class="iw-field" hidden>
+                            <label>Height</label>
+                            <div class="iw-height-inputs">
+                                <div>
+                                    <input type="number" id="iwHeightFt" min="3" max="8" step="1" placeholder="5"
+                                        inputmode="numeric" aria-label="Height in feet">
+                                    <small>Feet</small>
+                                </div>
+                                <div>
+                                    <input type="number" id="iwHeightIn" min="0" max="11.99" step="0.1" placeholder="7"
+                                        inputmode="decimal" aria-label="Additional height in inches">
+                                    <small>Inches</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="iw-field">
+                            <label for="iwSex">Formula reference</label>
+                            <select id="iwSex">
+                                <option value="female">Female reference formulas</option>
+                                <option value="male">Male reference formulas</option>
+                            </select>
+                            <small class="iw-field-help">
+                                These traditional formulas use a binary male/female reference.
+                                They may not suit everyone.
+                            </small>
+                        </div>
+
+                        <div class="iw-formula-note">
+                            <strong>What will be calculated?</strong>
+                            <p>
+                                Robinson, Miller, Devine, and Hamwi estimates,
+                                plus the lowest-to-highest result.
+                            </p>
+                        </div>
+
+                        <div class="iw-error" id="iwError" role="alert" aria-live="polite"></div>
+
+                        <div class="iw-actions">
+                            <button type="submit" class="iw-btn iw-btn-primary">Calculate Ideal Weight</button>
+                            <button type="reset" class="iw-btn iw-btn-secondary" id="iwReset">Reset</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="iw-card iw-results-card" id="iwResults" aria-live="polite" hidden>
+                    <div class="iw-card-heading">
+                        <span class="iw-icon">✓</span>
+                        <div>
+                            <h2>Your Estimated Results</h2>
+                            <p>Reference estimates based on your height.</p>
+                        </div>
+                    </div>
+
+                    <div class="iw-summary">
+                        <span class="iw-summary-label">Overall estimated range</span>
+                        <div class="iw-range" id="iwOverallRange">—</div>
+                        <span class="iw-range-unit" id="iwRangeUnit">kg</span>
+                        <p>Range across the four formulas shown below.</p>
+                    </div>
+
+                    <div class="iw-result-list">
+                        <div class="iw-result-row">
+                            <div>
+                                <strong>Robinson</strong>
+                                <small>1983 formula</small>
+                            </div>
+                            <strong id="iwRobinson">—</strong>
+                        </div>
+                        <div class="iw-result-row">
+                            <div>
+                                <strong>Miller</strong>
+                                <small>1983 formula</small>
+                            </div>
+                            <strong id="iwMiller">—</strong>
+                        </div>
+                        <div class="iw-result-row">
+                            <div>
+                                <strong>Devine</strong>
+                                <small>1974 formula</small>
+                            </div>
+                            <strong id="iwDevine">—</strong>
+                        </div>
+                        <div class="iw-result-row">
+                            <div>
+                                <strong>Hamwi</strong>
+                                <small>1964 rule of thumb</small>
+                            </div>
+                            <strong id="iwHamwi">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="iw-result-note">
+                        <strong>Remember</strong>
+                        <p>
+                            These are formula-based estimates, not a diagnosis or a
+                            required target. A suitable weight depends on many individual factors.
+                        </p>
+                    </div>
+
+                    <button type="button" class="iw-btn iw-btn-primary iw-copy-btn" id="iwCopy">
+                        Copy Results
+                    </button>
+                    <p class="iw-copy-message" id="iwCopyMessage" aria-live="polite"></p>
+                </section>
+
+            </div>
+
+            <section class="iw-info-card">
+                <h2>What Is an Ideal Weight Calculator?</h2>
+                <p>
+                    An ideal weight calculator estimates a reference weight from a person's
+                    height using mathematical formulas developed for adults. Different formulas
+                    produce different results, so this calculator displays several estimates
+                    rather than presenting one number as universally ideal.
+                </p>
+
+                <h2>Formulas Used</h2>
+                <p>Each formula starts with a reference weight at 5 feet (60 inches) and adjusts for each additional
+                    inch of height.</p>
+
+                <div class="iw-formula-grid">
+                    <article class="iw-formula-item">
+                        <h3>Robinson (1983)</h3>
+                        <p id="iwRobinsonFormula">Female: 49 kg + 1.7 kg per inch above 5 ft.</p>
+                    </article>
+                    <article class="iw-formula-item">
+                        <h3>Miller (1983)</h3>
+                        <p id="iwMillerFormula">Female: 53.1 kg + 1.36 kg per inch above 5 ft.</p>
+                    </article>
+                    <article class="iw-formula-item">
+                        <h3>Devine (1974)</h3>
+                        <p id="iwDevineFormula">Female: 45.5 kg + 2.3 kg per inch above 5 ft.</p>
+                    </article>
+                    <article class="iw-formula-item">
+                        <h3>Hamwi (1964)</h3>
+                        <p id="iwHamwiFormula">Female: 45.5 kg + 2.2 kg per inch above 5 ft.</p>
+                    </article>
+                </div>
+
+                <h2>How to Use This Calculator</h2>
+                <ol class="iw-steps">
+                    <li>Choose metric or imperial measurements.</li>
+                    <li>Enter your height.</li>
+                    <li>Select the formula reference you want to use.</li>
+                    <li>Click <strong>Calculate Ideal Weight</strong> to compare the estimates.</li>
+                </ol>
+
+                <h2>Frequently Asked Questions</h2>
+                <div class="iw-faq">
+                    <details>
+                        <summary>Is there one perfect weight for everyone?</summary>
+                        <p>No. Weight alone cannot determine health. Body composition, age, medical history, and other
+                            factors also matter.</p>
+                    </details>
+                    <details>
+                        <summary>Why do the formulas give different results?</summary>
+                        <p>Each formula was developed using different assumptions and reference values, so their
+                            estimates can differ.</p>
+                    </details>
+                    <details>
+                        <summary>Can I use this calculator for children?</summary>
+                        <p>No. These formulas are intended as adult reference estimates. Children and teenagers need
+                            age- and sex-specific growth assessments.</p>
+                    </details>
+                    <details>
+                        <summary>Does this calculator tell me whether I am healthy?</summary>
+                        <p>No. It estimates reference weights from height; it does not assess your current weight, body
+                            composition, or overall health.</p>
+                    </details>
+                    <details>
+                        <summary>Are my measurements uploaded?</summary>
+                        <p>No. The calculations run in your browser. This page's calculator code does not send your
+                            measurements to a server.</p>
+                    </details>
+                </div>
+
+                <div class="iw-disclaimer">
+                    <strong>Health disclaimer:</strong>
+                    This tool is for general educational purposes only and is not medical advice.
+                    Consult a qualified healthcare professional for personalised guidance,
+                    especially if you are pregnant, under 18, managing a medical condition,
+                    or concerned about changes in your weight.
+                </div>
+            </section>
+
+            <section class="iw-related">
+                <h2>Related Calculators</h2>
+                <div class="iw-related-grid">
+                    <a href="bmi-calculator.html" class="iw-related-card">
+                        <span>♡</span>
+                        <strong>BMI Calculator</strong>
+                        <small>Calculate body mass index</small>
+                    </a>
+                    <a href="bmr-calculator.html" class="iw-related-card">
+                        <span>🔥</span>
+                        <strong>BMR Calculator</strong>
+                        <small>Estimate resting energy needs</small>
+                    </a>
+                    <a href="tdee-calculator.html" class="iw-related-card">
+                        <span>⚡</span>
+                        <strong>TDEE Calculator</strong>
+                        <small>Estimate daily calorie expenditure</small>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Health &amp; Fitness</h3>
+                    <a href="bmi-calculator.html">BMI Calculator</a>
+                    <a href="bmr-calculator.html">BMR Calculator</a>
+                    <a href="tdee-calculator.html">TDEE Calculator</a>
+                    <a href="ideal-weight-calculator.html">Ideal Weight Calculator</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../calculator-js/ideal-weight-calculator.js"></script>
+</body>
+
+</html>

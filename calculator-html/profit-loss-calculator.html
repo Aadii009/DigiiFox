@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profit & Loss Calculator | DigiiFox</title>
+
+    <meta name="description"
+        content="Calculate profit, loss, profit percentage, loss percentage, profit margin and markup with the free DigiiFox Profit & Loss Calculator.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/profit-loss-calculator.css">
+
+    <script src="../calculator-js/profit-loss-calculator.js" defer></script>
+</head>
+
+<body class="profit-loss-page">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="profit-loss-main">
+
+        <!-- Hero Section -->
+        <section class="pl-hero">
+            <div class="pl-container">
+
+                <span class="pl-eyebrow">FINANCE CALCULATOR</span>
+
+                <h1>Profit &amp; Loss Calculator</h1>
+
+                <p>
+                    Calculate your profit, loss, profit percentage, markup
+                    and profit margin quickly and accurately.
+                </p>
+
+                <div class="pl-hero-badges">
+                    <span>✓ Free to Use</span>
+                    <span>✓ Instant Results</span>
+                    <span>✓ Private Calculations</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator Section -->
+        <section class="pl-section">
+            <div class="pl-container">
+
+                <div class="pl-calculator-layout">
+
+                    <!-- Input Card -->
+                    <div class="pl-card pl-input-card">
+
+                        <div class="pl-card-heading">
+                            <div>
+                                <span class="pl-section-label">CALCULATOR</span>
+                                <h2>Enter Your Details</h2>
+                            </div>
+
+                            <div class="pl-heading-icon" aria-hidden="true">
+                                ₹
+                            </div>
+                        </div>
+
+                        <p class="pl-card-description">
+                            Enter your purchase cost, additional expenses
+                            and selling price.
+                        </p>
+
+                        <form id="profitLossForm" novalidate>
+
+                            <div class="pl-form-group">
+                                <label for="costPrice">
+                                    Cost Price <span class="pl-required">*</span>
+                                </label>
+
+                                <div class="pl-input-wrapper">
+                                    <span class="pl-input-prefix">₹</span>
+
+                                    <input type="number" id="costPrice" name="costPrice" min="0.01" max="1000000000000"
+                                        step="any" placeholder="Enter purchase cost" value="1000" required>
+                                </div>
+
+                                <small>
+                                    The original purchase price of your product.
+                                </small>
+                            </div>
+
+
+                            <div class="pl-form-group">
+                                <label for="additionalCosts">
+                                    Additional Expenses
+                                    <span class="pl-optional">(Optional)</span>
+                                </label>
+
+                                <div class="pl-input-wrapper">
+                                    <span class="pl-input-prefix">₹</span>
+
+                                    <input type="number" id="additionalCosts" name="additionalCosts" min="0"
+                                        max="1000000000000" step="any" placeholder="Enter extra expenses" value="100">
+                                </div>
+
+                                <small>
+                                    Packaging, delivery, handling or other costs.
+                                </small>
+                            </div>
+
+
+                            <div class="pl-form-group">
+                                <label for="sellingPrice">
+                                    Selling Price <span class="pl-required">*</span>
+                                </label>
+
+                                <div class="pl-input-wrapper">
+                                    <span class="pl-input-prefix">₹</span>
+
+                                    <input type="number" id="sellingPrice" name="sellingPrice" min="0"
+                                        max="1000000000000" step="any" placeholder="Enter selling price" value="1500"
+                                        required>
+                                </div>
+
+                                <small>
+                                    The amount received when selling the product.
+                                </small>
+                            </div>
+
+
+                            <div class="pl-error-message" id="plError" role="alert" aria-live="polite" hidden></div>
+
+
+                            <div class="pl-form-actions">
+                                <button type="submit" class="pl-btn pl-btn-primary">
+                                    Calculate Profit &amp; Loss
+                                </button>
+
+                                <button type="reset" class="pl-btn pl-btn-secondary" id="plReset">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                        <!-- Example Buttons -->
+                        <div class="pl-examples">
+                            <h3>Try an Example</h3>
+
+                            <div class="pl-example-buttons">
+
+                                <button type="button" class="pl-example-btn" data-cost="1000" data-expenses="100"
+                                    data-selling="1500">
+                                    Profit Example
+                                </button>
+
+                                <button type="button" class="pl-example-btn" data-cost="2000" data-expenses="200"
+                                    data-selling="1800">
+                                    Loss Example
+                                </button>
+
+                                <button type="button" class="pl-example-btn" data-cost="1000" data-expenses="0"
+                                    data-selling="1000">
+                                    No Profit, No Loss
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Results Card -->
+                    <div class="pl-card pl-results-card" id="plResults">
+
+                        <div class="pl-card-heading">
+                            <div>
+                                <span class="pl-section-label">YOUR RESULTS</span>
+                                <h2>Financial Summary</h2>
+                            </div>
+
+                            <div class="pl-heading-icon" aria-hidden="true">
+                                ↗
+                            </div>
+                        </div>
+
+
+                        <div class="pl-result-status" id="resultStatus">
+                            <span class="pl-status-dot"></span>
+                            <span id="resultStatusText">Ready to calculate</span>
+                        </div>
+
+
+                        <div class="pl-primary-result">
+                            <span id="primaryResultLabel">Net Profit / Loss</span>
+
+                            <strong id="netResult">₹0.00</strong>
+
+                            <span id="primaryResultNote">
+                                Enter your details to see the result.
+                            </span>
+                        </div>
+
+
+                        <div class="pl-result-grid">
+
+                            <div class="pl-result-item">
+                                <span>Total Cost</span>
+                                <strong id="totalCostResult">₹0.00</strong>
+                            </div>
+
+                            <div class="pl-result-item">
+                                <span>Selling Price</span>
+                                <strong id="sellingPriceResult">₹0.00</strong>
+                            </div>
+
+                            <div class="pl-result-item">
+                                <span id="profitLossPercentLabel">
+                                    Profit / Loss %
+                                </span>
+
+                                <strong id="profitLossPercentResult">0.00%</strong>
+                            </div>
+
+                            <div class="pl-result-item">
+                                <span>Profit Margin</span>
+                                <strong id="profitMarginResult">0.00%</strong>
+                            </div>
+
+                            <div class="pl-result-item">
+                                <span>Markup</span>
+                                <strong id="markupResult">0.00%</strong>
+                            </div>
+
+                            <div class="pl-result-item">
+                                <span>Additional Expenses</span>
+                                <strong id="additionalCostsResult">₹0.00</strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Cost Breakdown -->
+                        <div class="pl-breakdown">
+
+                            <div class="pl-breakdown-heading">
+                                <h3>Cost Breakdown</h3>
+                                <span id="breakdownSummary">Total cost overview</span>
+                            </div>
+
+                            <div class="pl-breakdown-bar" aria-hidden="true">
+                                <div class="pl-breakdown-cost" id="costBar"></div>
+
+                                <div class="pl-breakdown-profit" id="profitBar"></div>
+                            </div>
+
+                            <div class="pl-breakdown-legend">
+                                <span>
+                                    <i class="pl-legend-dot pl-cost-dot"></i>
+                                    Total Cost
+                                </span>
+
+                                <span>
+                                    <i class="pl-legend-dot pl-profit-dot"></i>
+                                    Profit
+                                </span>
+                            </div>
+
+                            <p class="pl-breakdown-note" id="breakdownNote">
+                                Your breakdown will appear after calculation.
+                            </p>
+
+                        </div>
+
+
+                        <button type="button" class="pl-btn pl-btn-copy" id="copyResults" disabled>
+                            Copy Results
+                        </button>
+
+                        <p class="pl-copy-message" id="copyMessage" role="status" aria-live="polite"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition Section -->
+        <section class="pl-section pl-information-section">
+            <div class="pl-container">
+
+                <article class="pl-info-card">
+
+                    <span class="pl-section-label">UNDERSTANDING THE BASICS</span>
+
+                    <h2>What Is a Profit &amp; Loss Calculator?</h2>
+
+                    <p>
+                        A Profit &amp; Loss Calculator helps you determine
+                        whether a product or transaction generates a profit
+                        or a loss. It compares the selling price with the
+                        total cost, including additional expenses.
+                    </p>
+
+                    <p>
+                        If the selling price is higher than the total cost,
+                        you earn a profit. If it is lower, you experience
+                        a loss. If both values are equal, you break even.
+                    </p>
+
+                </article>
+
+
+                <!-- Formula Cards -->
+                <div class="pl-formula-section">
+
+                    <div class="pl-section-heading">
+                        <span class="pl-section-label">THE MATHEMATICS</span>
+                        <h2>Profit &amp; Loss Formulas</h2>
+                        <p>
+                            Understand how each financial result is calculated.
+                        </p>
+                    </div>
+
+
+                    <div class="pl-formula-grid">
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">01</div>
+                            <h3>Total Cost</h3>
+
+                            <div class="pl-formula">
+                                Cost Price + Additional Expenses
+                            </div>
+
+                            <p>
+                                The total amount spent to purchase and prepare
+                                a product for sale.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">02</div>
+                            <h3>Profit</h3>
+
+                            <div class="pl-formula">
+                                Selling Price − Total Cost
+                            </div>
+
+                            <p>
+                                Profit occurs when the selling price exceeds
+                                the total cost.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">03</div>
+                            <h3>Loss</h3>
+
+                            <div class="pl-formula">
+                                Total Cost − Selling Price
+                            </div>
+
+                            <p>
+                                Loss occurs when the total cost exceeds
+                                the selling price.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">04</div>
+                            <h3>Profit Percentage</h3>
+
+                            <div class="pl-formula">
+                                (Profit ÷ Total Cost) × 100
+                            </div>
+
+                            <p>
+                                Measures profit relative to the total cost.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">05</div>
+                            <h3>Loss Percentage</h3>
+
+                            <div class="pl-formula">
+                                (Loss ÷ Total Cost) × 100
+                            </div>
+
+                            <p>
+                                Measures loss relative to the total cost.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">06</div>
+                            <h3>Profit Margin</h3>
+
+                            <div class="pl-formula">
+                                (Profit ÷ Selling Price) × 100
+                            </div>
+
+                            <p>
+                                Shows the percentage of sales revenue retained
+                                as profit.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">07</div>
+                            <h3>Markup Percentage</h3>
+
+                            <div class="pl-formula">
+                                (Profit ÷ Total Cost) × 100
+                            </div>
+
+                            <p>
+                                Shows profit as a percentage of the total cost.
+                            </p>
+                        </article>
+
+
+                        <article class="pl-formula-card">
+                            <div class="pl-formula-number">08</div>
+                            <h3>Break-Even Point</h3>
+
+                            <div class="pl-formula">
+                                Selling Price = Total Cost
+                            </div>
+
+                            <p>
+                                You neither make a profit nor experience
+                                a loss when both amounts are equal.
+                            </p>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Worked Example -->
+        <section class="pl-section">
+            <div class="pl-container">
+
+                <div class="pl-example-card">
+
+                    <div class="pl-example-content">
+                        <span class="pl-section-label">WORKED EXAMPLE</span>
+
+                        <h2>How Is Profit Calculated?</h2>
+
+                        <p>
+                            Suppose you purchase a product for ₹1,000,
+                            spend another ₹100 on expenses and sell it
+                            for ₹1,500.
+                        </p>
+
+                        <ul class="pl-example-list">
+                            <li>
+                                <span>Cost Price</span>
+                                <strong>₹1,000</strong>
+                            </li>
+
+                            <li>
+                                <span>Additional Expenses</span>
+                                <strong>₹100</strong>
+                            </li>
+
+                            <li>
+                                <span>Total Cost</span>
+                                <strong>₹1,100</strong>
+                            </li>
+
+                            <li>
+                                <span>Selling Price</span>
+                                <strong>₹1,500</strong>
+                            </li>
+
+                            <li class="pl-example-highlight">
+                                <span>Net Profit</span>
+                                <strong>₹400</strong>
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="pl-example-answer">
+
+                        <div class="pl-answer-icon" aria-hidden="true">
+                            ✓
+                        </div>
+
+                        <span>Profit Percentage</span>
+                        <strong>36.36%</strong>
+
+                        <p>
+                            ₹400 ÷ ₹1,100 × 100
+                        </p>
+
+                        <div class="pl-answer-divider"></div>
+
+                        <span>Profit Margin</span>
+                        <strong>26.67%</strong>
+
+                        <p>
+                            ₹400 ÷ ₹1,500 × 100
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How to Use -->
+        <section class="pl-section pl-information-section">
+            <div class="pl-container">
+
+                <div class="pl-section-heading">
+                    <span class="pl-section-label">QUICK GUIDE</span>
+                    <h2>How to Use This Calculator</h2>
+                    <p>
+                        Follow these simple steps to calculate your results.
+                    </p>
+                </div>
+
+
+                <div class="pl-steps-grid">
+
+                    <article class="pl-step-card">
+                        <span class="pl-step-number">1</span>
+                        <h3>Enter Cost Price</h3>
+                        <p>
+                            Enter the original purchase price of your product.
+                        </p>
+                    </article>
+
+                    <article class="pl-step-card">
+                        <span class="pl-step-number">2</span>
+                        <h3>Add Expenses</h3>
+                        <p>
+                            Include extra costs such as packaging or delivery.
+                            Enter zero if there are no additional expenses.
+                        </p>
+                    </article>
+
+                    <article class="pl-step-card">
+                        <span class="pl-step-number">3</span>
+                        <h3>Enter Selling Price</h3>
+                        <p>
+                            Enter the amount you receive when selling
+                            the product.
+                        </p>
+                    </article>
+
+                    <article class="pl-step-card">
+                        <span class="pl-step-number">4</span>
+                        <h3>View Your Results</h3>
+                        <p>
+                            Click Calculate to see profit or loss, percentages
+                            and your financial breakdown.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="pl-section">
+            <div class="pl-container">
+
+                <div class="pl-section-heading">
+                    <span class="pl-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>
+                        Learn more about profit, loss and related calculations.
+                    </p>
+                </div>
+
+
+                <div class="pl-faq-list">
+
+                    <details class="pl-faq-item">
+                        <summary>
+                            What is the difference between profit and revenue?
+                        </summary>
+
+                        <p>
+                            Revenue is the amount received from sales before
+                            deducting costs. Profit is what remains after
+                            subtracting the total costs from revenue.
+                        </p>
+                    </details>
+
+
+                    <details class="pl-faq-item">
+                        <summary>
+                            How do I calculate profit percentage?
+                        </summary>
+
+                        <p>
+                            Divide profit by the total cost and multiply
+                            the result by 100. For example, a ₹400 profit
+                            on a total cost of ₹1,100 equals approximately
+                            36.36%.
+                        </p>
+                    </details>
+
+
+                    <details class="pl-faq-item">
+                        <summary>
+                            What is the difference between profit margin and markup?
+                        </summary>
+
+                        <p>
+                            Markup measures profit against total cost.
+                            Profit margin measures profit against selling
+                            price. Both are percentages, but they use
+                            different denominators.
+                        </p>
+                    </details>
+
+
+                    <details class="pl-faq-item">
+                        <summary>
+                            Are additional expenses included in the calculation?
+                        </summary>
+
+                        <p>
+                            Yes. Enter your additional expenses in the
+                            calculator. They are added to the purchase cost
+                            before profit, loss and related percentages
+                            are calculated.
+                        </p>
+                    </details>
+
+
+                    <details class="pl-faq-item">
+                        <summary>
+                            What happens when selling price equals total cost?
+                        </summary>
+
+                        <p>
+                            You break even. Your profit and loss are both
+                            zero, and there is no profit or loss percentage
+                            to calculate for that transaction.
+                        </p>
+                    </details>
+
+
+                    <details class="pl-faq-item">
+                        <summary>
+                            Are my financial details uploaded anywhere?
+                        </summary>
+
+                        <p>
+                            No. This calculator performs calculations
+                            directly in your browser. It does not need
+                            to upload your entered financial values to
+                            a server.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Related Calculators -->
+        <section class="pl-section pl-related-section">
+            <div class="pl-container">
+
+                <div class="pl-section-heading">
+                    <span class="pl-section-label">EXPLORE MORE</span>
+                    <h2>Related Calculators</h2>
+                    <p>
+                        Explore more useful tools from DigiiFox.
+                    </p>
+                </div>
+
+
+                <div class="pl-related-grid">
+
+                    <a href="percentage-calculator.html" class="pl-related-card">
+                        <span class="pl-related-icon">%</span>
+                        <div>
+                            <h3>Percentage Calculator</h3>
+                            <p>Calculate percentages quickly.</p>
+                        </div>
+                        <span class="pl-related-arrow">→</span>
+                    </a>
+
+
+                    <a href="discount-calculator.html" class="pl-related-card">
+                        <span class="pl-related-icon">−</span>
+                        <div>
+                            <h3>Discount Calculator</h3>
+                            <p>Calculate discounts and final prices.</p>
+                        </div>
+                        <span class="pl-related-arrow">→</span>
+                    </a>
+
+
+                    <a href="average-calculator.html" class="pl-related-card">
+                        <span class="pl-related-icon">∑</span>
+                        <div>
+                            <h3>Average Calculator</h3>
+                            <p>Find the average of your numbers.</p>
+                        </div>
+                        <span class="pl-related-arrow">→</span>
+                    </a>
+
+
+                    <a href="emi-calculator.html" class="pl-related-card">
+                        <span class="pl-related-icon">₹</span>
+                        <div>
+                            <h3>EMI Calculator</h3>
+                            <p>Estimate monthly loan payments.</p>
+                        </div>
+                        <span class="pl-related-arrow">→</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                    </p>
+
+                    <p class="footer-description">
+                        A collection of practical online tools designed
+                        to make everyday digital tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Calculators</h3>
+
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="discount-calculator.html">Discount Calculator</a>
+                    <a href="average-calculator.html">Average Calculator</a>
+                    <a href="emi-calculator.html">EMI Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+
+                    <a href="../index.html">About Us</a>
+                    <a href="../index.html">Contact</a>
+                    <a href="../index.html">Privacy</a>
+                    <a href="../index.html">Terms</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

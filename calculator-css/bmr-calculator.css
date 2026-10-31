@@ -1,0 +1,693 @@
+/* =========================================
+   DIGIIFOX BMR CALCULATOR
+   Theme: Health & Fitness Green
+========================================= */
+
+.bmr-page {
+    --bmr-primary: #218653;
+    --bmr-primary-dark: #176b40;
+    --bmr-soft: #eaf7ef;
+    --bmr-border: #dce8df;
+    --bmr-text: #26382e;
+    --bmr-muted: #68786e;
+
+    padding: 28px 0 64px;
+    color: var(--bmr-text);
+}
+
+.bmr-page *,
+.bmr-page *::before,
+.bmr-page *::after {
+    box-sizing: border-box;
+}
+
+.bmr-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    align-items: center;
+    margin-bottom: 26px;
+    font-size: 13px;
+    color: var(--bmr-muted);
+}
+
+.bmr-breadcrumb a {
+    color: var(--bmr-primary);
+    text-decoration: none;
+}
+
+.bmr-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.bmr-hero {
+    max-width: 760px;
+    margin: 0 auto 34px;
+    text-align: center;
+}
+
+.bmr-eyebrow {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: var(--bmr-soft);
+    color: var(--bmr-primary-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.bmr-hero h1 {
+    margin: 14px 0 12px;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.bmr-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--bmr-muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.bmr-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    align-items: start;
+    gap: 24px;
+}
+
+.bmr-card {
+    min-width: 0;
+    padding: 27px;
+    background: #fff;
+    border: 1px solid var(--bmr-border);
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(27, 75, 46, 0.06);
+}
+
+.bmr-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 25px;
+}
+
+.bmr-icon {
+    display: grid;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--bmr-soft);
+    color: var(--bmr-primary);
+    font-size: 25px;
+}
+
+.bmr-card-heading h2 {
+    margin: 0 0 5px;
+    font-size: 21px;
+}
+
+.bmr-card-heading p {
+    margin: 0;
+    color: var(--bmr-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.bmr-fieldset {
+    min-width: 0;
+    margin: 0 0 23px;
+    padding: 0;
+    border: 0;
+}
+
+.bmr-fieldset legend {
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.bmr-unit-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.bmr-radio-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid var(--bmr-border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.bmr-radio-option:has(input:checked) {
+    border-color: var(--bmr-primary);
+    background: var(--bmr-soft);
+}
+
+.bmr-radio-option input {
+    accent-color: var(--bmr-primary);
+}
+
+.bmr-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 19px 15px;
+}
+
+.bmr-field {
+    min-width: 0;
+}
+
+.bmr-full-width {
+    grid-column: 1 / -1;
+}
+
+.bmr-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.bmr-field input,
+.bmr-field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 11px 12px;
+    border: 1px solid #d5e1d8;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: var(--bmr-text);
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bmr-field input:focus,
+.bmr-field select:focus {
+    border-color: var(--bmr-primary);
+    box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.12);
+}
+
+.bmr-field small {
+    display: block;
+    margin-top: 7px;
+    color: var(--bmr-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.bmr-input-with-unit {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #d5e1d8;
+    border-radius: 9px;
+    background: #fff;
+}
+
+.bmr-input-with-unit:focus-within {
+    border-color: var(--bmr-primary);
+    box-shadow: 0 0 0 3px rgba(33, 134, 83, 0.12);
+}
+
+.bmr-input-with-unit input {
+    border: 0;
+    box-shadow: none;
+}
+
+.bmr-input-with-unit input:focus {
+    border: 0;
+    box-shadow: none;
+}
+
+.bmr-input-with-unit span {
+    padding: 0 12px;
+    color: var(--bmr-muted);
+    font-size: 12px;
+}
+
+.bmr-height-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.bmr-weight-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 82px;
+    gap: 10px;
+}
+
+.bmr-error {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #f0c7c7;
+    border-radius: 9px;
+    background: #fff1f1;
+    color: #a62929;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.bmr-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.bmr-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    padding: 11px 18px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.bmr-btn:active {
+    transform: translateY(1px);
+}
+
+.bmr-btn-primary {
+    background: var(--bmr-primary);
+    color: #fff;
+}
+
+.bmr-btn-primary:hover {
+    background: var(--bmr-primary-dark);
+}
+
+.bmr-btn-secondary {
+    border-color: var(--bmr-border);
+    background: #fff;
+    color: var(--bmr-text);
+}
+
+.bmr-btn-secondary:hover {
+    background: #f5f8f5;
+}
+
+.bmr-form-actions .bmr-btn-primary {
+    flex: 1;
+}
+
+.bmr-result-card {
+    position: sticky;
+    top: 20px;
+}
+
+.bmr-result-top {
+    padding: 23px 20px;
+    border-radius: 14px;
+    background: var(--bmr-soft);
+    text-align: center;
+}
+
+.bmr-result-label {
+    display: block;
+    color: var(--bmr-primary-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.bmr-score {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0 8px;
+}
+
+.bmr-score > span:first-child {
+    color: var(--bmr-primary-dark);
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    overflow-wrap: anywhere;
+}
+
+.bmr-score-unit,
+.bmr-daily-unit {
+    color: var(--bmr-muted);
+    font-size: 12px;
+}
+
+.bmr-result-top p,
+.bmr-daily-estimate p {
+    margin: 0;
+    color: var(--bmr-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.bmr-daily-estimate {
+    margin: 17px 0 25px;
+    padding: 19px;
+    border: 1px solid var(--bmr-border);
+    border-radius: 12px;
+}
+
+.bmr-daily-estimate strong {
+    display: block;
+    margin: 8px 0 4px;
+    color: var(--bmr-text);
+    font-size: 28px;
+    overflow-wrap: anywhere;
+}
+
+.bmr-daily-estimate p {
+    margin-top: 9px;
+}
+
+.bmr-result-card > h3 {
+    margin: 0 0 14px;
+    font-size: 16px;
+}
+
+.bmr-detail-list {
+    display: grid;
+    gap: 0;
+}
+
+.bmr-detail-list > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf1ed;
+    font-size: 12px;
+}
+
+.bmr-detail-list > div span {
+    color: var(--bmr-muted);
+}
+
+.bmr-detail-list > div strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.bmr-formula-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f5f8f5;
+}
+
+.bmr-formula-box strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.bmr-formula-box p {
+    margin: 0;
+    color: var(--bmr-muted);
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.bmr-copy-btn {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.bmr-copy-message {
+    min-height: 16px;
+    margin: 9px 0 0;
+    color: var(--bmr-primary-dark);
+    font-size: 12px;
+    text-align: center;
+}
+
+.bmr-info-section {
+    display: grid;
+    gap: 18px;
+    margin-top: 40px;
+}
+
+.bmr-info-card {
+    padding: 25px;
+    border: 1px solid var(--bmr-border);
+    border-radius: 15px;
+    background: #fff;
+}
+
+.bmr-info-card h2 {
+    margin: 0 0 13px;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+.bmr-info-card p,
+.bmr-info-card li {
+    color: var(--bmr-muted);
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.bmr-info-card p {
+    margin: 0 0 12px;
+}
+
+.bmr-info-card p:last-child {
+    margin-bottom: 0;
+}
+
+.bmr-info-card ol {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding-left: 22px;
+}
+
+.bmr-formula-display {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--bmr-soft);
+}
+
+.bmr-formula-display strong {
+    color: var(--bmr-primary-dark);
+    font-size: 13px;
+}
+
+.bmr-formula-display code {
+    color: var(--bmr-text);
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+.bmr-faq-item {
+    padding: 17px 0;
+    border-bottom: 1px solid #edf1ed;
+}
+
+.bmr-faq-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.bmr-faq-item h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.bmr-faq-item p {
+    margin: 0;
+}
+
+.bmr-disclaimer {
+    padding: 20px;
+    border: 1px solid #e7e4c7;
+    border-radius: 12px;
+    background: #fffdf0;
+}
+
+.bmr-disclaimer strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #6d6120;
+    font-size: 14px;
+}
+
+.bmr-disclaimer p {
+    margin: 0;
+    color: #6e6b56;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.bmr-related-section {
+    margin-top: 42px;
+}
+
+.bmr-related-section > h2 {
+    margin: 0 0 18px;
+    font-size: 23px;
+}
+
+.bmr-related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.bmr-related-card {
+    display: block;
+    padding: 22px;
+    border: 1px solid var(--bmr-border);
+    border-radius: 14px;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bmr-related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(27, 75, 46, 0.08);
+}
+
+.bmr-related-card > span {
+    display: inline-grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--bmr-soft);
+    color: var(--bmr-primary);
+    font-size: 21px;
+}
+
+.bmr-related-card h3 {
+    margin: 13px 0 7px;
+    font-size: 16px;
+}
+
+.bmr-related-card p {
+    margin: 0;
+    color: var(--bmr-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .bmr-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .bmr-result-card {
+        position: static;
+    }
+
+    .bmr-result-top {
+        padding: 28px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bmr-page {
+        padding-top: 20px;
+    }
+
+    .bmr-hero {
+        margin-bottom: 25px;
+    }
+
+    .bmr-hero h1 {
+        font-size: 31px;
+    }
+
+    .bmr-hero p {
+        font-size: 14px;
+    }
+
+    .bmr-card,
+    .bmr-info-card {
+        padding: 19px;
+        border-radius: 14px;
+    }
+
+    .bmr-form-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .bmr-full-width {
+        grid-column: auto;
+    }
+
+    .bmr-unit-options {
+        grid-template-columns: 1fr;
+    }
+
+    .bmr-form-actions {
+        flex-direction: column;
+    }
+
+    .bmr-form-actions .bmr-btn {
+        width: 100%;
+    }
+
+    .bmr-related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bmr-info-card h2 {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 360px) {
+    .bmr-card,
+    .bmr-info-card {
+        padding: 15px;
+    }
+
+    .bmr-height-pair {
+        grid-template-columns: 1fr;
+    }
+
+    .bmr-detail-list > div {
+        gap: 8px;
+    }
+
+    .bmr-score {
+        gap: 5px;
+    }
+}

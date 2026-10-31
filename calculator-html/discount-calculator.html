@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Calculate sale prices, discount amounts, total savings, stacked discounts, and original prices with the free DigiiFox Discount Calculator.">
+
+    <title>Discount Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/discount-calculator.css">
+
+    <script src="../calculator-js/discount-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo" aria-label="DigiiFox home">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="pdf-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="calculators.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- ================= PAGE INTRO ================= -->
+        <section class="page-intro">
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="calculators.html">Calculators</a>
+                    <span>/</span>
+                    <span>Discount Calculator</span>
+                </div>
+
+                <div class="intro-badge">
+                    <span class="badge-dot"></span>
+                    Free Online Calculator
+                </div>
+
+                <h1>Discount <span>Calculator</span></h1>
+
+                <p>
+                    Calculate sale prices, discover how much you save,
+                    compare multiple discounts, and find the original
+                    price of a discounted product.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CALCULATOR SECTION ================= -->
+        <section class="discount-section">
+            <div class="container">
+
+                <div class="discount-heading">
+                    <div>
+                        <span class="eyebrow">DIGIIFOX CALCULATOR</span>
+                        <h2>Calculate Your Discount</h2>
+                        <p>
+                            Choose the calculation you need and enter your values.
+                        </p>
+                    </div>
+
+                    <div class="discount-heading-icon" aria-hidden="true">
+                        %
+                    </div>
+                </div>
+
+
+                <div class="discount-grid">
+
+                    <!-- CARD 1: SALE PRICE -->
+                    <article class="discount-card">
+
+                        <div class="discount-card-top">
+                            <div class="discount-icon">%</div>
+                            <span class="calculation-tag">Type 01</span>
+                        </div>
+
+                        <h3>Sale Price & Savings</h3>
+
+                        <p class="card-description">
+                            Find the discount amount and final price after
+                            applying a percentage discount.
+                        </p>
+
+                        <div class="example-box-small">
+                            <span>Example</span>
+                            ₹2,000 with 20% off
+                        </div>
+
+                        <form id="saleForm" class="discount-form">
+
+                            <div class="field-group">
+                                <label for="saleOriginal">Original Price (₹)</label>
+                                <input type="number" id="saleOriginal" min="0" step="any" placeholder="e.g. 2000"
+                                    required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="salePercent">Discount (%)</label>
+                                <input type="number" id="salePercent" min="0" max="100" step="any" placeholder="e.g. 20"
+                                    required>
+                            </div>
+
+                            <button type="submit" class="calculate-button">
+                                Calculate Discount <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="discount-result" id="saleResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 2: FIND DISCOUNT PERCENTAGE -->
+                    <article class="discount-card">
+
+                        <div class="discount-card-top">
+                            <div class="discount-icon">÷%</div>
+                            <span class="calculation-tag">Type 02</span>
+                        </div>
+
+                        <h3>Find Discount Percentage</h3>
+
+                        <p class="card-description">
+                            Find the percentage discount when you know
+                            the original and sale prices.
+                        </p>
+
+                        <div class="example-box-small">
+                            <span>Example</span>
+                            ₹2,000 reduced to ₹1,500
+                        </div>
+
+                        <form id="findDiscountForm" class="discount-form">
+
+                            <div class="field-group">
+                                <label for="findOriginal">Original Price (₹)</label>
+                                <input type="number" id="findOriginal" min="0" step="any" placeholder="e.g. 2000"
+                                    required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="findSale">Sale Price (₹)</label>
+                                <input type="number" id="findSale" min="0" step="any" placeholder="e.g. 1500" required>
+                            </div>
+
+                            <button type="submit" class="calculate-button">
+                                Find Discount <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="discount-result" id="findDiscountResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 3: STACKED DISCOUNTS -->
+                    <article class="discount-card">
+
+                        <div class="discount-card-top">
+                            <div class="discount-icon stacked-icon">%</div>
+                            <span class="calculation-tag">Type 03</span>
+                        </div>
+
+                        <h3>Additional Savings</h3>
+
+                        <p class="card-description">
+                            Calculate two discounts applied one after another,
+                            such as a sale offer plus an extra coupon.
+                        </p>
+
+                        <div class="example-box-small">
+                            <span>Example</span>
+                            20% off, then an extra 10% off
+                        </div>
+
+                        <form id="stackedForm" class="discount-form">
+
+                            <div class="field-group">
+                                <label for="stackedOriginal">Original Price (₹)</label>
+                                <input type="number" id="stackedOriginal" min="0" step="any" placeholder="e.g. 1000"
+                                    required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="firstDiscount">First Discount (%)</label>
+                                <input type="number" id="firstDiscount" min="0" max="100" step="any"
+                                    placeholder="e.g. 20" required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="secondDiscount">Additional Discount (%)</label>
+                                <input type="number" id="secondDiscount" min="0" max="100" step="any"
+                                    placeholder="e.g. 10" required>
+                            </div>
+
+                            <button type="submit" class="calculate-button">
+                                Calculate Savings <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="discount-result" id="stackedResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 4: REVERSE DISCOUNT -->
+                    <article class="discount-card">
+
+                        <div class="discount-card-top">
+                            <div class="discount-icon">↶</div>
+                            <span class="calculation-tag">Type 04</span>
+                        </div>
+
+                        <h3>Find Original Price</h3>
+
+                        <p class="card-description">
+                            Work backwards to find the price before a
+                            percentage discount was applied.
+                        </p>
+
+                        <div class="example-box-small">
+                            <span>Example</span>
+                            ₹1,600 after a 20% discount
+                        </div>
+
+                        <form id="reverseForm" class="discount-form">
+
+                            <div class="field-group">
+                                <label for="reverseSale">Sale Price (₹)</label>
+                                <input type="number" id="reverseSale" min="0" step="any" placeholder="e.g. 1600"
+                                    required>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="reversePercent">Discount (%)</label>
+                                <input type="number" id="reversePercent" min="0" max="99.999999" step="any"
+                                    placeholder="e.g. 20" required>
+                            </div>
+
+                            <button type="submit" class="calculate-button">
+                                Find Original Price <span>→</span>
+                            </button>
+
+                        </form>
+
+                        <div class="discount-result" id="reverseResult" role="status" aria-live="polite"
+                            aria-atomic="true">
+                            <span class="result-label">Your result</span>
+                            <strong>—</strong>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <p class="privacy-message">
+                    <span aria-hidden="true">✓</span>
+                    Your calculations run directly in your browser.
+                    No account is required.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= DEFINITION ================= -->
+        <section class="content-section">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">UNDERSTAND THE TOOL</span>
+                    <h2>What Is a Discount Calculator?</h2>
+                </div>
+
+                <div class="content-card">
+                    <p>
+                        A discount calculator helps you determine how much
+                        money you save when a product or service is offered
+                        at a reduced price. It calculates the discount amount
+                        and the final price you pay.
+                    </p>
+
+                    <p>
+                        For example, if an item costs ₹2,000 and a seller
+                        offers a 20% discount, you save ₹400 and pay ₹1,600.
+                    </p>
+
+                    <p>
+                        A discount calculator can also find the discount
+                        percentage from two prices, calculate successive
+                        discounts, and estimate the original price from a
+                        discounted price.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FORMULAS ================= -->
+        <section class="content-section section-tinted">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">MATHEMATICAL BASICS</span>
+                    <h2>Discount Formulas</h2>
+                    <p>
+                        These formulas explain how each calculation works.
+                    </p>
+                </div>
+
+                <div class="formula-grid">
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">₹</div>
+                        <h3>Discount Amount</h3>
+
+                        <div class="formula-box">
+                            Original Price × Discount % ÷ 100
+                        </div>
+
+                        <p>
+                            Example: ₹2,000 × 20 ÷ 100 = ₹400 saved.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">=</div>
+                        <h3>Final Sale Price</h3>
+
+                        <div class="formula-box">
+                            Original Price − Discount Amount
+                        </div>
+
+                        <p>
+                            Example: ₹2,000 − ₹400 = ₹1,600.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">%</div>
+                        <h3>Discount Percentage</h3>
+
+                        <div class="formula-box">
+                            (Original − Sale) ÷ Original × 100
+                        </div>
+
+                        <p>
+                            Example: (₹2,000 − ₹1,500) ÷ ₹2,000 × 100 = 25%.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">↶</div>
+                        <h3>Original Price</h3>
+
+                        <div class="formula-box">
+                            Sale Price ÷ (1 − Discount % ÷ 100)
+                        </div>
+
+                        <p>
+                            Example: ₹1,600 ÷ 0.80 = ₹2,000.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">+</div>
+                        <h3>Two Successive Discounts</h3>
+
+                        <div class="formula-box">
+                            Final = Original × (1 − A/100) × (1 − B/100)
+                        </div>
+
+                        <p>
+                            Example: ₹1,000 with 20%, then 10% off = ₹720.
+                        </p>
+                    </article>
+
+                    <article class="formula-card">
+                        <div class="formula-symbol">✓</div>
+                        <h3>Total Savings</h3>
+
+                        <div class="formula-box">
+                            Original Price − Final Price
+                        </div>
+
+                        <p>
+                            Example: ₹1,000 − ₹720 = ₹280 saved.
+                        </p>
+                    </article>
+
+                </div>
+
+                <div class="formula-tip">
+                    <strong>Important:</strong>
+                    Successive discounts are not simply added together.
+                    A 20% discount followed by an additional 10% discount
+                    gives a total reduction of 28%, not 30%.
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= HOW TO USE ================= -->
+        <section class="content-section">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">QUICK GUIDE</span>
+                    <h2>How to Use the Discount Calculator</h2>
+                    <p>
+                        Choose the calculation that matches your shopping question.
+                    </p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <article class="step-card">
+                        <span class="step-number">01</span>
+                        <h3>Select a calculation</h3>
+                        <p>
+                            Choose sale price, discount percentage,
+                            additional savings, or original price.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">02</span>
+                        <h3>Enter your values</h3>
+                        <p>
+                            Enter the original price, sale price,
+                            or discount percentage requested by the tool.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">03</span>
+                        <h3>Review your savings</h3>
+                        <p>
+                            Click Calculate to view your result and
+                            the breakdown of your discount.
+                        </p>
+                    </article>
+
+                </div>
+
+                <div class="example-box">
+                    <div>
+                        <span class="eyebrow">SHOPPING EXAMPLE</span>
+                        <h3>₹2,000 with 20% off</h3>
+                        <p>
+                            You save ₹400 and pay ₹1,600 before any
+                            additional charges.
+                        </p>
+                    </div>
+
+                    <div class="example-result">₹1,600</div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="content-section section-tinted">
+            <div class="container content-container">
+
+                <div class="section-heading">
+                    <span class="eyebrow">NEED HELP?</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>
+                        Common questions about discounts and sale prices.
+                    </p>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>How do I calculate a discount?</summary>
+                        <p>
+                            Multiply the original price by the discount
+                            percentage and divide by 100. Subtract the
+                            discount amount from the original price to
+                            find the final price.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How much do I save on a ₹1,000 item with 30% off?</summary>
+                        <p>
+                            You save ₹300 because ₹1,000 × 30 ÷ 100 = ₹300.
+                            The final price is ₹700.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>How do I find the original price after a discount?</summary>
+                        <p>
+                            Divide the sale price by one minus the discount
+                            rate expressed as a decimal. For example,
+                            ₹1,600 after 20% off means ₹1,600 ÷ 0.80 = ₹2,000.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Do two discounts of 20% and 10% equal 30% off?</summary>
+                        <p>
+                            No. The second discount is applied to the already
+                            reduced price. The combined discount is 28%:
+                            20% off ₹1,000 leaves ₹800, and another 10%
+                            off leaves ₹720.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Can a discount be more than 100%?</summary>
+                        <p>
+                            A conventional retail discount cannot reduce a
+                            positive price by more than 100% without requiring
+                            additional payment or credit. This calculator
+                            limits standard percentage discounts to 0–100%.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Does this calculator include GST or shipping?</summary>
+                        <p>
+                            No. It calculates the discount and sale price
+                            based on the price you enter. Taxes, shipping,
+                            service charges, and other fees are not included.
+                        </p>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Is the Discount Calculator free?</summary>
+                        <p>
+                            Yes. It is free to use and performs its
+                            calculations in your browser without requiring
+                            an account.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo footer-logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Simple, useful online tools designed to make
+                        everyday digital tasks easier.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="pdf-tools.html">PDF Tools</a>
+                    <a href="image-tools.html">Image Tools</a>
+                    <a href="calculators.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="discount-calculator.html">Discount Calculator</a>
+                    <a href="calculators.html">All Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+                    <p>
+                        Built for convenient, accessible, and
+                        browser-based digital tools.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Simple tools. Smarter tasks.</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

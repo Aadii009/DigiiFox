@@ -1,0 +1,992 @@
+/* =========================================
+   DigiiFox Prime Number Calculator
+   Tool-specific styles
+   Shared navbar/footer remain unchanged
+========================================= */
+
+.prime-page {
+    --prime-primary: #23845b;
+    --prime-primary-dark: #176443;
+    --prime-primary-light: #eaf7ef;
+    --prime-border: #dce9e0;
+    --prime-text: #24342b;
+    --prime-muted: #68776d;
+    --prime-background: #f6faf7;
+
+    color: var(--prime-text);
+    background: var(--prime-background);
+}
+
+.prime-page *,
+.prime-page *::before,
+.prime-page *::after {
+    box-sizing: border-box;
+}
+
+.prime-page .container {
+    width: min(1120px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.prime-page button,
+.prime-page input,
+.prime-page select {
+    font: inherit;
+}
+
+
+/* =========================================
+   Hero
+========================================= */
+
+.prime-hero {
+    padding: 28px 0 54px;
+    background: linear-gradient(180deg, #edf8f0 0%, #f6faf7 100%);
+}
+
+.prime-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    color: var(--prime-muted);
+    font-size: 14px;
+}
+
+.prime-breadcrumb a {
+    color: var(--prime-primary);
+    text-decoration: none;
+}
+
+.prime-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.prime-hero-content {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.prime-eyebrow,
+.prime-section-label {
+    display: inline-block;
+    color: var(--prime-primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    line-height: 1.5;
+}
+
+.prime-hero-content h1 {
+    margin: 14px 0 16px;
+    color: #1e3527;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -1.1px;
+}
+
+.prime-hero-content p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--prime-muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   Calculator card
+========================================= */
+
+.prime-calculator-section {
+    padding: 0 0 64px;
+}
+
+.prime-calculator-card {
+    max-width: 850px;
+    margin: -16px auto 0;
+    padding: 34px;
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--prime-border);
+    border-radius: 18px;
+    box-shadow: 0 12px 36px rgba(24, 78, 47, 0.07);
+}
+
+.prime-card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.prime-card-heading h2,
+.prime-information-card h2 {
+    margin: 9px 0 10px;
+    color: #203529;
+    font-size: 27px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.prime-card-heading p {
+    margin: 0;
+    color: var(--prime-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.prime-icon {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    flex: 0 0 54px;
+    place-items: center;
+    border-radius: 15px;
+    background: var(--prime-primary-light);
+    color: var(--prime-primary);
+    font-size: 28px;
+    font-weight: 850;
+}
+
+
+/* =========================================
+   Inputs
+========================================= */
+
+.prime-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.prime-field label {
+    color: var(--prime-text);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.prime-field input,
+.prime-field select,
+#primeMode {
+    width: 100%;
+    min-height: 52px;
+    padding: 13px 15px;
+    border: 1px solid #cddbd1;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    color: var(--prime-text);
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prime-field input:focus,
+.prime-field select:focus,
+#primeMode:focus {
+    border-color: var(--prime-primary);
+    box-shadow: 0 0 0 3px rgba(35, 132, 91, 0.13);
+}
+
+.prime-field input::placeholder {
+    color: #9aa79e;
+}
+
+.prime-field small,
+.prime-range-help {
+    color: var(--prime-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.prime-range-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.prime-range-fields[hidden],
+.prime-mode-field[hidden] {
+    display: none !important;
+}
+
+.prime-range-fields .prime-field {
+    margin-bottom: 0;
+}
+
+.prime-range-help {
+    grid-column: 1 / -1;
+    margin: -3px 0 0;
+}
+
+
+/* =========================================
+   Example buttons
+========================================= */
+
+.prime-examples {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-top: 23px;
+}
+
+.prime-examples-title {
+    margin-right: 3px;
+    color: var(--prime-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.prime-example-button {
+    padding: 8px 12px;
+    border: 1px solid var(--prime-border);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--prime-primary-dark);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 650;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.prime-example-button:hover {
+    border-color: var(--prime-primary);
+    background: var(--prime-primary-light);
+}
+
+
+/* =========================================
+   Action buttons and errors
+========================================= */
+
+.prime-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.prime-primary-button,
+.prime-secondary-button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 19px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.4;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.prime-primary-button {
+    border: 1px solid var(--prime-primary);
+    background: var(--prime-primary);
+    color: #fff;
+}
+
+.prime-primary-button:hover {
+    border-color: var(--prime-primary-dark);
+    background: var(--prime-primary-dark);
+}
+
+.prime-secondary-button {
+    border: 1px solid #d7e2da;
+    background: #fff;
+    color: var(--prime-text);
+}
+
+.prime-secondary-button:hover {
+    border-color: #a9c7b4;
+    background: #f3f8f4;
+}
+
+.prime-primary-button:focus-visible,
+.prime-secondary-button:focus-visible,
+.prime-example-button:focus-visible {
+    outline: 3px solid rgba(35, 132, 91, 0.25);
+    outline-offset: 3px;
+}
+
+.prime-error {
+    margin: 14px 0 0;
+    color: #b42318;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.prime-error:empty {
+    display: none;
+}
+
+
+/* =========================================
+   Results panel
+========================================= */
+
+.prime-results {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--prime-border);
+}
+
+.prime-results[hidden] {
+    display: none !important;
+}
+
+.prime-results-heading {
+    margin-bottom: 22px;
+}
+
+.prime-results-heading h3 {
+    margin: 8px 0;
+    color: #203529;
+    font-size: 23px;
+    line-height: 1.4;
+}
+
+.prime-results-heading p {
+    margin: 0;
+    color: var(--prime-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   Single-number result
+========================================= */
+
+.prime-answer-card {
+    padding: 25px;
+    border: 1px solid #cfe6d6;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #f2fbf5, #e8f6ed);
+}
+
+.prime-answer-label {
+    display: block;
+    color: #42644f;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.prime-answer-number {
+    display: block;
+    margin: 12px 0 8px;
+    color: var(--prime-primary-dark);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 850;
+    line-height: 1.3;
+}
+
+.prime-answer-card p {
+    margin: 0;
+    color: #52685a;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.prime-answer-card[hidden],
+.prime-range-result[hidden],
+.prime-factors-result[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================
+   Statistics
+========================================= */
+
+.prime-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.prime-stat-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #cfe6d6;
+    border-radius: 12px;
+    background: #f0f9f3;
+}
+
+.prime-stat-card span {
+    color: #42644f;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.6;
+}
+
+.prime-stat-card strong {
+    color: var(--prime-primary-dark);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 850;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.prime-range-result h4,
+.prime-factors-result h4,
+.prime-explanation-box h4 {
+    margin: 23px 0 14px;
+    color: #263b2d;
+    font-size: 17px;
+    font-weight: 750;
+    line-height: 1.5;
+}
+
+.prime-range-result > h4:first-child,
+.prime-factors-result > h4:first-of-type {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   Prime number range list
+========================================= */
+
+.prime-number-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 17px;
+    border: 1px solid var(--prime-border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.prime-number-chip {
+    display: inline-flex;
+    min-width: 42px;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 11px;
+    border: 1px solid #cfe6d6;
+    border-radius: 8px;
+    background: var(--prime-primary-light);
+    color: var(--prime-primary-dark);
+    font-size: 13px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   Prime factors
+========================================= */
+
+.prime-factor-stat {
+    margin-bottom: 24px;
+}
+
+.prime-factor-expression {
+    padding: 19px;
+    overflow-wrap: anywhere;
+    border-radius: 10px;
+    background: var(--prime-primary-light);
+    color: var(--prime-primary-dark);
+    text-align: center;
+    font-size: clamp(17px, 3vw, 23px);
+    font-weight: 850;
+    line-height: 1.8;
+}
+
+.prime-factor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.prime-factor-chip {
+    display: inline-flex;
+    min-width: 40px;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: 1px solid #cfe6d6;
+    border-radius: 8px;
+    background: #f0f9f3;
+    color: var(--prime-primary-dark);
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.prime-steps-list,
+.prime-explanation-box ol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding-left: 24px;
+}
+
+.prime-steps-list li,
+.prime-explanation-box li {
+    padding-left: 4px;
+    color: #536358;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.prime-steps-list li::marker,
+.prime-explanation-box li::marker {
+    color: var(--prime-primary);
+    font-weight: 800;
+}
+
+
+/* =========================================
+   Explanation
+========================================= */
+
+.prime-explanation-box {
+    margin-top: 24px;
+    padding: 23px;
+    border: 1px solid var(--prime-border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.prime-explanation-box h4 {
+    margin-top: 0;
+}
+
+
+/* =========================================
+   Result actions
+========================================= */
+
+.prime-result-actions {
+    margin-top: 23px;
+}
+
+.prime-copy-feedback {
+    min-height: 20px;
+    margin: 12px 0 0;
+    color: var(--prime-primary-dark);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   Information sections
+========================================= */
+
+.prime-information-section {
+    padding: 0 0 38px;
+}
+
+.prime-information-card {
+    padding: 32px;
+    border: 1px solid var(--prime-border);
+    border-radius: 16px;
+    background: #fff;
+}
+
+.prime-information-card h2 {
+    margin-bottom: 16px;
+}
+
+.prime-information-card > p {
+    max-width: 900px;
+    margin: 0 0 13px;
+    color: var(--prime-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   Definition cards
+========================================= */
+
+.prime-definition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 26px;
+}
+
+.prime-definition-item {
+    min-width: 0;
+    padding: 21px;
+    border: 1px solid var(--prime-border);
+    border-radius: 12px;
+    background: #fbfdfb;
+}
+
+.prime-definition-symbol {
+    display: inline-grid;
+    min-width: 44px;
+    min-height: 42px;
+    padding: 8px 12px;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--prime-primary-light);
+    color: var(--prime-primary-dark);
+    font-size: 17px;
+    font-weight: 850;
+}
+
+.prime-definition-item h3 {
+    margin: 15px 0 9px;
+    color: #263b2d;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.prime-definition-item p {
+    margin: 0;
+    color: var(--prime-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.prime-definition-example {
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top: 1px solid var(--prime-border);
+    color: var(--prime-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   Formula reference
+========================================= */
+
+.prime-formula-reference {
+    margin-top: 28px;
+    padding: 22px;
+    border-radius: 12px;
+    background: #f4f9f5;
+}
+
+.prime-formula-reference h3 {
+    margin: 0 0 14px;
+    color: #263b2d;
+    font-size: 17px;
+}
+
+.prime-reference-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px 20px;
+    padding: 13px 0;
+    border-bottom: 1px solid #e0ebe3;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.prime-reference-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.prime-reference-row span {
+    color: var(--prime-muted);
+}
+
+.prime-reference-row strong {
+    color: var(--prime-primary-dark);
+    font-weight: 750;
+}
+
+
+/* =========================================
+   How to use
+========================================= */
+
+.prime-how-to-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.prime-how-to-item {
+    padding: 23px;
+    border: 1px solid var(--prime-border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.prime-step-number {
+    display: inline-block;
+    margin-bottom: 13px;
+    color: var(--prime-primary);
+    font-size: 13px;
+    font-weight: 850;
+    letter-spacing: 1px;
+}
+
+.prime-how-to-item h3 {
+    margin: 0 0 9px;
+    color: #263b2d;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.prime-how-to-item p {
+    margin: 0;
+    color: var(--prime-muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   FAQs
+========================================= */
+
+.prime-faq-section {
+    padding-bottom: 64px;
+}
+
+.prime-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.prime-faq-item {
+    border: 1px solid var(--prime-border);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.prime-faq-item summary {
+    position: relative;
+    padding: 18px 46px 18px 18px;
+    color: #293c30;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.7;
+    list-style: none;
+}
+
+.prime-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.prime-faq-item summary::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    color: var(--prime-primary);
+    font-size: 23px;
+    font-weight: 500;
+    transform: translateY(-50%);
+}
+
+.prime-faq-item[open] summary::after {
+    content: "−";
+}
+
+.prime-faq-item p {
+    margin: 0;
+    padding: 0 18px 19px;
+    color: var(--prime-muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   Responsive design
+========================================= */
+
+@media (max-width: 850px) {
+    .prime-definition-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .prime-definition-item:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .prime-page .container {
+        width: min(100% - 28px, 1120px);
+    }
+
+    .prime-hero {
+        padding: 22px 0 40px;
+    }
+
+    .prime-breadcrumb {
+        margin-bottom: 25px;
+        font-size: 12px;
+    }
+
+    .prime-hero-content h1 {
+        font-size: 31px;
+        letter-spacing: -0.6px;
+    }
+
+    .prime-hero-content p {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .prime-calculator-section {
+        padding-bottom: 42px;
+    }
+
+    .prime-calculator-card {
+        margin-top: -10px;
+        padding: 23px 18px;
+        border-radius: 14px;
+    }
+
+    .prime-card-heading {
+        gap: 12px;
+        margin-bottom: 23px;
+    }
+
+    .prime-card-heading h2,
+    .prime-information-card h2 {
+        font-size: 23px;
+    }
+
+    .prime-icon {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+        border-radius: 12px;
+        font-size: 24px;
+    }
+
+    .prime-range-fields {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .prime-range-help {
+        margin-top: -5px;
+    }
+
+    .prime-examples {
+        gap: 8px;
+    }
+
+    .prime-examples-title {
+        width: 100%;
+    }
+
+    .prime-actions {
+        gap: 10px;
+    }
+
+    .prime-primary-button,
+    .prime-secondary-button {
+        flex: 1 1 140px;
+        padding: 12px;
+    }
+
+    .prime-stat-grid,
+    .prime-definition-grid,
+    .prime-how-to-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prime-definition-item:last-child {
+        grid-column: auto;
+    }
+
+    .prime-stat-card {
+        padding: 18px;
+    }
+
+    .prime-answer-card,
+    .prime-explanation-box {
+        padding: 19px;
+    }
+
+    .prime-information-section {
+        padding-bottom: 25px;
+    }
+
+    .prime-information-card {
+        padding: 23px 18px;
+        border-radius: 13px;
+    }
+
+    .prime-definition-item,
+    .prime-how-to-item {
+        padding: 19px;
+    }
+
+    .prime-formula-reference {
+        padding: 17px;
+    }
+
+    .prime-reference-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .prime-faq-section {
+        padding-bottom: 42px;
+    }
+}
+
+@media (max-width: 380px) {
+    .prime-hero-content h1 {
+        font-size: 27px;
+    }
+
+    .prime-calculator-card {
+        padding: 20px 14px;
+    }
+
+    .prime-card-heading h2,
+    .prime-information-card h2 {
+        font-size: 21px;
+    }
+
+    .prime-icon {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+        font-size: 21px;
+    }
+
+    .prime-actions {
+        flex-direction: column;
+    }
+
+    .prime-primary-button,
+    .prime-secondary-button {
+        width: 100%;
+        flex-basis: auto;
+    }
+}

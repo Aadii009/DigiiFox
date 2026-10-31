@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prime Number Calculator | DigiiFox</title>
+    <meta name="description"
+        content="Check prime numbers, find prime factors, and generate prime numbers within a range using the free DigiiFox Prime Number Calculator.">
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/prime-number-calculator.css">
+</head>
+
+<body>
+
+    <!-- Shared Navbar -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../calculator.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="mainNav">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="prime-page">
+
+        <!-- Hero -->
+        <section class="prime-hero">
+            <div class="container">
+
+                <div class="prime-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Prime Number Calculator</span>
+                </div>
+
+                <div class="prime-hero-content">
+                    <span class="prime-eyebrow">MATH CALCULATOR</span>
+
+                    <h1>Prime Number Calculator</h1>
+
+                    <p>
+                        Check whether a number is prime, find its prime
+                        factors, or generate prime numbers within a range
+                        with clear mathematical explanations.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="prime-calculator-section" id="calculator">
+            <div class="container">
+
+                <div class="prime-calculator-card">
+
+                    <div class="prime-card-heading">
+                        <div>
+                            <span class="prime-section-label">CALCULATOR</span>
+                            <h2>Explore prime numbers</h2>
+                            <p>
+                                Choose a calculation type and enter your
+                                number or range.
+                            </p>
+                        </div>
+
+                        <div class="prime-icon" aria-hidden="true">p</div>
+                    </div>
+
+
+                    <form id="primeForm" novalidate>
+
+                        <div class="prime-field">
+                            <label for="primeMode">Calculation type</label>
+
+                            <select id="primeMode" name="mode">
+                                <option value="check">Check a number</option>
+                                <option value="range">Find primes in a range</option>
+                                <option value="factors">Find prime factors</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Single-number input -->
+                        <div class="prime-field prime-mode-field" id="primeNumberField">
+                            <label for="primeNumber">Enter a whole number</label>
+
+                            <input type="number" id="primeNumber" name="number" min="0" max="1000000000000" step="1"
+                                value="29" placeholder="e.g. 29" inputmode="numeric"
+                                aria-describedby="primeNumberHelp primeError">
+
+                            <small id="primeNumberHelp">
+                                Enter a whole number from 0 to 1,000,000,000,000.
+                            </small>
+                        </div>
+
+
+                        <!-- Range inputs -->
+                        <div class="prime-range-fields" id="primeRangeFields" hidden>
+
+                            <div class="prime-field">
+                                <label for="primeRangeStart">Start of range</label>
+
+                                <input type="number" id="primeRangeStart" min="0" max="10000000" step="1" value="1"
+                                    placeholder="e.g. 1" inputmode="numeric">
+                            </div>
+
+                            <div class="prime-field">
+                                <label for="primeRangeEnd">End of range</label>
+
+                                <input type="number" id="primeRangeEnd" min="0" max="10000000" step="1" value="100"
+                                    placeholder="e.g. 100" inputmode="numeric">
+                            </div>
+
+                            <p class="prime-range-help">
+                                The range can contain up to 100,000 integers.
+                                Values must be between 0 and 10,000,000.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Examples -->
+                        <div class="prime-examples">
+                            <span class="prime-examples-title">Try an example:</span>
+
+                            <button type="button" class="prime-example-button" data-mode="check" data-number="29">
+                                Prime: 29
+                            </button>
+
+                            <button type="button" class="prime-example-button" data-mode="check" data-number="42">
+                                Composite: 42
+                            </button>
+
+                            <button type="button" class="prime-example-button" data-mode="factors" data-number="360">
+                                Factors: 360
+                            </button>
+
+                            <button type="button" class="prime-example-button" data-mode="range" data-start="1"
+                                data-end="100">
+                                Primes: 1–100
+                            </button>
+                        </div>
+
+
+                        <p class="prime-error" id="primeError" role="alert" aria-live="polite"></p>
+
+
+                        <div class="prime-actions">
+                            <button class="prime-primary-button" type="submit">
+                                Calculate
+                            </button>
+
+                            <button class="prime-secondary-button" type="button" id="primeResetButton">
+                                Reset
+                            </button>
+                        </div>
+
+                    </form>
+
+
+                    <!-- Results -->
+                    <section class="prime-results" id="primeResultPanel" aria-live="polite" hidden>
+
+                        <div class="prime-results-heading">
+                            <span class="prime-section-label">YOUR RESULTS</span>
+                            <h3 id="primeResultTitle">Calculation results</h3>
+                            <p id="primeResultSummary"></p>
+                        </div>
+
+
+                        <!-- Check result -->
+                        <div class="prime-answer-card" id="primeCheckResult" hidden>
+                            <span class="prime-answer-label">Number classification</span>
+
+                            <strong class="prime-answer-number" id="primeClassification"></strong>
+
+                            <p id="primeClassificationDetail"></p>
+                        </div>
+
+
+                        <!-- Range result -->
+                        <div class="prime-range-result" id="primeRangeResult" hidden>
+                            <div class="prime-stat-grid">
+
+                                <div class="prime-stat-card">
+                                    <span>Total prime numbers</span>
+                                    <strong id="primeCount">0</strong>
+                                </div>
+
+                                <div class="prime-stat-card">
+                                    <span>Range checked</span>
+                                    <strong id="primeRangeLabel">1–100</strong>
+                                </div>
+
+                            </div>
+
+                            <h4>Prime numbers found</h4>
+
+                            <div class="prime-number-list" id="primeNumberList"></div>
+                        </div>
+
+
+                        <!-- Factors result -->
+                        <div class="prime-factors-result" id="primeFactorsResult" hidden>
+                            <div class="prime-stat-card prime-factor-stat">
+                                <span>Number of prime factors (with repetition)</span>
+                                <strong id="primeFactorCount">0</strong>
+                            </div>
+
+                            <h4>Prime factorization</h4>
+
+                            <div class="prime-factor-expression" id="primeFactorExpression"></div>
+
+                            <h4>Individual prime factors</h4>
+
+                            <div class="prime-factor-list" id="primeFactorList"></div>
+
+                            <h4>Factorization steps</h4>
+
+                            <ol class="prime-steps-list" id="primeFactorSteps"></ol>
+                        </div>
+
+
+                        <!-- Explanation -->
+                        <div class="prime-explanation-box">
+                            <h4>How the result was calculated</h4>
+                            <ol id="primeExplanationSteps"></ol>
+                        </div>
+
+
+                        <div class="prime-actions prime-result-actions">
+                            <button type="button" class="prime-primary-button" id="primeCopyButton">
+                                Copy Results
+                            </button>
+
+                            <button type="button" class="prime-secondary-button" id="primeCalculateAgainButton">
+                                Calculate Again
+                            </button>
+                        </div>
+
+                        <p class="prime-copy-feedback" id="primeCopyFeedback" aria-live="polite"></p>
+
+                    </section>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition -->
+        <section class="prime-information-section" id="definition">
+            <div class="container">
+
+                <div class="prime-information-card">
+                    <span class="prime-section-label">UNDERSTANDING THE MATH</span>
+                    <h2>What is a prime number?</h2>
+
+                    <p>
+                        A prime number is a whole number greater than 1
+                        that has exactly two positive factors: 1 and itself.
+                        For example, 2, 3, 5, 7, 11, and 13 are prime numbers.
+                    </p>
+
+                    <p>
+                        A number greater than 1 that has more than two
+                        positive factors is called a composite number.
+                        The number 1 is neither prime nor composite.
+                    </p>
+
+
+                    <div class="prime-definition-grid">
+
+                        <article class="prime-definition-item">
+                            <div class="prime-definition-symbol">P</div>
+                            <h3>Prime number</h3>
+
+                            <p>
+                                A number divisible only by 1 and itself.
+                            </p>
+
+                            <div class="prime-definition-example">
+                                Example: 7 has factors 1 and 7.
+                            </div>
+                        </article>
+
+
+                        <article class="prime-definition-item">
+                            <div class="prime-definition-symbol">C</div>
+                            <h3>Composite number</h3>
+
+                            <p>
+                                A number greater than 1 that has more than
+                                two positive factors.
+                            </p>
+
+                            <div class="prime-definition-example">
+                                Example: 12 has factors 1, 2, 3, 4, 6, and 12.
+                            </div>
+                        </article>
+
+
+                        <article class="prime-definition-item">
+                            <div class="prime-definition-symbol">1</div>
+                            <h3>Neither prime nor composite</h3>
+
+                            <p>
+                                The number 1 has only one positive factor,
+                                so it belongs to neither category.
+                            </p>
+
+                            <div class="prime-definition-example">
+                                Example: 1 has only the factor 1.
+                            </div>
+                        </article>
+
+                    </div>
+
+
+                    <div class="prime-formula-reference">
+                        <h3>Important mathematical rules</h3>
+
+                        <div class="prime-reference-row">
+                            <span>Prime number test</span>
+                            <strong>
+                                Test divisors up to √n
+                            </strong>
+                        </div>
+
+                        <div class="prime-reference-row">
+                            <span>Prime factorization</span>
+                            <strong>
+                                n = p₁ × p₂ × ... × pₖ
+                            </strong>
+                        </div>
+
+                        <div class="prime-reference-row">
+                            <span>First prime number</span>
+                            <strong>2</strong>
+                        </div>
+
+                        <div class="prime-reference-row">
+                            <span>Only even prime number</span>
+                            <strong>2</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How to Use -->
+        <section class="prime-information-section" id="how-to-use">
+            <div class="container">
+
+                <div class="prime-information-card">
+                    <span class="prime-section-label">QUICK GUIDE</span>
+                    <h2>How to use the Prime Number Calculator</h2>
+
+                    <div class="prime-how-to-grid">
+
+                        <article class="prime-how-to-item">
+                            <span class="prime-step-number">01</span>
+                            <h3>Choose a calculation</h3>
+                            <p>
+                                Select whether you want to check a number,
+                                find prime numbers in a range, or calculate
+                                prime factors.
+                            </p>
+                        </article>
+
+                        <article class="prime-how-to-item">
+                            <span class="prime-step-number">02</span>
+                            <h3>Enter your values</h3>
+                            <p>
+                                Enter a whole number or the beginning and
+                                end of your chosen range.
+                            </p>
+                        </article>
+
+                        <article class="prime-how-to-item">
+                            <span class="prime-step-number">03</span>
+                            <h3>Calculate</h3>
+                            <p>
+                                Click Calculate to check the number or
+                                generate the requested results.
+                            </p>
+                        </article>
+
+                        <article class="prime-how-to-item">
+                            <span class="prime-step-number">04</span>
+                            <h3>Review and copy</h3>
+                            <p>
+                                Read the results and mathematical
+                                explanation, then copy them if needed.
+                            </p>
+                        </article>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="prime-information-section prime-faq-section" id="faq">
+            <div class="container">
+
+                <div class="prime-information-card">
+                    <span class="prime-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently asked questions</h2>
+
+                    <div class="prime-faq-list">
+
+                        <details class="prime-faq-item">
+                            <summary>Is 1 a prime number?</summary>
+                            <p>
+                                No. A prime number must have exactly two
+                                distinct positive factors. The number 1
+                                has only one positive factor, so it is
+                                neither prime nor composite.
+                            </p>
+                        </details>
+
+                        <details class="prime-faq-item">
+                            <summary>Why is 2 the only even prime number?</summary>
+                            <p>
+                                Every even whole number greater than 2
+                                is divisible by 2 and itself, so it has
+                                more than two positive factors. The number
+                                2 has exactly two: 1 and 2.
+                            </p>
+                        </details>
+
+                        <details class="prime-faq-item">
+                            <summary>How does the calculator check a number?</summary>
+                            <p>
+                                It tests possible divisors up to the square
+                                root of the number. If no integer divisor
+                                is found in that range, the number is prime
+                                when it is greater than 1.
+                            </p>
+                        </details>
+
+                        <details class="prime-faq-item">
+                            <summary>What is prime factorization?</summary>
+                            <p>
+                                Prime factorization expresses a positive
+                                integer greater than 1 as a product of
+                                prime numbers. For example, 12 = 2 × 2 × 3.
+                            </p>
+                        </details>
+
+                        <details class="prime-faq-item">
+                            <summary>Can I find every prime number in a range?</summary>
+                            <p>
+                                Yes. Choose Find primes in a range and enter
+                                the start and end values. The range can
+                                contain up to 100,000 integers.
+                            </p>
+                        </details>
+
+                        <details class="prime-faq-item">
+                            <summary>Are my calculations processed online?</summary>
+                            <p>
+                                The calculations run locally in your browser.
+                                The calculator does not need to upload your
+                                entered numbers to calculate the results.
+                            </p>
+                        </details>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Shared Footer -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../calculator.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Simple, useful online tools designed to make
+                        everyday tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                    <a href="probability-calculator.html">Probability Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Math Tools</h3>
+                    <a href="exponent-calculator.html">Exponent Calculator</a>
+                    <a href="square-root-calculator.html">Square Root Calculator</a>
+                    <a href="lcm-hcf-calculator.html">LCM & HCF Calculator</a>
+                    <a href="prime-number-calculator.html">Prime Number Calculator</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/prime-number-calculator.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your Body Mass Index (BMI) with the free DigiiFox BMI Calculator.">
+    <title>BMI Calculator | DigiiFox</title>
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/bmi-calculator.css">
+    <script src="../calculator-js/bmi-calculator.js" defer></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="bmi-page">
+
+        <section class="bmi-hero">
+            <div class="container">
+                <div class="bmi-breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Health &amp; Fitness</span>
+                    <span>/</span>
+                    <span>BMI Calculator</span>
+                </div>
+
+                <span class="bmi-eyebrow">HEALTH &amp; FITNESS TOOLS</span>
+                <h1>BMI Calculator</h1>
+                <p>
+                    Calculate your Body Mass Index using your height and weight.
+                    Get an adult BMI category and understand what the result means.
+                </p>
+            </div>
+        </section>
+
+        <section class="container bmi-main">
+            <div class="bmi-layout">
+
+                <section class="bmi-card bmi-calculator-card">
+                    <div class="bmi-card-heading">
+                        <span class="bmi-heading-icon">♡</span>
+                        <div>
+                            <h2>Calculate Your BMI</h2>
+                            <p>Enter your height and weight to get started.</p>
+                        </div>
+                    </div>
+
+                    <form id="bmiForm" novalidate>
+
+                        <div class="bmi-unit-selector">
+                            <span class="bmi-label">Measurement system</span>
+                            <div class="bmi-unit-options">
+                                <label class="bmi-unit-option">
+                                    <input type="radio" name="bmiUnitSystem" value="metric" checked>
+                                    <span>Metric (cm, kg)</span>
+                                </label>
+
+                                <label class="bmi-unit-option">
+                                    <input type="radio" name="bmiUnitSystem" value="imperial">
+                                    <span>Imperial (ft, in, lb)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bmi-input-grid">
+                            <div class="bmi-field" id="bmiMetricHeightGroup">
+                                <label for="bmiHeightCm">Height (centimetres)</label>
+                                <div class="bmi-input-wrap">
+                                    <input type="number" id="bmiHeightCm" min="50" max="300" step="0.1"
+                                        placeholder="e.g. 170" inputmode="decimal">
+                                    <span>cm</span>
+                                </div>
+                            </div>
+
+                            <div class="bmi-field bmi-hidden" id="bmiImperialHeightGroup">
+                                <label>Height (feet and inches)</label>
+                                <div class="bmi-height-imperial">
+                                    <div class="bmi-input-wrap">
+                                        <input type="number" id="bmiHeightFt" min="1" max="9" step="1" placeholder="5"
+                                            inputmode="numeric">
+                                        <span>ft</span>
+                                    </div>
+
+                                    <div class="bmi-input-wrap">
+                                        <input type="number" id="bmiHeightIn" min="0" max="11.99" step="0.1"
+                                            placeholder="7" inputmode="decimal">
+                                        <span>in</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bmi-field">
+                                <label for="bmiWeight">Weight</label>
+                                <div class="bmi-input-wrap">
+                                    <input type="number" id="bmiWeight" min="1" max="700" step="0.1"
+                                        placeholder="e.g. 65" inputmode="decimal" required>
+                                    <span id="bmiWeightUnit">kg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bmi-error" id="bmiError" role="alert" hidden></div>
+
+                        <div class="bmi-actions">
+                            <button type="submit" class="bmi-btn bmi-btn-primary">
+                                Calculate BMI
+                            </button>
+                            <button type="button" class="bmi-btn bmi-btn-secondary" id="bmiReset">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+
+                    <section class="bmi-results" id="bmiResults" aria-live="polite" hidden>
+                        <div class="bmi-result-heading">
+                            <span class="bmi-result-eyebrow">YOUR BMI RESULT</span>
+                            <button type="button" class="bmi-copy-btn" id="bmiCopy">
+                                Copy Result
+                            </button>
+                        </div>
+
+                        <div class="bmi-score-panel">
+                            <div class="bmi-score" id="bmiScore">22.5</div>
+                            <div class="bmi-score-unit">kg/m²</div>
+                            <span class="bmi-category-badge" id="bmiCategory">Healthy weight</span>
+                            <p id="bmiCategoryDescription">
+                                Your BMI is within the standard healthy-weight range for adults.
+                            </p>
+                        </div>
+
+                        <div class="bmi-scale-heading">
+                            <h3>Adult BMI ranges</h3>
+                            <p>Your calculated position is shown below.</p>
+                        </div>
+
+                        <div class="bmi-scale" aria-label="Adult BMI category ranges">
+                            <div class="bmi-scale-segment bmi-scale-underweight">
+                                <span>&lt;18.5</span>
+                            </div>
+                            <div class="bmi-scale-segment bmi-scale-healthy">
+                                <span>18.5–24.9</span>
+                            </div>
+                            <div class="bmi-scale-segment bmi-scale-overweight">
+                                <span>25–29.9</span>
+                            </div>
+                            <div class="bmi-scale-segment bmi-scale-obesity">
+                                <span>30+</span>
+                            </div>
+                            <div class="bmi-scale-marker" id="bmiScaleMarker" hidden>
+                                <span id="bmiMarkerLabel">Your BMI</span>
+                            </div>
+                        </div>
+
+                        <div class="bmi-scale-labels">
+                            <span>Underweight</span>
+                            <span>Healthy</span>
+                            <span>Overweight</span>
+                            <span>Obesity</span>
+                        </div>
+
+                        <div class="bmi-result-details">
+                            <h3>Calculation details</h3>
+                            <div class="bmi-detail-row">
+                                <span>Height entered</span>
+                                <strong id="bmiDetailHeight">170 cm</strong>
+                            </div>
+                            <div class="bmi-detail-row">
+                                <span>Weight entered</span>
+                                <strong id="bmiDetailWeight">65 kg</strong>
+                            </div>
+                            <div class="bmi-detail-row">
+                                <span>Formula used</span>
+                                <strong id="bmiDetailFormula">Weight ÷ height²</strong>
+                            </div>
+                            <div class="bmi-detail-row">
+                                <span>Calculation</span>
+                                <strong id="bmiDetailCalculation">65 ÷ (1.70 × 1.70)</strong>
+                            </div>
+                        </div>
+
+                        <div class="bmi-result-notice">
+                            <strong>Remember</strong>
+                            <p>
+                                BMI is a screening measure, not a diagnosis. It does not
+                                directly measure body fat or distinguish muscle from fat.
+                            </p>
+                        </div>
+
+                        <p class="bmi-copy-message" id="bmiCopyMessage" role="status"></p>
+                    </section>
+                </section>
+
+                <aside class="bmi-card bmi-sidebar">
+                    <span class="bmi-sidebar-badge">QUICK GUIDE</span>
+                    <h2>How BMI works</h2>
+                    <p>
+                        BMI compares weight with height to provide a simple screening
+                        measure for adults.
+                    </p>
+
+                    <div class="bmi-guide-item">
+                        <span>01</span>
+                        <div>
+                            <h3>Choose units</h3>
+                            <p>Select metric or imperial measurements.</p>
+                        </div>
+                    </div>
+
+                    <div class="bmi-guide-item">
+                        <span>02</span>
+                        <div>
+                            <h3>Enter measurements</h3>
+                            <p>Provide your height and current weight.</p>
+                        </div>
+                    </div>
+
+                    <div class="bmi-guide-item">
+                        <span>03</span>
+                        <div>
+                            <h3>View your result</h3>
+                            <p>Review your BMI and the standard adult category.</p>
+                        </div>
+                    </div>
+
+                    <div class="bmi-sidebar-note">
+                        <strong>Health note</strong>
+                        <p>
+                            This calculator uses standard adult BMI categories.
+                            For people under 20, BMI must be interpreted using
+                            age- and sex-specific growth references.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="container bmi-info-section">
+            <div class="bmi-section-title">
+                <span class="bmi-eyebrow">UNDERSTAND YOUR RESULT</span>
+                <h2>What is Body Mass Index?</h2>
+                <p>
+                    Body Mass Index (BMI) is a numerical value calculated from a
+                    person's weight and height. It is commonly used as an initial
+                    screening measure, but it cannot independently determine whether
+                    someone is healthy.
+                </p>
+            </div>
+
+            <div class="bmi-info-grid">
+                <article class="bmi-info-card">
+                    <span class="bmi-info-icon">ƒ</span>
+                    <h3>Metric formula</h3>
+                    <p class="bmi-formula">BMI = Weight (kg) ÷ Height (m)²</p>
+                    <p>Convert height from centimetres to metres before squaring it.</p>
+                </article>
+
+                <article class="bmi-info-card">
+                    <span class="bmi-info-icon">↔</span>
+                    <h3>Imperial formula</h3>
+                    <p class="bmi-formula">BMI = 703 × Weight (lb) ÷ Height (in)²</p>
+                    <p>Use total height in inches and weight in pounds.</p>
+                </article>
+
+                <article class="bmi-info-card">
+                    <span class="bmi-info-icon">✓</span>
+                    <h3>Example calculation</h3>
+                    <p class="bmi-formula">65 ÷ (1.70 × 1.70) = 22.5</p>
+                    <p>An adult weighing 65 kg at 1.70 m tall has a BMI of approximately 22.5.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="container bmi-info-section">
+            <div class="bmi-section-title">
+                <span class="bmi-eyebrow">STANDARD ADULT CATEGORIES</span>
+                <h2>BMI chart for adults</h2>
+                <p>
+                    These standard categories apply to adults aged 20 and older.
+                    They are screening ranges, not individual diagnoses.
+                </p>
+            </div>
+
+            <div class="bmi-table-wrap">
+                <table class="bmi-table">
+                    <thead>
+                        <tr>
+                            <th>BMI range (kg/m²)</th>
+                            <th>Adult category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Below 18.5</td>
+                            <td><span class="bmi-table-badge bmi-table-low">Underweight</span></td>
+                        </tr>
+                        <tr>
+                            <td>18.5 to below 25</td>
+                            <td><span class="bmi-table-badge bmi-table-healthy">Healthy weight</span></td>
+                        </tr>
+                        <tr>
+                            <td>25 to below 30</td>
+                            <td><span class="bmi-table-badge bmi-table-high">Overweight</span></td>
+                        </tr>
+                        <tr>
+                            <td>30 to below 35</td>
+                            <td><span class="bmi-table-badge bmi-table-obesity">Obesity — Class 1</span></td>
+                        </tr>
+                        <tr>
+                            <td>35 to below 40</td>
+                            <td><span class="bmi-table-badge bmi-table-obesity">Obesity — Class 2</span></td>
+                        </tr>
+                        <tr>
+                            <td>40 and above</td>
+                            <td><span class="bmi-table-badge bmi-table-obesity">Obesity — Class 3</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="container bmi-info-section">
+            <div class="bmi-section-title">
+                <span class="bmi-eyebrow">GET STARTED</span>
+                <h2>How to use the BMI Calculator</h2>
+            </div>
+
+            <div class="bmi-steps">
+                <div class="bmi-step">
+                    <span>1</span>
+                    <p>Choose metric or imperial units.</p>
+                </div>
+                <div class="bmi-step">
+                    <span>2</span>
+                    <p>Enter your height and weight accurately.</p>
+                </div>
+                <div class="bmi-step">
+                    <span>3</span>
+                    <p>Select Calculate BMI to view your result.</p>
+                </div>
+                <div class="bmi-step">
+                    <span>4</span>
+                    <p>Review the category and copy the result if needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container bmi-info-section">
+            <div class="bmi-section-title">
+                <span class="bmi-eyebrow">COMMON QUESTIONS</span>
+                <h2>Frequently asked questions</h2>
+            </div>
+
+            <div class="bmi-faq-list">
+                <details class="bmi-faq">
+                    <summary>Is BMI a diagnosis of my health?</summary>
+                    <p>
+                        No. BMI is a screening measure. A health professional may
+                        consider other information, such as medical history,
+                        blood pressure, laboratory findings, fitness, and body
+                        composition, when assessing health.
+                    </p>
+                </details>
+
+                <details class="bmi-faq">
+                    <summary>Does BMI work for children and teenagers?</summary>
+                    <p>
+                        Adult BMI categories should not be used for children and
+                        teenagers. Their BMI is interpreted using age- and
+                        sex-specific growth charts or percentiles.
+                    </p>
+                </details>
+
+                <details class="bmi-faq">
+                    <summary>Can someone muscular have a high BMI?</summary>
+                    <p>
+                        Yes. BMI does not distinguish muscle from fat, so it may
+                        not reflect body composition accurately in people with
+                        substantial muscle mass.
+                    </p>
+                </details>
+
+                <details class="bmi-faq">
+                    <summary>Are my measurements uploaded?</summary>
+                    <p>
+                        No. This calculator performs the calculation in your
+                        browser and does not require your height or weight to be
+                        sent to a server.
+                    </p>
+                </details>
+            </div>
+
+            <p class="bmi-disclaimer">
+                <strong>Disclaimer:</strong> This tool is for general informational
+                purposes only and is not a substitute for professional medical advice,
+                diagnosis, or treatment.
+            </p>
+        </section>
+
+        <section class="container bmi-related-section">
+            <div class="bmi-section-title">
+                <span class="bmi-eyebrow">EXPLORE MORE</span>
+                <h2>Related tools</h2>
+            </div>
+
+            <div class="bmi-related-grid">
+                <a href="../calculator.html" class="bmi-related-card">
+                    <span>🧮</span>
+                    <h3>All Calculators</h3>
+                    <p>Explore more useful DigiiFox calculators.</p>
+                </a>
+
+                <a href="age-calculator.html" class="bmi-related-card">
+                    <span>🎂</span>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate your age from your date of birth.</p>
+                </a>
+
+                <a href="time-duration-calculator.html" class="bmi-related-card">
+                    <span>◷</span>
+                    <h3>Time Duration Calculator</h3>
+                    <p>Calculate the elapsed time between two times.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">Digii<span>Fox</span></a>
+                    <p>Useful tools. Simple solutions.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Our Tools</h3>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculator Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Health &amp; Fitness</h3>
+                    <a href="bmi-calculator.html">BMI Calculator</a>
+                    <a href="../calculator.html">More Calculators</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> DigiiFox. All rights reserved.</p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

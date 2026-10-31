@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LCM & HCF Calculator | DigiiFox</title>
+    <meta
+        name="description"
+        content="Calculate the LCM and HCF of two or more positive whole numbers with step-by-step explanations using the free DigiiFox calculator."
+    >
+
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+    <link rel="stylesheet" href="../calculator-css/lcm-hcf-calculator.css">
+</head>
+
+<body>
+
+    <!-- Shared Navbar: Keep consistent across all calculator tools -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../calculator.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="lcm-page">
+
+        <!-- Page Heading -->
+        <section class="lcm-hero">
+            <div class="container">
+
+                <div class="lcm-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>LCM & HCF Calculator</span>
+                </div>
+
+                <div class="lcm-hero-content">
+                    <span class="lcm-eyebrow">MATH CALCULATOR</span>
+
+                    <h1>LCM & HCF Calculator</h1>
+
+                    <p>
+                        Find the Least Common Multiple and Highest Common Factor
+                        of two or more positive whole numbers with clear,
+                        step-by-step calculations.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Calculator -->
+        <section class="lcm-calculator-section" id="calculator">
+            <div class="container">
+
+                <div class="lcm-calculator-card">
+
+                    <div class="lcm-card-heading">
+                        <div>
+                            <span class="lcm-section-label">CALCULATOR</span>
+                            <h2>Enter your numbers</h2>
+                            <p>
+                                Enter two or more positive whole numbers,
+                                separated by commas or spaces.
+                            </p>
+                        </div>
+
+                        <div class="lcm-icon" aria-hidden="true">∴</div>
+                    </div>
+
+
+                    <form id="lcmForm" novalidate>
+
+                        <div class="lcm-field">
+                            <label for="lcmNumbers">Numbers</label>
+
+                            <input
+                                type="text"
+                                id="lcmNumbers"
+                                name="numbers"
+                                placeholder="e.g. 12, 18, 24"
+                                value="12, 18"
+                                inputmode="text"
+                                autocomplete="off"
+                                aria-describedby="lcmInputHelp lcmError"
+                                required
+                            >
+
+                            <small id="lcmInputHelp">
+                                Example: 12, 18, 24 — enter between 2 and 20 numbers.
+                            </small>
+                        </div>
+
+
+                        <div class="lcm-examples">
+                            <span class="lcm-examples-title">Try an example:</span>
+
+                            <button
+                                type="button"
+                                class="lcm-example-button"
+                                data-numbers="12, 18"
+                            >
+                                12, 18
+                            </button>
+
+                            <button
+                                type="button"
+                                class="lcm-example-button"
+                                data-numbers="8, 12, 20"
+                            >
+                                8, 12, 20
+                            </button>
+
+                            <button
+                                type="button"
+                                class="lcm-example-button"
+                                data-numbers="15, 25, 35"
+                            >
+                                15, 25, 35
+                            </button>
+
+                            <button
+                                type="button"
+                                class="lcm-example-button"
+                                data-numbers="7, 11, 13"
+                            >
+                                7, 11, 13
+                            </button>
+                        </div>
+
+
+                        <p
+                            class="lcm-error"
+                            id="lcmError"
+                            role="alert"
+                            aria-live="polite"
+                        ></p>
+
+
+                        <div class="lcm-actions">
+                            <button class="lcm-primary-button" type="submit">
+                                Calculate LCM & HCF
+                            </button>
+
+                            <button
+                                class="lcm-secondary-button"
+                                type="button"
+                                id="lcmResetButton"
+                            >
+                                Reset
+                            </button>
+                        </div>
+
+                    </form>
+
+
+                    <!-- Results -->
+                    <div
+                        class="lcm-results"
+                        id="lcmResultPanel"
+                        aria-live="polite"
+                        hidden
+                    >
+
+                        <div class="lcm-results-heading">
+                            <span class="lcm-section-label">YOUR RESULTS</span>
+                            <h3>Calculation results</h3>
+                            <p id="lcmResultSummary"></p>
+                        </div>
+
+
+                        <div class="lcm-result-grid">
+
+                            <article class="lcm-result-box">
+                                <span class="lcm-result-label">
+                                    Least Common Multiple
+                                </span>
+
+                                <strong
+                                    class="lcm-result-number"
+                                    id="lcmResultNumber"
+                                >36</strong>
+
+                                <span class="lcm-result-description">
+                                    LCM
+                                </span>
+                            </article>
+
+
+                            <article class="lcm-result-box">
+                                <span class="lcm-result-label">
+                                    Highest Common Factor
+                                </span>
+
+                                <strong
+                                    class="lcm-result-number"
+                                    id="hcfResultNumber"
+                                >6</strong>
+
+                                <span class="lcm-result-description">
+                                    HCF / GCD
+                                </span>
+                            </article>
+
+                        </div>
+
+
+                        <div class="lcm-formula-box">
+                            <h4>LCM and HCF relationship</h4>
+
+                            <p>
+                                For two positive integers:
+                            </p>
+
+                            <div class="lcm-formula">
+                                LCM(a, b) × HCF(a, b) = a × b
+                            </div>
+
+                            <p class="lcm-formula-note" id="lcmFormulaNote"></p>
+                        </div>
+
+
+                        <div class="lcm-steps-box">
+                            <h4>Step-by-step solution</h4>
+                            <ol id="lcmSteps"></ol>
+                        </div>
+
+
+                        <div class="lcm-actions lcm-result-actions">
+                            <button
+                                type="button"
+                                class="lcm-primary-button"
+                                id="lcmCopyButton"
+                            >
+                                Copy Results
+                            </button>
+
+                            <button
+                                type="button"
+                                class="lcm-secondary-button"
+                                id="lcmCalculateAgainButton"
+                            >
+                                Calculate Again
+                            </button>
+                        </div>
+
+                        <p
+                            class="lcm-copy-feedback"
+                            id="lcmCopyFeedback"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Definition -->
+        <section class="lcm-information-section" id="definition">
+            <div class="container">
+
+                <div class="lcm-information-card">
+                    <span class="lcm-section-label">UNDERSTANDING THE MATH</span>
+                    <h2>What are LCM and HCF?</h2>
+
+                    <p>
+                        LCM and HCF are mathematical concepts used to find
+                        relationships between whole numbers. They are useful
+                        in fractions, number patterns, division, and many
+                        everyday mathematical problems.
+                    </p>
+
+                    <div class="lcm-definition-grid">
+
+                        <article class="lcm-definition-item">
+                            <div class="lcm-definition-symbol">LCM</div>
+
+                            <h3>Least Common Multiple</h3>
+
+                            <p>
+                                The LCM is the smallest positive number that
+                                is divisible by every number in the given set.
+                            </p>
+
+                            <div class="lcm-definition-example">
+                                Example: LCM of 4 and 6 = 12
+                            </div>
+                        </article>
+
+
+                        <article class="lcm-definition-item">
+                            <div class="lcm-definition-symbol">HCF</div>
+
+                            <h3>Highest Common Factor</h3>
+
+                            <p>
+                                The HCF is the largest positive whole number
+                                that divides every number in the given set
+                                without leaving a remainder.
+                            </p>
+
+                            <div class="lcm-definition-example">
+                                Example: HCF of 12 and 18 = 6
+                            </div>
+                        </article>
+
+                    </div>
+
+
+                    <div class="lcm-formula-reference">
+                        <h3>Important formulas</h3>
+
+                        <div class="lcm-reference-row">
+                            <span>For two positive integers:</span>
+                            <strong>LCM(a, b) = (a × b) ÷ HCF(a, b)</strong>
+                        </div>
+
+                        <div class="lcm-reference-row">
+                            <span>Euclidean algorithm for HCF:</span>
+                            <strong>HCF(a, b) = HCF(b, a mod b)</strong>
+                        </div>
+
+                        <div class="lcm-reference-row">
+                            <span>For more than two numbers:</span>
+                            <strong>
+                                LCM(a, b, c) = LCM(LCM(a, b), c)
+                            </strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- How to Use -->
+        <section class="lcm-information-section" id="how-to-use">
+            <div class="container">
+
+                <div class="lcm-information-card">
+                    <span class="lcm-section-label">QUICK GUIDE</span>
+                    <h2>How to use the LCM & HCF Calculator</h2>
+
+                    <div class="lcm-how-to-grid">
+
+                        <article class="lcm-how-to-item">
+                            <span class="lcm-step-number">01</span>
+                            <h3>Enter your numbers</h3>
+                            <p>
+                                Type at least two positive whole numbers
+                                separated by commas or spaces.
+                            </p>
+                        </article>
+
+                        <article class="lcm-how-to-item">
+                            <span class="lcm-step-number">02</span>
+                            <h3>Calculate</h3>
+                            <p>
+                                Click the Calculate LCM & HCF button to
+                                process the numbers.
+                            </p>
+                        </article>
+
+                        <article class="lcm-how-to-item">
+                            <span class="lcm-step-number">03</span>
+                            <h3>View the results</h3>
+                            <p>
+                                Review both answers and follow the
+                                step-by-step solution.
+                            </p>
+                        </article>
+
+                        <article class="lcm-how-to-item">
+                            <span class="lcm-step-number">04</span>
+                            <h3>Copy or try again</h3>
+                            <p>
+                                Copy your results or enter a different
+                                set of numbers.
+                            </p>
+                        </article>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- FAQs -->
+        <section class="lcm-information-section lcm-faq-section" id="faq">
+            <div class="container">
+
+                <div class="lcm-information-card">
+                    <span class="lcm-section-label">COMMON QUESTIONS</span>
+                    <h2>Frequently asked questions</h2>
+
+                    <div class="lcm-faq-list">
+
+                        <details class="lcm-faq-item">
+                            <summary>What is the difference between LCM and HCF?</summary>
+                            <p>
+                                LCM is the smallest positive common multiple
+                                of the given numbers. HCF is the largest
+                                positive integer that divides all the
+                                given numbers without a remainder.
+                            </p>
+                        </details>
+
+                        <details class="lcm-faq-item">
+                            <summary>Are HCF and GCD the same?</summary>
+                            <p>
+                                Yes. HCF means Highest Common Factor, while
+                                GCD means Greatest Common Divisor. Both
+                                refer to the same mathematical value.
+                            </p>
+                        </details>
+
+                        <details class="lcm-faq-item">
+                            <summary>Can I calculate LCM and HCF for more than two numbers?</summary>
+                            <p>
+                                Yes. Enter between 2 and 20 positive whole
+                                numbers, separated by commas or spaces.
+                            </p>
+                        </details>
+
+                        <details class="lcm-faq-item">
+                            <summary>Can I enter decimals or negative numbers?</summary>
+                            <p>
+                                No. This calculator accepts positive whole
+                                numbers only. Decimals, negative values,
+                                zero, and non-numeric entries are not accepted.
+                            </p>
+                        </details>
+
+                        <details class="lcm-faq-item">
+                            <summary>What happens when the numbers are coprime?</summary>
+                            <p>
+                                If two numbers have an HCF of 1, they are
+                                coprime. Their LCM equals their product.
+                                For example, the LCM of 5 and 7 is 35.
+                            </p>
+                        </details>
+
+                        <details class="lcm-faq-item">
+                            <summary>Are my numbers uploaded to a server?</summary>
+                            <p>
+                                No. The calculation runs in your browser
+                                using JavaScript. The calculator does not
+                                need to upload your entered numbers to
+                                calculate the results.
+                            </p>
+                        </details>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Shared Footer: Keep the full footer consistent across tools -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../calculator.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Simple, useful online tools designed to make
+                        everyday tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                    <a href="../calculator.html">Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Popular Calculators</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="fraction-calculator.html">Fraction Calculator</a>
+                    <a href="probability-calculator.html">Probability Calculator</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Math Tools</h3>
+                    <a href="exponent-calculator.html">Exponent Calculator</a>
+                    <a href="square-root-calculator.html">Square Root Calculator</a>
+                    <a href="lcm-hcf-calculator.html">LCM & HCF Calculator</a>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/lcm-hcf-calculator.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Convert length and distance measurements instantly with the free DigiiFox Length Converter. Convert meters, kilometers, feet, inches, miles, and more.">
+
+    <title>Length Converter - DigiiFox</title>
+
+    <!-- Shared calculator stylesheet -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Length converter stylesheet -->
+    <link rel="stylesheet" href="../calculator-css/length-converter.css">
+</head>
+
+<body class="length-page">
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle"
+                    id="menuToggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="../calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="length-main">
+
+        <!-- Hero -->
+        <section class="length-hero">
+            <div class="container">
+
+                <div class="length-breadcrumb">
+                    <a href="../calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Unit Conversion</span>
+                </div>
+
+                <div class="length-hero-content">
+                    <div class="length-icon" aria-hidden="true">↔</div>
+
+                    <span class="length-eyebrow">UNIT CONVERSION</span>
+
+                    <h1>Length Converter</h1>
+
+                    <p>
+                        Convert length and distance measurements in seconds.
+                        Switch between metric and imperial units with accurate,
+                        easy-to-understand results.
+                    </p>
+
+                    <div class="length-badges">
+                        <span>✓ Instant conversion</span>
+                        <span>✓ Free to use</span>
+                        <span>✓ No file uploads</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Converter -->
+        <section class="length-tool-section">
+            <div class="container">
+
+                <div class="length-layout">
+
+                    <!-- Main converter card -->
+                    <div class="length-card">
+
+                        <div class="length-card-heading">
+                            <div>
+                                <span class="length-small-label">
+                                    LENGTH & DISTANCE
+                                </span>
+
+                                <h2>Convert Measurements</h2>
+
+                                <p>
+                                    Enter a value and select your measurement units.
+                                </p>
+                            </div>
+
+                            <span class="length-card-symbol" aria-hidden="true">
+                                ⇄
+                            </span>
+                        </div>
+
+
+                        <form id="lengthForm" novalidate>
+
+                            <!-- Amount -->
+                            <div class="length-field">
+                                <label for="lengthValue">
+                                    Value to convert
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="lengthValue"
+                                    name="lengthValue"
+                                    value="1"
+                                    min="0"
+                                    max="1e100"
+                                    step="any"
+                                    placeholder="Enter a value"
+                                    inputmode="decimal"
+                                    required
+                                >
+
+                                <small>
+                                    Enter a non-negative number.
+                                </small>
+                            </div>
+
+
+                            <!-- Units -->
+                            <div class="length-unit-row">
+
+                                <div class="length-field">
+                                    <label for="fromUnit">From</label>
+
+                                    <select id="fromUnit" name="fromUnit">
+                                        <optgroup label="Metric">
+                                            <option value="mm">Millimeter (mm)</option>
+                                            <option value="cm">Centimeter (cm)</option>
+                                            <option value="m" selected>Meter (m)</option>
+                                            <option value="km">Kilometer (km)</option>
+                                        </optgroup>
+
+                                        <optgroup label="Imperial">
+                                            <option value="in">Inch (in)</option>
+                                            <option value="ft">Foot (ft)</option>
+                                            <option value="yd">Yard (yd)</option>
+                                            <option value="mi">Mile (mi)</option>
+                                        </optgroup>
+
+                                        <optgroup label="Other">
+                                            <option value="nmi">Nautical mile (nmi)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="length-swap-button"
+                                    id="swapUnits"
+                                    aria-label="Swap conversion units"
+                                    title="Swap units">
+                                    ⇄
+                                </button>
+
+
+                                <div class="length-field">
+                                    <label for="toUnit">To</label>
+
+                                    <select id="toUnit" name="toUnit">
+                                        <optgroup label="Metric">
+                                            <option value="mm">Millimeter (mm)</option>
+                                            <option value="cm">Centimeter (cm)</option>
+                                            <option value="m">Meter (m)</option>
+                                            <option value="km" selected>Kilometer (km)</option>
+                                        </optgroup>
+
+                                        <optgroup label="Imperial">
+                                            <option value="in">Inch (in)</option>
+                                            <option value="ft">Foot (ft)</option>
+                                            <option value="yd">Yard (yd)</option>
+                                            <option value="mi">Mile (mi)</option>
+                                        </optgroup>
+
+                                        <optgroup label="Other">
+                                            <option value="nmi">Nautical mile (nmi)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Error -->
+                            <div
+                                class="length-error"
+                                id="lengthError"
+                                role="alert"
+                                aria-live="polite"
+                                hidden>
+                            </div>
+
+
+                            <!-- Actions -->
+                            <div class="length-actions">
+                                <button type="submit" class="length-primary-button">
+                                    Convert Length <span aria-hidden="true">→</span>
+                                </button>
+
+                                <button type="button"
+                                        id="resetLength"
+                                        class="length-secondary-button">
+                                    Reset
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                        <!-- Result -->
+                        <section
+                            class="length-result"
+                            id="lengthResult"
+                            aria-live="polite"
+                            hidden>
+
+                            <div class="length-result-top">
+                                <span class="length-result-label">
+                                    CONVERSION RESULT
+                                </span>
+
+                                <span class="length-success-icon" aria-hidden="true">
+                                    ✓
+                                </span>
+                            </div>
+
+                            <div class="length-result-equation">
+                                <span id="resultInput">1 m</span>
+                                <span class="length-equals">=</span>
+                            </div>
+
+                            <div class="length-result-value" id="resultValue">
+                                1,000
+                            </div>
+
+                            <div class="length-result-unit" id="resultUnit">
+                                Millimeters (mm)
+                            </div>
+
+                            <div class="length-result-details">
+                                <p id="resultSummary">
+                                    1 meter is equal to 1,000 millimeters.
+                                </p>
+
+                                <div class="length-formula-box">
+                                    <span>Conversion formula</span>
+                                    <strong id="resultFormula">
+                                        Result = Value × Conversion factor
+                                    </strong>
+                                </div>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="length-copy-button"
+                                id="copyLengthResult">
+                                Copy Result
+                            </button>
+
+                            <span
+                                class="length-copy-message"
+                                id="copyLengthMessage"
+                                role="status"
+                                aria-live="polite">
+                            </span>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- Side information -->
+                    <aside class="length-info-card">
+
+                        <div class="length-info-icon" aria-hidden="true">
+                            📏
+                        </div>
+
+                        <h3>Quick Reference</h3>
+
+                        <p>
+                            Useful relationships between common length units.
+                        </p>
+
+                        <div class="length-reference-list">
+                            <div>
+                                <span>1 kilometer</span>
+                                <strong>1,000 meters</strong>
+                            </div>
+
+                            <div>
+                                <span>1 meter</span>
+                                <strong>100 centimeters</strong>
+                            </div>
+
+                            <div>
+                                <span>1 centimeter</span>
+                                <strong>10 millimeters</strong>
+                            </div>
+
+                            <div>
+                                <span>1 inch</span>
+                                <strong>2.54 centimeters</strong>
+                            </div>
+
+                            <div>
+                                <span>1 foot</span>
+                                <strong>12 inches</strong>
+                            </div>
+
+                            <div>
+                                <span>1 yard</span>
+                                <strong>3 feet</strong>
+                            </div>
+
+                            <div>
+                                <span>1 mile</span>
+                                <strong>1.609344 kilometers</strong>
+                            </div>
+                        </div>
+
+                        <div class="length-info-note">
+                            <strong>Tip</strong>
+                            <p>
+                                Use the swap button to reverse your conversion
+                                without reselecting the units.
+                            </p>
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- About -->
+        <section class="length-content-section">
+            <div class="container">
+
+                <article class="length-content-card">
+                    <span class="length-section-label">OVERVIEW</span>
+
+                    <h2>What Is a Length Converter?</h2>
+
+                    <p>
+                        A length converter is a tool that changes a measurement
+                        from one unit of length to another. For example, you can
+                        convert kilometers to miles, meters to feet, or inches
+                        to centimeters without performing the calculation
+                        manually.
+                    </p>
+
+                    <p>
+                        Length conversion is useful for education, construction,
+                        engineering, travel, shopping, science, and everyday
+                        measurements. DigiiFox uses standard conversion factors
+                        to calculate the equivalent value.
+                    </p>
+                </article>
+
+
+                <!-- Formula -->
+                <article class="length-content-card">
+
+                    <span class="length-section-label">THE MATHEMATICS</span>
+
+                    <h2>Length Conversion Formula</h2>
+
+                    <p>
+                        To convert between two units, first express the original
+                        measurement in meters. Then convert meters into the
+                        target unit.
+                    </p>
+
+                    <div class="length-formula-grid">
+
+                        <div class="length-formula-card">
+                            <span>Step 1</span>
+                            <h3>Convert to meters</h3>
+                            <code>
+                                Meters = Original value × Source factor
+                            </code>
+                        </div>
+
+                        <div class="length-formula-card">
+                            <span>Step 2</span>
+                            <h3>Convert to target unit</h3>
+                            <code>
+                                Result = Meters ÷ Target factor
+                            </code>
+                        </div>
+
+                    </div>
+
+                    <div class="length-example-box">
+                        <h3>Example: Convert 5 meters to centimeters</h3>
+
+                        <p>1 meter = 100 centimeters</p>
+
+                        <div class="length-example-equation">
+                            5 × 100 = 500 cm
+                        </div>
+
+                        <p>
+                            Therefore, 5 meters is equal to 500 centimeters.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <!-- Instructions -->
+                <article class="length-content-card">
+
+                    <span class="length-section-label">QUICK GUIDE</span>
+
+                    <h2>How to Use the Length Converter</h2>
+
+                    <div class="length-steps">
+
+                        <div class="length-step">
+                            <span>01</span>
+                            <div>
+                                <h3>Enter a measurement</h3>
+                                <p>
+                                    Type the length or distance you want to convert.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="length-step">
+                            <span>02</span>
+                            <div>
+                                <h3>Select the original unit</h3>
+                                <p>
+                                    Choose the unit of your current measurement.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="length-step">
+                            <span>03</span>
+                            <div>
+                                <h3>Choose the target unit</h3>
+                                <p>
+                                    Select the unit into which you want to convert.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="length-step">
+                            <span>04</span>
+                            <div>
+                                <h3>Convert and copy</h3>
+                                <p>
+                                    View the result instantly and copy it when needed.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FAQs -->
+                <article class="length-content-card">
+
+                    <span class="length-section-label">HELP CENTER</span>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="length-faq-list">
+
+                        <details class="length-faq">
+                            <summary>Is this length converter free?</summary>
+                            <p>
+                                Yes. You can use the DigiiFox Length Converter
+                                for free without creating an account.
+                            </p>
+                        </details>
+
+                        <details class="length-faq">
+                            <summary>Which units can I convert?</summary>
+                            <p>
+                                You can convert millimeters, centimeters,
+                                meters, kilometers, inches, feet, yards, miles,
+                                and nautical miles.
+                            </p>
+                        </details>
+
+                        <details class="length-faq">
+                            <summary>What is the difference between a mile and a nautical mile?</summary>
+                            <p>
+                                A standard mile equals 1,609.344 meters.
+                                A nautical mile equals exactly 1,852 meters
+                                and is commonly used in maritime and aviation
+                                navigation.
+                            </p>
+                        </details>
+
+                        <details class="length-faq">
+                            <summary>Does the converter work with decimal values?</summary>
+                            <p>
+                                Yes. You can enter decimal values such as
+                                2.5 meters or 3.75 inches.
+                            </p>
+                        </details>
+
+                        <details class="length-faq">
+                            <summary>Are my measurements uploaded to a server?</summary>
+                            <p>
+                                No. The conversion is calculated locally in
+                                your browser. This tool does not need to upload
+                                your measurements to a server.
+                            </p>
+                        </details>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Related tools -->
+                <article class="length-content-card">
+
+                    <span class="length-section-label">EXPLORE MORE</span>
+
+                    <h2>Related Conversion Tools</h2>
+
+                    <p>
+                        Continue exploring the Unit Conversion section as
+                        additional tools become available.
+                    </p>
+
+                    <div class="length-related-grid">
+
+                        <a href="length-converter.html"
+                           class="length-related-card">
+                            <span>📏</span>
+                            <strong>Length Converter</strong>
+                            <small>Convert length and distance</small>
+                        </a>
+
+                        <a href="../calculator.html"
+                           class="length-related-card">
+                            <span>🧮</span>
+                            <strong>All Calculators</strong>
+                            <small>Explore DigiiFox tools</small>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FULL FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Useful tools. Simple solutions.
+                        Making everyday digital tasks easier.
+                    </p>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+
+                    <a href="../index.html">Home</a>
+                    <a href="../calculator.html">Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>Unit Conversion</h3>
+
+                    <a href="length-converter.html">Length Converter</a>
+                    <a href="../calculator.html">All Calculators</a>
+                </div>
+
+
+                <div class="footer-column">
+                    <h3>About DigiiFox</h3>
+
+                    <p>
+                        Simple, accessible, and useful online tools
+                        designed for everyday needs.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>
+                    &copy; <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/length-converter.js"></script>
+
+</body>
+</html>

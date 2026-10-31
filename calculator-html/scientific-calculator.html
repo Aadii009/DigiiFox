@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scientific Calculator - DigiiFox</title>
+    <meta name="description"
+        content="Use the free DigiiFox Scientific Calculator for arithmetic, trigonometry, logarithms, powers, roots, and more.">
+
+    <!-- Shared calculator styles -->
+    <link rel="stylesheet" href="../calculator-css/standard-calculator.css">
+
+    <!-- Scientific calculator styles -->
+    <link rel="stylesheet" href="../calculator-css/scientific-calculator.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="site-header">
+        <div class="container header-content">
+
+            <a href="../index.html" class="logo">
+                Digii<span>Fox</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="../index.html">Home</a>
+                <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                <a href="../image-html/image-tools.html">Image Tools</a>
+                <a href="calculator.html" class="active">Calculators</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+    <main>
+        <section class="scientific-hero">
+            <div class="container">
+
+                <div class="scientific-breadcrumb">
+                    <a href="calculator.html">Calculators</a>
+                    <span>/</span>
+                    <span>Scientific Calculator</span>
+                </div>
+
+                <div class="scientific-hero-content">
+                    <span class="scientific-badge">FREE ONLINE TOOL</span>
+
+                    <h1>Scientific Calculator</h1>
+
+                    <p>
+                        Solve mathematical expressions with trigonometry,
+                        logarithms, powers, roots, factorials, and essential
+                        arithmetic operations.
+                    </p>
+
+                    <div class="scientific-hero-tags">
+                        <span>✓ Free to use</span>
+                        <span>✓ Instant results</span>
+                        <span>✓ Browser-based</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= CALCULATOR ================= -->
+        <section class="scientific-main-section" id="calculator">
+            <div class="container">
+
+                <div class="scientific-layout">
+
+                    <div class="scientific-calculator-card">
+
+                        <div class="scientific-card-heading">
+                            <div>
+                                <span class="scientific-eyebrow">CALCULATOR</span>
+                                <h2>Calculate anything</h2>
+                            </div>
+
+                            <span class="scientific-status">
+                                <span></span> Ready
+                            </span>
+                        </div>
+
+
+                        <!-- Display -->
+                        <div class="scientific-display">
+                            <div class="scientific-display-top">
+                                <span id="angleModeLabel">DEG</span>
+                                <span id="calculationStatus" aria-live="polite">
+                                    Ready to calculate
+                                </span>
+                            </div>
+
+                            <label class="sr-only" for="expressionInput">
+                                Mathematical expression
+                            </label>
+
+                            <input type="text" id="expressionInput" class="scientific-expression"
+                                placeholder="Enter an expression" autocomplete="off" spellcheck="false"
+                                inputmode="decimal" aria-describedby="calculatorHelp">
+
+                            <div class="scientific-result" id="calculatorResult" aria-live="polite">0</div>
+                        </div>
+
+                        <p class="scientific-help" id="calculatorHelp">
+                            Tip: Use your keyboard or click the buttons below.
+                            Press Enter to calculate.
+                        </p>
+
+
+                        <!-- Calculator controls -->
+                        <div class="scientific-controls">
+                            <button type="button" class="scientific-control-btn" id="angleToggle">
+                                DEG
+                            </button>
+
+                            <button type="button" class="scientific-control-btn" data-insert="(">(</button>
+                            <button type="button" class="scientific-control-btn" data-insert=")">)</button>
+                            <button type="button" class="scientific-control-btn" data-action="backspace">DEL</button>
+                            <button type="button" class="scientific-control-btn clear-btn"
+                                data-action="clear">AC</button>
+                        </div>
+
+
+                        <!-- Scientific keypad -->
+                        <div class="scientific-keypad">
+
+                            <button type="button" class="scientific-key function-key" data-insert="sin(">sin</button>
+                            <button type="button" class="scientific-key function-key" data-insert="cos(">cos</button>
+                            <button type="button" class="scientific-key function-key" data-insert="tan(">tan</button>
+                            <button type="button" class="scientific-key function-key" data-insert="log(">log</button>
+                            <button type="button" class="scientific-key function-key" data-insert="ln(">ln</button>
+
+                            <button type="button" class="scientific-key function-key" data-insert="asin(">sin⁻¹</button>
+                            <button type="button" class="scientific-key function-key" data-insert="acos(">cos⁻¹</button>
+                            <button type="button" class="scientific-key function-key" data-insert="atan(">tan⁻¹</button>
+                            <button type="button" class="scientific-key function-key" data-insert="sqrt(">√</button>
+                            <button type="button" class="scientific-key function-key" data-insert="cbrt(">∛</button>
+
+                            <button type="button" class="scientific-key function-key" data-insert="^2">x²</button>
+                            <button type="button" class="scientific-key function-key" data-insert="^3">x³</button>
+                            <button type="button" class="scientific-key function-key" data-insert="^">xʸ</button>
+                            <button type="button" class="scientific-key function-key" data-insert="!">n!</button>
+                            <button type="button" class="scientific-key function-key" data-insert="1/(">1/x</button>
+
+                            <button type="button" class="scientific-key function-key" data-insert="π">π</button>
+                            <button type="button" class="scientific-key function-key" data-insert="e">e</button>
+                            <button type="button" class="scientific-key function-key" data-insert="%">%</button>
+                            <button type="button" class="scientific-key function-key" data-insert="abs(">abs</button>
+                            <button type="button" class="scientific-key function-key" data-insert="exp(">eˣ</button>
+
+                            <button type="button" class="scientific-key number-key" data-insert="7">7</button>
+                            <button type="button" class="scientific-key number-key" data-insert="8">8</button>
+                            <button type="button" class="scientific-key number-key" data-insert="9">9</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="÷">÷</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="^">^</button>
+
+                            <button type="button" class="scientific-key number-key" data-insert="4">4</button>
+                            <button type="button" class="scientific-key number-key" data-insert="5">5</button>
+                            <button type="button" class="scientific-key number-key" data-insert="6">6</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="×">×</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="−">−</button>
+
+                            <button type="button" class="scientific-key number-key" data-insert="1">1</button>
+                            <button type="button" class="scientific-key number-key" data-insert="2">2</button>
+                            <button type="button" class="scientific-key number-key" data-insert="3">3</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="+">+</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="ans">Ans</button>
+
+                            <button type="button" class="scientific-key number-key zero-key" data-insert="0">0</button>
+                            <button type="button" class="scientific-key number-key" data-insert=".">.</button>
+                            <button type="button" class="scientific-key operator-key" data-insert="×10^(">×10ˣ</button>
+                            <button type="button" class="scientific-key equals-key" data-action="calculate">=</button>
+
+                        </div>
+
+                        <div class="scientific-calculator-bottom">
+                            <span>Calculations are processed locally in your browser.</span>
+                            <button type="button" id="copyResultButton">Copy result</button>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Calculator sidebar -->
+                    <aside class="scientific-sidebar">
+
+                        <div class="scientific-info-card">
+                            <div class="scientific-info-icon">∑</div>
+                            <h3>Scientific functions</h3>
+                            <p>
+                                Perform advanced calculations without installing
+                                software or creating an account.
+                            </p>
+
+                            <ul class="scientific-feature-list">
+                                <li>Trigonometric calculations</li>
+                                <li>Logarithms and exponentials</li>
+                                <li>Powers, roots, and factorials</li>
+                                <li>Degree and radian modes</li>
+                            </ul>
+                        </div>
+
+                        <div class="scientific-info-card scientific-history-card">
+                            <div class="scientific-history-heading">
+                                <h3>Recent calculations</h3>
+                                <button type="button" id="clearHistoryButton">Clear</button>
+                            </div>
+
+                            <div id="calculationHistory" class="scientific-history-list">
+                                <p class="scientific-empty-history">
+                                    Your calculations will appear here.
+                                </p>
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= DEFINITION ================= -->
+        <section class="scientific-content-section" id="definition">
+            <div class="container scientific-content-container">
+
+                <span class="scientific-eyebrow">UNDERSTANDING THE TOOL</span>
+                <h2>What is a scientific calculator?</h2>
+
+                <p>
+                    A scientific calculator is a mathematical tool designed to
+                    solve basic arithmetic and more advanced mathematical
+                    problems. It includes functions such as trigonometry,
+                    logarithms, exponentiation, roots, and factorials.
+                </p>
+
+                <p>
+                    This online calculator is useful for students, teachers,
+                    engineers, and anyone working with mathematical expressions.
+                    Choose the appropriate function, enter your values, and
+                    calculate your result.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FUNCTIONS ================= -->
+        <section class="scientific-content-section scientific-functions-section">
+            <div class="container">
+
+                <div class="scientific-section-heading">
+                    <span class="scientific-eyebrow">QUICK REFERENCE</span>
+                    <h2>Functions and formulas</h2>
+                    <p>Understand the main operations available in this calculator.</p>
+                </div>
+
+                <div class="scientific-formula-grid">
+
+                    <article class="scientific-formula-card">
+                        <h3>Trigonometry</h3>
+                        <div class="scientific-formula">sin(θ), cos(θ), tan(θ)</div>
+                        <p>Calculate trigonometric values using degrees or radians.</p>
+                    </article>
+
+                    <article class="scientific-formula-card">
+                        <h3>Logarithms</h3>
+                        <div class="scientific-formula">log₁₀(x), ln(x)</div>
+                        <p>Calculate common and natural logarithms for positive values.</p>
+                    </article>
+
+                    <article class="scientific-formula-card">
+                        <h3>Powers</h3>
+                        <div class="scientific-formula">xʸ</div>
+                        <p>Raise a number to a specified power.</p>
+                    </article>
+
+                    <article class="scientific-formula-card">
+                        <h3>Square root</h3>
+                        <div class="scientific-formula">√x = x<sup>1/2</sup></div>
+                        <p>Find the principal square root of a non-negative number.</p>
+                    </article>
+
+                    <article class="scientific-formula-card">
+                        <h3>Factorial</h3>
+                        <div class="scientific-formula">n! = n × (n − 1) × … × 1</div>
+                        <p>Calculate factorials for non-negative integers.</p>
+                    </article>
+
+                    <article class="scientific-formula-card">
+                        <h3>Exponential</h3>
+                        <div class="scientific-formula">eˣ</div>
+                        <p>Calculate the exponential function with base e.</p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= HOW TO USE ================= -->
+        <section class="scientific-content-section" id="how-to-use">
+            <div class="container scientific-content-container">
+
+                <span class="scientific-eyebrow">SIMPLE STEPS</span>
+                <h2>How to use the scientific calculator</h2>
+
+                <div class="scientific-steps">
+
+                    <div class="scientific-step">
+                        <span>01</span>
+                        <div>
+                            <h3>Enter your expression</h3>
+                            <p>Click the calculator buttons or type a supported mathematical expression.</p>
+                        </div>
+                    </div>
+
+                    <div class="scientific-step">
+                        <span>02</span>
+                        <div>
+                            <h3>Choose the correct mode</h3>
+                            <p>Switch between DEG and RAD when working with trigonometric functions.</p>
+                        </div>
+                    </div>
+
+                    <div class="scientific-step">
+                        <span>03</span>
+                        <div>
+                            <h3>Calculate the answer</h3>
+                            <p>Press the equals button or Enter to display your result.</p>
+                        </div>
+                    </div>
+
+                    <div class="scientific-step">
+                        <span>04</span>
+                        <div>
+                            <h3>Copy or review your result</h3>
+                            <p>Copy the answer or select a previous calculation from the history list.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= FAQ ================= -->
+        <section class="scientific-content-section scientific-faq-section" id="faq">
+            <div class="container scientific-content-container">
+
+                <span class="scientific-eyebrow">COMMON QUESTIONS</span>
+                <h2>Frequently asked questions</h2>
+
+                <div class="scientific-faq-list">
+
+                    <details class="scientific-faq-item">
+                        <summary>Is this scientific calculator free?</summary>
+                        <p>Yes. You can use the calculator directly in your browser without paying or creating an
+                            account.</p>
+                    </details>
+
+                    <details class="scientific-faq-item">
+                        <summary>What is the difference between DEG and RAD?</summary>
+                        <p>DEG measures angles in degrees, while RAD measures angles in radians. Choose the mode that
+                            matches your problem.</p>
+                    </details>
+
+                    <details class="scientific-faq-item">
+                        <summary>Can I calculate sine, cosine, and tangent?</summary>
+                        <p>Yes. The calculator supports sin, cos, tan, and their inverse functions. Make sure the angle
+                            mode is correct.</p>
+                    </details>
+
+                    <details class="scientific-faq-item">
+                        <summary>Does the calculator support logarithms?</summary>
+                        <p>Yes. Use log for base-10 logarithms and ln for natural logarithms. The input must be
+                            positive.</p>
+                    </details>
+
+                    <details class="scientific-faq-item">
+                        <summary>Are my calculations uploaded to a server?</summary>
+                        <p>The calculator's mathematical operations run in your browser. This page does not send your
+                            expressions to a calculation server.</p>
+                    </details>
+
+                    <details class="scientific-faq-item">
+                        <summary>Why does an expression sometimes return an error?</summary>
+                        <p>An expression may be invalid, contain unmatched parentheses, divide by zero, or use a
+                            function outside its mathematical domain.</p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        Digii<span>Fox</span>
+                    </a>
+
+                    <p>
+                        Smart online tools designed to make everyday digital
+                        tasks simpler, faster, and more convenient.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="calculator.html">All Calculators</a>
+                    <a href="../pdf-html/pdf-tools.html">PDF Tools</a>
+                    <a href="../image-html/image-tools.html">Image Tools</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Calculator Tools</h3>
+                    <a href="standard-calculator.html">Standard Calculator</a>
+                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="average-calculator.html">Average Calculator</a>
+                    <a href="scientific-calculator.html">Scientific Calculator</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <a href="#calculator">Use Calculator</a>
+                    <a href="#definition">About This Tool</a>
+                    <a href="#how-to-use">How to Use</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span> DigiiFox.
+                    All rights reserved.
+                </p>
+                <p>Useful tools. Simple solutions.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="../calculator-js/scientific-calculator.js"></script>
+
+</body>
+
+</html>
